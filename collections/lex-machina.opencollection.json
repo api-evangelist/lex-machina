@@ -1,0 +1,1398 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lex Machina API",
+    "version": "20260324"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Federal District Cases",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Analyze District Cases From Query",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lexmachina.com/analyze-district-cases/from-query",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Analyze District Cases From Query"
+        },
+        {
+          "info": {
+            "name": "Analyze District Cases From Alert",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/analyze-district-cases/from-alert/:alert_id",
+            "params": [
+              {
+                "name": "alert_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "analytic_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "on_or_after",
+                "value": "",
+                "type": "query",
+                "description": "alert start date"
+              },
+              {
+                "name": "on_or_before",
+                "value": "",
+                "type": "query",
+                "description": "alert end date"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Analyze District Cases From Alert"
+        },
+        {
+          "info": {
+            "name": "Find District Case By Number",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/find-district-cases",
+            "params": [
+              {
+                "name": "caseNumbers",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "court",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Finds Lex Machina case ids for specified case numbers.\n\n- **case_numbers**: case number search strings\n- **court**: optional court to limit results\n\nMatches results for each individual case number is cut off at 1000 match results.\n\nBecause case number formats vary, and because the case number for the same case can change over time, the search tries to err on the side of being more inclusive.\nSo, this may return more results than you expect.\nFor example, the search ignores judge initials at the e"
+        },
+        {
+          "info": {
+            "name": "Get District Case",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/district-cases/:district_case_id",
+            "params": [
+              {
+                "name": "district_case_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "docket_retrieval",
+                "value": "",
+                "type": "query",
+                "description": "'all' to retrieve docket entries for the case, if not provided no docket entries will be retrieved."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets data for a single federal district case.\n\n- **district_case_id**: the Lex Machina districtCaseId\n- **docket_retrieval**: docket retreival mode"
+        },
+        {
+          "info": {
+            "name": "Query District Cases",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lexmachina.com/query-district-cases",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Queries federal district court cases.\n\n- **data**: the district case query\n\nSee [Querying district cases](https://developer.lexmachina.com/api-reference/district-cases/querying-district-cases/) for documentation.\n\nThe results will contain a list of cases, each with a specificed url and Lex Machina districtCaseId."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Alerts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Alerts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/alerts",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets a list of all alerts the application has access too."
+        },
+        {
+          "info": {
+            "name": "Get Alert Runs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/alerts/runs/:alert_id",
+            "params": [
+              {
+                "name": "alert_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets a list of all runs an alert has new data for.\n\n- **alert_id**: the id of the alert\n\nEach run represents a new set of relevant items that have been found by the alert on a given day."
+        },
+        {
+          "info": {
+            "name": "Get Alert Run Results",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/alerts/runs/:alert_id/:date",
+            "params": [
+              {
+                "name": "alert_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets a list of all new items for a given alert run.\n\n- **alert_id**: the id of the alert\n- **date**: the date of the run\n\nData returned for an alert run will vary in format based on context, only the ids and urls for the relevant data will included."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Federal Appeals Cases",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Appeals Case",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/appeals-cases/:appeals_case_id",
+            "params": [
+              {
+                "name": "appeals_case_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "docket_retrieval",
+                "value": "",
+                "type": "query",
+                "description": "'all' to retrieve docket entries for the case, if not provided no docket entries will be retrieved."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets data for a single federal appeals circuit court case.\n\n- **appeals_case_id**: the Lex Machina appealsCaseId"
+        },
+        {
+          "info": {
+            "name": "Query Appeals Cases",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lexmachina.com/query-appeals-cases",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Queries federal appeals court cases.\n\n- **data**: the appeals case query\n\nSee [https://developer.lexmachina.com/posts/query/appeals_query_usage/](https://developer.lexmachina.com/posts/query/appeals_query_usage/) for query formation.\n\nThe results will contain a list of cases, each with a specificed url and Lex Machina appealsCaseId."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Attorneys",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Attorney",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/attorneys/:attorney_id",
+            "params": [
+              {
+                "name": "attorney_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets data for a single attorney.\n\n- **attorney_id**: the Lex Machina attorneyId"
+        },
+        {
+          "info": {
+            "name": "Get Attorneys",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/attorneys",
+            "params": [
+              {
+                "name": "attorneyIds",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets data for one or more attorneys.\n\n- **attorneyIds**: the Lex Machina attorneyIds\n\nIf any of the the attorneyIds given are not the current lexmachina attorneyId, the results will include inputId for disambugation"
+        },
+        {
+          "info": {
+            "name": "Search Attorneys",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/search-attorneys",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageNumber",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Searches for attorneys.\n\n- **q**: the query string\n- **page_number**: page number of the results\n- **page_size**:  results per page\n\nThis is a case-insensitive search that will match anywhere within the name of the attorney.\n\nThe results will have page and totalCount fields as well as a convenience link via the field nextPage."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Bankruptcy Cases",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Bankruptcy Case",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/bankruptcy-cases/:bankruptcy_case_id",
+            "params": [
+              {
+                "name": "bankruptcy_case_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "docket_retrieval",
+                "value": "",
+                "type": "query",
+                "description": "'all' to retrieve docket entries for the case, if not provided no docket entries will be retrieved."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets data for a single federal bankruptcy court case.\n\n- **bankruptcy_case_id**: the Lex Machina bankruptcyCaseId"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Judges",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Bankruptcy Judge",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/bankruptcy-judges/:bankruptcy_judge_id",
+            "params": [
+              {
+                "name": "bankruptcy_judge_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets data for a single federal bankruptcy judge.\n\n- **bankruptcy_judge_id**: the Lex Machina bankruptcyJudgeId"
+        },
+        {
+          "info": {
+            "name": "Get Bankruptcy Judges",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/bankruptcy-judges",
+            "params": [
+              {
+                "name": "bankruptcyJudgeIds",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets data for one or more federal bankruptcy judges.\n\n- **attorneyIds**: the Lex Machina bankruptcyJudgeIds"
+        },
+        {
+          "info": {
+            "name": "Get Federal Judge",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/federal-judges/:federal_judge_id",
+            "params": [
+              {
+                "name": "federal_judge_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets data for a single federal Article III judge.\n\n- **judge_id**: the judge id"
+        },
+        {
+          "info": {
+            "name": "Get Federal Judges",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/federal-judges",
+            "params": [
+              {
+                "name": "federalJudgeIds",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets data for one or more federal Article III judges.\n\n- **judgeIds**: the judge Ids"
+        },
+        {
+          "info": {
+            "name": "Search Judges",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/search-judges",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Searches for attorneys.\n\n- **q**: the query string\n\nThis matches from the beginning of the last name. The search query \"hof\" will match the name \"Hoffman\" but will not match \"Schofield\"."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Dockets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get District Docket Entry",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/docket-entries/:docket_entry_id",
+            "params": [
+              {
+                "name": "docket_entry_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets data for a single docket entry.\n\n- **docket_entry_id**: the Lex Machina docketEntryId.\n\nData returned for a docket will vary in format based on context, only the ids and urls for the relevant data will included."
+        },
+        {
+          "info": {
+            "name": "Get Itc Document Entry",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/itc-document-entries/:usitc_document_id",
+            "params": [
+              {
+                "name": "usitc_document_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets data for a single US ITC document.\n\n- **usitc_document_id**: The document id."
+        },
+        {
+          "info": {
+            "name": "Get State Docket Entry",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/state-docket-entries/:state_docket_entry_id",
+            "params": [
+              {
+                "name": "state_docket_entry_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets data for a single docket entry.\n\n- **state_docket_entry_id**: the Lex Machina stateDocketEntryId."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "ITC Investigations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Itc Investigation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/itc-investigations/:itc_investigation_id",
+            "params": [
+              {
+                "name": "itc_investigation_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "document_retrieval",
+                "value": "",
+                "type": "query",
+                "description": "'all' to retrieve all documents for the investigation, if not provided documents will not be returned."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets data for a single US ITC investigation.\n\n- **itc_investigation_id**: the ITC investigation number\n- **docket_retrieval**: docket retreival mode\n\nThe investigation number format should exclude the leading \"337-TA-\""
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Law Firms",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Law Firm",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/law-firms/:law_firm_id",
+            "params": [
+              {
+                "name": "law_firm_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets data for a single law firm.\n\n- **law_firm_id**: the Lex Machina lawFirmID"
+        },
+        {
+          "info": {
+            "name": "Get Law Firms",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/law-firms",
+            "params": [
+              {
+                "name": "lawFirmIds",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets data for one or more law firms.\n\n- **lawFirmIds**: the Lex Machina lawFirmIds\n\nIf any of the the lawFirmIds given are not the current lexmachina lawFirmId, the results will include inputId for disambugation"
+        },
+        {
+          "info": {
+            "name": "Seach Law Firms",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/search-law-firms",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageNumber",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Searches for law firms.\n\n- **q**: the query string\n- **page_number**: page number of the results\n- **page_size**:  results per page\n\nThis is a case-insensitive search that will match anywhere within the name of the firm.\n\nThe results will have page and totalCount fields as well as a convenience link via the field nextPage."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Entities",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Magistrate",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/magistrate-judges/:magistrate_judge_id",
+            "params": [
+              {
+                "name": "magistrate_judge_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets data for a single federal magistrate judge.\n\n- **magistrate_judge_id**: the Lex Machina magistrateJudgeId"
+        },
+        {
+          "info": {
+            "name": "Get Magistrates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/magistrate-judges",
+            "params": [
+              {
+                "name": "magistrateJudgeIds",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets data for a one or more federal magistrate judges.\n\n- **magistrateJudgeIds**: the Lex Machina magistrateJudgeIds"
+        },
+        {
+          "info": {
+            "name": "Get State Judge",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/state-judges/:state_judge_id",
+            "params": [
+              {
+                "name": "state_judge_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets data on a single state judge.\n\n- **state_judge_id**: the Lex Machina stateJudgeId"
+        },
+        {
+          "info": {
+            "name": "Get State Judges",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/state-judges",
+            "params": [
+              {
+                "name": "stateJudgeIds",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets data on one or more single state judges.\n\n- **stateJudgeIds**: the Lex Machina stateJudgeIds"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Parties",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Party",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/parties/:party_id",
+            "params": [
+              {
+                "name": "party_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets data for a single party.\n\n- **party_id**: the Lex Machina partyId"
+        },
+        {
+          "info": {
+            "name": "Get Parties",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/parties",
+            "params": [
+              {
+                "name": "partyIds",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets data for one or more parties.\n\n- **partyIds**: the Lex Machina partyIds\n\nIf any of the the partyIds given are not the current lexmachina partyId, the results will include inputId for disambugation"
+        },
+        {
+          "info": {
+            "name": "Search Parties",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/search-parties",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageNumber",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Searches for parties.\n\n- **q**: the query string\n- **page_number**: page number of the results\n- **page_size**:  results per page\n\nThis is a case-insensitive search that will match anywhere within the name of the party.\n\nThe results will have page and totalCount fields as well as a convenience link via the field nextPage."
+        },
+        {
+          "info": {
+            "name": "Get Party Groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/party-groups",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets a list of all party groups the user has created."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Patents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Patent",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/patents/:patent_number",
+            "params": [
+              {
+                "name": "patent_number",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets data for a single uspto patent.\n\n- **patent_number**: the patent number"
+        },
+        {
+          "info": {
+            "name": "Get Patents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/patents",
+            "params": [
+              {
+                "name": "patentNumbers",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets data for one or more uspto patents.\n\n- **patentNumbers**: the patent numbers"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "PTAB Trials",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Ptab Trial",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/ptab-trials/:ptab_trial_id",
+            "params": [
+              {
+                "name": "ptab_trial_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets data for a single PTAB trial.\n\n- **ptab_trial_id**: the Lex Machina PTAB Trial id"
+        },
+        {
+          "info": {
+            "name": "Get Ptab Trial By Number",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/ptab-trials/:ptab_trial_number",
+            "params": [
+              {
+                "name": "ptab_trial_number",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets data for a single PTAB trial via the trial number.\n\n- **ptab_trial_number**: a PTAB Trial number in the format TTTYYYY-NNNNN where\n\n    TTT is one of IPR, CBM, or PGR\n\n    YYYY is a four digit year\n\n    NNNNN is a five digit trial number (including leading zeros)\n\n    Examples: IPR2013-00273, CBM2015-00182, PGR2025-00084"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "State Cases",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get State Case",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/state-cases/:state_case_id",
+            "params": [
+              {
+                "name": "state_case_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "docket_retrieval",
+                "value": "",
+                "type": "query",
+                "description": "'all' to retrieve docket entries for the case, if not provided no docket entries will be retrieved."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets data for a single enhanced state case.\n\n- **case_id**: the Lex Machina stateCaseId\n- **docket_retrieval**: docket retreival mode"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Status",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Health",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/health",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets the current health of the API."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "List",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Appealability Rulings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/list-appealability-rulings",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Lists appealability rulings for use with appeals case querying."
+        },
+        {
+          "info": {
+            "name": "List Appellate Decisions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/list-appellate-decisions/FederalDistrict",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Lists appellate decisions for use with appeals case querying."
+        },
+        {
+          "info": {
+            "name": "List Case Resolutions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/list-case-resolutions/:court_type",
+            "params": [
+              {
+                "name": "court_type",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Lists case resolutions given court type for use with querying.\n\n- **court_type**: the relevant court type\n\nEach resoltuon has both a summary and specific field which are valid in combinations listed."
+        },
+        {
+          "info": {
+            "name": "List Case Tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/list-case-tags/:court_type",
+            "params": [
+              {
+                "name": "court_type",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Lists case tags for a given court type for use with querying.\n\n- **court_type**: the relevant court type"
+        },
+        {
+          "info": {
+            "name": "List Case Types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/list-case-types/:court_type",
+            "params": [
+              {
+                "name": "court_type",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Lists case tags for a given court type for use with querying.\n\n- **court_type**: the relevant court type"
+        },
+        {
+          "info": {
+            "name": "List Courts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/list-courts/:court_type",
+            "params": [
+              {
+                "name": "court_type",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Lists courts for a given court type. For use with querying or determining which courts data is avilable for."
+        },
+        {
+          "info": {
+            "name": "List Federal District Damages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/list-damages/FederalDistrict",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Lists of damages for Federal District courts organized by practice area for use with querying."
+        },
+        {
+          "info": {
+            "name": "List State Damages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/list-damages/State",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Lists of damages for State courts organized by practice area for use with querying."
+        },
+        {
+          "info": {
+            "name": "List Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/list-events/:court_type",
+            "params": [
+              {
+                "name": "court_type",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Lists events for a given for a given court type for use with querying.\n\n- **court_type**: the relevant court type"
+        },
+        {
+          "info": {
+            "name": "List Federal District Findings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/list-findings/FederalDistrict",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Lists findings for Federal District courts organized by practice area for use with querying."
+        },
+        {
+          "info": {
+            "name": "List Judgment Sources",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/list-judgment-sources/FederalDistrict",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Lists judgment sources for Federal District courts for use with querying.\n\nThe sources are specific to damages, remedies and findings as presented in the list."
+        },
+        {
+          "info": {
+            "name": "List Judgment Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/list-judgment-events/State",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Lists judgment events for State courts organized for use with querying."
+        },
+        {
+          "info": {
+            "name": "List Originating Venues",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/list-originating-venues/FederalAppeals",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Lists originating venues for use with appeals case querying."
+        },
+        {
+          "info": {
+            "name": "List Supreme Court Decisions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/list-supreme-court-decisions/FederalAppeals",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Lists decisions from the Supreme Court for use with appeals case querying."
+        },
+        {
+          "info": {
+            "name": "List Remedies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/list-remedies/FederalDistrict",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Lists of all the remedies by type for use with federal district case querying."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Case Query",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Query State Cases",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lexmachina.com/query-state-cases",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Queries enhanced state court cases.\n\n- **data**: the state case query\n\nSee [https://developer.lexmachina.com/posts/query/state_query_usage/](https://developer.lexmachina.com/posts/query/state_query_usage/) for query formation.\n\nThe results will contain a list of cases, each with a specificed url and Lex Machina stateCaseId."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Authorization",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oauth2 Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lexmachina.com/oauth2/token",
+            "params": [
+              {
+                "name": "client_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "client_secret",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "grant_type",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Generates a shot lived bearer token used to authenticate an application to the rest of the API.\n\n- **client_id**: client id from the application\n- **client_secret**: client secret from the application\n- **grant_type**: only \"client_credentials\" are supported at this time\n\nSee [https://law.lexmachina.com/api-settings](https://law.lexmachina.com/api-settings) for application management."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
