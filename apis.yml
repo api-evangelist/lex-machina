@@ -20,7 +20,7 @@ description: >-
   Lex Machina was founded in 2010 as a Stanford University Law School
   spin-out and was acquired by LexisNexis (RELX) in 2015.
 url: https://raw.githubusercontent.com/api-evangelist/lex-machina/refs/heads/main/apis.yml
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 type: Index
 position: Provider
 access: 3rd-Party
