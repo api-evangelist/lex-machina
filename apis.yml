@@ -95,10 +95,10 @@ apis:
         url: openapi/lex-machina-openapi.yml
       - type: Authentication
         url: https://developer.lexmachina.com/gettingStarted
-      - type: SDK
+      - type: SDKs
         url: https://github.com/LexMachinaInc/python-lexmachina-sync-api-client
         name: Python Sync API Client
-      - type: SDK
+      - type: SDKs
         url: https://github.com/LexMachinaInc/node-lexmachina-api-client
         name: Node.js API Client
       - type: Agent
@@ -112,7 +112,7 @@ common:
     url: https://www.lexisnexis.com/en-us/products/lex-machina.page
   - type: Portal
     url: https://developer.lexmachina.com/
-  - type: SignIn
+  - type: Login
     url: https://law.lexmachina.com/login
   - type: Documentation
     url: https://developer.lexmachina.com/gettingStarted
@@ -144,10 +144,10 @@ common:
     url: https://www.lexisnexis.com/en-us/terms/privacy-policy/default.page
   - type: TrustCenter
     url: https://www.lexisnexis.com/en-us/about-us/social-responsibility/data-privacy.page
-  - type: SDK
+  - type: SDKs
     name: Python Sync API Client
     url: https://github.com/LexMachinaInc/python-lexmachina-sync-api-client
-  - type: SDK
+  - type: SDKs
     name: Node.js API Client
     url: https://github.com/LexMachinaInc/node-lexmachina-api-client
   - type: Agent
