@@ -108,6 +108,14 @@ apis:
         url: https://github.com/LexMachinaInc/api-alerting-example
         name: API Alerting Example
 common:
+  - type: TrustCenter
+    url: security/lex-machina-trust-center.yml
+  - type: VulnerabilityDisclosure
+    url: security/lex-machina-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/lex-machina-domain-security.yml
+  - type: Authentication
+    url: authentication/lex-machina-authentication.yml
   - type: Website
     url: https://www.lexisnexis.com/en-us/products/lex-machina.page
   - type: Portal
