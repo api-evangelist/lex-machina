@@ -108,6 +108,8 @@ apis:
         url: https://github.com/LexMachinaInc/api-alerting-example
         name: API Alerting Example
 common:
+  - type: AgenticAccess
+    url: agentic-access/lex-machina-agentic-access.yml
   - type: TrustCenter
     url: security/lex-machina-trust-center.yml
   - type: VulnerabilityDisclosure
