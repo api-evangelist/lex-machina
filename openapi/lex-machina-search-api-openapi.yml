@@ -1,0 +1,743 @@
+openapi: 3.1.0
+info:
+  title: Lex Machina Alerts Search API
+  version: '20260324'
+  description: Alerts.
+servers:
+- url: https://api.lexmachina.com
+  description: Lex Machina production API
+tags:
+- name: Search
+  description: Finds entities.
+paths:
+  /search-attorneys:
+    get:
+      tags:
+      - Search
+      summary: Search Attorneys
+      description: 'Searches for attorneys.
+
+
+        - **q**: the query string
+
+        - **page_number**: page number of the results
+
+        - **page_size**:  results per page
+
+
+        This is a case-insensitive search that will match anywhere within the name of the attorney.
+
+
+        The results will have page and totalCount fields as well as a convenience link via the field nextPage.'
+      operationId: search_attorneys
+      security:
+      - JwtAccessBearer: []
+      parameters:
+      - name: q
+        in: query
+        required: true
+        schema:
+          type: string
+          title: Q
+      - name: pageNumber
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 1
+          title: Pagenumber
+      - name: pageSize
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 1
+          title: Pagesize
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttorneySearchResults'
+              examples:
+                Search Attorneys By Name:
+                  summary: Search Attorneys By Name
+                  value:
+                    totalCount: 30967
+                    page: 2
+                    nextPage: https://api.lexmachina.com/search-attorneys?q=elizabeth&pageNumber=2&pageSize=1?q=elizabeth&pageNumber=3&pageSize=1
+                    attorneys:
+                    - name: Karen Elizabeth Keller
+                      attorneyId: 3393
+                      url: https://api.lexmachina.com/attorneys/3393
+        '422':
+          description: Error - 422
+          content:
+            application/json:
+              examples:
+                Invalid Page:
+                  summary: Invalid Page
+                  value:
+                    detail: Invalid page.
+                Validation error:
+                  summary: Validation error
+                  value:
+                    summary: Invalid input
+                    detail:
+                    - type: parsing
+                      loc:
+                      - path
+                      - query
+                      - body
+                      msg: invalid input
+                      input: '-1'
+        '401':
+          description: Invalid or expired token
+          content:
+            application/json:
+              examples:
+                Expired token:
+                  summary: Expired token
+                  value:
+                    detail: 'Token time expired: Signature has expired.'
+                Invalid token:
+                  summary: Invalid token
+                  value:
+                    detail: Invalid token
+        '404':
+          description: Not found
+          content:
+            application/json:
+              examples:
+                Not found:
+                  summary: Not found
+                  value:
+                    summary: Unknown id
+                    detail: Not Found
+  /search-law-firms:
+    get:
+      tags:
+      - Search
+      summary: Seach Law Firms
+      description: 'Searches for law firms.
+
+
+        - **q**: the query string
+
+        - **page_number**: page number of the results
+
+        - **page_size**:  results per page
+
+
+        This is a case-insensitive search that will match anywhere within the name of the firm.
+
+
+        The results will have page and totalCount fields as well as a convenience link via the field nextPage.'
+      operationId: seach_law_firms
+      security:
+      - JwtAccessBearer: []
+      parameters:
+      - name: q
+        in: query
+        required: true
+        schema:
+          type: string
+          title: Q
+      - name: pageNumber
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 1
+          title: Pagenumber
+      - name: pageSize
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 1
+          title: Pagesize
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LawFirmSearchResult'
+              examples:
+                Search Law Firms By Name:
+                  summary: Search Law Firms By Name
+                  value:
+                    totalCount: 4
+                    page: 1
+                    nextPage: https://api.lexmachina.com/search-law-firms?q=matzger&pageNumber=1&pageSize=2?q=matzger&pageNumber=2&pageSize=2
+                    lawFirms:
+                    - name: Leland, Parachini, Steinberg, Matzger & Melnick
+                      lawFirmId: 1220574
+                      url: https://api.lexmachina.com/law-firms/1220574
+                    - name: John Matzger
+                      lawFirmId: 104638538
+                      url: https://api.lexmachina.com/law-firms/104638538
+        '422':
+          description: Error - 422
+          content:
+            application/json:
+              examples:
+                Invalid Page:
+                  summary: Invalid Page
+                  value:
+                    detail: Invalid page.
+                Validation error:
+                  summary: Validation error
+                  value:
+                    summary: Invalid input
+                    detail:
+                    - type: parsing
+                      loc:
+                      - path
+                      - query
+                      - body
+                      msg: invalid input
+                      input: '-1'
+        '401':
+          description: Invalid or expired token
+          content:
+            application/json:
+              examples:
+                Expired token:
+                  summary: Expired token
+                  value:
+                    detail: 'Token time expired: Signature has expired.'
+                Invalid token:
+                  summary: Invalid token
+                  value:
+                    detail: Invalid token
+        '404':
+          description: Not found
+          content:
+            application/json:
+              examples:
+                Not found:
+                  summary: Not found
+                  value:
+                    summary: Unknown id
+                    detail: Not Found
+  /search-judges:
+    get:
+      tags:
+      - Search
+      summary: Search Judges
+      description: 'Searches for attorneys.
+
+
+        - **q**: the query string
+
+
+        This matches from the beginning of the last name. The search query "hof" will match the name "Hoffman" but will not match "Schofield".'
+      operationId: search_judges
+      security:
+      - JwtAccessBearer: []
+      parameters:
+      - name: q
+        in: query
+        required: true
+        schema:
+          type: string
+          title: Q
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JudgeSearchResult'
+              examples:
+                Search Judges By Name:
+                  summary: Search Judges By Name
+                  value:
+                    federalJudges: []
+                    magistrateJudges:
+                    - name: Leslie R Hoffman
+                      magistrateJudgeId: 1144
+                      caseCountByCourt:
+                      - court: total
+                        count: 2561
+                      url: https://api.lexmachina.com/magistrate-judges/1144
+                    - name: Carl William Hoffman
+                      magistrateJudgeId: 407
+                      caseCountByCourt:
+                      - court: total
+                        count: 5751
+                      url: https://api.lexmachina.com/magistrate-judges/407
+                    stateJudges:
+                    - name: Douglas E Hoffman
+                      stateJudgeId: 1125
+                      courtPosting: New York Supreme Court, Bronx County
+                      url: https://api.lexmachina.com/state-judges/1125
+                    bankruptcyJudges:
+                    - name: John E. Hoffman Jr.
+                      bankruptcyJudgeId: 463
+                      caseCountByCourt:
+                      - court: total
+                        count: 225
+                      url: https://api.lexmachina.com/bankruptcy-judges/463
+                    - name: Melvin S. Hoffman
+                      bankruptcyJudgeId: 415
+                      caseCountByCourt:
+                      - court: total
+                        count: 342
+                      url: https://api.lexmachina.com/bankruptcy-judges/415
+        '422':
+          description: Error - 422
+          content:
+            application/json:
+              examples:
+                Invalid Query:
+                  summary: Invalid Query
+                  value:
+                    detail: Empty query string.
+                Validation error:
+                  summary: Validation error
+                  value:
+                    summary: Invalid input
+                    detail:
+                    - type: parsing
+                      loc:
+                      - path
+                      - query
+                      - body
+                      msg: invalid input
+                      input: '-1'
+        '401':
+          description: Invalid or expired token
+          content:
+            application/json:
+              examples:
+                Expired token:
+                  summary: Expired token
+                  value:
+                    detail: 'Token time expired: Signature has expired.'
+                Invalid token:
+                  summary: Invalid token
+                  value:
+                    detail: Invalid token
+        '404':
+          description: Not found
+          content:
+            application/json:
+              examples:
+                Not found:
+                  summary: Not found
+                  value:
+                    summary: Unknown id
+                    detail: Not Found
+  /search-parties:
+    get:
+      tags:
+      - Search
+      summary: Search Parties
+      description: 'Searches for parties.
+
+
+        - **q**: the query string
+
+        - **page_number**: page number of the results
+
+        - **page_size**:  results per page
+
+
+        This is a case-insensitive search that will match anywhere within the name of the party.
+
+
+        The results will have page and totalCount fields as well as a convenience link via the field nextPage.'
+      operationId: search_parties
+      security:
+      - JwtAccessBearer: []
+      parameters:
+      - name: q
+        in: query
+        required: true
+        schema:
+          type: string
+          title: Q
+      - name: pageNumber
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 1
+          title: Pagenumber
+      - name: pageSize
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 1
+          title: Pagesize
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PartySearchResults'
+              examples:
+                Search Parties By Name:
+                  summary: Search Parties By Name
+                  value:
+                    totalCount: 73119
+                    page: 1
+                    nextPage: https://api.lexmachina.com/search-parties?q=Bryan&pageNumber=1&pageSize=10?q=Bryan&pageNumber=2&pageSize=10
+                    parties:
+                    - name: William Bryan
+                      partyId: 10301
+                      url: https://api.lexmachina.com/parties/10301
+                    - name: Donna Bryan
+                      partyId: 10303
+                      url: https://api.lexmachina.com/parties/10303
+                    - name: Bryan-Michael Cox
+                      partyId: 14347
+                      url: https://api.lexmachina.com/parties/14347
+                    - name: Bryant Industries Corp.
+                      partyId: 15497
+                      url: https://api.lexmachina.com/parties/15497
+                    - name: Bryan Cox
+                      partyId: 17623
+                      url: https://api.lexmachina.com/parties/17623
+                    - name: John Bryant
+                      partyId: 18681
+                      url: https://api.lexmachina.com/parties/18681
+                    - name: Bryan Rief
+                      partyId: 19311
+                      url: https://api.lexmachina.com/parties/19311
+                    - name: Matalyne Bryan-Davis
+                      partyId: 21338
+                      url: https://api.lexmachina.com/parties/21338
+                    - name: Bryan Fuller
+                      partyId: 22061
+                      url: https://api.lexmachina.com/parties/22061
+                    - name: Bryan M. Sowards
+                      partyId: 29563
+                      url: https://api.lexmachina.com/parties/29563
+        '422':
+          description: Error - 422
+          content:
+            application/json:
+              examples:
+                Invalid Page:
+                  summary: Invalid Page
+                  value:
+                    detail: Invalid page.
+                Validation error:
+                  summary: Validation error
+                  value:
+                    summary: Invalid input
+                    detail:
+                    - type: parsing
+                      loc:
+                      - path
+                      - query
+                      - body
+                      msg: invalid input
+                      input: '-1'
+        '401':
+          description: Invalid or expired token
+          content:
+            application/json:
+              examples:
+                Expired token:
+                  summary: Expired token
+                  value:
+                    detail: 'Token time expired: Signature has expired.'
+                Invalid token:
+                  summary: Invalid token
+                  value:
+                    detail: Invalid token
+        '404':
+          description: Not found
+          content:
+            application/json:
+              examples:
+                Not found:
+                  summary: Not found
+                  value:
+                    summary: Unknown id
+                    detail: Not Found
+components:
+  schemas:
+    MagistrateJudgeResult:
+      properties:
+        name:
+          type: string
+          title: Name
+        magistrateJudgeId:
+          type: integer
+          title: Magistratejudgeid
+        caseCountByCourt:
+          items:
+            $ref: '#/components/schemas/CaseCountByCourt'
+          type: array
+          title: Casecountbycourt
+        url:
+          type: string
+          title: Url
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - magistrateJudgeId
+      - caseCountByCourt
+      - url
+      title: MagistrateJudgeResult
+    BankruptcyJudgeResult:
+      properties:
+        name:
+          type: string
+          title: Name
+        bankruptcyJudgeId:
+          type: integer
+          title: Bankruptcyjudgeid
+        caseCountByCourt:
+          items:
+            $ref: '#/components/schemas/CaseCountByCourt'
+          type: array
+          title: Casecountbycourt
+        url:
+          type: string
+          title: Url
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - bankruptcyJudgeId
+      - caseCountByCourt
+      - url
+      title: BankruptcyJudgeResult
+    FederalJudgeResult:
+      properties:
+        name:
+          type: string
+          title: Name
+        federalJudgeId:
+          type: integer
+          title: Federaljudgeid
+        initials:
+          type: string
+          title: Initials
+        caseCountByCourt:
+          items:
+            $ref: '#/components/schemas/CaseCountByCourt'
+          type: array
+          title: Casecountbycourt
+        url:
+          type: string
+          title: Url
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - federalJudgeId
+      - initials
+      - caseCountByCourt
+      - url
+      title: FederalJudgeResult
+    CaseCountByCourt:
+      properties:
+        court:
+          type: string
+          title: Court
+        count:
+          type: integer
+          title: Count
+      additionalProperties: false
+      type: object
+      required:
+      - court
+      - count
+      title: CaseCountByCourt
+    AttorneySearchResults:
+      properties:
+        totalCount:
+          type: integer
+          title: Totalcount
+        page:
+          type: integer
+          title: Page
+        nextPage:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Nextpage
+        attorneys:
+          items:
+            $ref: '#/components/schemas/AttorneyResult'
+          type: array
+          title: Attorneys
+      additionalProperties: false
+      type: object
+      required:
+      - totalCount
+      - page
+      - attorneys
+      title: AttorneySearchResults
+    AttorneyResult:
+      properties:
+        name:
+          type: string
+          title: Name
+        attorneyId:
+          type: integer
+          title: Attorneyid
+        url:
+          type: string
+          title: Url
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - attorneyId
+      - url
+      title: AttorneyResult
+    LawFirmSearchResult:
+      properties:
+        totalCount:
+          type: integer
+          title: Totalcount
+        page:
+          type: integer
+          title: Page
+        nextPage:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Nextpage
+        lawFirms:
+          items:
+            $ref: '#/components/schemas/LawFirmResult'
+          type: array
+          title: Lawfirms
+      additionalProperties: false
+      type: object
+      required:
+      - totalCount
+      - page
+      - lawFirms
+      title: LawFirmSearchResult
+    LawFirmResult:
+      properties:
+        name:
+          type: string
+          title: Name
+        lawFirmId:
+          type: integer
+          title: Lawfirmid
+        url:
+          type: string
+          title: Url
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - lawFirmId
+      - url
+      title: LawFirmResult
+    PartySearchResults:
+      properties:
+        totalCount:
+          type: integer
+          title: Totalcount
+        page:
+          type: integer
+          title: Page
+        nextPage:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Nextpage
+        parties:
+          items:
+            $ref: '#/components/schemas/PartyResult'
+          type: array
+          title: Parties
+      additionalProperties: false
+      type: object
+      required:
+      - totalCount
+      - page
+      - parties
+      title: PartySearchResults
+    StateJudgeResult:
+      properties:
+        name:
+          type: string
+          title: Name
+        stateJudgeId:
+          type: integer
+          title: Statejudgeid
+        courtPosting:
+          type: string
+          title: Courtposting
+        url:
+          type: string
+          title: Url
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - stateJudgeId
+      - courtPosting
+      - url
+      title: StateJudgeResult
+    JudgeSearchResult:
+      properties:
+        federalJudges:
+          items:
+            $ref: '#/components/schemas/FederalJudgeResult'
+          type: array
+          title: Federaljudges
+        magistrateJudges:
+          items:
+            $ref: '#/components/schemas/MagistrateJudgeResult'
+          type: array
+          title: Magistratejudges
+        stateJudges:
+          items:
+            $ref: '#/components/schemas/StateJudgeResult'
+          type: array
+          title: Statejudges
+        bankruptcyJudges:
+          items:
+            $ref: '#/components/schemas/BankruptcyJudgeResult'
+          type: array
+          title: Bankruptcyjudges
+      additionalProperties: false
+      type: object
+      required:
+      - federalJudges
+      - magistrateJudges
+      - stateJudges
+      - bankruptcyJudges
+      title: JudgeSearchResult
+    PartyResult:
+      properties:
+        name:
+          type: string
+          title: Name
+        partyId:
+          type: integer
+          title: Partyid
+        url:
+          type: string
+          title: Url
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - partyId
+      - url
+      title: PartyResult
+  securitySchemes:
+    JwtAccessBearer:
+      type: http
+      scheme: bearer

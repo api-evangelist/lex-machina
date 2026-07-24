@@ -1,0 +1,316 @@
+openapi: 3.1.0
+info:
+  title: Lex Machina Alerts Patents API
+  version: '20260324'
+  description: Alerts.
+servers:
+- url: https://api.lexmachina.com
+  description: Lex Machina production API
+tags:
+- name: Patents
+  description: US patent data.
+paths:
+  /patents/{patent_number}:
+    get:
+      tags:
+      - Patents
+      summary: Get Patent
+      description: 'Gets data for a single uspto patent.
+
+
+        - **patent_number**: the patent number'
+      operationId: get_patent
+      security:
+      - JwtAccessBearer: []
+      parameters:
+      - name: patent_number
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Patent Number
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PatentData'
+              examples:
+                Single Patent:
+                  summary: Single Patent
+                  value:
+                    number: '7304635'
+                    title: Programmable virtual book system
+                    abstract: An electronic information browsing system that provides a book-like interface—a virtual book—for presenting electronic contents. Specifically, an electronic information browsing system that allows users to configure its behavior via data and program specification encapsulated in a dynamic file format. Configurable behavior includes but not limited to the kind of contents to be displayed in the virtual book, the sources of the contents to be displayed, the static aspects of the virtual book such as the book dimensions and the dynamic aspects of the virtual book such as when a page is to be flipped, how the flipping of pages is contingent upon the execution of certain pre-specified events, etc.
+                    inventors:
+                      inventors:
+                      - HO SENG BENG
+                      - SEET CHERN HWAY
+                      originalAssignee:
+                      - E BOOK SYSTEMS PTE LTD
+                      filingDate: '2005-12-29'
+                      issueDate: '2007-12-04'
+                    districtCourtCases:
+                      numberOfCases: 7
+                      findings:
+                      - caseId:
+                        - 2008420337
+                        type:
+                        - Infringement
+                        winner: Claimant Win
+                      - caseId:
+                        - 2009069481
+                        type:
+                        - Infringement
+                        winner: Claimant Win
+        '404':
+          description: Not found
+          content:
+            application/json:
+              examples:
+                Patent Not Found:
+                  summary: Patent Not Found
+                  value:
+                    detail: No patent matching provided patent number was found
+        '401':
+          description: Invalid or expired token
+          content:
+            application/json:
+              examples:
+                Expired token:
+                  summary: Expired token
+                  value:
+                    detail: 'Token time expired: Signature has expired.'
+                Invalid token:
+                  summary: Invalid token
+                  value:
+                    detail: Invalid token
+        '422':
+          description: Error - 422
+          content:
+            application/json:
+              examples:
+                Validation error:
+                  summary: Validation error
+                  value:
+                    summary: Invalid input
+                    detail:
+                    - type: parsing
+                      loc:
+                      - path
+                      - query
+                      - body
+                      msg: invalid input
+                      input: '-1'
+  /patents:
+    get:
+      tags:
+      - Patents
+      summary: Get Patents
+      description: 'Gets data for one or more uspto patents.
+
+
+        - **patentNumbers**: the patent numbers'
+      operationId: get_patents
+      security:
+      - JwtAccessBearer: []
+      parameters:
+      - name: patentNumbers
+        in: query
+        required: true
+        schema:
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+          minItems: 1
+          maxItems: 500
+          title: Patentnumbers
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PatentData'
+                title: Response Get Patents Patents Get
+              examples:
+                Multiple Patents:
+                  summary: Multiple Patents
+                  value:
+                  - number: '7201374'
+                    title: Method and article of manufacture for collectible game
+                    abstract: A game, toy or article of manufacture includes a set of rules and at least one model. The model has multiple movable parts, where under the rules of play, the model begins in an assembled configuration. As the model loses points under the rules of play, at least some of the parts are removed from the model, or replaced with substitute parts. The model may be formed from a panel or other substantially planar member, with the individual pieces formed therein. Methods of game play, computer-implemented games, and other aspects of the invention are described herein. Many other options are possible, as described above.
+                    inventors:
+                      inventors:
+                      - BIELMAN TYLER
+                      originalAssignee:
+                      - WIZARDS OF THE COAST INC
+                      filingDate: '2003-10-20'
+                      issueDate: '2007-04-10'
+                    districtCourtCases:
+                      numberOfCases: 1
+                      findings: []
+                  - number: '7304635'
+                    title: Programmable virtual book system
+                    abstract: An electronic information browsing system that provides a book-like interface—a virtual book—for presenting electronic contents. Specifically, an electronic information browsing system that allows users to configure its behavior via data and program specification encapsulated in a dynamic file format. Configurable behavior includes but not limited to the kind of contents to be displayed in the virtual book, the sources of the contents to be displayed, the static aspects of the virtual book such as the book dimensions and the dynamic aspects of the virtual book such as when a page is to be flipped, how the flipping of pages is contingent upon the execution of certain pre-specified events, etc.
+                    inventors:
+                      inventors:
+                      - HO SENG BENG
+                      - SEET CHERN HWAY
+                      originalAssignee:
+                      - E BOOK SYSTEMS PTE LTD
+                      filingDate: '2005-12-29'
+                      issueDate: '2007-12-04'
+                    districtCourtCases:
+                      numberOfCases: 7
+                      findings:
+                      - caseId:
+                        - 2008420337
+                        type:
+                        - Infringement
+                        winner: Claimant Win
+                      - caseId:
+                        - 2009069481
+                        type:
+                        - Infringement
+                        winner: Claimant Win
+        '404':
+          description: Not found
+          content:
+            application/json:
+              examples:
+                Patents Not Found:
+                  summary: Patents Not Found
+                  value:
+                    detail: No patents matching provided patent numbers were found
+        '401':
+          description: Invalid or expired token
+          content:
+            application/json:
+              examples:
+                Expired token:
+                  summary: Expired token
+                  value:
+                    detail: 'Token time expired: Signature has expired.'
+                Invalid token:
+                  summary: Invalid token
+                  value:
+                    detail: Invalid token
+        '422':
+          description: Error - 422
+          content:
+            application/json:
+              examples:
+                Validation error:
+                  summary: Validation error
+                  value:
+                    summary: Invalid input
+                    detail:
+                    - type: parsing
+                      loc:
+                      - path
+                      - query
+                      - body
+                      msg: invalid input
+                      input: '-1'
+components:
+  schemas:
+    PatentFindings:
+      properties:
+        caseId:
+          items:
+            type: integer
+          type: array
+          title: Caseid
+        type:
+          items:
+            type: string
+          type: array
+          title: Type
+        winner:
+          type: string
+          title: Winner
+      additionalProperties: false
+      type: object
+      required:
+      - caseId
+      - type
+      - winner
+      title: PatentFindings
+    PatentData:
+      properties:
+        number:
+          type: string
+          title: Number
+        title:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Title
+        abstract:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Abstract
+        inventors:
+          $ref: '#/components/schemas/Inventors'
+        districtCourtCases:
+          $ref: '#/components/schemas/PatentCaseInformation'
+      additionalProperties: false
+      type: object
+      required:
+      - number
+      - inventors
+      - districtCourtCases
+      title: PatentData
+    Inventors:
+      properties:
+        inventors:
+          items:
+            type: string
+          type: array
+          title: Inventors
+        originalAssignee:
+          items: {}
+          type: array
+          title: Originalassignee
+        filingDate:
+          type: string
+          format: date
+          title: Filingdate
+        issueDate:
+          type: string
+          format: date
+          title: Issuedate
+      additionalProperties: false
+      type: object
+      required:
+      - inventors
+      - originalAssignee
+      - filingDate
+      - issueDate
+      title: Inventors
+    PatentCaseInformation:
+      properties:
+        numberOfCases:
+          type: integer
+          title: Numberofcases
+        findings:
+          items:
+            $ref: '#/components/schemas/PatentFindings'
+          type: array
+          title: Findings
+      additionalProperties: false
+      type: object
+      required:
+      - numberOfCases
+      - findings
+      title: PatentCaseInformation
+  securitySchemes:
+    JwtAccessBearer:
+      type: http
+      scheme: bearer

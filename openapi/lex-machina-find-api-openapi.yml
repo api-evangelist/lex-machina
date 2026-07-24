@@ -1,0 +1,190 @@
+openapi: 3.1.0
+info:
+  title: Lex Machina Alerts Find API
+  version: '20260324'
+  description: Alerts.
+servers:
+- url: https://api.lexmachina.com
+  description: Lex Machina production API
+tags:
+- name: Find
+  description: Find matches based on free text searches
+paths:
+  /find-district-cases:
+    get:
+      tags:
+      - Find
+      summary: Find District Case By Number
+      description: 'Finds Lex Machina case ids for specified case numbers.
+
+
+        - **case_numbers**: case number search strings
+
+        - **court**: optional court to limit results
+
+
+        Matches results for each individual case number is cut off at 1000 match results.
+
+
+        Because case number formats vary, and because the case number for the same case can change over time, the search tries to err on the side of being more inclusive.
+
+        So, this may return more results than you expect.
+
+        For example, the search ignores judge initials at the end of case numbers.
+
+        So, for case number "1:19-cv-00077-NLH-KMW", the trailing initials "NLH" and "KMW" will be ignored.
+
+
+        The court param is optional and can be any of the name versions given by the /list-courts endpoint (must match capitalization).
+
+        Providing a value for the court param will filter all case number searches in the request for cases within that court.'
+      operationId: find_district_case_by_number
+      security:
+      - JwtAccessBearer: []
+      parameters:
+      - name: caseNumbers
+        in: query
+        required: true
+        schema:
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+          title: Casenumbers
+      - name: court
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Court
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DistrictCaseNumberSearchResult'
+                title: Response Find District Case By Number Find District Cases Get
+              examples:
+                Search for Two Case Numbers:
+                  summary: Search for Two Case Numbers
+                  value:
+                  - totalCount: 1
+                    inputCaseNumber: 1:11-cv-11681
+                    inputCourt: U.S. District Court for the District of Massachusetts
+                    matches:
+                    - url: https://api.lexmachina.com/district-cases/2000026401
+                      districtCaseId: 2000026401
+                      caseNumber: 1:11-cv-11681
+                      court: U.S. District Court for the District of Massachusetts
+                      title: Momenta Pharmaceuticals, Inc. et al v. Amphastar Pharmaceuticals, Inc. et al
+                  - totalCount: 1
+                    inputCaseNumber: 1:24-cv-11928
+                    inputCourt: U.S. District Court for the District of Massachusetts
+                    matches:
+                    - url: https://api.lexmachina.com/district-cases/2034403653
+                      districtCaseId: 2034403653
+                      caseNumber: 1:24-cv-11928
+                      court: U.S. District Court for the District of Massachusetts
+                      title: Anderson-O'Brien v. Sika Corporation
+        '401':
+          description: Invalid or expired token
+          content:
+            application/json:
+              examples:
+                Expired token:
+                  summary: Expired token
+                  value:
+                    detail: 'Token time expired: Signature has expired.'
+                Invalid token:
+                  summary: Invalid token
+                  value:
+                    detail: Invalid token
+        '404':
+          description: Not found
+          content:
+            application/json:
+              examples:
+                Not found:
+                  summary: Not found
+                  value:
+                    summary: Unknown id
+                    detail: Not Found
+        '422':
+          description: Error - 422
+          content:
+            application/json:
+              examples:
+                Validation error:
+                  summary: Validation error
+                  value:
+                    summary: Invalid input
+                    detail:
+                    - type: parsing
+                      loc:
+                      - path
+                      - query
+                      - body
+                      msg: invalid input
+                      input: '-1'
+components:
+  schemas:
+    DistrictCaseNumberSearchResult:
+      properties:
+        totalCount:
+          type: integer
+          title: Totalcount
+        inputCaseNumber:
+          type: string
+          title: Inputcasenumber
+        inputCourt:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Inputcourt
+        matches:
+          items:
+            $ref: '#/components/schemas/DistrictCaseNumberReference'
+          type: array
+          title: Matches
+      additionalProperties: false
+      type: object
+      required:
+      - totalCount
+      - inputCaseNumber
+      - matches
+      title: DistrictCaseNumberSearchResult
+    DistrictCaseNumberReference:
+      properties:
+        url:
+          type: string
+          title: Url
+        districtCaseId:
+          type: integer
+          title: Districtcaseid
+        caseNumber:
+          type: string
+          title: Casenumber
+        court:
+          type: string
+          title: Court
+        title:
+          type: string
+          title: Title
+      additionalProperties: false
+      type: object
+      required:
+      - url
+      - districtCaseId
+      - caseNumber
+      - court
+      - title
+      title: DistrictCaseNumberReference
+  securitySchemes:
+    JwtAccessBearer:
+      type: http
+      scheme: bearer

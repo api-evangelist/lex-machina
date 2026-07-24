@@ -1,0 +1,1806 @@
+openapi: 3.1.0
+info:
+  title: Lex Machina Alerts State Cases API
+  version: '20260324'
+  description: Alerts.
+servers:
+- url: https://api.lexmachina.com
+  description: Lex Machina production API
+tags:
+- name: State Cases
+  description: State court cases.
+paths:
+  /state-cases/{state_case_id}:
+    get:
+      tags:
+      - State Cases
+      summary: Get State Case
+      description: 'Gets data for a single enhanced state case.
+
+
+        - **case_id**: the Lex Machina stateCaseId
+
+        - **docket_retrieval**: docket retreival mode'
+      operationId: get_state_case
+      security:
+      - JwtAccessBearer: []
+      parameters:
+      - name: state_case_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: State Case Id
+      - name: docket_retrieval
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: '''all'' to retrieve docket entries for the case, if not provided no docket entries will be retrieved.'
+          title: Docket Retrieval
+        description: '''all'' to retrieve docket entries for the case, if not provided no docket entries will be retrieved.'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StateCaseData'
+              examples:
+                single state case:
+                  summary: single state case
+                  value:
+                    stateCaseId: 2002947480
+                    title: PRIMEWAY FEDERAL CREDIT UNION (SUCCESSOR vs. RICHARDSON, TERENCE
+                    state: Texas
+                    court: Harris County District Court
+                    caseNo: '201600017'
+                    status: Terminated
+                    caseType:
+                    - Contract (TX)
+                    caseTags: []
+                    dates:
+                      filed: '2016-01-01'
+                      terminated: '2017-02-28'
+                    events:
+                    - type: Filed
+                      occurred: '2016-01-01'
+                    - type: Terminated
+                      occurred: '2017-02-28'
+                    judges:
+                    - name: Joseph James Halbach Jr
+                      stateJudgeId: 776
+                    - name: Daryl L Moore
+                      stateJudgeId: 775
+                    rulings:
+                      active: []
+                    lawFirms:
+                    - name: Coats Rose
+                      lawFirmId: 1192064
+                      clientPartyIds:
+                      - 290379
+                    attorneys:
+                    - name: Nancy Hesse Hamren
+                      attorneyId: 17168919
+                      lawFirmIds:
+                      - 1192064
+                      clientsPartyIds:
+                      - 290379
+                    parties:
+                    - name: WESTERN SURETY COMPANY (BY SERVING ITS REGISTERED AGENT C T CORPORATION)
+                      partyId: 290379
+                      role: Defendant
+                    - name: PRIMEWAY FEDERAL CREDIT UNION (SUCCESSOR BY MERGER TO TEXASONE
+                      partyId: 44462144
+                      role: Plaintiff
+                    - name: TERENCE RICHARDSON
+                      partyId: 44100878
+                      role: Defendant
+                    - name: LATRENDA RICHARDSON
+                      partyId: 44100883
+                      role: Third Party
+                    - name: DISPUTE RESOLUTION CENTER
+                      partyId: 45573057
+                      role: Third Party
+                    - name: RICHARDSON, LATRENDA (DBA LATRENDA H RICHARDSON) AND LATRENDA HARRISON
+                      partyId: 44100879
+                      role: Defendant
+                    damages:
+                      active: []
+                    docket:
+                      entries: []
+                      retrieved: none
+                      count: 16
+                a state case with docket text:
+                  summary: a state case with docket text
+                  value:
+                    stateCaseId: 2033923164
+                    title: Stuart Leiderman et al - v. - Bryan Blair MD et al
+                    state: New York
+                    court: Westchester County Supreme Court
+                    caseNo: 60111/2016
+                    status: Terminated
+                    caseType:
+                    - Torts (NY)
+                    caseTags:
+                    - Trial
+                    - Post-RJI
+                    - Medical Malpractice (NY)
+                    dates:
+                      filed: '2016-07-25'
+                      terminated: '2023-12-08'
+                      trial: '2023-12-01'
+                    resolution:
+                      summary: Defendant Win
+                      specific: Jury Verdict
+                      docketEntryFiled: '2023-12-11'
+                      stateDocketEntryId: 1263090705
+                    events:
+                    - type: Filed
+                      occurred: '2016-07-25'
+                    - type: Trial
+                      occurred: '2023-12-01'
+                    - type: Terminated
+                      occurred: '2023-12-08'
+                    judges:
+                    - name: Nicholas Colabella
+                      stateJudgeId: 5354
+                    - name: Lewis J Lubell
+                      stateJudgeId: 5380
+                    - name: Alexandra D Murphy
+                      stateJudgeId: 5499
+                    rulings:
+                      active:
+                      - judgmentEvent: Jury Verdict
+                        awardedToPartyIds:
+                        - 59976491
+                        - 273640420
+                        awardedAgainstPartyIds:
+                        - 273640418
+                        - 273640419
+                        awarded: '2023-12-11'
+                    lawFirms:
+                    - name: Wilson Elser
+                      lawFirmId: 32792
+                      clientPartyIds:
+                      - 59976491
+                      - 273640420
+                    - name: Rende, Ryan & Downes
+                      lawFirmId: 18487197
+                      clientPartyIds:
+                      - 59976491
+                      - 273640420
+                    - name: Spodek Law Group
+                      lawFirmId: 56067963
+                      clientPartyIds:
+                      - 273640418
+                      - 273640419
+                    - name: McDonnell Adels & Klestzick
+                      lawFirmId: 78352648
+                      clientPartyIds:
+                      - 273640418
+                    - name: LESTZICK
+                      lawFirmId: 190708263
+                      clientPartyIds:
+                      - 273640418
+                      - 273640419
+                    attorneys:
+                    - name: Michael Francis Grady
+                      attorneyId: 56806693
+                      lawFirmIds:
+                      - 32792
+                      - 18487197
+                      clientsPartyIds:
+                      - 59976491
+                      - 273640420
+                    - name: Patricia Lacy
+                      attorneyId: 95498831
+                      lawFirmIds:
+                      - 32792
+                      - 18487197
+                      clientsPartyIds:
+                      - 59976491
+                      - 273640420
+                    - name: Lauren Claire Santucci
+                      attorneyId: 96133618
+                      lawFirmIds:
+                      - 32792
+                      clientsPartyIds:
+                      - 59976491
+                      - 273640420
+                    - name: Siobhainin S. Funchion
+                      attorneyId: 146509675
+                      lawFirmIds:
+                      - 32792
+                      clientsPartyIds:
+                      - 59976491
+                      - 273640420
+                    - name: Ralph Philip Franco Jr.
+                      attorneyId: 48799422
+                      lawFirmIds:
+                      - 56067963
+                      - 190708263
+                      clientsPartyIds:
+                      - 273640418
+                      - 273640419
+                    parties:
+                    - name: Westmed Medical Group
+                      partyId: 59976491
+                      role: Defendant
+                    - name: Stuart Leiderman
+                      partyId: 273640418
+                      role: Plaintiff
+                    - name: Bryan Blair MD
+                      partyId: 273640420
+                      role: Defendant
+                    - name: Jacqueline Leiderman
+                      partyId: 273640419
+                      role: Plaintiff
+                    damages:
+                      active: []
+                    docket:
+                      entries:
+                      - filedOn: '2016-07-25'
+                        tags:
+                        - Complaint
+                        text: SUMMONS + COMPLAINT
+                        stateDocketEntryId: 1263090641
+                      - filedOn: '2016-09-13'
+                        tags: []
+                        text: STATEMENT OF AUTHORIZATION FOR ELECTRONIC FILING
+                        stateDocketEntryId: 1263090644
+                      - filedOn: '2016-09-13'
+                        tags: []
+                        text: DEMAND FOR BILL OF PARTICULARS — Demand for a Verified Bill of Particulars
+                        stateDocketEntryId: 1263090643
+                      - filedOn: '2016-09-13'
+                        tags:
+                        - Answer
+                        text: ANSWER — Verified Answer to Verified Complaint
+                        stateDocketEntryId: 1263090642
+                      - filedOn: '2017-03-03'
+                        tags: []
+                        text: CONSENT TO CHANGE ATTORNEY (PRE RJI) — Consent to Change Attorney - Dr Blair and WestMed
+                        stateDocketEntryId: 1263090645
+                      - filedOn: '2017-04-20'
+                        tags:
+                        - Request for Judicial Intervention
+                        text: 'RJI -RE: REQUEST FOR PRELIMINARY CONFERENCE'
+                        stateDocketEntryId: 1263090647
+                      - filedOn: '2017-04-20'
+                        tags: []
+                        text: PRELIMINARY CONFERENCE REQUEST
+                        stateDocketEntryId: 1263090646
+                      - filedOn: '2017-05-01'
+                        tags: []
+                        text: COURT NOTICE
+                        stateDocketEntryId: 1263090648
+                      - filedOn: '2017-06-07'
+                        tags: []
+                        text: ORDER - PRELIMINARY CONFERENCE
+                        stateDocketEntryId: 1263090649
+                      - filedOn: '2017-08-08'
+                        tags: []
+                        text: CONSENT TO CHANGE ATTORNEY (POST RJI) — Consent to Change Attorney-Leiderman(plaintiffs)
+                        stateDocketEntryId: 1263090650
+                      - filedOn: '2017-08-30'
+                        tags: []
+                        text: ORDER - COMPLIANCE CONFERENCE — ORDER - COMPLIANCE CONFERENCE entered in the office of the County Clerk on August 30, 2017
+                        stateDocketEntryId: 1263090651
+                      - filedOn: '2017-09-07'
+                        tags: []
+                        text: NOTICE OF MEDICAL MALPRACTICE
+                        stateDocketEntryId: 1263090652
+                      - filedOn: '2017-09-19'
+                        tags: []
+                        text: ORDER - COMPLIANCE CONFERENCE — ORDER - COMPLIANCE CONFERENCE entered in the office of the County Clerk on September 19, 2017
+                        stateDocketEntryId: 1263090653
+                      - filedOn: '2017-12-12'
+                        tags: []
+                        text: ORDER - COMPLIANCE CONFERENCE — ORDER - COMPLIANCE CONFERENCE entered in the office of the County Clerk on December 12, 2017
+                        stateDocketEntryId: 1263090655
+                      - filedOn: '2018-02-14'
+                        tags: []
+                        text: ORDER - COMPLIANCE CONFERENCE — ORDER - COMPLIANCE CONFERENCE entered in the office of the County Clerk on February 14, 2018
+                        stateDocketEntryId: 1263090657
+                      - filedOn: '2018-02-22'
+                        tags: []
+                        text: RESPONSE TO DEMAND — Response to Defendant's Notice to Produce
+                        stateDocketEntryId: 1263090659
+                      - filedOn: '2018-04-10'
+                        tags: []
+                        text: ORDER - COMPLIANCE CONFERENCE — ORDER - COMPLIANCE CONFERENCE entered in the office of the County Clerk on April 10, 2018
+                        stateDocketEntryId: 1263090661
+                      - filedOn: '2018-05-15'
+                        tags: []
+                        text: ORDER - COMPLIANCE CONFERENCE — ORDER - COMPLIANCE CONFERENCE entered in the office of the County Clerk on May 15, 2018
+                        stateDocketEntryId: 1263090663
+                      - filedOn: '2018-06-07'
+                        tags: []
+                        text: ORDER - COMPLIANCE CONFERENCE
+                        stateDocketEntryId: 1263090665
+                      - filedOn: '2018-07-03'
+                        tags: []
+                        text: ORDER - COMPLIANCE CONFERENCE — ORDER - COMPLIANCE CONFERENCE entered in the office of the County Clerk on July 03, 2018
+                        stateDocketEntryId: 1263090666
+                      - filedOn: '2018-07-24'
+                        tags: []
+                        text: ORDER - COMPLIANCE CONFERENCE — ORDER - COMPLIANCE CONFERENCE entered in the office of the County Clerk on July 24, 2018
+                        stateDocketEntryId: 1263090667
+                      - filedOn: '2018-08-13'
+                        tags: []
+                        text: ORDER - TRIAL READINESS — ORDER - TRIAL READINESS entered in the office of the County Clerk on August 13, 2018
+                        stateDocketEntryId: 1263090668
+                      - filedOn: '2018-08-14'
+                        tags: []
+                        text: ORDER - REFERENCE — ORDER - REFERENCE entered in the office of the County Clerk on August 14, 2018
+                        stateDocketEntryId: 1263090669
+                      - filedOn: '2018-08-29'
+                        tags: []
+                        text: AFFIDAVIT
+                        stateDocketEntryId: 1263090671
+                      - filedOn: '2018-08-29'
+                        tags:
+                        - 'Note of Issue: With Jury'
+                        text: NOTE OF ISSUE:WITH JURY
+                        stateDocketEntryId: 1263090670
+                      - filedOn: '2018-11-16'
+                        tags: []
+                        text: COURT NOTICE
+                        stateDocketEntryId: 1263090672
+                      - filedOn: '2018-12-11'
+                        tags: []
+                        text: LETTER / CORRESPONDENCE TO JUDGE — Settlement Part Form
+                        stateDocketEntryId: 1263090673
+                      - filedOn: '2018-12-18'
+                        tags: []
+                        text: ADJOURNMENT OF CONFERENCE -REQUEST — Request to adjourn settlement conference from Jan 9 to Jan 16, 2019
+                        stateDocketEntryId: 1263090674
+                      - filedOn: '2019-04-09'
+                        tags: []
+                        text: COURT NOTICE
+                        stateDocketEntryId: 1263090675
+                      - filedOn: '2019-06-05'
+                        tags: []
+                        text: OTHER COURT FILED DOCUMENT — Trial Date Scheduling
+                        stateDocketEntryId: 1263090676
+                      - filedOn: '2019-08-09'
+                        tags: []
+                        text: LETTER / CORRESPONDENCE TO JUDGE — Letter to Judge re Trial
+                        stateDocketEntryId: 1263090677
+                      - filedOn: '2019-09-04'
+                        tags: []
+                        text: 'ORDER TO SHOW CAUSE ( PROPOSED ) — Order to Show Cause (Motion #1)'
+                        stateDocketEntryId: 1263090678
+                      - filedOn: '2019-09-04'
+                        tags:
+                        - Answer
+                        text: 'EXHIBIT(S) — Summons & Complaint and Answer (Motion #1)'
+                        stateDocketEntryId: 1263090679
+                      - filedOn: '2019-09-04'
+                        tags: []
+                        text: 'EXHIBIT(S) — Email (Motion #1)'
+                        stateDocketEntryId: 1263090680
+                      - filedOn: '2019-09-04'
+                        tags: []
+                        text: 'EXHIBIT(S) — 8.8.19 Letter (Motion #1)'
+                        stateDocketEntryId: 1263090681
+                      - filedOn: '2019-09-04'
+                        tags: []
+                        text: 'EXHIBIT(S) — 9.4.19 email (Motion #1)'
+                        stateDocketEntryId: 1263090682
+                      - filedOn: '2019-09-04'
+                        tags: []
+                        text: 'AFFIDAVIT OR AFFIRMATION IN SUPPORT — Affirmation in Support (Motion #1)'
+                        stateDocketEntryId: 1263090683
+                      - filedOn: '2019-09-06'
+                        tags: []
+                        text: AFFIDAVIT — Affidavit of Service and Legal Back
+                        stateDocketEntryId: 1263090685
+                      - filedOn: '2019-09-06'
+                        tags:
+                        - Order
+                        text: 'ORDER TO SHOW CAUSE — RETURNABLE SEPTEMBER 16TH, 2019 AT 9:30 A.M. ORAL ARG (Motion #1)'
+                        stateDocketEntryId: 1263090684
+                      - filedOn: '2019-09-16'
+                        tags:
+                        - Decision+Order
+                        text: 'DECISION + ORDER ON MOTION — GRANTED TO THE EXTENT THAT THE CASE IS MARKED "OFF" THE TRIAL CALENDAR, ON CONSENT, AS ON THE RECORD (Motion #1)'
+                        stateDocketEntryId: 1263090686
+                      - filedOn: '2021-06-14'
+                        tags: []
+                        text: CONSENT TO CHANGE ATTORNEY (POST RJI)
+                        stateDocketEntryId: 1263090687
+                      - filedOn: '2021-11-29'
+                        tags: []
+                        text: 'ORDER TO SHOW CAUSE ( PROPOSED ) (Motion #2)'
+                        stateDocketEntryId: 1263090688
+                      - filedOn: '2021-11-29'
+                        tags: []
+                        text: 'EXHIBIT(S) — AFFIDAVIT IN SUPOORT (Motion #2)'
+                        stateDocketEntryId: 1263090691
+                      - filedOn: '2021-11-29'
+                        tags: []
+                        text: 'EXHIBIT(S) — VERIFIED BILL OF PARTICULARS (Motion #2)'
+                        stateDocketEntryId: 1263090690
+                      - filedOn: '2021-11-29'
+                        tags: []
+                        text: 'AFFIDAVIT OR AFFIRMATION IN SUPPORT OF PROPOSED OSC/EXPARTE APP (Motion #2)'
+                        stateDocketEntryId: 1263090689
+                      - filedOn: '2021-12-10'
+                        tags:
+                        - Order
+                        text: 'ORDER TO SHOW CAUSE (Motion #1)'
+                        stateDocketEntryId: 1263090692
+                      - filedOn: '2021-12-30'
+                        tags: []
+                        text: 'AFFIDAVIT (Motion #2)'
+                        stateDocketEntryId: 1263090693
+                      - filedOn: '2022-01-13'
+                        tags: []
+                        text: 'EXHIBIT(S) — Note of Issue (Motion #2)'
+                        stateDocketEntryId: 1263090697
+                      - filedOn: '2022-01-13'
+                        tags:
+                        - Answer
+                        text: 'EXHIBIT(S) — Verified Answer on behalf of Bryan Blair, M.D. and Westmed Medical Group (Motion #2)'
+                        stateDocketEntryId: 1263090696
+                      - filedOn: '2022-01-13'
+                        tags:
+                        - Complaint
+                        text: 'EXHIBIT(S) — Summons & Complaint (Motion #2)'
+                        stateDocketEntryId: 1263090695
+                      - filedOn: '2022-01-13'
+                        tags: []
+                        text: 'AFFIDAVIT OR AFFIRMATION IN OPPOSITION TO ORDER TO SHOW CAUSE — Affirmation in Opposition (to OTSC to Restore Case to Trial Calendar) (Motion #2)'
+                        stateDocketEntryId: 1263090694
+                      - filedOn: '2022-01-13'
+                        tags: []
+                        text: 'EXHIBIT(S) — Decision & Order On Plaintiff''s Order to Show Cause (Motion #2)'
+                        stateDocketEntryId: 1263090698
+                      - filedOn: '2022-01-13'
+                        tags: []
+                        text: 'EXHIBIT(S) — Consent to Change Attorney (Motion #2)'
+                        stateDocketEntryId: 1263090699
+                      - filedOn: '2022-07-15'
+                        tags: []
+                        text: COURT NOTICE
+                        stateDocketEntryId: 1263090700
+                      - filedOn: '2023-03-03'
+                        tags: []
+                        text: LETTER / CORRESPONDENCE TO JUDGE
+                        stateDocketEntryId: 1263090701
+                      - filedOn: '2023-03-03'
+                        tags: []
+                        text: COURT NOTICE
+                        stateDocketEntryId: 1263090702
+                      - filedOn: '2023-10-27'
+                        tags: []
+                        text: TRIAL DOCUMENTS
+                        stateDocketEntryId: 1263090703
+                      - filedOn: '2023-10-30'
+                        tags: []
+                        text: TRIAL DOCUMENTS
+                        stateDocketEntryId: 1263090704
+                      - filedOn: '2023-12-11'
+                        tags: []
+                        text: OTHER COURT FILED DOCUMENT
+                        stateDocketEntryId: 1263090706
+                      - filedOn: '2023-12-11'
+                        tags: []
+                        text: EXTRACT
+                        stateDocketEntryId: 1263090705
+                      - filedOn: '2023-12-12'
+                        tags:
+                        - Judgment
+                        text: JUDGMENT -TO COUNTY CLERK (PROPOSED)
+                        stateDocketEntryId: 1263090707
+                      - filedOn: '2024-01-12'
+                        tags:
+                        - Judgment
+                        text: JUDGMENT - DECLARATORY
+                        stateDocketEntryId: 1263090708
+                      retrieved: all
+                      count: 62
+        '401':
+          description: Invalid or expired token
+          content:
+            application/json:
+              examples:
+                Expired token:
+                  summary: Expired token
+                  value:
+                    detail: 'Token time expired: Signature has expired.'
+                Invalid token:
+                  summary: Invalid token
+                  value:
+                    detail: Invalid token
+        '404':
+          description: Not found
+          content:
+            application/json:
+              examples:
+                Not found:
+                  summary: Not found
+                  value:
+                    summary: Unknown id
+                    detail: Not Found
+        '422':
+          description: Error - 422
+          content:
+            application/json:
+              examples:
+                Validation error:
+                  summary: Validation error
+                  value:
+                    summary: Invalid input
+                    detail:
+                    - type: parsing
+                      loc:
+                      - path
+                      - query
+                      - body
+                      msg: invalid input
+                      input: '-1'
+  /state-docket-entries/{state_docket_entry_id}:
+    get:
+      tags:
+      - State Cases
+      summary: Get State Docket Entry
+      description: 'Gets data for a single docket entry.
+
+
+        - **state_docket_entry_id**: the Lex Machina stateDocketEntryId.'
+      operationId: get_state_docket_entry
+      security:
+      - JwtAccessBearer: []
+      parameters:
+      - name: state_docket_entry_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: State Docket Entry Id
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StateDocketEntryResult'
+              examples:
+                state case complaint:
+                  summary: state case complaint
+                  value:
+                    filedOn: '2016-07-25'
+                    tags:
+                    - Complaint
+                    text: SUMMONS + COMPLAINT
+                    stateDocketEntryId: 1263090641
+                    courtType: State
+                    stateCaseId: 2033923164
+                    stateCaseUrl: https://api.lexmachina.com/state-cases/2033923164
+                    court: Westchester County Supreme Court
+                    state: New York
+        '401':
+          description: Invalid or expired token
+          content:
+            application/json:
+              examples:
+                Expired token:
+                  summary: Expired token
+                  value:
+                    detail: 'Token time expired: Signature has expired.'
+                Invalid token:
+                  summary: Invalid token
+                  value:
+                    detail: Invalid token
+        '404':
+          description: Not found
+          content:
+            application/json:
+              examples:
+                Not found:
+                  summary: Not found
+                  value:
+                    summary: Unknown id
+                    detail: Not Found
+        '422':
+          description: Error - 422
+          content:
+            application/json:
+              examples:
+                Validation error:
+                  summary: Validation error
+                  value:
+                    summary: Invalid input
+                    detail:
+                    - type: parsing
+                      loc:
+                      - path
+                      - query
+                      - body
+                      msg: invalid input
+                      input: '-1'
+  /query-state-cases:
+    post:
+      tags:
+      - State Cases
+      summary: Query State Cases
+      description: 'Queries enhanced state court cases.
+
+
+        - **data**: the state case query
+
+
+        See [https://developer.lexmachina.com/posts/query/state_query_usage/](https://developer.lexmachina.com/posts/query/state_query_usage/) for query formation.
+
+
+        The results will contain a list of cases, each with a specificed url and Lex Machina stateCaseId.'
+      operationId: query_state_cases
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StateCaseQuery'
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StateCaseQueryResult'
+              examples:
+                Query Results:
+                  summary: Query Results
+                  value:
+                    cases:
+                    - url: https://api.lexmachina.com/state-cases/2003442290
+                      stateCaseId: 2003442290
+                    - url: https://api.lexmachina.com/state-cases/2003442348
+                      stateCaseId: 2003442348
+                    - url: https://api.lexmachina.com/state-cases/2003442352
+                      stateCaseId: 2003442352
+                    - url: https://api.lexmachina.com/state-cases/2003463384
+                      stateCaseId: 2003463384
+                    - url: https://api.lexmachina.com/state-cases/2003442446
+                      stateCaseId: 2003442446
+        '422':
+          description: Error - 422
+          content:
+            application/json:
+              examples:
+                Maximum Cases Per Page Exceeded:
+                  summary: Maximum Cases Per Page Exceeded
+                  value:
+                    detail: Maximum cases per page is 100
+                Invalid Input:
+                  summary: Invalid Input
+                  value:
+                    detail:
+                    - type: missing
+                      loc:
+                      - body
+                      - courts
+                      - state
+                      msg: Field required
+                      input:
+                        include:
+                        - Fort Bend County District Court
+                Validation error:
+                  summary: Validation error
+                  value:
+                    summary: Invalid input
+                    detail:
+                    - type: parsing
+                      loc:
+                      - path
+                      - query
+                      - body
+                      msg: invalid input
+                      input: '-1'
+        '401':
+          description: Invalid or expired token
+          content:
+            application/json:
+              examples:
+                Expired token:
+                  summary: Expired token
+                  value:
+                    detail: 'Token time expired: Signature has expired.'
+                Invalid token:
+                  summary: Invalid token
+                  value:
+                    detail: Invalid token
+        '404':
+          description: Not found
+          content:
+            application/json:
+              examples:
+                Not found:
+                  summary: Not found
+                  value:
+                    summary: Unknown id
+                    detail: Not Found
+      security:
+      - JwtAccessBearer: []
+components:
+  schemas:
+    Attorney:
+      properties:
+        name:
+          type: string
+          title: Name
+        attorneyId:
+          type: integer
+          title: Attorneyid
+        lawFirmIds:
+          items:
+            type: integer
+          type: array
+          uniqueItems: true
+          title: Lawfirmids
+        clientsPartyIds:
+          items:
+            type: integer
+          type: array
+          uniqueItems: true
+          title: Clientspartyids
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - attorneyId
+      - lawFirmIds
+      - clientsPartyIds
+      title: Attorney
+    StateCaseQuery:
+      properties:
+        courts:
+          $ref: '#/components/schemas/StateCourtFilter'
+        caseStatus:
+          anyOf:
+          - $ref: '#/components/schemas/CaseStatus'
+          - type: 'null'
+        caseTypes:
+          anyOf:
+          - $ref: '#/components/schemas/CaseTypesFilter'
+          - type: 'null'
+        caseTags:
+          anyOf:
+          - $ref: '#/components/schemas/CaseTagsFilter'
+          - type: 'null'
+        dates:
+          anyOf:
+          - $ref: '#/components/schemas/CaseDatesFilter'
+          - type: 'null'
+        judges:
+          anyOf:
+          - $ref: '#/components/schemas/JudgeFilter'
+          - type: 'null'
+        events:
+          anyOf:
+          - $ref: '#/components/schemas/EventFilter'
+          - type: 'null'
+        lawFirms:
+          anyOf:
+          - $ref: '#/components/schemas/LawFirmFilter'
+          - type: 'null'
+        attorneys:
+          anyOf:
+          - $ref: '#/components/schemas/AttorneyFilter'
+          - type: 'null'
+        parties:
+          anyOf:
+          - $ref: '#/components/schemas/PartyFilter'
+          - type: 'null'
+        resolutions:
+          anyOf:
+          - $ref: '#/components/schemas/ResolutionsFilter'
+          - type: 'null'
+        damages:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/IndividualStateDamagesFilter'
+            type: array
+          - type: 'null'
+          title: Damages
+        rulings:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/IndividualRulingsFilter'
+            type: array
+          - type: 'null'
+          title: Rulings
+        ordering:
+          $ref: '#/components/schemas/Ordering'
+          default: ByFirstFiled
+        page:
+          type: integer
+          title: Page
+          default: 1
+        pageSize:
+          type: integer
+          title: Pagesize
+          default: 5
+      additionalProperties: false
+      type: object
+      required:
+      - courts
+      title: StateCaseQuery
+      example:
+        caseStatus: Terminated
+        courts:
+          include:
+          - Fort Bend County District Court
+          state: TX
+        dates:
+          filed:
+            onOrAfter: '2016-01-01'
+          terminated:
+            onOrBefore: '2021-05-01'
+        judges:
+          include:
+          - 1792
+        ordering: ByFirstFiled
+        page: 1
+        pageSize: 5
+    StateJudge:
+      properties:
+        name:
+          type: string
+          title: Name
+        stateJudgeId:
+          type: integer
+          title: Statejudgeid
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - stateJudgeId
+      title: StateJudge
+    StateCaseReference:
+      properties:
+        url:
+          type: string
+          title: Url
+        stateCaseId:
+          type: integer
+          title: Statecaseid
+      additionalProperties: false
+      type: object
+      required:
+      - url
+      - stateCaseId
+      title: StateCaseReference
+    TimingFilter:
+      properties:
+        onOrAfter:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: Onorafter
+        onOrBefore:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: Onorbefore
+      additionalProperties: false
+      type: object
+      title: TimingFilter
+    CaseDatesFilter:
+      properties:
+        filed:
+          anyOf:
+          - $ref: '#/components/schemas/TimingFilter'
+          - type: 'null'
+        terminated:
+          anyOf:
+          - $ref: '#/components/schemas/TimingFilter'
+          - type: 'null'
+        trial:
+          anyOf:
+          - $ref: '#/components/schemas/TimingFilter'
+          - type: 'null'
+        lastDocket:
+          anyOf:
+          - $ref: '#/components/schemas/TimingFilter'
+          - type: 'null'
+      additionalProperties: false
+      type: object
+      title: CaseDatesFilter
+    StateDocket:
+      properties:
+        entries:
+          items:
+            $ref: '#/components/schemas/StateDocketEntry'
+          type: array
+          title: Entries
+        retrieved:
+          $ref: '#/components/schemas/DocketEntriesIncludedInOutput'
+        count:
+          type: integer
+          title: Count
+      additionalProperties: false
+      type: object
+      required:
+      - entries
+      - retrieved
+      - count
+      title: StateDocket
+    CaseEvent:
+      properties:
+        type:
+          type: string
+          title: Type
+        occurred:
+          type: string
+          format: date
+          title: Occurred
+      additionalProperties: false
+      type: object
+      required:
+      - type
+      - occurred
+      title: CaseEvent
+    IndividualStateDamagesFilter:
+      properties:
+        name:
+          anyOf:
+          - $ref: '#/components/schemas/NameFilter'
+          - type: 'null'
+        date:
+          anyOf:
+          - $ref: '#/components/schemas/TimingFilter'
+          - type: 'null'
+        awardedToParties:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Awardedtoparties
+        awardedAgainstParties:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Awardedagainstparties
+        minimumAmount:
+          anyOf:
+          - type: number
+          - type: string
+            pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          - type: 'null'
+          title: Minimumamount
+      additionalProperties: false
+      type: object
+      title: IndividualStateDamagesFilter
+    StateCaseDamagesByStatus:
+      properties:
+        active:
+          items:
+            $ref: '#/components/schemas/StateCaseDamages'
+          type: array
+          title: Active
+      additionalProperties: false
+      type: object
+      required:
+      - active
+      title: StateCaseDamagesByStatus
+    CaseStatus:
+      type: string
+      enum:
+      - Open
+      - Terminated
+      title: CaseStatus
+    Ordering:
+      type: string
+      enum:
+      - ByFirstFiled
+      - ByLastFiled
+      title: Ordering
+    StateCaseResolution:
+      properties:
+        summary:
+          type: string
+          title: Summary
+        specific:
+          type: string
+          title: Specific
+        docketEntryFiled:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: Docketentryfiled
+        stateDocketEntryId:
+          type: integer
+          title: Statedocketentryid
+      additionalProperties: false
+      type: object
+      required:
+      - summary
+      - specific
+      - docketEntryFiled
+      - stateDocketEntryId
+      title: StateCaseResolution
+    JudgmentEventFilter:
+      properties:
+        include:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Exclude
+      additionalProperties: false
+      type: object
+      title: JudgmentEventFilter
+    StateCaseData:
+      properties:
+        stateCaseId:
+          type: integer
+          title: Statecaseid
+        title:
+          type: string
+          title: Title
+        state:
+          type: string
+          title: State
+        court:
+          type: string
+          title: Court
+        caseNo:
+          type: string
+          title: Caseno
+        status:
+          $ref: '#/components/schemas/CaseStatus'
+        caseType:
+          items:
+            type: string
+          type: array
+          title: Casetype
+        caseTags:
+          items:
+            type: string
+          type: array
+          title: Casetags
+        dates:
+          $ref: '#/components/schemas/StateCaseDates'
+        resolution:
+          anyOf:
+          - $ref: '#/components/schemas/StateCaseResolution'
+          - type: 'null'
+        events:
+          items:
+            $ref: '#/components/schemas/CaseEvent'
+          type: array
+          title: Events
+        judges:
+          items:
+            $ref: '#/components/schemas/StateJudge'
+          type: array
+          title: Judges
+        rulings:
+          $ref: '#/components/schemas/StateCaseRulingsByStatus'
+        lawFirms:
+          items:
+            $ref: '#/components/schemas/LawFirm'
+          type: array
+          title: Lawfirms
+        attorneys:
+          items:
+            $ref: '#/components/schemas/Attorney'
+          type: array
+          title: Attorneys
+        parties:
+          items:
+            $ref: '#/components/schemas/Party'
+          type: array
+          title: Parties
+        damages:
+          $ref: '#/components/schemas/StateCaseDamagesByStatus'
+        docket:
+          $ref: '#/components/schemas/StateDocket'
+      additionalProperties: false
+      type: object
+      required:
+      - stateCaseId
+      - title
+      - state
+      - court
+      - caseNo
+      - status
+      - caseType
+      - caseTags
+      - dates
+      - events
+      - judges
+      - rulings
+      - lawFirms
+      - attorneys
+      - parties
+      - damages
+      - docket
+      title: StateCaseData
+      description: A single case from an enahnced state court and relevant metadata.
+    LawFirmFilter:
+      properties:
+        include:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Exclude
+        includePlaintiff:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Includeplaintiff
+        excludePlaintiff:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Excludeplaintiff
+        includeDefendant:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Includedefendant
+        excludeDefendant:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Excludedefendant
+        includeThirdParty:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Includethirdparty
+        excludeThirdParty:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Excludethirdparty
+      additionalProperties: false
+      type: object
+      title: LawFirmFilter
+    ResolutionsFilter:
+      properties:
+        include:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/IndividualResolutionsFilter'
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/IndividualResolutionsFilter'
+            type: array
+          - type: 'null'
+          title: Exclude
+      additionalProperties: false
+      type: object
+      title: ResolutionsFilter
+    StateCaseDamages:
+      properties:
+        name:
+          type: string
+          title: Name
+        awardedToPartyId:
+          items:
+            type: integer
+          type: array
+          title: Awardedtopartyid
+        awardedAgainstPartyIds:
+          items:
+            type: integer
+          type: array
+          title: Awardedagainstpartyids
+        amount:
+          type: string
+          pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          title: Amount
+        awarded:
+          type: string
+          format: date
+          title: Awarded
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - awardedToPartyId
+      - awardedAgainstPartyIds
+      - amount
+      - awarded
+      title: StateCaseDamages
+    StateCourtFilter:
+      properties:
+        state:
+          type: string
+          title: State
+        include:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Exclude
+      additionalProperties: false
+      type: object
+      required:
+      - state
+      title: StateCourtFilter
+    LawFirm:
+      properties:
+        name:
+          type: string
+          title: Name
+        lawFirmId:
+          type: integer
+          title: Lawfirmid
+        clientPartyIds:
+          items:
+            type: integer
+          type: array
+          uniqueItems: true
+          title: Clientpartyids
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - lawFirmId
+      - clientPartyIds
+      title: LawFirm
+    DocketEntriesIncludedInOutput:
+      type: string
+      enum:
+      - all
+      - none
+      title: DocketEntriesIncludedInOutput
+    CourtType:
+      type: string
+      enum:
+      - FederalDistrict
+      - State
+      - FederalAppeals
+      - FederalBankruptcy
+      - PTAB
+      - ITC
+      title: CourtType
+    StateDocketEntry:
+      properties:
+        filedOn:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: Filedon
+        tags:
+          items:
+            type: string
+          type: array
+          title: Tags
+        text:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Text
+        stateDocketEntryId:
+          type: integer
+          title: Statedocketentryid
+      additionalProperties: false
+      type: object
+      required:
+      - filedOn
+      - tags
+      - text
+      - stateDocketEntryId
+      title: StateDocketEntry
+    StateDocketEntryResult:
+      properties:
+        filedOn:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: Filedon
+        tags:
+          items:
+            type: string
+          type: array
+          title: Tags
+        text:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Text
+        stateDocketEntryId:
+          type: integer
+          title: Statedocketentryid
+        courtType:
+          $ref: '#/components/schemas/CourtType'
+        stateCaseId:
+          type: integer
+          title: Statecaseid
+        stateCaseUrl:
+          type: string
+          title: Statecaseurl
+        court:
+          type: string
+          title: Court
+        state:
+          type: string
+          title: State
+      additionalProperties: false
+      type: object
+      required:
+      - filedOn
+      - tags
+      - text
+      - stateDocketEntryId
+      - courtType
+      - stateCaseId
+      - stateCaseUrl
+      - court
+      - state
+      title: StateDocketEntryResult
+    NameFilter:
+      properties:
+        include:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Exclude
+      additionalProperties: false
+      type: object
+      title: NameFilter
+    PartyFilter:
+      properties:
+        include:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Exclude
+        includePlaintiff:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Includeplaintiff
+        excludePlaintiff:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Excludeplaintiff
+        includeDefendant:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Includedefendant
+        excludeDefendant:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Excludedefendant
+        includeThirdParty:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Includethirdparty
+        excludeThirdParty:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Excludethirdparty
+      additionalProperties: false
+      type: object
+      title: PartyFilter
+    IndividualResolutionsFilter:
+      properties:
+        summary:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Summary
+        specific:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Specific
+      additionalProperties: false
+      type: object
+      title: IndividualResolutionsFilter
+    StateCaseQueryResult:
+      properties:
+        cases:
+          items:
+            $ref: '#/components/schemas/StateCaseReference'
+          type: array
+          title: Cases
+      additionalProperties: false
+      type: object
+      required:
+      - cases
+      title: StateCaseQueryResult
+    CaseTypesFilter:
+      properties:
+        include:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Exclude
+      additionalProperties: false
+      type: object
+      title: CaseTypesFilter
+    EventFilter:
+      properties:
+        include:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Exclude
+      additionalProperties: false
+      type: object
+      title: EventFilter
+    JudgeFilter:
+      properties:
+        include:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Exclude
+      additionalProperties: false
+      type: object
+      title: JudgeFilter
+    StateCaseRulingsByStatus:
+      properties:
+        active:
+          items:
+            $ref: '#/components/schemas/Rulings'
+          type: array
+          title: Active
+      additionalProperties: false
+      type: object
+      required:
+      - active
+      title: StateCaseRulingsByStatus
+    Rulings:
+      properties:
+        judgmentEvent:
+          type: string
+          title: Judgmentevent
+        awardedToPartyIds:
+          items:
+            type: integer
+          type: array
+          title: Awardedtopartyids
+        awardedAgainstPartyIds:
+          items:
+            type: integer
+          type: array
+          title: Awardedagainstpartyids
+        awarded:
+          type: string
+          format: date
+          title: Awarded
+      additionalProperties: false
+      type: object
+      required:
+      - judgmentEvent
+      - awardedToPartyIds
+      - awardedAgainstPartyIds
+      - awarded
+      title: Rulings
+    CaseTagsFilter:
+      properties:
+        include:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Exclude
+      additionalProperties: false
+      type: object
+      title: CaseTagsFilter
+    Party:
+      properties:
+        name:
+          type: string
+          title: Name
+        partyId:
+          type: integer
+          title: Partyid
+        role:
+          type: string
+          title: Role
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - partyId
+      - role
+      title: Party
+    IndividualRulingsFilter:
+      properties:
+        judgmentEvent:
+          anyOf:
+          - $ref: '#/components/schemas/JudgmentEventFilter'
+          - type: 'null'
+        awardedToParties:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Awardedtoparties
+        awardedAgainstParties:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Awardedagainstparties
+        date:
+          anyOf:
+          - $ref: '#/components/schemas/TimingFilter'
+          - type: 'null'
+      additionalProperties: false
+      type: object
+      title: IndividualRulingsFilter
+    StateCaseDates:
+      properties:
+        filed:
+          type: string
+          format: date
+          title: Filed
+        terminated:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: Terminated
+        trial:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: Trial
+      additionalProperties: false
+      type: object
+      required:
+      - filed
+      - trial
+      title: StateCaseDates
+    AttorneyFilter:
+      properties:
+        include:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Exclude
+        includePlaintiff:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Includeplaintiff
+        excludePlaintiff:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Excludeplaintiff
+        includeDefendant:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Includedefendant
+        excludeDefendant:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Excludedefendant
+        includeThirdParty:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Includethirdparty
+        excludeThirdParty:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Excludethirdparty
+      additionalProperties: false
+      type: object
+      title: AttorneyFilter
+  securitySchemes:
+    JwtAccessBearer:
+      type: http
+      scheme: bearer

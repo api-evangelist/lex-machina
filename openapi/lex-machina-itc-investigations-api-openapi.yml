@@ -1,0 +1,359 @@
+openapi: 3.1.0
+info:
+  title: Lex Machina Alerts ITC Investigations API
+  version: '20260324'
+  description: Alerts.
+servers:
+- url: https://api.lexmachina.com
+  description: Lex Machina production API
+tags:
+- name: ITC Investigations
+  description: ITC Investigations.
+paths:
+  /itc-investigations/{itc_investigation_id}:
+    get:
+      tags:
+      - ITC Investigations
+      summary: Get Itc Investigation
+      description: 'Gets data for a single US ITC investigation.
+
+
+        - **itc_investigation_id**: the ITC investigation number
+
+        - **docket_retrieval**: docket retreival mode
+
+
+        The investigation number format should exclude the leading "337-TA-"'
+      operationId: get_itc_investigation
+      security:
+      - JwtAccessBearer: []
+      parameters:
+      - name: itc_investigation_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Itc Investigation Id
+      - name: document_retrieval
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: '''all'' to retrieve all documents for the investigation, if not provided documents will not be returned.'
+          title: Document Retrieval
+        description: '''all'' to retrieve all documents for the investigation, if not provided documents will not be returned.'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ITCInvestigationData'
+              examples:
+                single itc investigation:
+                  summary: single itc investigation
+                  value:
+                    itcInvestigationId: '998'
+                    investigationNumber: 337-TA-998
+                    title: Certain Hybrid Electric Vehicles Components Thereof; Inv. No. 337-TA-998
+                    investigationTypes:
+                    - Patent
+                    status: Terminated
+                    dates:
+                      notice: '2016-05-23'
+                      terminated: '2017-02-01'
+                    administrativeLawJudges:
+                    - name: Thomas Pender
+                    dispositions:
+                    - Settlement
+                    parties:
+                    - name: Volkswagen Group of America, Inc.
+                      role: respondent
+                    - name: Volkswagen AG
+                      role: respondent
+                    - name: Porsche Cars North America, Inc.
+                      role: respondent
+                    - name: Dr. Ing. h.c. F. Porsche AG
+                      role: respondent
+                    - name: Audi of America, LLC
+                      role: respondent
+                    - name: Audi AG
+                      role: respondent
+                    - name: Paice LLC
+                      role: complainant
+                    - name: Abell Foundation, Inc.
+                      role: complainant
+                    - name: Dr. Ing. H.C. F. Porsche AG
+                      role: respondent
+                    patents:
+                    - number: '7104347'
+                      title: Hybrid vehicles
+                    - number: '7237634'
+                      title: Hybrid vehicles
+                    - number: '8214097'
+                      title: Hybrid vehicles
+                    itcDocumentList:
+                      entries: []
+                      retrieved: none
+                      count: 199
+        '401':
+          description: Invalid or expired token
+          content:
+            application/json:
+              examples:
+                Expired token:
+                  summary: Expired token
+                  value:
+                    detail: 'Token time expired: Signature has expired.'
+                Invalid token:
+                  summary: Invalid token
+                  value:
+                    detail: Invalid token
+        '404':
+          description: Not found
+          content:
+            application/json:
+              examples:
+                Not found:
+                  summary: Not found
+                  value:
+                    summary: Unknown id
+                    detail: Not Found
+        '422':
+          description: Error - 422
+          content:
+            application/json:
+              examples:
+                Validation error:
+                  summary: Validation error
+                  value:
+                    summary: Invalid input
+                    detail:
+                    - type: parsing
+                      loc:
+                      - path
+                      - query
+                      - body
+                      msg: invalid input
+                      input: '-1'
+components:
+  schemas:
+    DocketEntriesIncludedInOutput:
+      type: string
+      enum:
+      - all
+      - none
+      title: DocketEntriesIncludedInOutput
+    ITCDocumentEntityData:
+      properties:
+        name:
+          type: string
+          title: Name
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      title: ITCDocumentEntityData
+    ITCParty:
+      properties:
+        name:
+          type: string
+          title: Name
+        role:
+          type: string
+          title: Role
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - role
+      title: ITCParty
+    ITCDocumentList:
+      properties:
+        entries:
+          items:
+            $ref: '#/components/schemas/ITCDocument'
+          type: array
+          title: Entries
+        retrieved:
+          $ref: '#/components/schemas/DocketEntriesIncludedInOutput'
+        count:
+          type: integer
+          title: Count
+      additionalProperties: false
+      type: object
+      required:
+      - entries
+      - retrieved
+      - count
+      title: ITCDocumentList
+    ITCInvestigationDates:
+      properties:
+        notice:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: Notice
+        terminated:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: Terminated
+      additionalProperties: false
+      type: object
+      required:
+      - notice
+      - terminated
+      title: ITCInvestigationDates
+    ITCInvestigationStatus:
+      type: string
+      enum:
+      - Active
+      - Terminated
+      - Completed
+      - Pending before the ALJ
+      - Pending before the Commission
+      title: ITCInvestigationStatus
+    Patent:
+      properties:
+        number:
+          type: string
+          title: Number
+        title:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Title
+      additionalProperties: false
+      type: object
+      required:
+      - number
+      title: Patent
+    AdministrativeLawJudge:
+      properties:
+        name:
+          type: string
+          title: Name
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      title: AdministrativeLawJudge
+    ITCDocument:
+      properties:
+        usitcDocumentId:
+          type: integer
+          title: Usitcdocumentid
+        date:
+          type: string
+          format: date
+          title: Date
+        title:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Title
+        type:
+          type: string
+          title: Type
+        filedBy:
+          items:
+            $ref: '#/components/schemas/ITCDocumentEntityData'
+          type: array
+          title: Filedby
+        firm:
+          items:
+            $ref: '#/components/schemas/ITCDocumentEntityData'
+          type: array
+          title: Firm
+        onBehalfOf:
+          items:
+            $ref: '#/components/schemas/ITCDocumentEntityData'
+          type: array
+          title: Onbehalfof
+      additionalProperties: false
+      type: object
+      required:
+      - usitcDocumentId
+      - date
+      - title
+      - type
+      - filedBy
+      - firm
+      - onBehalfOf
+      title: ITCDocument
+    ITCInvestigationData:
+      properties:
+        itcInvestigationId:
+          type: string
+          title: Itcinvestigationid
+        investigationNumber:
+          type: string
+          title: Investigationnumber
+        title:
+          type: string
+          title: Title
+        investigationTypes:
+          items:
+            $ref: '#/components/schemas/ITCInvestigationType'
+          type: array
+          title: Investigationtypes
+        status:
+          anyOf:
+          - $ref: '#/components/schemas/ITCInvestigationStatus'
+          - type: 'null'
+        dates:
+          $ref: '#/components/schemas/ITCInvestigationDates'
+        administrativeLawJudges:
+          items:
+            $ref: '#/components/schemas/AdministrativeLawJudge'
+          type: array
+          title: Administrativelawjudges
+        dispositions:
+          items:
+            type: string
+          type: array
+          title: Dispositions
+        parties:
+          items:
+            $ref: '#/components/schemas/ITCParty'
+          type: array
+          title: Parties
+        patents:
+          items:
+            $ref: '#/components/schemas/Patent'
+          type: array
+          title: Patents
+        itcDocumentList:
+          $ref: '#/components/schemas/ITCDocumentList'
+      additionalProperties: false
+      type: object
+      required:
+      - itcInvestigationId
+      - investigationNumber
+      - title
+      - investigationTypes
+      - status
+      - dates
+      - administrativeLawJudges
+      - dispositions
+      - parties
+      - patents
+      - itcDocumentList
+      title: ITCInvestigationData
+      description: A single US ITC investigation and relevant metadata.
+    ITCInvestigationType:
+      type: string
+      enum:
+      - Patent
+      - Trademark
+      - Copyright
+      title: ITCInvestigationType
+  securitySchemes:
+    JwtAccessBearer:
+      type: http
+      scheme: bearer

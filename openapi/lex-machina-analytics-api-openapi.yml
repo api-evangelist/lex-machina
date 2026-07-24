@@ -1,0 +1,2438 @@
+openapi: 3.1.0
+info:
+  title: Lex Machina Alerts Analytics API
+  version: '20260324'
+  description: Alerts.
+servers:
+- url: https://api.lexmachina.com
+  description: Lex Machina production API
+tags:
+- name: Analytics
+  description: Analytics.
+paths:
+  /analyze-district-cases/from-query:
+    post:
+      tags:
+      - Analytics
+      summary: Analyze District Cases From Query
+      operationId: analyze_district_cases_from_query
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DistrictCaseAnalyticFromQuery'
+            examples:
+              District Case Law Firm Count by Role from Query:
+                summary: District Case Law Firm Count by Role from Query
+                description: district case counts of lawfirms by role for contracts cases in njd filed in 2019 and terminated in 2021
+                value: '{"analyticType": "LawFirmCountByRole", "districtCaseQuery": {"courts": {"include": ["njd"]}, "caseTypes": {"include": ["Contracts"]}, "dates": {"filed": {"onOrAfter": "2019-01-01", "onOrBefore": "2019-12-31"}, "terminated": {"onOrAfter": "2021-01-01", "onOrBefore": "2021-12-31"}}}}'
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CaseAnalyticResult'
+              examples:
+                District Case Law Firm Count by Role from Query:
+                  summary: District Case Law Firm Count by Role from Query
+                  value:
+                    totalCases: 63
+                    aggregation:
+                      data:
+                      - lawFirmId: 3571
+                        lawFirmName: State of New Jersey
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 1
+                        - role: Defendant
+                          count: 12
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 4743
+                        lawFirmName: Greenbaum, Rowe, Smith & Davis
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 13
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 79274506
+                        lawFirmName: John Zidziunas & Associates
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 12
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 74149061
+                        lawFirmName: Riker Danzig
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 1
+                        - role: Defendant
+                          count: 11
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 73892766
+                        lawFirmName: Nukk-Freeman
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 11
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 69826
+                        lawFirmName: Clark Hill
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 10
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 2764992
+                        lawFirmName: Price, Meese, Shulman & D'Arminio
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 3
+                        - role: Defendant
+                          count: 4
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 948987
+                        lawFirmName: Connell Foley
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 6
+                        - role: Defendant
+                          count: 1
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 160737897
+                        lawFirmName: Campbell Rocco Law
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 6
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 73924463
+                        lawFirmName: Sills Cummis & Gross
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 6
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 28526743
+                        lawFirmName: Schenck Price Smith & King
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 5
+                        - role: Defendant
+                          count: 0
+                        - role: Third Party
+                          count: 1
+                      - lawFirmId: 95470716
+                        lawFirmName: Randy Scott Zelin
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 6
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 79063
+                        lawFirmName: Herzfeld & Rubin
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 5
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 485015
+                        lawFirmName: Post & Schell
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 5
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 433
+                        lawFirmName: Reed Smith
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 5
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 24440
+                        lawFirmName: Ballard Spahr
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 3
+                        - role: Defendant
+                          count: 1
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 119127128
+                        lawFirmName: Coughlin Midlige & Garland
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 4
+                        - role: Defendant
+                          count: 0
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 13647919
+                        lawFirmName: Saiber
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 3
+                        - role: Defendant
+                          count: 1
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 16
+                        lawFirmName: Greenberg Traurig
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 4
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 226013496
+                        lawFirmName: Fox Rothschild
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 1
+                        - role: Defendant
+                          count: 3
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 78110100
+                        lawFirmName: Trinity & Farsiou
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 3
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 2634106
+                        lawFirmName: Houser & Allison
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 3
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 2944840
+                        lawFirmName: Chiesa Shahinian & Giantomasi
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 2
+                        - role: Third Party
+                          count: 1
+                      - lawFirmId: 1927
+                        lawFirmName: Saul Ewing Arnstein & Lehr
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 3
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 76758445
+                        lawFirmName: White and Williams
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 2
+                        - role: Defendant
+                          count: 1
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 9441075
+                        lawFirmName: Braff, Harris, Sukoneck & Maloof
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 3
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 3625370
+                        lawFirmName: Wolff & Samson
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 2
+                        - role: Third Party
+                          count: 1
+                      - lawFirmId: 2544529
+                        lawFirmName: Feder Kaszovitz
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 3
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 21177272
+                        lawFirmName: Blank Rome
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 3
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 198107902
+                        lawFirmName: Landman Corsi Ballaine & Ford
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 3
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 91790
+                        lawFirmName: Lake & Cobb
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 3
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 110748325
+                        lawFirmName: Finestein & Malloy
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 3
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 1359265
+                        lawFirmName: John E. Osborn
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 3
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 32792
+                        lawFirmName: Wilson Elser
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 2
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 191985184
+                        lawFirmName: Law Offices of Joel C. Seltzer
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 2
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 53613883
+                        lawFirmName: Fishkin Lucks
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 2
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 16080674
+                        lawFirmName: Zukerman Gore Brandeis & Crossman
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 2
+                        - role: Defendant
+                          count: 0
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 87952
+                        lawFirmName: FordHarrison
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 2
+                        - role: Defendant
+                          count: 0
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 54662
+                        lawFirmName: Lewis Brisbois Bisgaard & Smith
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 0
+                        - role: Third Party
+                          count: 2
+                      - lawFirmId: 86880158
+                        lawFirmName: Anderson & Shah
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 2
+                        - role: Defendant
+                          count: 0
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 45565730
+                        lawFirmName: Littleton Park Joyce Ughetta & Kelly
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 2
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 192889343
+                        lawFirmName: Gennet, Kallmann, Antin, Sweetman & Nichols
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 2
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 10016960
+                        lawFirmName: MARK S. KANCHER
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 1
+                        - role: Defendant
+                          count: 1
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 284166
+                        lawFirmName: Marks & Klein
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 2
+                        - role: Defendant
+                          count: 0
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 3641580
+                        lawFirmName: Gordon Rees Scully Mansukhani
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 2
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 482562
+                        lawFirmName: McCarter & English
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 1
+                        - role: Defendant
+                          count: 1
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 8286817
+                        lawFirmName: McElroy, Deutsch, Mulvaney & Carpenter
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 1
+                        - role: Defendant
+                          count: 1
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 74592432
+                        lawFirmName: McNelly Law Group
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 2
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 871412
+                        lawFirmName: Bressler, Amery & Ross
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 2
+                        - role: Defendant
+                          count: 0
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 211807676
+                        lawFirmName: Brown & Connery
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 1
+                        - role: Defendant
+                          count: 1
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 159371016
+                        lawFirmName: Hurvitz & Waldman
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 2
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 604
+                        lawFirmName: Department of Justice
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 2
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 5000
+                        lawFirmName: Dinsmore & Shohl
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 2
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 14953455
+                        lawFirmName: KML Law Group
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 2
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 2840450
+                        lawFirmName: Robins Kaplan
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 2
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 48787777
+                        lawFirmName: Rosenblatt Law (rosenblattlegal.com)
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 2
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 84836034
+                        lawFirmName: Scarinci Hollenbeck
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 2
+                        - role: Defendant
+                          count: 0
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 1200526
+                        lawFirmName: Sherman Silverstein Kohl Rose & Podolsky
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 2
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 14984471
+                        lawFirmName: Donnelly Minter & Kelly
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 2
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 2559918
+                        lawFirmName: Lauletta Birnbaum
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 2
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 204149042
+                        lawFirmName: Thomas Paschos & Associates
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 2
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 72715108
+                        lawFirmName: ARBUS MAYBRUCH & GOODE
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 2
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 108090
+                        lawFirmName: Cavanagh Law Firm
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 2
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 73726804
+                        lawFirmName: Triarsi, Betancourt, Wukovits & Dugan
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 2
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 25034
+                        lawFirmName: Troutman Pepper Locke
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 2
+                        - role: Defendant
+                          count: 0
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 32096952
+                        lawFirmName: Verner Simon
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 2
+                        - role: Defendant
+                          count: 0
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 720671
+                        lawFirmName: FisherBroyles
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 1
+                        - role: Defendant
+                          count: 1
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 57787079
+                        lawFirmName: Law Offices of Frank Lagano
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 2
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 16233164
+                        lawFirmName: Whiteman Law Group (whitemanlawgroup.com)
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 2
+                        - role: Defendant
+                          count: 0
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 175082254
+                        lawFirmName: The Choi Law Group
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 1
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 9007590
+                        lawFirmName: TheChoiLawGroup
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 1
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 43709706
+                        lawFirmName: Abilheira & Associates
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 1
+                        - role: Defendant
+                          count: 0
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 2259387
+                        lawFirmName: The Sultzer Law Group
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 1
+                        - role: Defendant
+                          count: 0
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 295568
+                        lawFirmName: Thomas, Thomas & Hafer
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 1
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 72927124
+                        lawFirmName: TorricellaLaw
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 1
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 1103546
+                        lawFirmName: Trachtman & Trachtman (trachtmanlaw.com)
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 1
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 2763131
+                        lawFirmName: Walsh & Walsh, Esqs.
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 1
+                        - role: Defendant
+                          count: 0
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 50008484
+                        lawFirmName: Warshaw Burstein
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 1
+                        - role: Defendant
+                          count: 0
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 10357
+                        lawFirmName: Weir & Partners
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 1
+                        - role: Defendant
+                          count: 0
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 2537860
+                        lawFirmName: Wu & Kao
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 1
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 62232367
+                        lawFirmName: The Law Offices of Bruce E. Baldinger
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 1
+                        - role: Defendant
+                          count: 0
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 87592700
+                        lawFirmName: Ameri Law Firm
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 1
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 73646052
+                        lawFirmName: Antar Law Firm
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 1
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 241440
+                        lawFirmName: Archer & Greiner
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 1
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 479700
+                        lawFirmName: Armstrong Teasdale
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 1
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 709843
+                        lawFirmName: Ausley & McMullen
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 1
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 122592469
+                        lawFirmName: Berger Law Group (bergerlawpc.com)
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 1
+                        - role: Defendant
+                          count: 0
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 2735110
+                        lawFirmName: Beshada Farnese
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 1
+                        - role: Defendant
+                          count: 0
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 8195708
+                        lawFirmName: Billet & Associates
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 1
+                        - role: Defendant
+                          count: 0
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 53440905
+                        lawFirmName: Bolan Jahnsen Dacey
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 1
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 167401
+                        lawFirmName: Brach Eichler
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 1
+                        - role: Defendant
+                          count: 0
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 126
+                        lawFirmName: Buchanan Ingersoll & Rooney
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 1
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 129518605
+                        lawFirmName: Carkhuff & Radmin
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 1
+                        - role: Defendant
+                          count: 0
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 8722539
+                        lawFirmName: Casey & Barnett
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 1
+                        - role: Defendant
+                          count: 0
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 8072075
+                        lawFirmName: Clark & Fox
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 1
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 69545896
+                        lawFirmName: Cooper Levenson
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 1
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 10918693
+                        lawFirmName: Cruser, Mitchell, Novitz, Sanchez, Gaston & Zimet
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 1
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 8142859
+                        lawFirmName: de Luca Levine
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 1
+                        - role: Defendant
+                          count: 0
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 8289965
+                        lawFirmName: Duane Morris
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 1
+                        - role: Defendant
+                          count: 0
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 54210250
+                        lawFirmName: ExteNet Systems
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 1
+                        - role: Defendant
+                          count: 0
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 376452
+                        lawFirmName: FBT Gibbons
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 0
+                        - role: Third Party
+                          count: 1
+                      - lawFirmId: 52792274
+                        lawFirmName: Fein, Such, Kahn & Shepard
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 1
+                        - role: Defendant
+                          count: 0
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 62784769
+                        lawFirmName: Fink Law (finkpc.com)
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 1
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 2779711
+                        lawFirmName: Fisher Zucker
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 1
+                        - role: Defendant
+                          count: 0
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 16109046
+                        lawFirmName: Furey & Baldassari
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 1
+                        - role: Defendant
+                          count: 0
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 13760421
+                        lawFirmName: Genova Burns
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 1
+                        - role: Defendant
+                          count: 0
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 3467799
+                        lawFirmName: Guarino & Co. Law Firm
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 1
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 8740242
+                        lawFirmName: Hedinger & Lawless
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 1
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 358108
+                        lawFirmName: Hellring, Lindeman, Goldstein & Siegal
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 1
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 160207893
+                        lawFirmName: High Swartz
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 1
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 1281
+                        lawFirmName: Hogan Lovells
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 1
+                        - role: Defendant
+                          count: 0
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 92502870
+                        lawFirmName: Inglesino, Webster, Wyciskala & Taylor
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 0
+                        - role: Third Party
+                          count: 1
+                      - lawFirmId: 2572038
+                        lawFirmName: Katz Melinger
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 1
+                        - role: Defendant
+                          count: 0
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 8763835
+                        lawFirmName: Koller Law
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 1
+                        - role: Defendant
+                          count: 0
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 549711
+                        lawFirmName: Kudman Trachten Aloe
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 1
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 2227
+                        lawFirmName: Kutak Rock
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 1
+                        - role: Defendant
+                          count: 0
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 14012286
+                        lawFirmName: Law Firm of Omar T. Mohammedi
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 1
+                        - role: Defendant
+                          count: 0
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 41414585
+                        lawFirmName: Law Office of Alexander Sakin
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 1
+                        - role: Defendant
+                          count: 0
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 9362939
+                        lawFirmName: Law Office of Dante DiPirro
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 1
+                        - role: Defendant
+                          count: 0
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 62665815
+                        lawFirmName: LAW OFFICE OF JOSEPH BASSO
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 1
+                        - role: Defendant
+                          count: 0
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 3422064
+                        lawFirmName: Law Office of Matthew H. Sontz
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 1
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 90856221
+                        lawFirmName: LAW OFFICE OF MICHAEL K. ARROYO
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 1
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 4534806
+                        lawFirmName: Law Office of Solomon E. Antar, Esq.
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 1
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 1330553
+                        lawFirmName: Law Offices of Sheryl Mintz Goski
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 0
+                        - role: Third Party
+                          count: 1
+                      - lawFirmId: 27625
+                        lawFirmName: LeClairRyan
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 1
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 526832
+                        lawFirmName: Lindabury, McCormick, Estabrook & Cooper
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 1
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 8758043
+                        lawFirmName: Litman, Asche & Gioiella
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 1
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 16300000
+                        lawFirmName: Lum, Drasco & Positan
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 0
+                        - role: Third Party
+                          count: 1
+                      - lawFirmId: 186081396
+                        lawFirmName: Marco & Sitaras
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 1
+                        - role: Defendant
+                          count: 0
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 87951007
+                        lawFirmName: Mavinkurve & Patel
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 1
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 23879
+                        lawFirmName: McDonald Hopkins
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 1
+                        - role: Defendant
+                          count: 0
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 99376948
+                        lawFirmName: MCGUIRE LAW (CAROLYN M. MCGUIRE)
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 1
+                        - role: Defendant
+                          count: 0
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 231206
+                        lawFirmName: McGuireWoods
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 1
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 113516710
+                        lawFirmName: Mellinger Kartzman
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 1
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 110402020
+                        lawFirmName: Mensing Law
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 1
+                        - role: Defendant
+                          count: 0
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 45200100
+                        lawFirmName: MONTGOMERY McCRACKEN WALKER & RHOADS
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 1
+                        - role: Defendant
+                          count: 0
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 175183
+                        lawFirmName: Morrison Cohen
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 0
+                        - role: Third Party
+                          count: 1
+                      - lawFirmId: 2544544
+                        lawFirmName: Newman & Simpson
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 1
+                        - role: Defendant
+                          count: 0
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 176436321
+                        lawFirmName: Norris McLaughlin
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 1
+                        - role: Defendant
+                          count: 0
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 2345451
+                        lawFirmName: NOVA IP Law
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 1
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 2538578
+                        lawFirmName: Offit Kurman
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 0
+                        - role: Defendant
+                          count: 0
+                        - role: Third Party
+                          count: 1
+                      - lawFirmId: 136372
+                        lawFirmName: OlenderFeldman
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 1
+                        - role: Defendant
+                          count: 0
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 2732255
+                        lawFirmName: Price Parkinson & Kerr
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 1
+                        - role: Defendant
+                          count: 0
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 43444228
+                        lawFirmName: Ramp & Pisani, Esqs
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 1
+                        - role: Defendant
+                          count: 0
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 85697163
+                        lawFirmName: RAUCHWAY LAW (rauchwaylaw.com)
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 1
+                        - role: Defendant
+                          count: 0
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 134
+                        lawFirmName: Shumaker, Loop & Kendrick
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 1
+                        - role: Defendant
+                          count: 0
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 9542806
+                        lawFirmName: Sidney L. Gold & Associates
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 1
+                        - role: Defendant
+                          count: 0
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 8511620
+                        lawFirmName: Szaferman Lakind Blumstein & Blader
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 1
+                        - role: Defendant
+                          count: 0
+                        - role: Third Party
+                          count: 0
+                      - lawFirmId: 1716416
+                        lawFirmName: The Basil Law Group
+                        rolesAndCounts:
+                        - role: Plaintiff
+                          count: 1
+                        - role: Defendant
+                          count: 0
+                        - role: Third Party
+                          count: 0
+        '401':
+          description: Invalid or expired token
+          content:
+            application/json:
+              examples:
+                Expired token:
+                  summary: Expired token
+                  value:
+                    detail: 'Token time expired: Signature has expired.'
+                Invalid token:
+                  summary: Invalid token
+                  value:
+                    detail: Invalid token
+        '404':
+          description: Not found
+          content:
+            application/json:
+              examples:
+                Not found:
+                  summary: Not found
+                  value:
+                    summary: Unknown id
+                    detail: Not Found
+        '422':
+          description: Error - 422
+          content:
+            application/json:
+              examples:
+                Validation error:
+                  summary: Validation error
+                  value:
+                    summary: Invalid input
+                    detail:
+                    - type: parsing
+                      loc:
+                      - path
+                      - query
+                      - body
+                      msg: invalid input
+                      input: '-1'
+      security:
+      - JwtAccessBearer: []
+  /analyze-district-cases/from-alert/{alert_id}:
+    get:
+      tags:
+      - Analytics
+      summary: Analyze District Cases From Alert
+      operationId: analyze_district_cases_from_alert
+      security:
+      - JwtAccessBearer: []
+      parameters:
+      - name: alert_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Alert Id
+      - name: analytic_type
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/AnalyticTypes'
+      - name: on_or_after
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          description: alert start date
+          title: On Or After
+        description: alert start date
+      - name: on_or_before
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          description: alert end date
+          title: On Or Before
+        description: alert end date
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CaseAnalyticResult'
+              examples:
+                Case Counts by Type from Alert:
+                  summary: Case Counts by Type from Alert
+                  value:
+                    totalCases: 1633
+                    aggregation:
+                      data:
+                      - caseType: Patent
+                        count: 1632
+                      - caseType: Trademark
+                        count: 74
+                      - caseType: Contracts
+                        count: 53
+                      - caseType: Copyright
+                        count: 14
+                      - caseType: Trade Secret
+                        count: 7
+                      - caseType: Antitrust
+                        count: 5
+                      - caseType: Internet
+                        count: 1
+        '401':
+          description: Invalid or expired token
+          content:
+            application/json:
+              examples:
+                Expired token:
+                  summary: Expired token
+                  value:
+                    detail: 'Token time expired: Signature has expired.'
+                Invalid token:
+                  summary: Invalid token
+                  value:
+                    detail: Invalid token
+        '404':
+          description: Not found
+          content:
+            application/json:
+              examples:
+                Not found:
+                  summary: Not found
+                  value:
+                    summary: Unknown id
+                    detail: Not Found
+        '422':
+          description: Error - 422
+          content:
+            application/json:
+              examples:
+                Validation error:
+                  summary: Validation error
+                  value:
+                    summary: Invalid input
+                    detail:
+                    - type: parsing
+                      loc:
+                      - path
+                      - query
+                      - body
+                      msg: invalid input
+                      input: '-1'
+components:
+  schemas:
+    JudgmentSourceFilter:
+      properties:
+        include:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Exclude
+      additionalProperties: false
+      type: object
+      title: JudgmentSourceFilter
+    PartyCountByRole:
+      properties:
+        partyId:
+          type: integer
+          title: Partyid
+        partyName:
+          type: string
+          title: Partyname
+        rolesAndCounts:
+          items:
+            $ref: '#/components/schemas/CountsPerRole'
+          type: array
+          title: Rolesandcounts
+      additionalProperties: false
+      type: object
+      required:
+      - partyId
+      - partyName
+      - rolesAndCounts
+      title: PartyCountByRole
+    AnalyticTypes:
+      type: string
+      enum:
+      - CaseCountByType
+      - PartyCountByRole
+      - LawFirmCountByRole
+      title: AnalyticTypes
+    TimingFilter:
+      properties:
+        onOrAfter:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: Onorafter
+        onOrBefore:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: Onorbefore
+      additionalProperties: false
+      type: object
+      title: TimingFilter
+    CaseDatesFilter:
+      properties:
+        filed:
+          anyOf:
+          - $ref: '#/components/schemas/TimingFilter'
+          - type: 'null'
+        terminated:
+          anyOf:
+          - $ref: '#/components/schemas/TimingFilter'
+          - type: 'null'
+        trial:
+          anyOf:
+          - $ref: '#/components/schemas/TimingFilter'
+          - type: 'null'
+        lastDocket:
+          anyOf:
+          - $ref: '#/components/schemas/TimingFilter'
+          - type: 'null'
+      additionalProperties: false
+      type: object
+      title: CaseDatesFilter
+    CaseCountByType:
+      properties:
+        caseType:
+          type: string
+          title: Casetype
+        count:
+          type: integer
+          title: Count
+      additionalProperties: false
+      type: object
+      required:
+      - caseType
+      - count
+      title: CaseCountByType
+    IndividualNameTypeFilter:
+      properties:
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+        type:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Type
+      additionalProperties: false
+      type: object
+      title: IndividualNameTypeFilter
+    NameTypeFilter:
+      properties:
+        include:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/IndividualNameTypeFilter'
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/IndividualNameTypeFilter'
+            type: array
+          - type: 'null'
+          title: Exclude
+      additionalProperties: false
+      type: object
+      title: NameTypeFilter
+    PartyAggregation:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/PartyCountByRole'
+          type: array
+          title: Data
+      additionalProperties: false
+      type: object
+      required:
+      - data
+      title: PartyAggregation
+    AppellateDecisionFilter:
+      properties:
+        include:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Exclude
+      additionalProperties: false
+      type: object
+      title: AppellateDecisionFilter
+    MultidistrictLitigationFilter:
+      properties:
+        include:
+          anyOf:
+          - items:
+              type: integer
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              type: integer
+            type: array
+          - type: 'null'
+          title: Exclude
+      additionalProperties: false
+      type: object
+      title: MultidistrictLitigationFilter
+    CaseStatus:
+      type: string
+      enum:
+      - Open
+      - Terminated
+      title: CaseStatus
+    CaseTypeAggregation:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/CaseCountByType'
+          type: array
+          title: Data
+      additionalProperties: false
+      type: object
+      required:
+      - data
+      title: CaseTypeAggregation
+    Ordering:
+      type: string
+      enum:
+      - ByFirstFiled
+      - ByLastFiled
+      title: Ordering
+    LawFirmFilter:
+      properties:
+        include:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Exclude
+        includePlaintiff:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Includeplaintiff
+        excludePlaintiff:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Excludeplaintiff
+        includeDefendant:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Includedefendant
+        excludeDefendant:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Excludedefendant
+        includeThirdParty:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Includethirdparty
+        excludeThirdParty:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Excludethirdparty
+      additionalProperties: false
+      type: object
+      title: LawFirmFilter
+    ResolutionsFilter:
+      properties:
+        include:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/IndividualResolutionsFilter'
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/IndividualResolutionsFilter'
+            type: array
+          - type: 'null'
+          title: Exclude
+      additionalProperties: false
+      type: object
+      title: ResolutionsFilter
+    CourtFilter:
+      properties:
+        include:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Exclude
+      additionalProperties: false
+      type: object
+      title: CourtFilter
+    LawFirmCountByRole:
+      properties:
+        lawFirmId:
+          type: integer
+          title: Lawfirmid
+        lawFirmName:
+          type: string
+          title: Lawfirmname
+        rolesAndCounts:
+          items:
+            $ref: '#/components/schemas/CountsPerRole'
+          type: array
+          title: Rolesandcounts
+      additionalProperties: false
+      type: object
+      required:
+      - lawFirmId
+      - lawFirmName
+      - rolesAndCounts
+      title: LawFirmCountByRole
+    PatentInvalidityReasonsFilter:
+      properties:
+        include:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Include
+      additionalProperties: false
+      type: object
+      title: PatentInvalidityReasonsFilter
+    CountsPerRole:
+      properties:
+        role:
+          type: string
+          title: Role
+        count:
+          type: integer
+          title: Count
+      additionalProperties: false
+      type: object
+      required:
+      - role
+      - count
+      title: CountsPerRole
+    IndividualRemediesFilter:
+      properties:
+        judgmentSource:
+          anyOf:
+          - $ref: '#/components/schemas/JudgmentSourceFilter'
+          - type: 'null'
+        nameType:
+          anyOf:
+          - $ref: '#/components/schemas/NameTypeFilter'
+          - type: 'null'
+        date:
+          anyOf:
+          - $ref: '#/components/schemas/TimingFilter'
+          - type: 'null'
+        awardedToParties:
+          anyOf:
+          - items:
+              type: integer
+            type: array
+          - type: 'null'
+          title: Awardedtoparties
+        awardedAgainstParties:
+          anyOf:
+          - items:
+              type: integer
+            type: array
+          - type: 'null'
+          title: Awardedagainstparties
+      additionalProperties: false
+      type: object
+      title: IndividualRemediesFilter
+    PartyFilter:
+      properties:
+        include:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Exclude
+        includePlaintiff:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Includeplaintiff
+        excludePlaintiff:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Excludeplaintiff
+        includeDefendant:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Includedefendant
+        excludeDefendant:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Excludedefendant
+        includeThirdParty:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Includethirdparty
+        excludeThirdParty:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Excludethirdparty
+      additionalProperties: false
+      type: object
+      title: PartyFilter
+    IndividualResolutionsFilter:
+      properties:
+        summary:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Summary
+        specific:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Specific
+      additionalProperties: false
+      type: object
+      title: IndividualResolutionsFilter
+    MagistrateFilter:
+      properties:
+        include:
+          anyOf:
+          - items:
+              type: integer
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              type: integer
+            type: array
+          - type: 'null'
+          title: Exclude
+      additionalProperties: false
+      type: object
+      title: MagistrateFilter
+    PatentFilter:
+      properties:
+        include:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Exclude
+      additionalProperties: false
+      type: object
+      title: PatentFilter
+    DistrictCaseQuery:
+      properties:
+        caseStatus:
+          anyOf:
+          - $ref: '#/components/schemas/CaseStatus'
+          - type: 'null'
+        caseTypes:
+          anyOf:
+          - $ref: '#/components/schemas/CaseTypesFilter'
+          - type: 'null'
+        caseTags:
+          anyOf:
+          - $ref: '#/components/schemas/CaseTagsFilter'
+          - type: 'null'
+        dates:
+          anyOf:
+          - $ref: '#/components/schemas/CaseDatesFilter'
+          - type: 'null'
+        judges:
+          anyOf:
+          - $ref: '#/components/schemas/JudgeFilter'
+          - type: 'null'
+        magistrates:
+          anyOf:
+          - $ref: '#/components/schemas/MagistrateFilter'
+          - type: 'null'
+        events:
+          anyOf:
+          - $ref: '#/components/schemas/EventFilter'
+          - type: 'null'
+        lawFirms:
+          anyOf:
+          - $ref: '#/components/schemas/LawFirmFilter'
+          - type: 'null'
+        attorneys:
+          anyOf:
+          - $ref: '#/components/schemas/AttorneyFilter'
+          - type: 'null'
+        parties:
+          anyOf:
+          - $ref: '#/components/schemas/PartyFilter'
+          - type: 'null'
+        courts:
+          anyOf:
+          - $ref: '#/components/schemas/CourtFilter'
+          - type: 'null'
+        resolutions:
+          anyOf:
+          - $ref: '#/components/schemas/ResolutionsFilter'
+          - type: 'null'
+        findings:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/IndividualFindingsFilter'
+            type: array
+          - type: 'null'
+          title: Findings
+        remedies:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/IndividualRemediesFilter'
+            type: array
+          - type: 'null'
+          title: Remedies
+        damages:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/IndividualDamagesFilter'
+            type: array
+          - type: 'null'
+          title: Damages
+        patents:
+          anyOf:
+          - $ref: '#/components/schemas/PatentFilter'
+          - type: 'null'
+        mdl:
+          anyOf:
+          - $ref: '#/components/schemas/MultidistrictLitigationFilter'
+          - type: 'null'
+        appellateDecisions:
+          anyOf:
+          - $ref: '#/components/schemas/AppellateDecisionFilter'
+          - type: 'null'
+        ordering:
+          $ref: '#/components/schemas/Ordering'
+          default: ByFirstFiled
+        page:
+          type: integer
+          title: Page
+          default: 1
+        pageSize:
+          type: integer
+          title: Pagesize
+          default: 5
+      additionalProperties: false
+      type: object
+      title: DistrictCaseQuery
+    CaseTypesFilter:
+      properties:
+        include:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Exclude
+      additionalProperties: false
+      type: object
+      title: CaseTypesFilter
+    EventFilter:
+      properties:
+        include:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Exclude
+      additionalProperties: false
+      type: object
+      title: EventFilter
+    DistrictCaseAnalyticFromQuery:
+      properties:
+        analyticType:
+          $ref: '#/components/schemas/AnalyticTypes'
+        districtCaseQuery:
+          $ref: '#/components/schemas/DistrictCaseQuery'
+      additionalProperties: false
+      type: object
+      required:
+      - analyticType
+      - districtCaseQuery
+      title: DistrictCaseAnalyticFromQuery
+    IndividualFindingsFilter:
+      properties:
+        judgmentSource:
+          anyOf:
+          - $ref: '#/components/schemas/JudgmentSourceFilter'
+          - type: 'null'
+        nameType:
+          anyOf:
+          - $ref: '#/components/schemas/NameTypeFilter'
+          - type: 'null'
+        date:
+          anyOf:
+          - $ref: '#/components/schemas/TimingFilter'
+          - type: 'null'
+        awardedToParties:
+          anyOf:
+          - items:
+              type: integer
+            type: array
+          - type: 'null'
+          title: Awardedtoparties
+        awardedAgainstParties:
+          anyOf:
+          - items:
+              type: integer
+            type: array
+          - type: 'null'
+          title: Awardedagainstparties
+        patentInvalidityReasons:
+          anyOf:
+          - $ref: '#/components/schemas/PatentInvalidityReasonsFilter'
+          - type: 'null'
+      additionalProperties: false
+      type: object
+      title: IndividualFindingsFilter
+    CaseAnalyticResult:
+      properties:
+        totalCases:
+          type: integer
+          title: Totalcases
+        aggregation:
+          anyOf:
+          - $ref: '#/components/schemas/CaseTypeAggregation'
+          - $ref: '#/components/schemas/PartyAggregation'
+          - $ref: '#/components/schemas/LawFirmAggregation'
+          title: Aggregation
+      additionalProperties: false
+      type: object
+      required:
+      - totalCases
+      - aggregation
+      title: CaseAnalyticResult
+    JudgeFilter:
+      properties:
+        include:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Exclude
+      additionalProperties: false
+      type: object
+      title: JudgeFilter
+    CaseTagsFilter:
+      properties:
+        include:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Exclude
+      additionalProperties: false
+      type: object
+      title: CaseTagsFilter
+    IndividualDamagesFilter:
+      properties:
+        judgmentSource:
+          anyOf:
+          - $ref: '#/components/schemas/JudgmentSourceFilter'
+          - type: 'null'
+        nameType:
+          anyOf:
+          - $ref: '#/components/schemas/NameTypeFilter'
+          - type: 'null'
+        date:
+          anyOf:
+          - $ref: '#/components/schemas/TimingFilter'
+          - type: 'null'
+        awardedToParties:
+          anyOf:
+          - items:
+              type: integer
+            type: array
+          - type: 'null'
+          title: Awardedtoparties
+        awardedAgainstParties:
+          anyOf:
+          - items:
+              type: integer
+            type: array
+          - type: 'null'
+          title: Awardedagainstparties
+        minimumAmount:
+          anyOf:
+          - type: number
+          - type: string
+            pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          - type: 'null'
+          title: Minimumamount
+      additionalProperties: false
+      type: object
+      title: IndividualDamagesFilter
+    LawFirmAggregation:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/LawFirmCountByRole'
+          type: array
+          title: Data
+      additionalProperties: false
+      type: object
+      required:
+      - data
+      title: LawFirmAggregation
+    AttorneyFilter:
+      properties:
+        include:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Exclude
+        includePlaintiff:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Includeplaintiff
+        excludePlaintiff:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Excludeplaintiff
+        includeDefendant:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Includedefendant
+        excludeDefendant:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Excludedefendant
+        includeThirdParty:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Includethirdparty
+        excludeThirdParty:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Excludethirdparty
+      additionalProperties: false
+      type: object
+      title: AttorneyFilter
+  securitySchemes:
+    JwtAccessBearer:
+      type: http
+      scheme: bearer

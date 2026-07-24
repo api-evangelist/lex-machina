@@ -1,0 +1,375 @@
+openapi: 3.1.0
+info:
+  title: Lex Machina Alerts Attorneys API
+  version: '20260324'
+  description: Alerts.
+servers:
+- url: https://api.lexmachina.com
+  description: Lex Machina production API
+tags:
+- name: Attorneys
+  description: Attorney data.
+paths:
+  /attorneys/{attorney_id}:
+    get:
+      tags:
+      - Attorneys
+      summary: Get Attorney
+      description: 'Gets data for a single attorney.
+
+
+        - **attorney_id**: the Lex Machina attorneyId'
+      operationId: get_attorney
+      security:
+      - JwtAccessBearer: []
+      parameters:
+      - name: attorney_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Attorney Id
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/AttorneyData'
+                - $ref: '#/components/schemas/AttorneyReference'
+                title: Response Get Attorney Attorneys  Attorney Id  Get
+              examples:
+                Single Attorney:
+                  summary: Single Attorney
+                  value:
+                    name: Gerry L. Spence
+                    attorneyId: 110161257
+        '404':
+          description: Not found
+          content:
+            application/json:
+              examples:
+                Attorney Not Found:
+                  summary: Attorney Not Found
+                  value:
+                    detail: No attorney matching provided attorney ID was found
+        '422':
+          description: Error - 422
+          content:
+            application/json:
+              examples:
+                Invalid Input:
+                  summary: Invalid Input
+                  value:
+                    detail:
+                    - type: int_parsing
+                      loc:
+                      - path
+                      - attorney_id
+                      msg: Input should be a valid integer, unable to parse string as an integer
+                      input: string
+                Validation error:
+                  summary: Validation error
+                  value:
+                    summary: Invalid input
+                    detail:
+                    - type: parsing
+                      loc:
+                      - path
+                      - query
+                      - body
+                      msg: invalid input
+                      input: '-1'
+        '401':
+          description: Invalid or expired token
+          content:
+            application/json:
+              examples:
+                Expired token:
+                  summary: Expired token
+                  value:
+                    detail: 'Token time expired: Signature has expired.'
+                Invalid token:
+                  summary: Invalid token
+                  value:
+                    detail: Invalid token
+  /attorneys:
+    get:
+      tags:
+      - Attorneys
+      summary: Get Attorneys
+      description: 'Gets data for one or more attorneys.
+
+
+        - **attorneyIds**: the Lex Machina attorneyIds
+
+
+        If any of the the attorneyIds given are not the current lexmachina attorneyId, the results will include inputId for disambugation'
+      operationId: get_attorneys
+      security:
+      - JwtAccessBearer: []
+      parameters:
+      - name: attorneyIds
+        in: query
+        required: true
+        schema:
+          type: array
+          uniqueItems: true
+          items:
+            type: integer
+          minItems: 1
+          maxItems: 500
+          title: Attorneyids
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  anyOf:
+                  - $ref: '#/components/schemas/AttorneyData'
+                  - $ref: '#/components/schemas/AttorneyReference'
+                title: Response Get Attorneys Attorneys Get
+              examples:
+                Multiple Attorneys:
+                  summary: Multiple Attorneys
+                  value:
+                  - name: Gerry L. Spence
+                    attorneyId: 110161257
+                  - name: Alan M. Dershowitz
+                    attorneyId: 18594138
+        '404':
+          description: Not found
+          content:
+            application/json:
+              examples:
+                Attorneys Not Found:
+                  summary: Attorneys Not Found
+                  value:
+                    detail: No attorneys matching provided attorney IDs were found
+        '401':
+          description: Invalid or expired token
+          content:
+            application/json:
+              examples:
+                Expired token:
+                  summary: Expired token
+                  value:
+                    detail: 'Token time expired: Signature has expired.'
+                Invalid token:
+                  summary: Invalid token
+                  value:
+                    detail: Invalid token
+        '422':
+          description: Error - 422
+          content:
+            application/json:
+              examples:
+                Validation error:
+                  summary: Validation error
+                  value:
+                    summary: Invalid input
+                    detail:
+                    - type: parsing
+                      loc:
+                      - path
+                      - query
+                      - body
+                      msg: invalid input
+                      input: '-1'
+  /search-attorneys:
+    get:
+      tags:
+      - Attorneys
+      summary: Search Attorneys
+      description: 'Searches for attorneys.
+
+
+        - **q**: the query string
+
+        - **page_number**: page number of the results
+
+        - **page_size**:  results per page
+
+
+        This is a case-insensitive search that will match anywhere within the name of the attorney.
+
+
+        The results will have page and totalCount fields as well as a convenience link via the field nextPage.'
+      operationId: search_attorneys
+      security:
+      - JwtAccessBearer: []
+      parameters:
+      - name: q
+        in: query
+        required: true
+        schema:
+          type: string
+          title: Q
+      - name: pageNumber
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 1
+          title: Pagenumber
+      - name: pageSize
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 1
+          title: Pagesize
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttorneySearchResults'
+              examples:
+                Search Attorneys By Name:
+                  summary: Search Attorneys By Name
+                  value:
+                    totalCount: 30967
+                    page: 2
+                    nextPage: https://api.lexmachina.com/search-attorneys?q=elizabeth&pageNumber=2&pageSize=1?q=elizabeth&pageNumber=3&pageSize=1
+                    attorneys:
+                    - name: Karen Elizabeth Keller
+                      attorneyId: 3393
+                      url: https://api.lexmachina.com/attorneys/3393
+        '422':
+          description: Error - 422
+          content:
+            application/json:
+              examples:
+                Invalid Page:
+                  summary: Invalid Page
+                  value:
+                    detail: Invalid page.
+                Validation error:
+                  summary: Validation error
+                  value:
+                    summary: Invalid input
+                    detail:
+                    - type: parsing
+                      loc:
+                      - path
+                      - query
+                      - body
+                      msg: invalid input
+                      input: '-1'
+        '401':
+          description: Invalid or expired token
+          content:
+            application/json:
+              examples:
+                Expired token:
+                  summary: Expired token
+                  value:
+                    detail: 'Token time expired: Signature has expired.'
+                Invalid token:
+                  summary: Invalid token
+                  value:
+                    detail: Invalid token
+        '404':
+          description: Not found
+          content:
+            application/json:
+              examples:
+                Not found:
+                  summary: Not found
+                  value:
+                    summary: Unknown id
+                    detail: Not Found
+components:
+  schemas:
+    AttorneyReference:
+      properties:
+        name:
+          type: string
+          title: Name
+        attorneyId:
+          type: integer
+          title: Attorneyid
+        url:
+          type: string
+          title: Url
+        inputId:
+          type: integer
+          title: Inputid
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - attorneyId
+      - url
+      - inputId
+      title: AttorneyReference
+      description: 'Indicates that the Lex Machina attorney id input was has changed,
+
+        the inputId is the ID given that should map to the returned attorneyId.'
+    AttorneySearchResults:
+      properties:
+        totalCount:
+          type: integer
+          title: Totalcount
+        page:
+          type: integer
+          title: Page
+        nextPage:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Nextpage
+        attorneys:
+          items:
+            $ref: '#/components/schemas/AttorneyResult'
+          type: array
+          title: Attorneys
+      additionalProperties: false
+      type: object
+      required:
+      - totalCount
+      - page
+      - attorneys
+      title: AttorneySearchResults
+    AttorneyData:
+      properties:
+        name:
+          type: string
+          title: Name
+        attorneyId:
+          type: integer
+          title: Attorneyid
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - attorneyId
+      title: AttorneyData
+    AttorneyResult:
+      properties:
+        name:
+          type: string
+          title: Name
+        attorneyId:
+          type: integer
+          title: Attorneyid
+        url:
+          type: string
+          title: Url
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - attorneyId
+      - url
+      title: AttorneyResult
+  securitySchemes:
+    JwtAccessBearer:
+      type: http
+      scheme: bearer

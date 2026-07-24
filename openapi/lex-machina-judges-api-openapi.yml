@@ -1,0 +1,1039 @@
+openapi: 3.1.0
+info:
+  title: Lex Machina Alerts Judges API
+  version: '20260324'
+  description: Alerts.
+servers:
+- url: https://api.lexmachina.com
+  description: Lex Machina production API
+tags:
+- name: Judges
+  description: Judge data.
+paths:
+  /bankruptcy-judges/{bankruptcy_judge_id}:
+    get:
+      tags:
+      - Judges
+      summary: Get Bankruptcy Judge
+      description: 'Gets data for a single federal bankruptcy judge.
+
+
+        - **bankruptcy_judge_id**: the Lex Machina bankruptcyJudgeId'
+      operationId: get_bankruptcy_judge
+      security:
+      - JwtAccessBearer: []
+      parameters:
+      - name: bankruptcy_judge_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Bankruptcy Judge Id
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BankruptcyJudgeData'
+              examples:
+                Single Bankruptcy Judge:
+                  summary: Single Bankruptcy Judge
+                  value:
+                    name: Erik P. Kimball
+                    bankruptcyJudgeId: 539
+                    initials: EPK
+                    caseCountByCourt:
+                    - court: total
+                      count: 901
+        '401':
+          description: Invalid or expired token
+          content:
+            application/json:
+              examples:
+                Expired token:
+                  summary: Expired token
+                  value:
+                    detail: 'Token time expired: Signature has expired.'
+                Invalid token:
+                  summary: Invalid token
+                  value:
+                    detail: Invalid token
+        '404':
+          description: Not found
+          content:
+            application/json:
+              examples:
+                Not found:
+                  summary: Not found
+                  value:
+                    summary: Unknown id
+                    detail: Not Found
+        '422':
+          description: Error - 422
+          content:
+            application/json:
+              examples:
+                Validation error:
+                  summary: Validation error
+                  value:
+                    summary: Invalid input
+                    detail:
+                    - type: parsing
+                      loc:
+                      - path
+                      - query
+                      - body
+                      msg: invalid input
+                      input: '-1'
+  /bankruptcy-judges:
+    get:
+      tags:
+      - Judges
+      summary: Get Bankruptcy Judges
+      description: 'Gets data for one or more federal bankruptcy judges.
+
+
+        - **attorneyIds**: the Lex Machina bankruptcyJudgeIds'
+      operationId: get_bankruptcy_judges
+      security:
+      - JwtAccessBearer: []
+      parameters:
+      - name: bankruptcyJudgeIds
+        in: query
+        required: true
+        schema:
+          type: array
+          uniqueItems: true
+          items:
+            type: integer
+          minItems: 1
+          maxItems: 500
+          title: Bankruptcyjudgeids
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BankruptcyJudgeData'
+                title: Response Get Bankruptcy Judges Bankruptcy Judges Get
+              examples:
+                Multiple Bankruptcy Judges:
+                  summary: Multiple Bankruptcy Judges
+                  value:
+                  - name: Mindy A. Mora
+                    bankruptcyJudgeId: 704
+                    initials: MAM
+                    caseCountByCourt:
+                    - court: total
+                      count: 410
+                  - name: Erik P. Kimball
+                    bankruptcyJudgeId: 539
+                    initials: EPK
+                    caseCountByCourt:
+                    - court: total
+                      count: 901
+        '401':
+          description: Invalid or expired token
+          content:
+            application/json:
+              examples:
+                Expired token:
+                  summary: Expired token
+                  value:
+                    detail: 'Token time expired: Signature has expired.'
+                Invalid token:
+                  summary: Invalid token
+                  value:
+                    detail: Invalid token
+        '404':
+          description: Not found
+          content:
+            application/json:
+              examples:
+                Not found:
+                  summary: Not found
+                  value:
+                    summary: Unknown id
+                    detail: Not Found
+        '422':
+          description: Error - 422
+          content:
+            application/json:
+              examples:
+                Validation error:
+                  summary: Validation error
+                  value:
+                    summary: Invalid input
+                    detail:
+                    - type: parsing
+                      loc:
+                      - path
+                      - query
+                      - body
+                      msg: invalid input
+                      input: '-1'
+  /federal-judges/{federal_judge_id}:
+    get:
+      tags:
+      - Judges
+      summary: Get Federal Judge
+      description: 'Gets data for a single federal Article III judge.
+
+
+        - **judge_id**: the judge id'
+      operationId: get_federal_judge
+      security:
+      - JwtAccessBearer: []
+      parameters:
+      - name: federal_judge_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Federal Judge Id
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FederalJudgeData'
+              examples:
+                Single Federal Judge:
+                  summary: Single Federal Judge
+                  value:
+                    name: Sidney H. Stein
+                    federalJudgeId: 2282
+                    initials: SHS
+                    dateOfBirth: '1945-01-01'
+                    caseCountByCourt:
+                    - court: total
+                      count: 1712
+                    nominatingPresident: William J. Clinton
+        '401':
+          description: Invalid or expired token
+          content:
+            application/json:
+              examples:
+                Expired token:
+                  summary: Expired token
+                  value:
+                    detail: 'Token time expired: Signature has expired.'
+                Invalid token:
+                  summary: Invalid token
+                  value:
+                    detail: Invalid token
+        '404':
+          description: Not found
+          content:
+            application/json:
+              examples:
+                Not found:
+                  summary: Not found
+                  value:
+                    summary: Unknown id
+                    detail: Not Found
+        '422':
+          description: Error - 422
+          content:
+            application/json:
+              examples:
+                Validation error:
+                  summary: Validation error
+                  value:
+                    summary: Invalid input
+                    detail:
+                    - type: parsing
+                      loc:
+                      - path
+                      - query
+                      - body
+                      msg: invalid input
+                      input: '-1'
+  /federal-judges:
+    get:
+      tags:
+      - Judges
+      summary: Get Federal Judges
+      description: 'Gets data for one or more federal Article III judges.
+
+
+        - **judgeIds**: the judge Ids'
+      operationId: get_federal_judges
+      security:
+      - JwtAccessBearer: []
+      parameters:
+      - name: federalJudgeIds
+        in: query
+        required: true
+        schema:
+          type: array
+          uniqueItems: true
+          items:
+            type: integer
+          minItems: 1
+          maxItems: 500
+          title: Federaljudgeids
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FederalJudgeData'
+                title: Response Get Federal Judges Federal Judges Get
+              examples:
+                Multiple Federal Judges:
+                  summary: Multiple Federal Judges
+                  value:
+                  - name: Susan Webber Wright
+                    federalJudgeId: 2664
+                    initials: SWW
+                    dateOfBirth: '1948-01-01'
+                    caseCountByCourt:
+                    - court: total
+                      count: 1314
+                    nominatingPresident: George H.W. Bush
+                  - name: Sidney H. Stein
+                    federalJudgeId: 2282
+                    initials: SHS
+                    dateOfBirth: '1945-01-01'
+                    caseCountByCourt:
+                    - court: total
+                      count: 1712
+                    nominatingPresident: William J. Clinton
+        '401':
+          description: Invalid or expired token
+          content:
+            application/json:
+              examples:
+                Expired token:
+                  summary: Expired token
+                  value:
+                    detail: 'Token time expired: Signature has expired.'
+                Invalid token:
+                  summary: Invalid token
+                  value:
+                    detail: Invalid token
+        '404':
+          description: Not found
+          content:
+            application/json:
+              examples:
+                Not found:
+                  summary: Not found
+                  value:
+                    summary: Unknown id
+                    detail: Not Found
+        '422':
+          description: Error - 422
+          content:
+            application/json:
+              examples:
+                Validation error:
+                  summary: Validation error
+                  value:
+                    summary: Invalid input
+                    detail:
+                    - type: parsing
+                      loc:
+                      - path
+                      - query
+                      - body
+                      msg: invalid input
+                      input: '-1'
+  /magistrate-judges/{magistrate_judge_id}:
+    get:
+      tags:
+      - Judges
+      summary: Get Magistrate
+      description: 'Gets data for a single federal magistrate judge.
+
+
+        - **magistrate_judge_id**: the Lex Machina magistrateJudgeId'
+      operationId: get_magistrate
+      security:
+      - JwtAccessBearer: []
+      parameters:
+      - name: magistrate_judge_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Magistrate Judge Id
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MagistrateJudgeData'
+              examples:
+                Single Magistrate Judge:
+                  summary: Single Magistrate Judge
+                  value:
+                    name: Margaret J Kravchuk
+                    magistrateJudgeId: 801
+                    initials: MJK
+                    caseCountByCourt:
+                    - court: total
+                      count: 1720
+        '404':
+          description: Not found
+          content:
+            application/json:
+              examples:
+                Magistrate Judge Not Found:
+                  summary: Magistrate Judge Not Found
+                  value:
+                    detail: No magistrates matching provided magistrate IDs were found
+        '422':
+          description: Error - 422
+          content:
+            application/json:
+              examples:
+                Invalid Input:
+                  summary: Invalid Input
+                  value:
+                    detail:
+                    - type: int_parsing
+                      loc:
+                      - path
+                      - magistrate_judge_id
+                      msg: Input should be a valid integer, unable to parse string as an integer
+                      input: string
+                Validation error:
+                  summary: Validation error
+                  value:
+                    summary: Invalid input
+                    detail:
+                    - type: parsing
+                      loc:
+                      - path
+                      - query
+                      - body
+                      msg: invalid input
+                      input: '-1'
+        '401':
+          description: Invalid or expired token
+          content:
+            application/json:
+              examples:
+                Expired token:
+                  summary: Expired token
+                  value:
+                    detail: 'Token time expired: Signature has expired.'
+                Invalid token:
+                  summary: Invalid token
+                  value:
+                    detail: Invalid token
+  /magistrate-judges:
+    get:
+      tags:
+      - Judges
+      summary: Get Magistrates
+      description: 'Gets data for a one or more federal magistrate judges.
+
+
+        - **magistrateJudgeIds**: the Lex Machina magistrateJudgeIds'
+      operationId: get_magistrates
+      security:
+      - JwtAccessBearer: []
+      parameters:
+      - name: magistrateJudgeIds
+        in: query
+        required: true
+        schema:
+          type: array
+          uniqueItems: true
+          items:
+            type: integer
+          minItems: 1
+          maxItems: 500
+          title: Magistratejudgeids
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MagistrateJudgeData'
+                title: Response Get Magistrates Magistrate Judges Get
+              examples:
+                Multiple Magistrate Judges:
+                  summary: Multiple Magistrate Judges
+                  value:
+                  - name: Margaret J Kravchuk
+                    magistrateJudgeId: 801
+                    initials: MJK
+                    caseCountByCourt:
+                    - court: total
+                      count: 1720
+                  - name: Zahid N Quraishi
+                    magistrateJudgeId: 1385
+                    initials: ZNQ
+                    caseCountByCourt:
+                    - court: total
+                      count: 1212
+        '404':
+          description: Not found
+          content:
+            application/json:
+              examples:
+                Multiple Magistrate Judges:
+                  summary: Multiple Magistrate Judges
+                  value:
+                    detail: No magistrates matching provided magistrate IDs were found
+        '401':
+          description: Invalid or expired token
+          content:
+            application/json:
+              examples:
+                Expired token:
+                  summary: Expired token
+                  value:
+                    detail: 'Token time expired: Signature has expired.'
+                Invalid token:
+                  summary: Invalid token
+                  value:
+                    detail: Invalid token
+        '422':
+          description: Error - 422
+          content:
+            application/json:
+              examples:
+                Validation error:
+                  summary: Validation error
+                  value:
+                    summary: Invalid input
+                    detail:
+                    - type: parsing
+                      loc:
+                      - path
+                      - query
+                      - body
+                      msg: invalid input
+                      input: '-1'
+  /state-judges/{state_judge_id}:
+    get:
+      tags:
+      - Judges
+      summary: Get State Judge
+      description: 'Gets data on a single state judge.
+
+
+        - **state_judge_id**: the Lex Machina stateJudgeId'
+      operationId: get_state_judge
+      security:
+      - JwtAccessBearer: []
+      parameters:
+      - name: state_judge_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: State Judge Id
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StateJudgeData'
+              examples:
+                Single State Judge:
+                  summary: Single State Judge
+                  value:
+                    name: Daryl L Moore
+                    stateJudgeId: 775
+                    courtPosting: Texas District Court, 333rd Judicial District
+        '401':
+          description: Invalid or expired token
+          content:
+            application/json:
+              examples:
+                Expired token:
+                  summary: Expired token
+                  value:
+                    detail: 'Token time expired: Signature has expired.'
+                Invalid token:
+                  summary: Invalid token
+                  value:
+                    detail: Invalid token
+        '404':
+          description: Not found
+          content:
+            application/json:
+              examples:
+                Not found:
+                  summary: Not found
+                  value:
+                    summary: Unknown id
+                    detail: Not Found
+        '422':
+          description: Error - 422
+          content:
+            application/json:
+              examples:
+                Validation error:
+                  summary: Validation error
+                  value:
+                    summary: Invalid input
+                    detail:
+                    - type: parsing
+                      loc:
+                      - path
+                      - query
+                      - body
+                      msg: invalid input
+                      input: '-1'
+  /state-judges:
+    get:
+      tags:
+      - Judges
+      summary: Get State Judges
+      description: 'Gets data on one or more single state judges.
+
+
+        - **stateJudgeIds**: the Lex Machina stateJudgeIds'
+      operationId: get_state_judges
+      security:
+      - JwtAccessBearer: []
+      parameters:
+      - name: stateJudgeIds
+        in: query
+        required: true
+        schema:
+          type: array
+          uniqueItems: true
+          items:
+            type: integer
+          minItems: 1
+          maxItems: 500
+          title: Statejudgeids
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StateJudgeData'
+                title: Response Get State Judges State Judges Get
+              examples:
+                Multiple State Judges:
+                  summary: Multiple State Judges
+                  value:
+                  - name: Sheila Abdus-Salaam
+                    stateJudgeId: 2087
+                    courtPosting: New York Supreme Court, New York County
+                  - name: Daryl L Moore
+                    stateJudgeId: 775
+                    courtPosting: Texas District Court, 333rd Judicial District
+        '401':
+          description: Invalid or expired token
+          content:
+            application/json:
+              examples:
+                Expired token:
+                  summary: Expired token
+                  value:
+                    detail: 'Token time expired: Signature has expired.'
+                Invalid token:
+                  summary: Invalid token
+                  value:
+                    detail: Invalid token
+        '404':
+          description: Not found
+          content:
+            application/json:
+              examples:
+                Not found:
+                  summary: Not found
+                  value:
+                    summary: Unknown id
+                    detail: Not Found
+        '422':
+          description: Error - 422
+          content:
+            application/json:
+              examples:
+                Validation error:
+                  summary: Validation error
+                  value:
+                    summary: Invalid input
+                    detail:
+                    - type: parsing
+                      loc:
+                      - path
+                      - query
+                      - body
+                      msg: invalid input
+                      input: '-1'
+  /search-judges:
+    get:
+      tags:
+      - Judges
+      summary: Search Judges
+      description: 'Searches for attorneys.
+
+
+        - **q**: the query string
+
+
+        This matches from the beginning of the last name. The search query "hof" will match the name "Hoffman" but will not match "Schofield".'
+      operationId: search_judges
+      security:
+      - JwtAccessBearer: []
+      parameters:
+      - name: q
+        in: query
+        required: true
+        schema:
+          type: string
+          title: Q
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JudgeSearchResult'
+              examples:
+                Search Judges By Name:
+                  summary: Search Judges By Name
+                  value:
+                    federalJudges: []
+                    magistrateJudges:
+                    - name: Leslie R Hoffman
+                      magistrateJudgeId: 1144
+                      caseCountByCourt:
+                      - court: total
+                        count: 2561
+                      url: https://api.lexmachina.com/magistrate-judges/1144
+                    - name: Carl William Hoffman
+                      magistrateJudgeId: 407
+                      caseCountByCourt:
+                      - court: total
+                        count: 5751
+                      url: https://api.lexmachina.com/magistrate-judges/407
+                    stateJudges:
+                    - name: Douglas E Hoffman
+                      stateJudgeId: 1125
+                      courtPosting: New York Supreme Court, Bronx County
+                      url: https://api.lexmachina.com/state-judges/1125
+                    bankruptcyJudges:
+                    - name: John E. Hoffman Jr.
+                      bankruptcyJudgeId: 463
+                      caseCountByCourt:
+                      - court: total
+                        count: 225
+                      url: https://api.lexmachina.com/bankruptcy-judges/463
+                    - name: Melvin S. Hoffman
+                      bankruptcyJudgeId: 415
+                      caseCountByCourt:
+                      - court: total
+                        count: 342
+                      url: https://api.lexmachina.com/bankruptcy-judges/415
+        '422':
+          description: Error - 422
+          content:
+            application/json:
+              examples:
+                Invalid Query:
+                  summary: Invalid Query
+                  value:
+                    detail: Empty query string.
+                Validation error:
+                  summary: Validation error
+                  value:
+                    summary: Invalid input
+                    detail:
+                    - type: parsing
+                      loc:
+                      - path
+                      - query
+                      - body
+                      msg: invalid input
+                      input: '-1'
+        '401':
+          description: Invalid or expired token
+          content:
+            application/json:
+              examples:
+                Expired token:
+                  summary: Expired token
+                  value:
+                    detail: 'Token time expired: Signature has expired.'
+                Invalid token:
+                  summary: Invalid token
+                  value:
+                    detail: Invalid token
+        '404':
+          description: Not found
+          content:
+            application/json:
+              examples:
+                Not found:
+                  summary: Not found
+                  value:
+                    summary: Unknown id
+                    detail: Not Found
+components:
+  schemas:
+    StateJudgeData:
+      properties:
+        name:
+          type: string
+          title: Name
+        stateJudgeId:
+          type: integer
+          title: Statejudgeid
+        courtPosting:
+          type: string
+          title: Courtposting
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - stateJudgeId
+      - courtPosting
+      title: StateJudgeData
+    MagistrateJudgeResult:
+      properties:
+        name:
+          type: string
+          title: Name
+        magistrateJudgeId:
+          type: integer
+          title: Magistratejudgeid
+        caseCountByCourt:
+          items:
+            $ref: '#/components/schemas/CaseCountByCourt'
+          type: array
+          title: Casecountbycourt
+        url:
+          type: string
+          title: Url
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - magistrateJudgeId
+      - caseCountByCourt
+      - url
+      title: MagistrateJudgeResult
+    FederalJudgeData:
+      properties:
+        name:
+          type: string
+          title: Name
+        federalJudgeId:
+          type: integer
+          title: Federaljudgeid
+        initials:
+          type: string
+          title: Initials
+        dateOfBirth:
+          type: string
+          format: date
+          title: Dateofbirth
+        caseCountByCourt:
+          items:
+            $ref: '#/components/schemas/CaseCountByCourt'
+          type: array
+          title: Casecountbycourt
+        nominatingPresident:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Nominatingpresident
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - federalJudgeId
+      - initials
+      - dateOfBirth
+      - caseCountByCourt
+      - nominatingPresident
+      title: FederalJudgeData
+    BankruptcyJudgeResult:
+      properties:
+        name:
+          type: string
+          title: Name
+        bankruptcyJudgeId:
+          type: integer
+          title: Bankruptcyjudgeid
+        caseCountByCourt:
+          items:
+            $ref: '#/components/schemas/CaseCountByCourt'
+          type: array
+          title: Casecountbycourt
+        url:
+          type: string
+          title: Url
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - bankruptcyJudgeId
+      - caseCountByCourt
+      - url
+      title: BankruptcyJudgeResult
+    FederalJudgeResult:
+      properties:
+        name:
+          type: string
+          title: Name
+        federalJudgeId:
+          type: integer
+          title: Federaljudgeid
+        initials:
+          type: string
+          title: Initials
+        caseCountByCourt:
+          items:
+            $ref: '#/components/schemas/CaseCountByCourt'
+          type: array
+          title: Casecountbycourt
+        url:
+          type: string
+          title: Url
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - federalJudgeId
+      - initials
+      - caseCountByCourt
+      - url
+      title: FederalJudgeResult
+    CaseCountByCourt:
+      properties:
+        court:
+          type: string
+          title: Court
+        count:
+          type: integer
+          title: Count
+      additionalProperties: false
+      type: object
+      required:
+      - court
+      - count
+      title: CaseCountByCourt
+    BankruptcyJudgeData:
+      properties:
+        name:
+          type: string
+          title: Name
+        bankruptcyJudgeId:
+          type: integer
+          title: Bankruptcyjudgeid
+        initials:
+          type: string
+          title: Initials
+        caseCountByCourt:
+          items:
+            $ref: '#/components/schemas/CaseCountByCourt'
+          type: array
+          title: Casecountbycourt
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - bankruptcyJudgeId
+      - initials
+      - caseCountByCourt
+      title: BankruptcyJudgeData
+    MagistrateJudgeData:
+      properties:
+        name:
+          type: string
+          title: Name
+        magistrateJudgeId:
+          type: integer
+          title: Magistratejudgeid
+        initials:
+          type: string
+          title: Initials
+        caseCountByCourt:
+          items:
+            $ref: '#/components/schemas/CaseCountByCourt'
+          type: array
+          title: Casecountbycourt
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - magistrateJudgeId
+      - initials
+      - caseCountByCourt
+      title: MagistrateJudgeData
+    StateJudgeResult:
+      properties:
+        name:
+          type: string
+          title: Name
+        stateJudgeId:
+          type: integer
+          title: Statejudgeid
+        courtPosting:
+          type: string
+          title: Courtposting
+        url:
+          type: string
+          title: Url
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - stateJudgeId
+      - courtPosting
+      - url
+      title: StateJudgeResult
+    JudgeSearchResult:
+      properties:
+        federalJudges:
+          items:
+            $ref: '#/components/schemas/FederalJudgeResult'
+          type: array
+          title: Federaljudges
+        magistrateJudges:
+          items:
+            $ref: '#/components/schemas/MagistrateJudgeResult'
+          type: array
+          title: Magistratejudges
+        stateJudges:
+          items:
+            $ref: '#/components/schemas/StateJudgeResult'
+          type: array
+          title: Statejudges
+        bankruptcyJudges:
+          items:
+            $ref: '#/components/schemas/BankruptcyJudgeResult'
+          type: array
+          title: Bankruptcyjudges
+      additionalProperties: false
+      type: object
+      required:
+      - federalJudges
+      - magistrateJudges
+      - stateJudges
+      - bankruptcyJudges
+      title: JudgeSearchResult
+  securitySchemes:
+    JwtAccessBearer:
+      type: http
+      scheme: bearer

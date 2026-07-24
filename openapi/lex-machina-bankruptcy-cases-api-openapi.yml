@@ -1,0 +1,395 @@
+openapi: 3.1.0
+info:
+  title: Lex Machina Alerts Bankruptcy Cases API
+  version: '20260324'
+  description: Alerts.
+servers:
+- url: https://api.lexmachina.com
+  description: Lex Machina production API
+tags:
+- name: Bankruptcy Cases
+  description: Bankruptcy court cases.
+paths:
+  /bankruptcy-cases/{bankruptcy_case_id}:
+    get:
+      tags:
+      - Bankruptcy Cases
+      summary: Get Bankruptcy Case
+      description: 'Gets data for a single federal bankruptcy court case.
+
+
+        - **bankruptcy_case_id**: the Lex Machina bankruptcyCaseId'
+      operationId: get_bankruptcy_case
+      security:
+      - JwtAccessBearer: []
+      parameters:
+      - name: bankruptcy_case_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Bankruptcy Case Id
+      - name: docket_retrieval
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: '''all'' to retrieve docket entries for the case, if not provided no docket entries will be retrieved.'
+          title: Docket Retrieval
+        description: '''all'' to retrieve docket entries for the case, if not provided no docket entries will be retrieved.'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BankruptcyCaseData'
+              examples:
+                single federal bankruptcy case:
+                  summary: single federal bankruptcy case
+                  value:
+                    bankruptcyCaseId: 2010446516
+                    title: E-Stone USA Corporation
+                    court: U.S. Bankruptcy Court for the Southern District of Florida
+                    civilActionNumber: 0:23-bk-20805
+                    status: Terminated
+                    caseTags:
+                    - Business Debtor
+                    - Voluntary Petition
+                    dates:
+                      filed: '2023-12-28'
+                      terminated: '2024-01-16'
+                      lastDocket: '2025-07-10'
+                    judges:
+                    - name: Erik P. Kimball
+                      bankruptcyJudgeId: 539
+                    - name: Mindy A. Mora
+                      bankruptcyJudgeId: 704
+                    lawFirms:
+                    - name: Department of Justice
+                      lawFirmId: 604
+                      clientPartyIds:
+                      - 20586702
+                    - name: Johnson, Pope, Bokor, Ruppel & Burns
+                      lawFirmId: 86693
+                      clientPartyIds:
+                      - 264620021
+                    attorneys:
+                    - name: Edward James Peterson III
+                      attorneyId: 15225236
+                      lawFirmIds:
+                      - 86693
+                      clientsPartyIds:
+                      - 264620021
+                    - name: Martin Paul Ochs
+                      attorneyId: 16704743
+                      lawFirmIds:
+                      - 604
+                      clientsPartyIds:
+                      - 20586702
+                    parties:
+                    - name: E-Stone USA Corporation
+                      partyId: 264620021
+                      role: Debtor
+                    - name: United States Trustee
+                      partyId: 20586702
+                      role: U.S. Trustee
+                    assets: '9470756.05'
+                    liabilities: '17189231.3'
+                    docket:
+                      entries: []
+                      retrieved: none
+                      count: 525
+        '401':
+          description: Invalid or expired token
+          content:
+            application/json:
+              examples:
+                Expired token:
+                  summary: Expired token
+                  value:
+                    detail: 'Token time expired: Signature has expired.'
+                Invalid token:
+                  summary: Invalid token
+                  value:
+                    detail: Invalid token
+        '404':
+          description: Not found
+          content:
+            application/json:
+              examples:
+                Not found:
+                  summary: Not found
+                  value:
+                    summary: Unknown id
+                    detail: Not Found
+        '422':
+          description: Error - 422
+          content:
+            application/json:
+              examples:
+                Validation error:
+                  summary: Validation error
+                  value:
+                    summary: Invalid input
+                    detail:
+                    - type: parsing
+                      loc:
+                      - path
+                      - query
+                      - body
+                      msg: invalid input
+                      input: '-1'
+components:
+  schemas:
+    DocketEntriesIncludedInOutput:
+      type: string
+      enum:
+      - all
+      - none
+      title: DocketEntriesIncludedInOutput
+    LawFirm:
+      properties:
+        name:
+          type: string
+          title: Name
+        lawFirmId:
+          type: integer
+          title: Lawfirmid
+        clientPartyIds:
+          items:
+            type: integer
+          type: array
+          uniqueItems: true
+          title: Clientpartyids
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - lawFirmId
+      - clientPartyIds
+      title: LawFirm
+    DocketEntry:
+      properties:
+        filedOn:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: Filedon
+        tags:
+          items:
+            type: string
+          type: array
+          title: Tags
+        text:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Text
+        number:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Number
+        docketEntryId:
+          type: integer
+          title: Docketentryid
+      additionalProperties: false
+      type: object
+      required:
+      - filedOn
+      - tags
+      - text
+      - number
+      - docketEntryId
+      title: DocketEntry
+    BankruptcyJudge:
+      properties:
+        name:
+          type: string
+          title: Name
+        bankruptcyJudgeId:
+          type: integer
+          title: Bankruptcyjudgeid
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - bankruptcyJudgeId
+      title: BankruptcyJudge
+    Attorney:
+      properties:
+        name:
+          type: string
+          title: Name
+        attorneyId:
+          type: integer
+          title: Attorneyid
+        lawFirmIds:
+          items:
+            type: integer
+          type: array
+          uniqueItems: true
+          title: Lawfirmids
+        clientsPartyIds:
+          items:
+            type: integer
+          type: array
+          uniqueItems: true
+          title: Clientspartyids
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - attorneyId
+      - lawFirmIds
+      - clientsPartyIds
+      title: Attorney
+    CaseStatus:
+      type: string
+      enum:
+      - Open
+      - Terminated
+      title: CaseStatus
+    Party:
+      properties:
+        name:
+          type: string
+          title: Name
+        partyId:
+          type: integer
+          title: Partyid
+        role:
+          type: string
+          title: Role
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - partyId
+      - role
+      title: Party
+    BankruptcyCaseDates:
+      properties:
+        filed:
+          type: string
+          format: date
+          title: Filed
+        terminated:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: Terminated
+        lastDocket:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: Lastdocket
+      additionalProperties: false
+      type: object
+      required:
+      - filed
+      - lastDocket
+      title: BankruptcyCaseDates
+    BankruptcyCaseData:
+      properties:
+        bankruptcyCaseId:
+          type: integer
+          title: Bankruptcycaseid
+        title:
+          type: string
+          title: Title
+        court:
+          type: string
+          title: Court
+        civilActionNumber:
+          type: string
+          title: Civilactionnumber
+        status:
+          $ref: '#/components/schemas/CaseStatus'
+        caseTags:
+          items:
+            type: string
+          type: array
+          title: Casetags
+        dates:
+          $ref: '#/components/schemas/BankruptcyCaseDates'
+        judges:
+          items:
+            $ref: '#/components/schemas/BankruptcyJudge'
+          type: array
+          title: Judges
+        lawFirms:
+          items:
+            $ref: '#/components/schemas/LawFirm'
+          type: array
+          title: Lawfirms
+        attorneys:
+          items:
+            $ref: '#/components/schemas/Attorney'
+          type: array
+          title: Attorneys
+        parties:
+          items:
+            $ref: '#/components/schemas/Party'
+          type: array
+          title: Parties
+        assets:
+          anyOf:
+          - type: string
+            pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          - type: 'null'
+          title: Assets
+        liabilities:
+          anyOf:
+          - type: string
+            pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          - type: 'null'
+          title: Liabilities
+        docket:
+          $ref: '#/components/schemas/Docket'
+      additionalProperties: false
+      type: object
+      required:
+      - bankruptcyCaseId
+      - title
+      - court
+      - civilActionNumber
+      - status
+      - caseTags
+      - dates
+      - judges
+      - lawFirms
+      - attorneys
+      - parties
+      - docket
+      title: BankruptcyCaseData
+      description: A single case from a federal bankruptcy court case and relevant metadata.
+    Docket:
+      properties:
+        entries:
+          items:
+            $ref: '#/components/schemas/DocketEntry'
+          type: array
+          title: Entries
+        retrieved:
+          $ref: '#/components/schemas/DocketEntriesIncludedInOutput'
+        count:
+          type: integer
+          title: Count
+      additionalProperties: false
+      type: object
+      required:
+      - entries
+      - retrieved
+      - count
+      title: Docket
+  securitySchemes:
+    JwtAccessBearer:
+      type: http
+      scheme: bearer

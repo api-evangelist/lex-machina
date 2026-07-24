@@ -1,0 +1,1429 @@
+openapi: 3.1.0
+info:
+  title: Lex Machina Alerts Entities API
+  version: '20260324'
+  description: Alerts.
+servers:
+- url: https://api.lexmachina.com
+  description: Lex Machina production API
+tags:
+- name: Entities
+  description: Entity data.
+paths:
+  /attorneys/{attorney_id}:
+    get:
+      tags:
+      - Entities
+      summary: Get Attorney
+      description: 'Gets data for a single attorney.
+
+
+        - **attorney_id**: the Lex Machina attorneyId'
+      operationId: get_attorney
+      security:
+      - JwtAccessBearer: []
+      parameters:
+      - name: attorney_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Attorney Id
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/AttorneyData'
+                - $ref: '#/components/schemas/AttorneyReference'
+                title: Response Get Attorney Attorneys  Attorney Id  Get
+              examples:
+                Single Attorney:
+                  summary: Single Attorney
+                  value:
+                    name: Gerry L. Spence
+                    attorneyId: 110161257
+        '404':
+          description: Not found
+          content:
+            application/json:
+              examples:
+                Attorney Not Found:
+                  summary: Attorney Not Found
+                  value:
+                    detail: No attorney matching provided attorney ID was found
+        '422':
+          description: Error - 422
+          content:
+            application/json:
+              examples:
+                Invalid Input:
+                  summary: Invalid Input
+                  value:
+                    detail:
+                    - type: int_parsing
+                      loc:
+                      - path
+                      - attorney_id
+                      msg: Input should be a valid integer, unable to parse string as an integer
+                      input: string
+                Validation error:
+                  summary: Validation error
+                  value:
+                    summary: Invalid input
+                    detail:
+                    - type: parsing
+                      loc:
+                      - path
+                      - query
+                      - body
+                      msg: invalid input
+                      input: '-1'
+        '401':
+          description: Invalid or expired token
+          content:
+            application/json:
+              examples:
+                Expired token:
+                  summary: Expired token
+                  value:
+                    detail: 'Token time expired: Signature has expired.'
+                Invalid token:
+                  summary: Invalid token
+                  value:
+                    detail: Invalid token
+  /attorneys:
+    get:
+      tags:
+      - Entities
+      summary: Get Attorneys
+      description: 'Gets data for one or more attorneys.
+
+
+        - **attorneyIds**: the Lex Machina attorneyIds
+
+
+        If any of the the attorneyIds given are not the current lexmachina attorneyId, the results will include inputId for disambugation'
+      operationId: get_attorneys
+      security:
+      - JwtAccessBearer: []
+      parameters:
+      - name: attorneyIds
+        in: query
+        required: true
+        schema:
+          type: array
+          uniqueItems: true
+          items:
+            type: integer
+          minItems: 1
+          maxItems: 500
+          title: Attorneyids
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  anyOf:
+                  - $ref: '#/components/schemas/AttorneyData'
+                  - $ref: '#/components/schemas/AttorneyReference'
+                title: Response Get Attorneys Attorneys Get
+              examples:
+                Multiple Attorneys:
+                  summary: Multiple Attorneys
+                  value:
+                  - name: Gerry L. Spence
+                    attorneyId: 110161257
+                  - name: Alan M. Dershowitz
+                    attorneyId: 18594138
+        '404':
+          description: Not found
+          content:
+            application/json:
+              examples:
+                Attorneys Not Found:
+                  summary: Attorneys Not Found
+                  value:
+                    detail: No attorneys matching provided attorney IDs were found
+        '401':
+          description: Invalid or expired token
+          content:
+            application/json:
+              examples:
+                Expired token:
+                  summary: Expired token
+                  value:
+                    detail: 'Token time expired: Signature has expired.'
+                Invalid token:
+                  summary: Invalid token
+                  value:
+                    detail: Invalid token
+        '422':
+          description: Error - 422
+          content:
+            application/json:
+              examples:
+                Validation error:
+                  summary: Validation error
+                  value:
+                    summary: Invalid input
+                    detail:
+                    - type: parsing
+                      loc:
+                      - path
+                      - query
+                      - body
+                      msg: invalid input
+                      input: '-1'
+  /bankruptcy-judges/{bankruptcy_judge_id}:
+    get:
+      tags:
+      - Entities
+      summary: Get Bankruptcy Judge
+      description: 'Gets data for a single federal bankruptcy judge.
+
+
+        - **bankruptcy_judge_id**: the Lex Machina bankruptcyJudgeId'
+      operationId: get_bankruptcy_judge
+      security:
+      - JwtAccessBearer: []
+      parameters:
+      - name: bankruptcy_judge_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Bankruptcy Judge Id
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BankruptcyJudgeData'
+              examples:
+                Single Bankruptcy Judge:
+                  summary: Single Bankruptcy Judge
+                  value:
+                    name: Erik P. Kimball
+                    bankruptcyJudgeId: 539
+                    initials: EPK
+                    caseCountByCourt:
+                    - court: total
+                      count: 901
+        '401':
+          description: Invalid or expired token
+          content:
+            application/json:
+              examples:
+                Expired token:
+                  summary: Expired token
+                  value:
+                    detail: 'Token time expired: Signature has expired.'
+                Invalid token:
+                  summary: Invalid token
+                  value:
+                    detail: Invalid token
+        '404':
+          description: Not found
+          content:
+            application/json:
+              examples:
+                Not found:
+                  summary: Not found
+                  value:
+                    summary: Unknown id
+                    detail: Not Found
+        '422':
+          description: Error - 422
+          content:
+            application/json:
+              examples:
+                Validation error:
+                  summary: Validation error
+                  value:
+                    summary: Invalid input
+                    detail:
+                    - type: parsing
+                      loc:
+                      - path
+                      - query
+                      - body
+                      msg: invalid input
+                      input: '-1'
+  /bankruptcy-judges:
+    get:
+      tags:
+      - Entities
+      summary: Get Bankruptcy Judges
+      description: 'Gets data for one or more federal bankruptcy judges.
+
+
+        - **attorneyIds**: the Lex Machina bankruptcyJudgeIds'
+      operationId: get_bankruptcy_judges
+      security:
+      - JwtAccessBearer: []
+      parameters:
+      - name: bankruptcyJudgeIds
+        in: query
+        required: true
+        schema:
+          type: array
+          uniqueItems: true
+          items:
+            type: integer
+          minItems: 1
+          maxItems: 500
+          title: Bankruptcyjudgeids
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BankruptcyJudgeData'
+                title: Response Get Bankruptcy Judges Bankruptcy Judges Get
+              examples:
+                Multiple Bankruptcy Judges:
+                  summary: Multiple Bankruptcy Judges
+                  value:
+                  - name: Mindy A. Mora
+                    bankruptcyJudgeId: 704
+                    initials: MAM
+                    caseCountByCourt:
+                    - court: total
+                      count: 410
+                  - name: Erik P. Kimball
+                    bankruptcyJudgeId: 539
+                    initials: EPK
+                    caseCountByCourt:
+                    - court: total
+                      count: 901
+        '401':
+          description: Invalid or expired token
+          content:
+            application/json:
+              examples:
+                Expired token:
+                  summary: Expired token
+                  value:
+                    detail: 'Token time expired: Signature has expired.'
+                Invalid token:
+                  summary: Invalid token
+                  value:
+                    detail: Invalid token
+        '404':
+          description: Not found
+          content:
+            application/json:
+              examples:
+                Not found:
+                  summary: Not found
+                  value:
+                    summary: Unknown id
+                    detail: Not Found
+        '422':
+          description: Error - 422
+          content:
+            application/json:
+              examples:
+                Validation error:
+                  summary: Validation error
+                  value:
+                    summary: Invalid input
+                    detail:
+                    - type: parsing
+                      loc:
+                      - path
+                      - query
+                      - body
+                      msg: invalid input
+                      input: '-1'
+  /federal-judges/{federal_judge_id}:
+    get:
+      tags:
+      - Entities
+      summary: Get Federal Judge
+      description: 'Gets data for a single federal Article III judge.
+
+
+        - **judge_id**: the judge id'
+      operationId: get_federal_judge
+      security:
+      - JwtAccessBearer: []
+      parameters:
+      - name: federal_judge_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Federal Judge Id
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FederalJudgeData'
+              examples:
+                Single Federal Judge:
+                  summary: Single Federal Judge
+                  value:
+                    name: Sidney H. Stein
+                    federalJudgeId: 2282
+                    initials: SHS
+                    dateOfBirth: '1945-01-01'
+                    caseCountByCourt:
+                    - court: total
+                      count: 1712
+                    nominatingPresident: William J. Clinton
+        '401':
+          description: Invalid or expired token
+          content:
+            application/json:
+              examples:
+                Expired token:
+                  summary: Expired token
+                  value:
+                    detail: 'Token time expired: Signature has expired.'
+                Invalid token:
+                  summary: Invalid token
+                  value:
+                    detail: Invalid token
+        '404':
+          description: Not found
+          content:
+            application/json:
+              examples:
+                Not found:
+                  summary: Not found
+                  value:
+                    summary: Unknown id
+                    detail: Not Found
+        '422':
+          description: Error - 422
+          content:
+            application/json:
+              examples:
+                Validation error:
+                  summary: Validation error
+                  value:
+                    summary: Invalid input
+                    detail:
+                    - type: parsing
+                      loc:
+                      - path
+                      - query
+                      - body
+                      msg: invalid input
+                      input: '-1'
+  /federal-judges:
+    get:
+      tags:
+      - Entities
+      summary: Get Federal Judges
+      description: 'Gets data for one or more federal Article III judges.
+
+
+        - **judgeIds**: the judge Ids'
+      operationId: get_federal_judges
+      security:
+      - JwtAccessBearer: []
+      parameters:
+      - name: federalJudgeIds
+        in: query
+        required: true
+        schema:
+          type: array
+          uniqueItems: true
+          items:
+            type: integer
+          minItems: 1
+          maxItems: 500
+          title: Federaljudgeids
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FederalJudgeData'
+                title: Response Get Federal Judges Federal Judges Get
+              examples:
+                Multiple Federal Judges:
+                  summary: Multiple Federal Judges
+                  value:
+                  - name: Susan Webber Wright
+                    federalJudgeId: 2664
+                    initials: SWW
+                    dateOfBirth: '1948-01-01'
+                    caseCountByCourt:
+                    - court: total
+                      count: 1314
+                    nominatingPresident: George H.W. Bush
+                  - name: Sidney H. Stein
+                    federalJudgeId: 2282
+                    initials: SHS
+                    dateOfBirth: '1945-01-01'
+                    caseCountByCourt:
+                    - court: total
+                      count: 1712
+                    nominatingPresident: William J. Clinton
+        '401':
+          description: Invalid or expired token
+          content:
+            application/json:
+              examples:
+                Expired token:
+                  summary: Expired token
+                  value:
+                    detail: 'Token time expired: Signature has expired.'
+                Invalid token:
+                  summary: Invalid token
+                  value:
+                    detail: Invalid token
+        '404':
+          description: Not found
+          content:
+            application/json:
+              examples:
+                Not found:
+                  summary: Not found
+                  value:
+                    summary: Unknown id
+                    detail: Not Found
+        '422':
+          description: Error - 422
+          content:
+            application/json:
+              examples:
+                Validation error:
+                  summary: Validation error
+                  value:
+                    summary: Invalid input
+                    detail:
+                    - type: parsing
+                      loc:
+                      - path
+                      - query
+                      - body
+                      msg: invalid input
+                      input: '-1'
+  /law-firms/{law_firm_id}:
+    get:
+      tags:
+      - Entities
+      summary: Get Law Firm
+      description: 'Gets data for a single law firm.
+
+
+        - **law_firm_id**: the Lex Machina lawFirmID'
+      operationId: get_law_firm
+      security:
+      - JwtAccessBearer: []
+      parameters:
+      - name: law_firm_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Law Firm Id
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/LawFirmData'
+                - $ref: '#/components/schemas/LawFirmReference'
+                title: Response Get Law Firm Law Firms  Law Firm Id  Get
+              examples:
+                Single Lawfirm:
+                  summary: Single Lawfirm
+                  value:
+                    name: Department of Justice
+                    lawFirmId: 604
+        '404':
+          description: Not found
+          content:
+            application/json:
+              examples:
+                Lawfirm not found:
+                  summary: Lawfirm not found
+                  value:
+                    detail: No law firm matching provided law firm ID was found
+        '422':
+          description: Error - 422
+          content:
+            application/json:
+              examples:
+                Invalid Input:
+                  summary: Invalid Input
+                  value:
+                    detail:
+                    - type: int_parsing
+                      loc:
+                      - path
+                      - law_firm_id
+                      msg: Input should be a valid integer, unable to parse string as an integer
+                      input: string
+                Validation error:
+                  summary: Validation error
+                  value:
+                    summary: Invalid input
+                    detail:
+                    - type: parsing
+                      loc:
+                      - path
+                      - query
+                      - body
+                      msg: invalid input
+                      input: '-1'
+        '401':
+          description: Invalid or expired token
+          content:
+            application/json:
+              examples:
+                Expired token:
+                  summary: Expired token
+                  value:
+                    detail: 'Token time expired: Signature has expired.'
+                Invalid token:
+                  summary: Invalid token
+                  value:
+                    detail: Invalid token
+  /law-firms:
+    get:
+      tags:
+      - Entities
+      summary: Get Law Firms
+      description: 'Gets data for one or more law firms.
+
+
+        - **lawFirmIds**: the Lex Machina lawFirmIds
+
+
+        If any of the the lawFirmIds given are not the current lexmachina lawFirmId, the results will include inputId for disambugation'
+      operationId: get_law_firms
+      security:
+      - JwtAccessBearer: []
+      parameters:
+      - name: lawFirmIds
+        in: query
+        required: true
+        schema:
+          type: array
+          uniqueItems: true
+          items:
+            type: integer
+          minItems: 1
+          maxItems: 500
+          title: Lawfirmids
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  anyOf:
+                  - $ref: '#/components/schemas/LawFirmData'
+                  - $ref: '#/components/schemas/LawFirmReference'
+                title: Response Get Law Firms Law Firms Get
+              examples:
+                Successful Resolve:
+                  summary: Successful Resolve
+                  value:
+                  - name: Department of Transportation
+                    lawFirmId: 445928
+                  - name: United States Department of Health & Human Services
+                    lawFirmId: 382718
+        '404':
+          description: Not found
+          content:
+            application/json:
+              examples:
+                Law firms not found:
+                  summary: Law firms not found
+                  value:
+                    detail: No law firms matching provided law firm IDs were found
+        '401':
+          description: Invalid or expired token
+          content:
+            application/json:
+              examples:
+                Expired token:
+                  summary: Expired token
+                  value:
+                    detail: 'Token time expired: Signature has expired.'
+                Invalid token:
+                  summary: Invalid token
+                  value:
+                    detail: Invalid token
+        '422':
+          description: Error - 422
+          content:
+            application/json:
+              examples:
+                Validation error:
+                  summary: Validation error
+                  value:
+                    summary: Invalid input
+                    detail:
+                    - type: parsing
+                      loc:
+                      - path
+                      - query
+                      - body
+                      msg: invalid input
+                      input: '-1'
+  /magistrate-judges/{magistrate_judge_id}:
+    get:
+      tags:
+      - Entities
+      summary: Get Magistrate
+      description: 'Gets data for a single federal magistrate judge.
+
+
+        - **magistrate_judge_id**: the Lex Machina magistrateJudgeId'
+      operationId: get_magistrate
+      security:
+      - JwtAccessBearer: []
+      parameters:
+      - name: magistrate_judge_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Magistrate Judge Id
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MagistrateJudgeData'
+              examples:
+                Single Magistrate Judge:
+                  summary: Single Magistrate Judge
+                  value:
+                    name: Margaret J Kravchuk
+                    magistrateJudgeId: 801
+                    initials: MJK
+                    caseCountByCourt:
+                    - court: total
+                      count: 1720
+        '404':
+          description: Not found
+          content:
+            application/json:
+              examples:
+                Magistrate Judge Not Found:
+                  summary: Magistrate Judge Not Found
+                  value:
+                    detail: No magistrates matching provided magistrate IDs were found
+        '422':
+          description: Error - 422
+          content:
+            application/json:
+              examples:
+                Invalid Input:
+                  summary: Invalid Input
+                  value:
+                    detail:
+                    - type: int_parsing
+                      loc:
+                      - path
+                      - magistrate_judge_id
+                      msg: Input should be a valid integer, unable to parse string as an integer
+                      input: string
+                Validation error:
+                  summary: Validation error
+                  value:
+                    summary: Invalid input
+                    detail:
+                    - type: parsing
+                      loc:
+                      - path
+                      - query
+                      - body
+                      msg: invalid input
+                      input: '-1'
+        '401':
+          description: Invalid or expired token
+          content:
+            application/json:
+              examples:
+                Expired token:
+                  summary: Expired token
+                  value:
+                    detail: 'Token time expired: Signature has expired.'
+                Invalid token:
+                  summary: Invalid token
+                  value:
+                    detail: Invalid token
+  /magistrate-judges:
+    get:
+      tags:
+      - Entities
+      summary: Get Magistrates
+      description: 'Gets data for a one or more federal magistrate judges.
+
+
+        - **magistrateJudgeIds**: the Lex Machina magistrateJudgeIds'
+      operationId: get_magistrates
+      security:
+      - JwtAccessBearer: []
+      parameters:
+      - name: magistrateJudgeIds
+        in: query
+        required: true
+        schema:
+          type: array
+          uniqueItems: true
+          items:
+            type: integer
+          minItems: 1
+          maxItems: 500
+          title: Magistratejudgeids
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MagistrateJudgeData'
+                title: Response Get Magistrates Magistrate Judges Get
+              examples:
+                Multiple Magistrate Judges:
+                  summary: Multiple Magistrate Judges
+                  value:
+                  - name: Margaret J Kravchuk
+                    magistrateJudgeId: 801
+                    initials: MJK
+                    caseCountByCourt:
+                    - court: total
+                      count: 1720
+                  - name: Zahid N Quraishi
+                    magistrateJudgeId: 1385
+                    initials: ZNQ
+                    caseCountByCourt:
+                    - court: total
+                      count: 1212
+        '404':
+          description: Not found
+          content:
+            application/json:
+              examples:
+                Multiple Magistrate Judges:
+                  summary: Multiple Magistrate Judges
+                  value:
+                    detail: No magistrates matching provided magistrate IDs were found
+        '401':
+          description: Invalid or expired token
+          content:
+            application/json:
+              examples:
+                Expired token:
+                  summary: Expired token
+                  value:
+                    detail: 'Token time expired: Signature has expired.'
+                Invalid token:
+                  summary: Invalid token
+                  value:
+                    detail: Invalid token
+        '422':
+          description: Error - 422
+          content:
+            application/json:
+              examples:
+                Validation error:
+                  summary: Validation error
+                  value:
+                    summary: Invalid input
+                    detail:
+                    - type: parsing
+                      loc:
+                      - path
+                      - query
+                      - body
+                      msg: invalid input
+                      input: '-1'
+  /parties/{party_id}:
+    get:
+      tags:
+      - Entities
+      summary: Get Party
+      description: 'Gets data for a single party.
+
+
+        - **party_id**: the Lex Machina partyId'
+      operationId: get_party
+      security:
+      - JwtAccessBearer: []
+      parameters:
+      - name: party_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Party Id
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/PartyData'
+                - $ref: '#/components/schemas/PartyReference'
+                title: Response Get Party Parties  Party Id  Get
+              examples:
+                Single Party:
+                  summary: Single Party
+                  value:
+                    name: Todd McFarlane
+                    partyId: 196852
+        '404':
+          description: Not found
+          content:
+            application/json:
+              examples:
+                Party Not Found:
+                  summary: Party Not Found
+                  value:
+                    detail: No party matching provided party ID was found
+        '422':
+          description: Error - 422
+          content:
+            application/json:
+              examples:
+                Invalid Input:
+                  summary: Invalid Input
+                  value:
+                    detail:
+                    - type: int_parsing
+                      loc:
+                      - path
+                      - party_id
+                      msg: Input should be a valid integer, unable to parse string as an integer
+                      input: string
+                Validation error:
+                  summary: Validation error
+                  value:
+                    summary: Invalid input
+                    detail:
+                    - type: parsing
+                      loc:
+                      - path
+                      - query
+                      - body
+                      msg: invalid input
+                      input: '-1'
+        '401':
+          description: Invalid or expired token
+          content:
+            application/json:
+              examples:
+                Expired token:
+                  summary: Expired token
+                  value:
+                    detail: 'Token time expired: Signature has expired.'
+                Invalid token:
+                  summary: Invalid token
+                  value:
+                    detail: Invalid token
+  /parties:
+    get:
+      tags:
+      - Entities
+      summary: Get Parties
+      description: 'Gets data for one or more parties.
+
+
+        - **partyIds**: the Lex Machina partyIds
+
+
+        If any of the the partyIds given are not the current lexmachina partyId, the results will include inputId for disambugation'
+      operationId: get_parties
+      security:
+      - JwtAccessBearer: []
+      parameters:
+      - name: partyIds
+        in: query
+        required: true
+        schema:
+          type: array
+          uniqueItems: true
+          items:
+            type: integer
+          minItems: 1
+          maxItems: 500
+          title: Partyids
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  anyOf:
+                  - $ref: '#/components/schemas/PartyData'
+                  - $ref: '#/components/schemas/PartyReference'
+                title: Response Get Parties Parties Get
+              examples:
+                Multiple Parties:
+                  summary: Multiple Parties
+                  value:
+                  - name: Todd McFarlane
+                    partyId: 196852
+                  - name: Stan Lee
+                    partyId: 56391
+        '404':
+          description: Not found
+          content:
+            application/json:
+              examples:
+                Parties not found:
+                  summary: Parties not found
+                  value:
+                    detail: No parties matching provided party IDs were found
+        '401':
+          description: Invalid or expired token
+          content:
+            application/json:
+              examples:
+                Expired token:
+                  summary: Expired token
+                  value:
+                    detail: 'Token time expired: Signature has expired.'
+                Invalid token:
+                  summary: Invalid token
+                  value:
+                    detail: Invalid token
+        '422':
+          description: Error - 422
+          content:
+            application/json:
+              examples:
+                Validation error:
+                  summary: Validation error
+                  value:
+                    summary: Invalid input
+                    detail:
+                    - type: parsing
+                      loc:
+                      - path
+                      - query
+                      - body
+                      msg: invalid input
+                      input: '-1'
+  /state-judges/{state_judge_id}:
+    get:
+      tags:
+      - Entities
+      summary: Get State Judge
+      description: 'Gets data on a single state judge.
+
+
+        - **state_judge_id**: the Lex Machina stateJudgeId'
+      operationId: get_state_judge
+      security:
+      - JwtAccessBearer: []
+      parameters:
+      - name: state_judge_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: State Judge Id
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StateJudgeData'
+              examples:
+                Single State Judge:
+                  summary: Single State Judge
+                  value:
+                    name: Daryl L Moore
+                    stateJudgeId: 775
+                    courtPosting: Texas District Court, 333rd Judicial District
+        '401':
+          description: Invalid or expired token
+          content:
+            application/json:
+              examples:
+                Expired token:
+                  summary: Expired token
+                  value:
+                    detail: 'Token time expired: Signature has expired.'
+                Invalid token:
+                  summary: Invalid token
+                  value:
+                    detail: Invalid token
+        '404':
+          description: Not found
+          content:
+            application/json:
+              examples:
+                Not found:
+                  summary: Not found
+                  value:
+                    summary: Unknown id
+                    detail: Not Found
+        '422':
+          description: Error - 422
+          content:
+            application/json:
+              examples:
+                Validation error:
+                  summary: Validation error
+                  value:
+                    summary: Invalid input
+                    detail:
+                    - type: parsing
+                      loc:
+                      - path
+                      - query
+                      - body
+                      msg: invalid input
+                      input: '-1'
+  /state-judges:
+    get:
+      tags:
+      - Entities
+      summary: Get State Judges
+      description: 'Gets data on one or more single state judges.
+
+
+        - **stateJudgeIds**: the Lex Machina stateJudgeIds'
+      operationId: get_state_judges
+      security:
+      - JwtAccessBearer: []
+      parameters:
+      - name: stateJudgeIds
+        in: query
+        required: true
+        schema:
+          type: array
+          uniqueItems: true
+          items:
+            type: integer
+          minItems: 1
+          maxItems: 500
+          title: Statejudgeids
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StateJudgeData'
+                title: Response Get State Judges State Judges Get
+              examples:
+                Multiple State Judges:
+                  summary: Multiple State Judges
+                  value:
+                  - name: Sheila Abdus-Salaam
+                    stateJudgeId: 2087
+                    courtPosting: New York Supreme Court, New York County
+                  - name: Daryl L Moore
+                    stateJudgeId: 775
+                    courtPosting: Texas District Court, 333rd Judicial District
+        '401':
+          description: Invalid or expired token
+          content:
+            application/json:
+              examples:
+                Expired token:
+                  summary: Expired token
+                  value:
+                    detail: 'Token time expired: Signature has expired.'
+                Invalid token:
+                  summary: Invalid token
+                  value:
+                    detail: Invalid token
+        '404':
+          description: Not found
+          content:
+            application/json:
+              examples:
+                Not found:
+                  summary: Not found
+                  value:
+                    summary: Unknown id
+                    detail: Not Found
+        '422':
+          description: Error - 422
+          content:
+            application/json:
+              examples:
+                Validation error:
+                  summary: Validation error
+                  value:
+                    summary: Invalid input
+                    detail:
+                    - type: parsing
+                      loc:
+                      - path
+                      - query
+                      - body
+                      msg: invalid input
+                      input: '-1'
+components:
+  schemas:
+    StateJudgeData:
+      properties:
+        name:
+          type: string
+          title: Name
+        stateJudgeId:
+          type: integer
+          title: Statejudgeid
+        courtPosting:
+          type: string
+          title: Courtposting
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - stateJudgeId
+      - courtPosting
+      title: StateJudgeData
+    FederalJudgeData:
+      properties:
+        name:
+          type: string
+          title: Name
+        federalJudgeId:
+          type: integer
+          title: Federaljudgeid
+        initials:
+          type: string
+          title: Initials
+        dateOfBirth:
+          type: string
+          format: date
+          title: Dateofbirth
+        caseCountByCourt:
+          items:
+            $ref: '#/components/schemas/CaseCountByCourt'
+          type: array
+          title: Casecountbycourt
+        nominatingPresident:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Nominatingpresident
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - federalJudgeId
+      - initials
+      - dateOfBirth
+      - caseCountByCourt
+      - nominatingPresident
+      title: FederalJudgeData
+    BankruptcyJudgeData:
+      properties:
+        name:
+          type: string
+          title: Name
+        bankruptcyJudgeId:
+          type: integer
+          title: Bankruptcyjudgeid
+        initials:
+          type: string
+          title: Initials
+        caseCountByCourt:
+          items:
+            $ref: '#/components/schemas/CaseCountByCourt'
+          type: array
+          title: Casecountbycourt
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - bankruptcyJudgeId
+      - initials
+      - caseCountByCourt
+      title: BankruptcyJudgeData
+    CaseCountByCourt:
+      properties:
+        court:
+          type: string
+          title: Court
+        count:
+          type: integer
+          title: Count
+      additionalProperties: false
+      type: object
+      required:
+      - court
+      - count
+      title: CaseCountByCourt
+    AttorneyData:
+      properties:
+        name:
+          type: string
+          title: Name
+        attorneyId:
+          type: integer
+          title: Attorneyid
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - attorneyId
+      title: AttorneyData
+    LawFirmData:
+      properties:
+        name:
+          type: string
+          title: Name
+        lawFirmId:
+          type: integer
+          title: Lawfirmid
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - lawFirmId
+      title: LawFirmData
+    PartyReference:
+      properties:
+        name:
+          type: string
+          title: Name
+        partyId:
+          type: integer
+          title: Partyid
+        inputId:
+          type: integer
+          title: Inputid
+        url:
+          type: string
+          title: Url
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - partyId
+      - inputId
+      - url
+      title: PartyReference
+      description: 'Indicates that the Lex Machina party id input was has changed,
+
+        the inputId is the ID given that should map to the returned partyId.'
+    PartyData:
+      properties:
+        name:
+          type: string
+          title: Name
+        partyId:
+          type: integer
+          title: Partyid
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - partyId
+      title: PartyData
+    AttorneyReference:
+      properties:
+        name:
+          type: string
+          title: Name
+        attorneyId:
+          type: integer
+          title: Attorneyid
+        url:
+          type: string
+          title: Url
+        inputId:
+          type: integer
+          title: Inputid
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - attorneyId
+      - url
+      - inputId
+      title: AttorneyReference
+      description: 'Indicates that the Lex Machina attorney id input was has changed,
+
+        the inputId is the ID given that should map to the returned attorneyId.'
+    MagistrateJudgeData:
+      properties:
+        name:
+          type: string
+          title: Name
+        magistrateJudgeId:
+          type: integer
+          title: Magistratejudgeid
+        initials:
+          type: string
+          title: Initials
+        caseCountByCourt:
+          items:
+            $ref: '#/components/schemas/CaseCountByCourt'
+          type: array
+          title: Casecountbycourt
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - magistrateJudgeId
+      - initials
+      - caseCountByCourt
+      title: MagistrateJudgeData
+    LawFirmReference:
+      properties:
+        name:
+          type: string
+          title: Name
+        lawFirmId:
+          type: integer
+          title: Lawfirmid
+        inputId:
+          type: integer
+          title: Inputid
+        url:
+          type: string
+          title: Url
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - lawFirmId
+      - inputId
+      - url
+      title: LawFirmReference
+      description: 'Indicates that the Lex Machina law firm id input was has changed,
+
+        the inputId is the ID given that should map to the returned lawFirmId.'
+  securitySchemes:
+    JwtAccessBearer:
+      type: http
+      scheme: bearer

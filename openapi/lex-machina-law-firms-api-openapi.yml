@@ -1,0 +1,378 @@
+openapi: 3.1.0
+info:
+  title: Lex Machina Alerts Law Firms API
+  version: '20260324'
+  description: Alerts.
+servers:
+- url: https://api.lexmachina.com
+  description: Lex Machina production API
+tags:
+- name: Law Firms
+  description: Law firm data.
+paths:
+  /law-firms/{law_firm_id}:
+    get:
+      tags:
+      - Law Firms
+      summary: Get Law Firm
+      description: 'Gets data for a single law firm.
+
+
+        - **law_firm_id**: the Lex Machina lawFirmID'
+      operationId: get_law_firm
+      security:
+      - JwtAccessBearer: []
+      parameters:
+      - name: law_firm_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Law Firm Id
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/LawFirmData'
+                - $ref: '#/components/schemas/LawFirmReference'
+                title: Response Get Law Firm Law Firms  Law Firm Id  Get
+              examples:
+                Single Lawfirm:
+                  summary: Single Lawfirm
+                  value:
+                    name: Department of Justice
+                    lawFirmId: 604
+        '404':
+          description: Not found
+          content:
+            application/json:
+              examples:
+                Lawfirm not found:
+                  summary: Lawfirm not found
+                  value:
+                    detail: No law firm matching provided law firm ID was found
+        '422':
+          description: Error - 422
+          content:
+            application/json:
+              examples:
+                Invalid Input:
+                  summary: Invalid Input
+                  value:
+                    detail:
+                    - type: int_parsing
+                      loc:
+                      - path
+                      - law_firm_id
+                      msg: Input should be a valid integer, unable to parse string as an integer
+                      input: string
+                Validation error:
+                  summary: Validation error
+                  value:
+                    summary: Invalid input
+                    detail:
+                    - type: parsing
+                      loc:
+                      - path
+                      - query
+                      - body
+                      msg: invalid input
+                      input: '-1'
+        '401':
+          description: Invalid or expired token
+          content:
+            application/json:
+              examples:
+                Expired token:
+                  summary: Expired token
+                  value:
+                    detail: 'Token time expired: Signature has expired.'
+                Invalid token:
+                  summary: Invalid token
+                  value:
+                    detail: Invalid token
+  /law-firms:
+    get:
+      tags:
+      - Law Firms
+      summary: Get Law Firms
+      description: 'Gets data for one or more law firms.
+
+
+        - **lawFirmIds**: the Lex Machina lawFirmIds
+
+
+        If any of the the lawFirmIds given are not the current lexmachina lawFirmId, the results will include inputId for disambugation'
+      operationId: get_law_firms
+      security:
+      - JwtAccessBearer: []
+      parameters:
+      - name: lawFirmIds
+        in: query
+        required: true
+        schema:
+          type: array
+          uniqueItems: true
+          items:
+            type: integer
+          minItems: 1
+          maxItems: 500
+          title: Lawfirmids
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  anyOf:
+                  - $ref: '#/components/schemas/LawFirmData'
+                  - $ref: '#/components/schemas/LawFirmReference'
+                title: Response Get Law Firms Law Firms Get
+              examples:
+                Successful Resolve:
+                  summary: Successful Resolve
+                  value:
+                  - name: Department of Transportation
+                    lawFirmId: 445928
+                  - name: United States Department of Health & Human Services
+                    lawFirmId: 382718
+        '404':
+          description: Not found
+          content:
+            application/json:
+              examples:
+                Law firms not found:
+                  summary: Law firms not found
+                  value:
+                    detail: No law firms matching provided law firm IDs were found
+        '401':
+          description: Invalid or expired token
+          content:
+            application/json:
+              examples:
+                Expired token:
+                  summary: Expired token
+                  value:
+                    detail: 'Token time expired: Signature has expired.'
+                Invalid token:
+                  summary: Invalid token
+                  value:
+                    detail: Invalid token
+        '422':
+          description: Error - 422
+          content:
+            application/json:
+              examples:
+                Validation error:
+                  summary: Validation error
+                  value:
+                    summary: Invalid input
+                    detail:
+                    - type: parsing
+                      loc:
+                      - path
+                      - query
+                      - body
+                      msg: invalid input
+                      input: '-1'
+  /search-law-firms:
+    get:
+      tags:
+      - Law Firms
+      summary: Seach Law Firms
+      description: 'Searches for law firms.
+
+
+        - **q**: the query string
+
+        - **page_number**: page number of the results
+
+        - **page_size**:  results per page
+
+
+        This is a case-insensitive search that will match anywhere within the name of the firm.
+
+
+        The results will have page and totalCount fields as well as a convenience link via the field nextPage.'
+      operationId: seach_law_firms
+      security:
+      - JwtAccessBearer: []
+      parameters:
+      - name: q
+        in: query
+        required: true
+        schema:
+          type: string
+          title: Q
+      - name: pageNumber
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 1
+          title: Pagenumber
+      - name: pageSize
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 1
+          title: Pagesize
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LawFirmSearchResult'
+              examples:
+                Search Law Firms By Name:
+                  summary: Search Law Firms By Name
+                  value:
+                    totalCount: 4
+                    page: 1
+                    nextPage: https://api.lexmachina.com/search-law-firms?q=matzger&pageNumber=1&pageSize=2?q=matzger&pageNumber=2&pageSize=2
+                    lawFirms:
+                    - name: Leland, Parachini, Steinberg, Matzger & Melnick
+                      lawFirmId: 1220574
+                      url: https://api.lexmachina.com/law-firms/1220574
+                    - name: John Matzger
+                      lawFirmId: 104638538
+                      url: https://api.lexmachina.com/law-firms/104638538
+        '422':
+          description: Error - 422
+          content:
+            application/json:
+              examples:
+                Invalid Page:
+                  summary: Invalid Page
+                  value:
+                    detail: Invalid page.
+                Validation error:
+                  summary: Validation error
+                  value:
+                    summary: Invalid input
+                    detail:
+                    - type: parsing
+                      loc:
+                      - path
+                      - query
+                      - body
+                      msg: invalid input
+                      input: '-1'
+        '401':
+          description: Invalid or expired token
+          content:
+            application/json:
+              examples:
+                Expired token:
+                  summary: Expired token
+                  value:
+                    detail: 'Token time expired: Signature has expired.'
+                Invalid token:
+                  summary: Invalid token
+                  value:
+                    detail: Invalid token
+        '404':
+          description: Not found
+          content:
+            application/json:
+              examples:
+                Not found:
+                  summary: Not found
+                  value:
+                    summary: Unknown id
+                    detail: Not Found
+components:
+  schemas:
+    LawFirmSearchResult:
+      properties:
+        totalCount:
+          type: integer
+          title: Totalcount
+        page:
+          type: integer
+          title: Page
+        nextPage:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Nextpage
+        lawFirms:
+          items:
+            $ref: '#/components/schemas/LawFirmResult'
+          type: array
+          title: Lawfirms
+      additionalProperties: false
+      type: object
+      required:
+      - totalCount
+      - page
+      - lawFirms
+      title: LawFirmSearchResult
+    LawFirmResult:
+      properties:
+        name:
+          type: string
+          title: Name
+        lawFirmId:
+          type: integer
+          title: Lawfirmid
+        url:
+          type: string
+          title: Url
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - lawFirmId
+      - url
+      title: LawFirmResult
+    LawFirmReference:
+      properties:
+        name:
+          type: string
+          title: Name
+        lawFirmId:
+          type: integer
+          title: Lawfirmid
+        inputId:
+          type: integer
+          title: Inputid
+        url:
+          type: string
+          title: Url
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - lawFirmId
+      - inputId
+      - url
+      title: LawFirmReference
+      description: 'Indicates that the Lex Machina law firm id input was has changed,
+
+        the inputId is the ID given that should map to the returned lawFirmId.'
+    LawFirmData:
+      properties:
+        name:
+          type: string
+          title: Name
+        lawFirmId:
+          type: integer
+          title: Lawfirmid
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - lawFirmId
+      title: LawFirmData
+  securitySchemes:
+    JwtAccessBearer:
+      type: http
+      scheme: bearer

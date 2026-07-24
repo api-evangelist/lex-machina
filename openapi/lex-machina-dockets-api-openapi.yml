@@ -1,0 +1,447 @@
+openapi: 3.1.0
+info:
+  title: Lex Machina Alerts Dockets API
+  version: '20260324'
+  description: Alerts.
+servers:
+- url: https://api.lexmachina.com
+  description: Lex Machina production API
+tags:
+- name: Dockets
+  description: Docket data.
+paths:
+  /docket-entries/{docket_entry_id}:
+    get:
+      tags:
+      - Dockets
+      summary: Get District Docket Entry
+      description: 'Gets data for a single docket entry.
+
+
+        - **docket_entry_id**: the Lex Machina docketEntryId.
+
+
+        Data returned for a docket will vary in format based on context, only the ids and urls for the relevant data will included.'
+      operationId: get_district_docket_entry
+      security:
+      - JwtAccessBearer: []
+      parameters:
+      - name: docket_entry_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Docket Entry Id
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocketEntryResult'
+              examples:
+                three district query results:
+                  summary: three district query results
+                  value:
+                    filedOn: '2024-08-20'
+                    tags:
+                    - Order
+                    text: 'COURT ORDER denying Motion for permission to proceed filed by Petitioner Mr. Rodgy Lee Nesby [ 2 ]. [24-90020] (CAS) [Entered: 08/20/2024 10:14 AM]'
+                    number: 15
+                    docketEntryId: 1280368587
+                    courtType: FederalAppeals
+                    appealsCaseId: 2034417512
+                    appealsCaseUrl: https://api.lexmachina.com/appeals-cases/2034417512
+        '401':
+          description: Invalid or expired token
+          content:
+            application/json:
+              examples:
+                Expired token:
+                  summary: Expired token
+                  value:
+                    detail: 'Token time expired: Signature has expired.'
+                Invalid token:
+                  summary: Invalid token
+                  value:
+                    detail: Invalid token
+        '404':
+          description: Not found
+          content:
+            application/json:
+              examples:
+                Not found:
+                  summary: Not found
+                  value:
+                    summary: Unknown id
+                    detail: Not Found
+        '422':
+          description: Error - 422
+          content:
+            application/json:
+              examples:
+                Validation error:
+                  summary: Validation error
+                  value:
+                    summary: Invalid input
+                    detail:
+                    - type: parsing
+                      loc:
+                      - path
+                      - query
+                      - body
+                      msg: invalid input
+                      input: '-1'
+  /itc-document-entries/{usitc_document_id}:
+    get:
+      tags:
+      - Dockets
+      summary: Get Itc Document Entry
+      description: 'Gets data for a single US ITC document.
+
+
+        - **usitc_document_id**: The document id.'
+      operationId: get_itc_document_entry
+      security:
+      - JwtAccessBearer: []
+      parameters:
+      - name: usitc_document_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Usitc Document Id
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ITCDocumentData'
+              examples:
+                Document Entry:
+                  summary: Document Entry
+                  value:
+                    usitcDocumentId: 812722
+                    date: '2024-01-26'
+                    title: Granting Meenaxi Enterprise Inc.'s Motion to Stay Procedural Schedule
+                    type: Order
+                    filedBy:
+                    - name: Bryan F. Moore
+                    firm:
+                    - name: USITC
+                    onBehalfOf:
+                    - name: Administrative Law Judge
+                    investigationNumber: '1232'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              examples:
+                Document Entry Not Found:
+                  summary: Document Entry Not Found
+                  value:
+                    detail: document_id not found
+        '401':
+          description: Invalid or expired token
+          content:
+            application/json:
+              examples:
+                Expired token:
+                  summary: Expired token
+                  value:
+                    detail: 'Token time expired: Signature has expired.'
+                Invalid token:
+                  summary: Invalid token
+                  value:
+                    detail: Invalid token
+        '422':
+          description: Error - 422
+          content:
+            application/json:
+              examples:
+                Validation error:
+                  summary: Validation error
+                  value:
+                    summary: Invalid input
+                    detail:
+                    - type: parsing
+                      loc:
+                      - path
+                      - query
+                      - body
+                      msg: invalid input
+                      input: '-1'
+  /state-docket-entries/{state_docket_entry_id}:
+    get:
+      tags:
+      - Dockets
+      summary: Get State Docket Entry
+      description: 'Gets data for a single docket entry.
+
+
+        - **state_docket_entry_id**: the Lex Machina stateDocketEntryId.'
+      operationId: get_state_docket_entry
+      security:
+      - JwtAccessBearer: []
+      parameters:
+      - name: state_docket_entry_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: State Docket Entry Id
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StateDocketEntryResult'
+              examples:
+                state case complaint:
+                  summary: state case complaint
+                  value:
+                    filedOn: '2016-07-25'
+                    tags:
+                    - Complaint
+                    text: SUMMONS + COMPLAINT
+                    stateDocketEntryId: 1263090641
+                    courtType: State
+                    stateCaseId: 2033923164
+                    stateCaseUrl: https://api.lexmachina.com/state-cases/2033923164
+                    court: Westchester County Supreme Court
+                    state: New York
+        '401':
+          description: Invalid or expired token
+          content:
+            application/json:
+              examples:
+                Expired token:
+                  summary: Expired token
+                  value:
+                    detail: 'Token time expired: Signature has expired.'
+                Invalid token:
+                  summary: Invalid token
+                  value:
+                    detail: Invalid token
+        '404':
+          description: Not found
+          content:
+            application/json:
+              examples:
+                Not found:
+                  summary: Not found
+                  value:
+                    summary: Unknown id
+                    detail: Not Found
+        '422':
+          description: Error - 422
+          content:
+            application/json:
+              examples:
+                Validation error:
+                  summary: Validation error
+                  value:
+                    summary: Invalid input
+                    detail:
+                    - type: parsing
+                      loc:
+                      - path
+                      - query
+                      - body
+                      msg: invalid input
+                      input: '-1'
+components:
+  schemas:
+    ITCDocumentEntityData:
+      properties:
+        name:
+          type: string
+          title: Name
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      title: ITCDocumentEntityData
+    CourtType:
+      type: string
+      enum:
+      - FederalDistrict
+      - State
+      - FederalAppeals
+      - FederalBankruptcy
+      - PTAB
+      - ITC
+      title: CourtType
+    ITCDocumentData:
+      properties:
+        usitcDocumentId:
+          type: integer
+          title: Usitcdocumentid
+        date:
+          type: string
+          format: date
+          title: Date
+        title:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Title
+        type:
+          type: string
+          title: Type
+        filedBy:
+          items:
+            $ref: '#/components/schemas/ITCDocumentEntityData'
+          type: array
+          title: Filedby
+        firm:
+          items:
+            $ref: '#/components/schemas/ITCDocumentEntityData'
+          type: array
+          title: Firm
+        onBehalfOf:
+          items:
+            $ref: '#/components/schemas/ITCDocumentEntityData'
+          type: array
+          title: Onbehalfof
+        investigationNumber:
+          type: string
+          title: Investigationnumber
+      additionalProperties: false
+      type: object
+      required:
+      - usitcDocumentId
+      - date
+      - title
+      - type
+      - filedBy
+      - firm
+      - onBehalfOf
+      - investigationNumber
+      title: ITCDocumentData
+    StateDocketEntryResult:
+      properties:
+        filedOn:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: Filedon
+        tags:
+          items:
+            type: string
+          type: array
+          title: Tags
+        text:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Text
+        stateDocketEntryId:
+          type: integer
+          title: Statedocketentryid
+        courtType:
+          $ref: '#/components/schemas/CourtType'
+        stateCaseId:
+          type: integer
+          title: Statecaseid
+        stateCaseUrl:
+          type: string
+          title: Statecaseurl
+        court:
+          type: string
+          title: Court
+        state:
+          type: string
+          title: State
+      additionalProperties: false
+      type: object
+      required:
+      - filedOn
+      - tags
+      - text
+      - stateDocketEntryId
+      - courtType
+      - stateCaseId
+      - stateCaseUrl
+      - court
+      - state
+      title: StateDocketEntryResult
+    DocketEntryResult:
+      properties:
+        filedOn:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: Filedon
+        tags:
+          items:
+            type: string
+          type: array
+          title: Tags
+        text:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Text
+        number:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Number
+        docketEntryId:
+          type: integer
+          title: Docketentryid
+        courtType:
+          $ref: '#/components/schemas/CourtType'
+        bankruptcyCaseId:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Bankruptcycaseid
+        appealsCaseId:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Appealscaseid
+        districtCaseId:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Districtcaseid
+        districtCaseUrl:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Districtcaseurl
+        appealsCaseUrl:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Appealscaseurl
+        bankruptcyCaseUrl:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Bankruptcycaseurl
+      additionalProperties: false
+      type: object
+      required:
+      - filedOn
+      - tags
+      - text
+      - number
+      - docketEntryId
+      - courtType
+      title: DocketEntryResult
+      description: 'The caseId and caseUrl fields will only be populated for the case type of the docket entry.
+
+
+        For example only a district case docket entry will have a districtCaseId and districtCaseURL.'
+  securitySchemes:
+    JwtAccessBearer:
+      type: http
+      scheme: bearer

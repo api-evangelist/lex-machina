@@ -1,0 +1,628 @@
+openapi: 3.1.0
+info:
+  title: Lex Machina Alerts Parties API
+  version: '20260324'
+  description: Alerts.
+servers:
+- url: https://api.lexmachina.com
+  description: Lex Machina production API
+tags:
+- name: Parties
+  description: Party data.
+paths:
+  /parties/{party_id}:
+    get:
+      tags:
+      - Parties
+      summary: Get Party
+      description: 'Gets data for a single party.
+
+
+        - **party_id**: the Lex Machina partyId'
+      operationId: get_party
+      security:
+      - JwtAccessBearer: []
+      parameters:
+      - name: party_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Party Id
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/PartyData'
+                - $ref: '#/components/schemas/PartyReference'
+                title: Response Get Party Parties  Party Id  Get
+              examples:
+                Single Party:
+                  summary: Single Party
+                  value:
+                    name: Todd McFarlane
+                    partyId: 196852
+        '404':
+          description: Not found
+          content:
+            application/json:
+              examples:
+                Party Not Found:
+                  summary: Party Not Found
+                  value:
+                    detail: No party matching provided party ID was found
+        '422':
+          description: Error - 422
+          content:
+            application/json:
+              examples:
+                Invalid Input:
+                  summary: Invalid Input
+                  value:
+                    detail:
+                    - type: int_parsing
+                      loc:
+                      - path
+                      - party_id
+                      msg: Input should be a valid integer, unable to parse string as an integer
+                      input: string
+                Validation error:
+                  summary: Validation error
+                  value:
+                    summary: Invalid input
+                    detail:
+                    - type: parsing
+                      loc:
+                      - path
+                      - query
+                      - body
+                      msg: invalid input
+                      input: '-1'
+        '401':
+          description: Invalid or expired token
+          content:
+            application/json:
+              examples:
+                Expired token:
+                  summary: Expired token
+                  value:
+                    detail: 'Token time expired: Signature has expired.'
+                Invalid token:
+                  summary: Invalid token
+                  value:
+                    detail: Invalid token
+  /parties:
+    get:
+      tags:
+      - Parties
+      summary: Get Parties
+      description: 'Gets data for one or more parties.
+
+
+        - **partyIds**: the Lex Machina partyIds
+
+
+        If any of the the partyIds given are not the current lexmachina partyId, the results will include inputId for disambugation'
+      operationId: get_parties
+      security:
+      - JwtAccessBearer: []
+      parameters:
+      - name: partyIds
+        in: query
+        required: true
+        schema:
+          type: array
+          uniqueItems: true
+          items:
+            type: integer
+          minItems: 1
+          maxItems: 500
+          title: Partyids
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  anyOf:
+                  - $ref: '#/components/schemas/PartyData'
+                  - $ref: '#/components/schemas/PartyReference'
+                title: Response Get Parties Parties Get
+              examples:
+                Multiple Parties:
+                  summary: Multiple Parties
+                  value:
+                  - name: Todd McFarlane
+                    partyId: 196852
+                  - name: Stan Lee
+                    partyId: 56391
+        '404':
+          description: Not found
+          content:
+            application/json:
+              examples:
+                Parties not found:
+                  summary: Parties not found
+                  value:
+                    detail: No parties matching provided party IDs were found
+        '401':
+          description: Invalid or expired token
+          content:
+            application/json:
+              examples:
+                Expired token:
+                  summary: Expired token
+                  value:
+                    detail: 'Token time expired: Signature has expired.'
+                Invalid token:
+                  summary: Invalid token
+                  value:
+                    detail: Invalid token
+        '422':
+          description: Error - 422
+          content:
+            application/json:
+              examples:
+                Validation error:
+                  summary: Validation error
+                  value:
+                    summary: Invalid input
+                    detail:
+                    - type: parsing
+                      loc:
+                      - path
+                      - query
+                      - body
+                      msg: invalid input
+                      input: '-1'
+  /search-parties:
+    get:
+      tags:
+      - Parties
+      summary: Search Parties
+      description: 'Searches for parties.
+
+
+        - **q**: the query string
+
+        - **page_number**: page number of the results
+
+        - **page_size**:  results per page
+
+
+        This is a case-insensitive search that will match anywhere within the name of the party.
+
+
+        The results will have page and totalCount fields as well as a convenience link via the field nextPage.'
+      operationId: search_parties
+      security:
+      - JwtAccessBearer: []
+      parameters:
+      - name: q
+        in: query
+        required: true
+        schema:
+          type: string
+          title: Q
+      - name: pageNumber
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 1
+          title: Pagenumber
+      - name: pageSize
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 1
+          title: Pagesize
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PartySearchResults'
+              examples:
+                Search Parties By Name:
+                  summary: Search Parties By Name
+                  value:
+                    totalCount: 73119
+                    page: 1
+                    nextPage: https://api.lexmachina.com/search-parties?q=Bryan&pageNumber=1&pageSize=10?q=Bryan&pageNumber=2&pageSize=10
+                    parties:
+                    - name: William Bryan
+                      partyId: 10301
+                      url: https://api.lexmachina.com/parties/10301
+                    - name: Donna Bryan
+                      partyId: 10303
+                      url: https://api.lexmachina.com/parties/10303
+                    - name: Bryan-Michael Cox
+                      partyId: 14347
+                      url: https://api.lexmachina.com/parties/14347
+                    - name: Bryant Industries Corp.
+                      partyId: 15497
+                      url: https://api.lexmachina.com/parties/15497
+                    - name: Bryan Cox
+                      partyId: 17623
+                      url: https://api.lexmachina.com/parties/17623
+                    - name: John Bryant
+                      partyId: 18681
+                      url: https://api.lexmachina.com/parties/18681
+                    - name: Bryan Rief
+                      partyId: 19311
+                      url: https://api.lexmachina.com/parties/19311
+                    - name: Matalyne Bryan-Davis
+                      partyId: 21338
+                      url: https://api.lexmachina.com/parties/21338
+                    - name: Bryan Fuller
+                      partyId: 22061
+                      url: https://api.lexmachina.com/parties/22061
+                    - name: Bryan M. Sowards
+                      partyId: 29563
+                      url: https://api.lexmachina.com/parties/29563
+        '422':
+          description: Error - 422
+          content:
+            application/json:
+              examples:
+                Invalid Page:
+                  summary: Invalid Page
+                  value:
+                    detail: Invalid page.
+                Validation error:
+                  summary: Validation error
+                  value:
+                    summary: Invalid input
+                    detail:
+                    - type: parsing
+                      loc:
+                      - path
+                      - query
+                      - body
+                      msg: invalid input
+                      input: '-1'
+        '401':
+          description: Invalid or expired token
+          content:
+            application/json:
+              examples:
+                Expired token:
+                  summary: Expired token
+                  value:
+                    detail: 'Token time expired: Signature has expired.'
+                Invalid token:
+                  summary: Invalid token
+                  value:
+                    detail: Invalid token
+        '404':
+          description: Not found
+          content:
+            application/json:
+              examples:
+                Not found:
+                  summary: Not found
+                  value:
+                    summary: Unknown id
+                    detail: Not Found
+  /party-groups:
+    get:
+      tags:
+      - Parties
+      summary: Get Party Groups
+      description: Gets a list of all party groups the user has created.
+      operationId: get_party_groups
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/PartyGroup'
+                type: array
+                title: Response Get Party Groups Party Groups Get
+              examples:
+                List Of Party Groups:
+                  summary: List Of Party Groups
+                  value:
+                  - partyGroupName: wendy's
+                    parties:
+                    - 387488
+                    - 20885289
+                    - 143526
+                    - 163171152
+                    - 273183713
+                    - 40169919
+                    - 319286450
+                    - 256180576
+                    - 325588802
+                    - 330223939
+                    - 241128208
+                    - 56062732
+                    - 144780373
+                    - 328704819
+                    - 24142140
+                    - 40324490
+                    partyGroupId: 19622
+                    lawUrl: https://law.lexmachina.com/party/summary?id=387488&id=20885289&id=143526&id=163171152&id=273183713&id=40169919&id=319286450&id=256180576&id=325588802&id=330223939&id=241128208&id=56062732&id=144780373&id=328704819&id=24142140&id=40324490
+                  - partyGroupName: wendys
+                    parties:
+                    - 387488
+                    - 20885289
+                    - 143526
+                    - 163171152
+                    - 273183713
+                    - 40169919
+                    - 319286450
+                    - 256180576
+                    - 325588802
+                    - 330223939
+                    - 241128208
+                    - 56062732
+                    - 144780373
+                    - 328704819
+                    - 24142140
+                    - 40324490
+                    partyGroupId: 19623
+                    lawUrl: https://law.lexmachina.com/party/summary?id=387488&id=20885289&id=143526&id=163171152&id=273183713&id=40169919&id=319286450&id=256180576&id=325588802&id=330223939&id=241128208&id=56062732&id=144780373&id=328704819&id=24142140&id=40324490
+                  - partyGroupName: Wendys
+                    parties:
+                    - 387488
+                    - 143526
+                    - 163171152
+                    - 273183713
+                    - 40169919
+                    - 319286450
+                    - 256180576
+                    - 325588802
+                    - 330223939
+                    - 241128208
+                    - 56062732
+                    - 144780373
+                    - 328704819
+                    - 24142140
+                    - 40324490
+                    - 20885289
+                    partyGroupId: 19624
+                    lawUrl: https://law.lexmachina.com/party/summary?id=387488&id=143526&id=163171152&id=273183713&id=40169919&id=319286450&id=256180576&id=325588802&id=330223939&id=241128208&id=56062732&id=144780373&id=328704819&id=24142140&id=40324490&id=20885289
+                  - partyGroupName: 🐈
+                    parties:
+                    - 71741
+                    partyGroupId: 19625
+                    lawUrl: https://law.lexmachina.com/party/summary?id=71741
+                  - partyGroupName: Apple
+                    parties:
+                    - 2273
+                    - 59
+                    - 297248643
+                    - 719314
+                    - 179979
+                    - 48445170
+                    - 35566079
+                    - 35165535
+                    - 20687218
+                    - 35172754
+                    - 64608167
+                    - 72051043
+                    - 53363814
+                    - 1550880
+                    - 1556821
+                    - 20661181
+                    - 29823262
+                    - 72563059
+                    - 223597749
+                    - 59498490
+                    - 73878925
+                    - 34202630
+                    - 53869330
+                    - 55901762
+                    - 24056079
+                    - 53512794
+                    - 2219044
+                    - 66625355
+                    - 56421328
+                    - 223597739
+                    - 319550426
+                    - 144817373
+                    - 330757
+                    partyGroupId: 19626
+                    lawUrl: https://law.lexmachina.com/party/summary?id=2273&id=59&id=297248643&id=719314&id=179979&id=48445170&id=35566079&id=35165535&id=20687218&id=35172754&id=64608167&id=72051043&id=53363814&id=1550880&id=1556821&id=20661181&id=29823262&id=72563059&id=223597749&id=59498490&id=73878925&id=34202630&id=53869330&id=55901762&id=24056079&id=53512794&id=2219044&id=66625355&id=56421328&id=223597739&id=319550426&id=144817373&id=330757
+                  - partyGroupName: Apple II
+                    parties:
+                    - 2273
+                    - 297248643
+                    - 719314
+                    - 179979
+                    - 48445170
+                    - 35566079
+                    - 35165535
+                    - 20687218
+                    - 35172754
+                    - 64608167
+                    - 72051043
+                    - 53363814
+                    - 1550880
+                    - 1556821
+                    - 20661181
+                    - 29823262
+                    - 72563059
+                    - 223597749
+                    - 59498490
+                    - 73878925
+                    - 34202630
+                    - 53869330
+                    - 55901762
+                    - 24056079
+                    - 53512794
+                    - 2219044
+                    - 66625355
+                    - 56421328
+                    - 223597739
+                    - 319550426
+                    - 144817373
+                    - 330757
+                    - 59
+                    partyGroupId: 19627
+                    lawUrl: https://law.lexmachina.com/party/summary?id=2273&id=297248643&id=719314&id=179979&id=48445170&id=35566079&id=35165535&id=20687218&id=35172754&id=64608167&id=72051043&id=53363814&id=1550880&id=1556821&id=20661181&id=29823262&id=72563059&id=223597749&id=59498490&id=73878925&id=34202630&id=53869330&id=55901762&id=24056079&id=53512794&id=2219044&id=66625355&id=56421328&id=223597739&id=319550426&id=144817373&id=330757&id=59
+        '401':
+          description: Invalid or expired token
+          content:
+            application/json:
+              examples:
+                Expired token:
+                  summary: Expired token
+                  value:
+                    detail: 'Token time expired: Signature has expired.'
+                Invalid token:
+                  summary: Invalid token
+                  value:
+                    detail: Invalid token
+        '404':
+          description: Not found
+          content:
+            application/json:
+              examples:
+                Not found:
+                  summary: Not found
+                  value:
+                    summary: Unknown id
+                    detail: Not Found
+        '422':
+          description: Error - 422
+          content:
+            application/json:
+              examples:
+                Validation error:
+                  summary: Validation error
+                  value:
+                    summary: Invalid input
+                    detail:
+                    - type: parsing
+                      loc:
+                      - path
+                      - query
+                      - body
+                      msg: invalid input
+                      input: '-1'
+      security:
+      - JwtAccessBearer: []
+components:
+  schemas:
+    PartyGroup:
+      properties:
+        partyGroupName:
+          type: string
+          title: Partygroupname
+        parties:
+          items:
+            type: integer
+          type: array
+          title: Parties
+        partyGroupId:
+          type: integer
+          title: Partygroupid
+        lawUrl:
+          type: string
+          title: Lawurl
+      additionalProperties: false
+      type: object
+      required:
+      - partyGroupName
+      - parties
+      - partyGroupId
+      - lawUrl
+      title: PartyGroup
+    PartyData:
+      properties:
+        name:
+          type: string
+          title: Name
+        partyId:
+          type: integer
+          title: Partyid
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - partyId
+      title: PartyData
+    PartyReference:
+      properties:
+        name:
+          type: string
+          title: Name
+        partyId:
+          type: integer
+          title: Partyid
+        inputId:
+          type: integer
+          title: Inputid
+        url:
+          type: string
+          title: Url
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - partyId
+      - inputId
+      - url
+      title: PartyReference
+      description: 'Indicates that the Lex Machina party id input was has changed,
+
+        the inputId is the ID given that should map to the returned partyId.'
+    PartySearchResults:
+      properties:
+        totalCount:
+          type: integer
+          title: Totalcount
+        page:
+          type: integer
+          title: Page
+        nextPage:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Nextpage
+        parties:
+          items:
+            $ref: '#/components/schemas/PartyResult'
+          type: array
+          title: Parties
+      additionalProperties: false
+      type: object
+      required:
+      - totalCount
+      - page
+      - parties
+      title: PartySearchResults
+    PartyResult:
+      properties:
+        name:
+          type: string
+          title: Name
+        partyId:
+          type: integer
+          title: Partyid
+        url:
+          type: string
+          title: Url
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - partyId
+      - url
+      title: PartyResult
+  securitySchemes:
+    JwtAccessBearer:
+      type: http
+      scheme: bearer

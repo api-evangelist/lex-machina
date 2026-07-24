@@ -1,0 +1,1903 @@
+openapi: 3.1.0
+info:
+  title: Lex Machina Alerts Case Query API
+  version: '20260324'
+  description: Alerts.
+servers:
+- url: https://api.lexmachina.com
+  description: Lex Machina production API
+tags:
+- name: Case Query
+  description: Provides a filter based way to find cases.
+paths:
+  /query-appeals-cases:
+    post:
+      tags:
+      - Case Query
+      summary: Query Appeals Cases
+      description: 'Queries federal appeals court cases.
+
+
+        - **data**: the appeals case query
+
+
+        See [https://developer.lexmachina.com/posts/query/appeals_query_usage/](https://developer.lexmachina.com/posts/query/appeals_query_usage/) for query formation.
+
+
+        The results will contain a list of cases, each with a specificed url and Lex Machina appealsCaseId.'
+      operationId: query_appeals_cases
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AppealsCaseQuery'
+            examples:
+              appeals query on originating venue:
+                summary: appeals query on originating venue
+                description: appeals cases originating in the court of federal claims
+                value: '{"originatingVenues": {"include": ["Originating Venue: Court of Federal Claims"]}}'
+              appeals query on court:
+                summary: appeals query on court
+                description: appeals cases in the tenth circuit
+                value: '{"courts": {"include": ["U.S. Court of Appeals for the Tenth Circuit"]}}'
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppealsCaseQueryResult'
+              examples:
+                appeals query on originating venue:
+                  summary: appeals query on originating venue
+                  value:
+                    cases:
+                    - url: https://api.lexmachina.com/appeals-cases/2005670885
+                      appealsCaseId: 2005670885
+                    - url: https://api.lexmachina.com/appeals-cases/2005670259
+                      appealsCaseId: 2005670259
+                    - url: https://api.lexmachina.com/appeals-cases/2005670890
+                      appealsCaseId: 2005670890
+                    - url: https://api.lexmachina.com/appeals-cases/2005668241
+                      appealsCaseId: 2005668241
+                    - url: https://api.lexmachina.com/appeals-cases/2005670690
+                      appealsCaseId: 2005670690
+                appeals query on court:
+                  summary: appeals query on court
+                  value:
+                    cases:
+                    - url: https://api.lexmachina.com/appeals-cases/2005756070
+                      appealsCaseId: 2005756070
+                    - url: https://api.lexmachina.com/appeals-cases/2005821468
+                      appealsCaseId: 2005821468
+                    - url: https://api.lexmachina.com/appeals-cases/2005835286
+                      appealsCaseId: 2005835286
+                    - url: https://api.lexmachina.com/appeals-cases/2005840529
+                      appealsCaseId: 2005840529
+                    - url: https://api.lexmachina.com/appeals-cases/2005866923
+                      appealsCaseId: 2005866923
+        '401':
+          description: Invalid or expired token
+          content:
+            application/json:
+              examples:
+                Expired token:
+                  summary: Expired token
+                  value:
+                    detail: 'Token time expired: Signature has expired.'
+                Invalid token:
+                  summary: Invalid token
+                  value:
+                    detail: Invalid token
+        '404':
+          description: Not found
+          content:
+            application/json:
+              examples:
+                Not found:
+                  summary: Not found
+                  value:
+                    summary: Unknown id
+                    detail: Not Found
+        '422':
+          description: Error - 422
+          content:
+            application/json:
+              examples:
+                Validation error:
+                  summary: Validation error
+                  value:
+                    summary: Invalid input
+                    detail:
+                    - type: parsing
+                      loc:
+                      - path
+                      - query
+                      - body
+                      msg: invalid input
+                      input: '-1'
+      security:
+      - JwtAccessBearer: []
+  /query-district-cases:
+    post:
+      tags:
+      - Case Query
+      summary: Query District Cases
+      description: 'Queries federal district court cases.
+
+
+        - **data**: the district case query
+
+
+        See [Querying district cases](https://developer.lexmachina.com/api-reference/district-cases/querying-district-cases/) for documentation.
+
+
+        The results will contain a list of cases, each with a specificed url and Lex Machina districtCaseId.'
+      operationId: query_district_cases
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DistrictCaseQuery'
+            examples:
+              three district query results:
+                summary: three district query results
+                description: contracts cases in district of NJ in 2021
+                value: '{"courts": {"include": ["njd"]}, "caseTypes": {"include": ["Contracts"]}, "dates": {"filed": {"onOrAfter": "2019-01-01", "onOrBefore": "2019-12-31"}, "terminated": {"onOrAfter": "2021-01-01", "onOrBefore": "2021-12-31"}}, "page": 1, "pageSize": 3}'
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DistrictCaseQueryResult'
+              examples:
+                three district query results:
+                  summary: three district query results
+                  value:
+                    cases:
+                    - url: https://api.lexmachina.com/district-cases/2002259499
+                      districtCaseId: 2002259499
+                    - url: https://api.lexmachina.com/district-cases/2002265866
+                      districtCaseId: 2002265866
+                    - url: https://api.lexmachina.com/district-cases/2002268016
+                      districtCaseId: 2002268016
+        '401':
+          description: Invalid or expired token
+          content:
+            application/json:
+              examples:
+                Expired token:
+                  summary: Expired token
+                  value:
+                    detail: 'Token time expired: Signature has expired.'
+                Invalid token:
+                  summary: Invalid token
+                  value:
+                    detail: Invalid token
+        '404':
+          description: Not found
+          content:
+            application/json:
+              examples:
+                Not found:
+                  summary: Not found
+                  value:
+                    summary: Unknown id
+                    detail: Not Found
+        '422':
+          description: Error - 422
+          content:
+            application/json:
+              examples:
+                Validation error:
+                  summary: Validation error
+                  value:
+                    summary: Invalid input
+                    detail:
+                    - type: parsing
+                      loc:
+                      - path
+                      - query
+                      - body
+                      msg: invalid input
+                      input: '-1'
+      security:
+      - JwtAccessBearer: []
+  /query-state-cases:
+    post:
+      tags:
+      - Case Query
+      summary: Query State Cases
+      description: 'Queries enhanced state court cases.
+
+
+        - **data**: the state case query
+
+
+        See [https://developer.lexmachina.com/posts/query/state_query_usage/](https://developer.lexmachina.com/posts/query/state_query_usage/) for query formation.
+
+
+        The results will contain a list of cases, each with a specificed url and Lex Machina stateCaseId.'
+      operationId: query_state_cases
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StateCaseQuery'
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StateCaseQueryResult'
+              examples:
+                Query Results:
+                  summary: Query Results
+                  value:
+                    cases:
+                    - url: https://api.lexmachina.com/state-cases/2003442290
+                      stateCaseId: 2003442290
+                    - url: https://api.lexmachina.com/state-cases/2003442348
+                      stateCaseId: 2003442348
+                    - url: https://api.lexmachina.com/state-cases/2003442352
+                      stateCaseId: 2003442352
+                    - url: https://api.lexmachina.com/state-cases/2003463384
+                      stateCaseId: 2003463384
+                    - url: https://api.lexmachina.com/state-cases/2003442446
+                      stateCaseId: 2003442446
+        '422':
+          description: Error - 422
+          content:
+            application/json:
+              examples:
+                Maximum Cases Per Page Exceeded:
+                  summary: Maximum Cases Per Page Exceeded
+                  value:
+                    detail: Maximum cases per page is 100
+                Invalid Input:
+                  summary: Invalid Input
+                  value:
+                    detail:
+                    - type: missing
+                      loc:
+                      - body
+                      - courts
+                      - state
+                      msg: Field required
+                      input:
+                        include:
+                        - Fort Bend County District Court
+                Validation error:
+                  summary: Validation error
+                  value:
+                    summary: Invalid input
+                    detail:
+                    - type: parsing
+                      loc:
+                      - path
+                      - query
+                      - body
+                      msg: invalid input
+                      input: '-1'
+        '401':
+          description: Invalid or expired token
+          content:
+            application/json:
+              examples:
+                Expired token:
+                  summary: Expired token
+                  value:
+                    detail: 'Token time expired: Signature has expired.'
+                Invalid token:
+                  summary: Invalid token
+                  value:
+                    detail: Invalid token
+        '404':
+          description: Not found
+          content:
+            application/json:
+              examples:
+                Not found:
+                  summary: Not found
+                  value:
+                    summary: Unknown id
+                    detail: Not Found
+      security:
+      - JwtAccessBearer: []
+components:
+  schemas:
+    JudgmentSourceFilter:
+      properties:
+        include:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Exclude
+      additionalProperties: false
+      type: object
+      title: JudgmentSourceFilter
+    AppealsCaseQuery:
+      properties:
+        courts:
+          anyOf:
+          - $ref: '#/components/schemas/CourtFilter'
+          - type: 'null'
+        caseStatus:
+          anyOf:
+          - $ref: '#/components/schemas/CaseStatus'
+          - type: 'null'
+        caseTags:
+          anyOf:
+          - $ref: '#/components/schemas/CaseTagsFilter'
+          - type: 'null'
+        dates:
+          anyOf:
+          - $ref: '#/components/schemas/AppealsCaseDatesFilter'
+          - type: 'null'
+        judges:
+          anyOf:
+          - $ref: '#/components/schemas/JudgeFilter'
+          - type: 'null'
+        lawFirms:
+          anyOf:
+          - $ref: '#/components/schemas/AppealsLawFirmFilter'
+          - type: 'null'
+        attorneys:
+          anyOf:
+          - $ref: '#/components/schemas/AppealsAttorneyFilter'
+          - type: 'null'
+        parties:
+          anyOf:
+          - $ref: '#/components/schemas/AppealsPartyFilter'
+          - type: 'null'
+        originatingVenues:
+          anyOf:
+          - $ref: '#/components/schemas/OriginatingVenuesFilter'
+          - type: 'null'
+        originatingCases:
+          anyOf:
+          - $ref: '#/components/schemas/OriginatingCasesFilter'
+          - type: 'null'
+        resolutions:
+          anyOf:
+          - $ref: '#/components/schemas/ResolutionsFilter'
+          - type: 'null'
+        supremeCourtDecisions:
+          anyOf:
+          - $ref: '#/components/schemas/SupremeCourtDecisionsFilter'
+          - type: 'null'
+        ordering:
+          $ref: '#/components/schemas/Ordering'
+          default: ByFirstFiled
+        page:
+          type: integer
+          title: Page
+          default: 1
+        pageSize:
+          type: integer
+          title: Pagesize
+          default: 5
+      additionalProperties: false
+      type: object
+      title: AppealsCaseQuery
+    DistrictCaseReference:
+      properties:
+        url:
+          type: string
+          title: Url
+        districtCaseId:
+          type: integer
+          title: Districtcaseid
+      additionalProperties: false
+      type: object
+      required:
+      - url
+      - districtCaseId
+      title: DistrictCaseReference
+    StateCaseQuery:
+      properties:
+        courts:
+          $ref: '#/components/schemas/StateCourtFilter'
+        caseStatus:
+          anyOf:
+          - $ref: '#/components/schemas/CaseStatus'
+          - type: 'null'
+        caseTypes:
+          anyOf:
+          - $ref: '#/components/schemas/CaseTypesFilter'
+          - type: 'null'
+        caseTags:
+          anyOf:
+          - $ref: '#/components/schemas/CaseTagsFilter'
+          - type: 'null'
+        dates:
+          anyOf:
+          - $ref: '#/components/schemas/CaseDatesFilter'
+          - type: 'null'
+        judges:
+          anyOf:
+          - $ref: '#/components/schemas/JudgeFilter'
+          - type: 'null'
+        events:
+          anyOf:
+          - $ref: '#/components/schemas/EventFilter'
+          - type: 'null'
+        lawFirms:
+          anyOf:
+          - $ref: '#/components/schemas/LawFirmFilter'
+          - type: 'null'
+        attorneys:
+          anyOf:
+          - $ref: '#/components/schemas/AttorneyFilter'
+          - type: 'null'
+        parties:
+          anyOf:
+          - $ref: '#/components/schemas/PartyFilter'
+          - type: 'null'
+        resolutions:
+          anyOf:
+          - $ref: '#/components/schemas/ResolutionsFilter'
+          - type: 'null'
+        damages:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/IndividualStateDamagesFilter'
+            type: array
+          - type: 'null'
+          title: Damages
+        rulings:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/IndividualRulingsFilter'
+            type: array
+          - type: 'null'
+          title: Rulings
+        ordering:
+          $ref: '#/components/schemas/Ordering'
+          default: ByFirstFiled
+        page:
+          type: integer
+          title: Page
+          default: 1
+        pageSize:
+          type: integer
+          title: Pagesize
+          default: 5
+      additionalProperties: false
+      type: object
+      required:
+      - courts
+      title: StateCaseQuery
+      example:
+        caseStatus: Terminated
+        courts:
+          include:
+          - Fort Bend County District Court
+          state: TX
+        dates:
+          filed:
+            onOrAfter: '2016-01-01'
+          terminated:
+            onOrBefore: '2021-05-01'
+        judges:
+          include:
+          - 1792
+        ordering: ByFirstFiled
+        page: 1
+        pageSize: 5
+    StateCaseReference:
+      properties:
+        url:
+          type: string
+          title: Url
+        stateCaseId:
+          type: integer
+          title: Statecaseid
+      additionalProperties: false
+      type: object
+      required:
+      - url
+      - stateCaseId
+      title: StateCaseReference
+    TimingFilter:
+      properties:
+        onOrAfter:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: Onorafter
+        onOrBefore:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: Onorbefore
+      additionalProperties: false
+      type: object
+      title: TimingFilter
+    CaseDatesFilter:
+      properties:
+        filed:
+          anyOf:
+          - $ref: '#/components/schemas/TimingFilter'
+          - type: 'null'
+        terminated:
+          anyOf:
+          - $ref: '#/components/schemas/TimingFilter'
+          - type: 'null'
+        trial:
+          anyOf:
+          - $ref: '#/components/schemas/TimingFilter'
+          - type: 'null'
+        lastDocket:
+          anyOf:
+          - $ref: '#/components/schemas/TimingFilter'
+          - type: 'null'
+      additionalProperties: false
+      type: object
+      title: CaseDatesFilter
+    IndividualNameTypeFilter:
+      properties:
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+        type:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Type
+      additionalProperties: false
+      type: object
+      title: IndividualNameTypeFilter
+    NameTypeFilter:
+      properties:
+        include:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/IndividualNameTypeFilter'
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/IndividualNameTypeFilter'
+            type: array
+          - type: 'null'
+          title: Exclude
+      additionalProperties: false
+      type: object
+      title: NameTypeFilter
+    IndividualStateDamagesFilter:
+      properties:
+        name:
+          anyOf:
+          - $ref: '#/components/schemas/NameFilter'
+          - type: 'null'
+        date:
+          anyOf:
+          - $ref: '#/components/schemas/TimingFilter'
+          - type: 'null'
+        awardedToParties:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Awardedtoparties
+        awardedAgainstParties:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Awardedagainstparties
+        minimumAmount:
+          anyOf:
+          - type: number
+          - type: string
+            pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          - type: 'null'
+          title: Minimumamount
+      additionalProperties: false
+      type: object
+      title: IndividualStateDamagesFilter
+    AppellateDecisionFilter:
+      properties:
+        include:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Exclude
+      additionalProperties: false
+      type: object
+      title: AppellateDecisionFilter
+    MultidistrictLitigationFilter:
+      properties:
+        include:
+          anyOf:
+          - items:
+              type: integer
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              type: integer
+            type: array
+          - type: 'null'
+          title: Exclude
+      additionalProperties: false
+      type: object
+      title: MultidistrictLitigationFilter
+    CaseStatus:
+      type: string
+      enum:
+      - Open
+      - Terminated
+      title: CaseStatus
+    AppealsLawFirmFilter:
+      properties:
+        include:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Exclude
+        includeAppellant:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Includeappellant
+        excludeAppellant:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Excludeappellant
+        includeAppellee:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Includeappellee
+        excludeAppellee:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Excludeappellee
+        includeRespondent:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Includerespondent
+        excludeRespondent:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Excluderespondent
+        includeThirdParty:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Includethirdparty
+        excludeThirdParty:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Excludethirdparty
+        includePetitionerMovant:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Includepetitionermovant
+        excludePetitionerMovant:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Excludepetitionermovant
+      additionalProperties: false
+      type: object
+      title: AppealsLawFirmFilter
+    Ordering:
+      type: string
+      enum:
+      - ByFirstFiled
+      - ByLastFiled
+      title: Ordering
+    OriginatingCasesFilter:
+      properties:
+        includeDistrictCaseIds:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Includedistrictcaseids
+        excludeDistrictCaseIds:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Excludedistrictcaseids
+        includeOriginatingJudges:
+          anyOf:
+          - $ref: '#/components/schemas/OriginatingJudgeFilter'
+          - type: 'null'
+        originatingDistrictCaseCriteria:
+          anyOf:
+          - $ref: '#/components/schemas/OriginatingDistrictCaseFilter'
+          - type: 'null'
+      additionalProperties: false
+      type: object
+      title: OriginatingCasesFilter
+    JudgmentEventFilter:
+      properties:
+        include:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Exclude
+      additionalProperties: false
+      type: object
+      title: JudgmentEventFilter
+    AppealsAttorneyFilter:
+      properties:
+        include:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Exclude
+        includeAppellant:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Includeappellant
+        excludeAppellant:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Excludeappellant
+        includeAppellee:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Includeappellee
+        excludeAppellee:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Excludeappellee
+        includeRespondent:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Includerespondent
+        excludeRespondent:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Excluderespondent
+        includeThirdParty:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Includethirdparty
+        excludeThirdParty:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Excludethirdparty
+        includePetitionerMovant:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Includepetitionermovant
+        excludePetitionerMovant:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Excludepetitionermovant
+      additionalProperties: false
+      type: object
+      title: AppealsAttorneyFilter
+    LawFirmFilter:
+      properties:
+        include:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Exclude
+        includePlaintiff:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Includeplaintiff
+        excludePlaintiff:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Excludeplaintiff
+        includeDefendant:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Includedefendant
+        excludeDefendant:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Excludedefendant
+        includeThirdParty:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Includethirdparty
+        excludeThirdParty:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Excludethirdparty
+      additionalProperties: false
+      type: object
+      title: LawFirmFilter
+    ResolutionsFilter:
+      properties:
+        include:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/IndividualResolutionsFilter'
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/IndividualResolutionsFilter'
+            type: array
+          - type: 'null'
+          title: Exclude
+      additionalProperties: false
+      type: object
+      title: ResolutionsFilter
+    CourtFilter:
+      properties:
+        include:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Exclude
+      additionalProperties: false
+      type: object
+      title: CourtFilter
+    OriginatingDistrictCaseFilter:
+      properties:
+        courts:
+          anyOf:
+          - $ref: '#/components/schemas/CourtFilter'
+          - type: 'null'
+        caseTypes:
+          anyOf:
+          - $ref: '#/components/schemas/OriginatingCaseTypesFilter'
+          - type: 'null'
+      additionalProperties: false
+      type: object
+      title: OriginatingDistrictCaseFilter
+    StateCourtFilter:
+      properties:
+        state:
+          type: string
+          title: State
+        include:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Exclude
+      additionalProperties: false
+      type: object
+      required:
+      - state
+      title: StateCourtFilter
+    PatentInvalidityReasonsFilter:
+      properties:
+        include:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Include
+      additionalProperties: false
+      type: object
+      title: PatentInvalidityReasonsFilter
+    AppealsCaseQueryResult:
+      properties:
+        cases:
+          items:
+            $ref: '#/components/schemas/AppealsCaseReference'
+          type: array
+          title: Cases
+      additionalProperties: false
+      type: object
+      required:
+      - cases
+      title: AppealsCaseQueryResult
+    AppealsCaseDatesFilter:
+      properties:
+        filed:
+          anyOf:
+          - $ref: '#/components/schemas/TimingFilter'
+          - type: 'null'
+        terminated:
+          anyOf:
+          - $ref: '#/components/schemas/TimingFilter'
+          - type: 'null'
+        lastDocket:
+          anyOf:
+          - $ref: '#/components/schemas/TimingFilter'
+          - type: 'null'
+      additionalProperties: false
+      type: object
+      title: AppealsCaseDatesFilter
+    NameFilter:
+      properties:
+        include:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Exclude
+      additionalProperties: false
+      type: object
+      title: NameFilter
+    IndividualRemediesFilter:
+      properties:
+        judgmentSource:
+          anyOf:
+          - $ref: '#/components/schemas/JudgmentSourceFilter'
+          - type: 'null'
+        nameType:
+          anyOf:
+          - $ref: '#/components/schemas/NameTypeFilter'
+          - type: 'null'
+        date:
+          anyOf:
+          - $ref: '#/components/schemas/TimingFilter'
+          - type: 'null'
+        awardedToParties:
+          anyOf:
+          - items:
+              type: integer
+            type: array
+          - type: 'null'
+          title: Awardedtoparties
+        awardedAgainstParties:
+          anyOf:
+          - items:
+              type: integer
+            type: array
+          - type: 'null'
+          title: Awardedagainstparties
+      additionalProperties: false
+      type: object
+      title: IndividualRemediesFilter
+    PartyFilter:
+      properties:
+        include:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Exclude
+        includePlaintiff:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Includeplaintiff
+        excludePlaintiff:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Excludeplaintiff
+        includeDefendant:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Includedefendant
+        excludeDefendant:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Excludedefendant
+        includeThirdParty:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Includethirdparty
+        excludeThirdParty:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Excludethirdparty
+      additionalProperties: false
+      type: object
+      title: PartyFilter
+    IndividualResolutionsFilter:
+      properties:
+        summary:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Summary
+        specific:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Specific
+      additionalProperties: false
+      type: object
+      title: IndividualResolutionsFilter
+    MagistrateFilter:
+      properties:
+        include:
+          anyOf:
+          - items:
+              type: integer
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              type: integer
+            type: array
+          - type: 'null'
+          title: Exclude
+      additionalProperties: false
+      type: object
+      title: MagistrateFilter
+    PatentFilter:
+      properties:
+        include:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Exclude
+      additionalProperties: false
+      type: object
+      title: PatentFilter
+    DistrictCaseQuery:
+      properties:
+        caseStatus:
+          anyOf:
+          - $ref: '#/components/schemas/CaseStatus'
+          - type: 'null'
+        caseTypes:
+          anyOf:
+          - $ref: '#/components/schemas/CaseTypesFilter'
+          - type: 'null'
+        caseTags:
+          anyOf:
+          - $ref: '#/components/schemas/CaseTagsFilter'
+          - type: 'null'
+        dates:
+          anyOf:
+          - $ref: '#/components/schemas/CaseDatesFilter'
+          - type: 'null'
+        judges:
+          anyOf:
+          - $ref: '#/components/schemas/JudgeFilter'
+          - type: 'null'
+        magistrates:
+          anyOf:
+          - $ref: '#/components/schemas/MagistrateFilter'
+          - type: 'null'
+        events:
+          anyOf:
+          - $ref: '#/components/schemas/EventFilter'
+          - type: 'null'
+        lawFirms:
+          anyOf:
+          - $ref: '#/components/schemas/LawFirmFilter'
+          - type: 'null'
+        attorneys:
+          anyOf:
+          - $ref: '#/components/schemas/AttorneyFilter'
+          - type: 'null'
+        parties:
+          anyOf:
+          - $ref: '#/components/schemas/PartyFilter'
+          - type: 'null'
+        courts:
+          anyOf:
+          - $ref: '#/components/schemas/CourtFilter'
+          - type: 'null'
+        resolutions:
+          anyOf:
+          - $ref: '#/components/schemas/ResolutionsFilter'
+          - type: 'null'
+        findings:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/IndividualFindingsFilter'
+            type: array
+          - type: 'null'
+          title: Findings
+        remedies:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/IndividualRemediesFilter'
+            type: array
+          - type: 'null'
+          title: Remedies
+        damages:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/IndividualDamagesFilter'
+            type: array
+          - type: 'null'
+          title: Damages
+        patents:
+          anyOf:
+          - $ref: '#/components/schemas/PatentFilter'
+          - type: 'null'
+        mdl:
+          anyOf:
+          - $ref: '#/components/schemas/MultidistrictLitigationFilter'
+          - type: 'null'
+        appellateDecisions:
+          anyOf:
+          - $ref: '#/components/schemas/AppellateDecisionFilter'
+          - type: 'null'
+        ordering:
+          $ref: '#/components/schemas/Ordering'
+          default: ByFirstFiled
+        page:
+          type: integer
+          title: Page
+          default: 1
+        pageSize:
+          type: integer
+          title: Pagesize
+          default: 5
+      additionalProperties: false
+      type: object
+      title: DistrictCaseQuery
+    StateCaseQueryResult:
+      properties:
+        cases:
+          items:
+            $ref: '#/components/schemas/StateCaseReference'
+          type: array
+          title: Cases
+      additionalProperties: false
+      type: object
+      required:
+      - cases
+      title: StateCaseQueryResult
+    CaseTypesFilter:
+      properties:
+        include:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Exclude
+      additionalProperties: false
+      type: object
+      title: CaseTypesFilter
+    EventFilter:
+      properties:
+        include:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Exclude
+      additionalProperties: false
+      type: object
+      title: EventFilter
+    OriginatingVenuesFilter:
+      properties:
+        include:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Exclude
+      additionalProperties: false
+      type: object
+      title: OriginatingVenuesFilter
+    IndividualFindingsFilter:
+      properties:
+        judgmentSource:
+          anyOf:
+          - $ref: '#/components/schemas/JudgmentSourceFilter'
+          - type: 'null'
+        nameType:
+          anyOf:
+          - $ref: '#/components/schemas/NameTypeFilter'
+          - type: 'null'
+        date:
+          anyOf:
+          - $ref: '#/components/schemas/TimingFilter'
+          - type: 'null'
+        awardedToParties:
+          anyOf:
+          - items:
+              type: integer
+            type: array
+          - type: 'null'
+          title: Awardedtoparties
+        awardedAgainstParties:
+          anyOf:
+          - items:
+              type: integer
+            type: array
+          - type: 'null'
+          title: Awardedagainstparties
+        patentInvalidityReasons:
+          anyOf:
+          - $ref: '#/components/schemas/PatentInvalidityReasonsFilter'
+          - type: 'null'
+      additionalProperties: false
+      type: object
+      title: IndividualFindingsFilter
+    OriginatingCaseTypesFilter:
+      properties:
+        include:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Exclude
+      additionalProperties: false
+      type: object
+      title: OriginatingCaseTypesFilter
+    JudgeFilter:
+      properties:
+        include:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Exclude
+      additionalProperties: false
+      type: object
+      title: JudgeFilter
+    AppealsCaseReference:
+      properties:
+        url:
+          type: string
+          title: Url
+        appealsCaseId:
+          type: integer
+          title: Appealscaseid
+      additionalProperties: false
+      type: object
+      required:
+      - url
+      - appealsCaseId
+      title: AppealsCaseReference
+    OriginatingJudgeFilter:
+      properties:
+        districtFederalJudges:
+          anyOf:
+          - $ref: '#/components/schemas/JudgeFilter'
+          - type: 'null'
+      additionalProperties: false
+      type: object
+      title: OriginatingJudgeFilter
+    AppealsPartyFilter:
+      properties:
+        include:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Exclude
+        includeAppellant:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Includeappellant
+        excludeAppellant:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Excludeappellant
+        includeAppellee:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Includeappellee
+        excludeAppellee:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Excludeappellee
+        includeRespondent:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Includerespondent
+        excludeRespondent:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Excluderespondent
+        includeThirdParty:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Includethirdparty
+        excludeThirdParty:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Excludethirdparty
+        includePetitionerMovant:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Includepetitionermovant
+        excludePetitionerMovant:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Excludepetitionermovant
+      additionalProperties: false
+      type: object
+      title: AppealsPartyFilter
+    CaseTagsFilter:
+      properties:
+        include:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Exclude
+      additionalProperties: false
+      type: object
+      title: CaseTagsFilter
+    SupremeCourtDecisionsFilter:
+      properties:
+        include:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Exclude
+      additionalProperties: false
+      type: object
+      title: SupremeCourtDecisionsFilter
+    IndividualDamagesFilter:
+      properties:
+        judgmentSource:
+          anyOf:
+          - $ref: '#/components/schemas/JudgmentSourceFilter'
+          - type: 'null'
+        nameType:
+          anyOf:
+          - $ref: '#/components/schemas/NameTypeFilter'
+          - type: 'null'
+        date:
+          anyOf:
+          - $ref: '#/components/schemas/TimingFilter'
+          - type: 'null'
+        awardedToParties:
+          anyOf:
+          - items:
+              type: integer
+            type: array
+          - type: 'null'
+          title: Awardedtoparties
+        awardedAgainstParties:
+          anyOf:
+          - items:
+              type: integer
+            type: array
+          - type: 'null'
+          title: Awardedagainstparties
+        minimumAmount:
+          anyOf:
+          - type: number
+          - type: string
+            pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          - type: 'null'
+          title: Minimumamount
+      additionalProperties: false
+      type: object
+      title: IndividualDamagesFilter
+    DistrictCaseQueryResult:
+      properties:
+        cases:
+          items:
+            $ref: '#/components/schemas/DistrictCaseReference'
+          type: array
+          title: Cases
+      additionalProperties: false
+      type: object
+      required:
+      - cases
+      title: DistrictCaseQueryResult
+    IndividualRulingsFilter:
+      properties:
+        judgmentEvent:
+          anyOf:
+          - $ref: '#/components/schemas/JudgmentEventFilter'
+          - type: 'null'
+        awardedToParties:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Awardedtoparties
+        awardedAgainstParties:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Awardedagainstparties
+        date:
+          anyOf:
+          - $ref: '#/components/schemas/TimingFilter'
+          - type: 'null'
+      additionalProperties: false
+      type: object
+      title: IndividualRulingsFilter
+    AttorneyFilter:
+      properties:
+        include:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Exclude
+        includePlaintiff:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Includeplaintiff
+        excludePlaintiff:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Excludeplaintiff
+        includeDefendant:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Includedefendant
+        excludeDefendant:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Excludedefendant
+        includeThirdParty:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Includethirdparty
+        excludeThirdParty:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Excludethirdparty
+      additionalProperties: false
+      type: object
+      title: AttorneyFilter
+  securitySchemes:
+    JwtAccessBearer:
+      type: http
+      scheme: bearer

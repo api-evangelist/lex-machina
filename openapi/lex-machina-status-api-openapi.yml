@@ -1,0 +1,52 @@
+openapi: 3.1.0
+info:
+  title: Lex Machina Alerts Status API
+  version: '20260324'
+  description: Alerts.
+servers:
+- url: https://api.lexmachina.com
+  description: Lex Machina production API
+tags:
+- name: Status
+  description: Provides API status.
+paths:
+  /health:
+    get:
+      tags:
+      - Status
+      summary: Get Health
+      description: Gets the current health of the API.
+      operationId: get_health
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthStatus'
+      security:
+      - JwtAccessBearer: []
+components:
+  schemas:
+    HealthStatus:
+      properties:
+        legalDataIsAvailable:
+          type: boolean
+          title: Legaldataisavailable
+        userAccountDataIsAvailable:
+          type: boolean
+          title: Useraccountdataisavailable
+        searchDataIsAvailable:
+          type: boolean
+          title: Searchdataisavailable
+      additionalProperties: false
+      type: object
+      required:
+      - legalDataIsAvailable
+      - userAccountDataIsAvailable
+      - searchDataIsAvailable
+      title: HealthStatus
+  securitySchemes:
+    JwtAccessBearer:
+      type: http
+      scheme: bearer

@@ -1,0 +1,605 @@
+openapi: 3.1.0
+info:
+  title: Lex Machina Alerts API
+  version: '20260324'
+  description: Alerts.
+servers:
+- url: https://api.lexmachina.com
+  description: Lex Machina production API
+tags:
+- name: Alerts
+  description: Alerts.
+paths:
+  /alerts:
+    get:
+      tags:
+      - Alerts
+      summary: Get Alerts
+      description: Gets a list of all alerts the application has access too.
+      operationId: get_alerts
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Alert'
+                type: array
+                title: Response Get Alerts Alerts Get
+              examples:
+                a list of alerts:
+                  summary: a list of alerts
+                  value:
+                  - alertId: 121766
+                    type: New Party PTAB Trials
+                    customName: ptab-case
+                    frequency: Daily
+                    lastRun: '2024-10-11'
+                    alertUrl: https://api.lexmachina.com/alerts/runs/121766
+                    lawUrl: https://law.lexmachina.com/party/ptab?filing_date-from=2012-09-16&id=20009903
+                  - alertId: 121885
+                    type: New PTAB Documents
+                    customName: ptab-docs
+                    frequency: Daily
+                    lastRun: '2026-03-07'
+                    alertUrl: https://api.lexmachina.com/alerts/runs/121885
+                    lawUrl: https://law.lexmachina.com/ptab/documents/?filing_date-from=2012-09-16&q=%22lex+machina%22
+                  - alertId: 121889
+                    type: New District Court Documents
+                    customName: district-docket
+                    frequency: Daily
+                    lastRun: '2024-10-15'
+                    alertUrl: https://api.lexmachina.com/alerts/runs/121889
+                    lawUrl: https://law.lexmachina.com/documents/?case_types-include=27&document_tags-include=257&document_tags-include=289&filed_on-from=2015-10-01&filed_on-to=2015-10-21&q=%22license+royalty%22~5+OR+%22license+royalties%22~5
+                  - alertId: 121895
+                    type: New District Court Cases
+                    customName: district-court-cases
+                    frequency: Daily
+                    lastRun: '2024-10-15'
+                    alertUrl: https://api.lexmachina.com/alerts/runs/121895
+                    lawUrl: https://law.lexmachina.com/cases/?case_types-include=27&court-include=cacd&court-include=cand&court-include=casd&court-include=ded&court-include=flsd&court-include=ilnd&court-include=mied&court-include=njd&court-include=nysd&court-include=txed&court-include=utd&court-include=vaed&filed_on-from=2014-01-01&filed_on-to=2014-04-30&status=all
+                  - alertId: 121968
+                    type: New Federal Appeals Cases
+                    customName: appeals-case
+                    frequency: Daily
+                    lastRun: '2025-02-05'
+                    alertUrl: https://api.lexmachina.com/alerts/runs/121968
+                    lawUrl: https://law.lexmachina.com/federal-court/appeals/cases?court-include=cadc&filed_on-from=2012-01-01&resolution-include=GO
+                  - alertId: 121969
+                    type: New Law Firm Bankruptcy Court Cases
+                    customName: bankrupcy-cases
+                    frequency: Daily
+                    lastRun: '2026-02-02'
+                    alertUrl: https://api.lexmachina.com/alerts/runs/121969
+                    lawUrl: https://law.lexmachina.com/specialty/bankruptcy/counsel/law_firm/1231280/cases?filed_on-from=2009-01-01
+                  - alertId: 121970
+                    type: New Bankruptcy Court Case Documents
+                    customName: bankrpucy-document
+                    frequency: Daily
+                    lastRun: '2026-03-11'
+                    alertUrl: https://api.lexmachina.com/alerts/runs/121970
+                    lawUrl: https://law.lexmachina.com/specialty/bankruptcy/nysb/cases/2008015611?q=tether#docket-entries
+                  - alertId: 121971
+                    type: New ITC Documents
+                    customName: itc-docs
+                    frequency: Daily
+                    lastRun: '2024-10-16'
+                    alertUrl: https://api.lexmachina.com/alerts/runs/121971
+                    lawUrl: https://law.lexmachina.com/itc/documents/?q=%22cosmetics+company%22+OR+%22cosmetics+makeup%22+~20+&receive_date-from=1989-12-01
+                  - alertId: 121977
+                    type: New ITC Investigations
+                    customName: itc-cases
+                    frequency: Daily
+                    lastRun: '2024-10-16'
+                    alertUrl: https://api.lexmachina.com/alerts/runs/121977
+                    lawUrl: https://law.lexmachina.com/itc/?notice_date-from=1972-04-04&q=8%2C314%2C591
+                  - alertId: 121978
+                    type: New State Court Party Cases
+                    customName: state-cases
+                    frequency: Daily
+                    lastRun: '2026-03-12'
+                    alertUrl: https://api.lexmachina.com/alerts/runs/121978
+                    lawUrl: https://law.lexmachina.com/state-court/party/view?filed_on-from=2022-01-31&id=22619193&id=235912&id=309394
+                  - alertId: 121979
+                    type: New State Court Documents
+                    customName: state docs
+                    frequency: Daily
+                    lastRun: '2026-01-03'
+                    alertUrl: https://api.lexmachina.com/alerts/runs/121979
+                    lawUrl: https://law.lexmachina.com/state-court/documents/?filed_on-from=2016-01-01&nice_text_size=300&q=%22altair+engineering%22&type=docket_entry
+                  - alertId: 121980
+                    type: New District Court Case Documents
+                    customName: district docket
+                    frequency: Daily
+                    lastRun: '2024-10-16'
+                    alertUrl: https://api.lexmachina.com/alerts/runs/121980
+                    lawUrl: https://law.lexmachina.com/cases/2002169026
+                  - alertId: 121981
+                    type: New Federal Appeals Case Documents
+                    customName: appeals-docket
+                    frequency: Daily
+                    lastRun: '2024-10-16'
+                    alertUrl: https://api.lexmachina.com/alerts/runs/121981
+                    lawUrl: https://law.lexmachina.com/federal-court/appeals/ca10/cases/2008186145
+        '401':
+          description: Invalid or expired token
+          content:
+            application/json:
+              examples:
+                Expired token:
+                  summary: Expired token
+                  value:
+                    detail: 'Token time expired: Signature has expired.'
+                Invalid token:
+                  summary: Invalid token
+                  value:
+                    detail: Invalid token
+        '404':
+          description: Not found
+          content:
+            application/json:
+              examples:
+                Not found:
+                  summary: Not found
+                  value:
+                    summary: Unknown id
+                    detail: Not Found
+        '422':
+          description: Error - 422
+          content:
+            application/json:
+              examples:
+                Validation error:
+                  summary: Validation error
+                  value:
+                    summary: Invalid input
+                    detail:
+                    - type: parsing
+                      loc:
+                      - path
+                      - query
+                      - body
+                      msg: invalid input
+                      input: '-1'
+      security:
+      - JwtAccessBearer: []
+  /alerts/runs/{alert_id}:
+    get:
+      tags:
+      - Alerts
+      summary: Get Alert Runs
+      description: 'Gets a list of all runs an alert has new data for.
+
+
+        - **alert_id**: the id of the alert
+
+
+        Each run represents a new set of relevant items that have been found by the alert on a given day.'
+      operationId: get_alert_runs
+      security:
+      - JwtAccessBearer: []
+      parameters:
+      - name: alert_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Alert Id
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlertRunData'
+              examples:
+                Alert Runs:
+                  summary: Alert Runs
+                  value:
+                    alertId: 121766
+                    type: New Party PTAB Trials
+                    runs:
+                      '2024-10-11': https://api.lexmachina.com/alerts/runs/121766/2024-10-11
+        '404':
+          description: Not found
+          content:
+            application/json:
+              examples:
+                Alert not found:
+                  summary: Alert not found
+                  value:
+                    detail: alert_id not found
+        '401':
+          description: Invalid or expired token
+          content:
+            application/json:
+              examples:
+                Expired token:
+                  summary: Expired token
+                  value:
+                    detail: 'Token time expired: Signature has expired.'
+                Invalid token:
+                  summary: Invalid token
+                  value:
+                    detail: Invalid token
+        '422':
+          description: Error - 422
+          content:
+            application/json:
+              examples:
+                Validation error:
+                  summary: Validation error
+                  value:
+                    summary: Invalid input
+                    detail:
+                    - type: parsing
+                      loc:
+                      - path
+                      - query
+                      - body
+                      msg: invalid input
+                      input: '-1'
+  /alerts/runs/{alert_id}/{date}:
+    get:
+      tags:
+      - Alerts
+      summary: Get Alert Run Results
+      description: 'Gets a list of all new items for a given alert run.
+
+
+        - **alert_id**: the id of the alert
+
+        - **date**: the date of the run
+
+
+        Data returned for an alert run will vary in format based on context, only the ids and urls for the relevant data will included.'
+      operationId: get_alert_run_results
+      security:
+      - JwtAccessBearer: []
+      parameters:
+      - name: alert_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Alert Id
+      - name: date
+        in: path
+        required: true
+        schema:
+          type: string
+          format: date
+          title: Date
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlertRunResult'
+              examples:
+                alert items for ptab trials:
+                  summary: alert items for ptab trials
+                  value:
+                    alertId: 121766
+                    type: New Party PTAB Trials
+                    count: 10
+                    run: '2024-10-11'
+                    items:
+                    - url: https://api.lexmachina.com/ptab-trials/6020
+                      itemId: 6020
+                    - url: https://api.lexmachina.com/ptab-trials/6054
+                      itemId: 6054
+                    - url: https://api.lexmachina.com/ptab-trials/6061
+                      itemId: 6061
+                    - url: https://api.lexmachina.com/ptab-trials/6219
+                      itemId: 6219
+                    - url: https://api.lexmachina.com/ptab-trials/6223
+                      itemId: 6223
+                    - url: https://api.lexmachina.com/ptab-trials/6225
+                      itemId: 6225
+                    - url: https://api.lexmachina.com/ptab-trials/6247
+                      itemId: 6247
+                    - url: https://api.lexmachina.com/ptab-trials/6278
+                      itemId: 6278
+                    - url: https://api.lexmachina.com/ptab-trials/6282
+                      itemId: 6282
+                    - url: https://api.lexmachina.com/ptab-trials/6489
+                      itemId: 6489
+                alert items for district case documents:
+                  summary: alert items for district case documents
+                  value:
+                    alertId: 121889
+                    type: New District Court Documents
+                    count: 12
+                    run: '2024-10-15'
+                    items:
+                    - url: https://api.lexmachina.com/docket-entries/2004489566
+                      itemId: 2004489566
+                      districtCaseId: 2000078324
+                      districtCaseUrl: https://api.lexmachina.com/district-cases/2000078324
+                    - url: https://api.lexmachina.com/docket-entries/2004491451
+                      itemId: 2004491451
+                      districtCaseId: 2000082963
+                      districtCaseUrl: https://api.lexmachina.com/district-cases/2000082963
+                    - url: https://api.lexmachina.com/docket-entries/2004492520
+                      itemId: 2004492520
+                      districtCaseId: 2000078318
+                      districtCaseUrl: https://api.lexmachina.com/district-cases/2000078318
+                    - url: https://api.lexmachina.com/docket-entries/2004502617
+                      itemId: 2004502617
+                      districtCaseId: 2000079186
+                      districtCaseUrl: https://api.lexmachina.com/district-cases/2000079186
+                    - url: https://api.lexmachina.com/docket-entries/2004507868
+                      itemId: 2004507868
+                      districtCaseId: 2000079374
+                      districtCaseUrl: https://api.lexmachina.com/district-cases/2000079374
+                    - url: https://api.lexmachina.com/docket-entries/2004510162
+                      itemId: 2004510162
+                      districtCaseId: 2000069193
+                      districtCaseUrl: https://api.lexmachina.com/district-cases/2000069193
+                    - url: https://api.lexmachina.com/docket-entries/2004525749
+                      itemId: 2004525749
+                      districtCaseId: 2000083625
+                      districtCaseUrl: https://api.lexmachina.com/district-cases/2000083625
+                    - url: https://api.lexmachina.com/docket-entries/2004525761
+                      itemId: 2004525761
+                      districtCaseId: 2000083626
+                      districtCaseUrl: https://api.lexmachina.com/district-cases/2000083626
+                    - url: https://api.lexmachina.com/docket-entries/2004525818
+                      itemId: 2004525818
+                      districtCaseId: 2000083629
+                      districtCaseUrl: https://api.lexmachina.com/district-cases/2000083629
+                    - url: https://api.lexmachina.com/docket-entries/2004525864
+                      itemId: 2004525864
+                      districtCaseId: 2000083631
+                      districtCaseUrl: https://api.lexmachina.com/district-cases/2000083631
+                    - url: https://api.lexmachina.com/docket-entries/2004525887
+                      itemId: 2004525887
+                      districtCaseId: 2000083633
+                      districtCaseUrl: https://api.lexmachina.com/district-cases/2000083633
+                    - url: https://api.lexmachina.com/docket-entries/2014520531
+                      itemId: 2014520531
+                      districtCaseId: 2000349203
+                      districtCaseUrl: https://api.lexmachina.com/district-cases/2000349203
+                alert items for state case documents:
+                  summary: alert items for state case documents
+                  value:
+                    alertId: 121979
+                    type: New State Court Documents
+                    count: 1
+                    run: '2024-10-18'
+                    items:
+                    - url: https://api.lexmachina.com/state-docket-entries/1284970079
+                      itemId: 1284970079
+                      stateCaseId: 2033993477
+                      stateCaseUrl: https://api.lexmachina.com/state-cases/2033993477
+        '401':
+          description: Invalid or expired token
+          content:
+            application/json:
+              examples:
+                Expired token:
+                  summary: Expired token
+                  value:
+                    detail: 'Token time expired: Signature has expired.'
+                Invalid token:
+                  summary: Invalid token
+                  value:
+                    detail: Invalid token
+        '404':
+          description: Not found
+          content:
+            application/json:
+              examples:
+                Not found:
+                  summary: Not found
+                  value:
+                    summary: Unknown id
+                    detail: Not Found
+        '422':
+          description: Error - 422
+          content:
+            application/json:
+              examples:
+                Validation error:
+                  summary: Validation error
+                  value:
+                    summary: Invalid input
+                    detail:
+                    - type: parsing
+                      loc:
+                      - path
+                      - query
+                      - body
+                      msg: invalid input
+                      input: '-1'
+components:
+  schemas:
+    AlertRunResult:
+      properties:
+        alertId:
+          type: integer
+          title: Alertid
+        type:
+          type: string
+          title: Type
+        count:
+          type: integer
+          title: Count
+        run:
+          type: string
+          format: date
+          title: Run
+        items:
+          items:
+            $ref: '#/components/schemas/AlertItem'
+          type: array
+          title: Items
+      additionalProperties: false
+      type: object
+      required:
+      - alertId
+      - type
+      - count
+      - run
+      - items
+      title: AlertRunResult
+    Alert:
+      properties:
+        alertId:
+          type: integer
+          title: Alertid
+        type:
+          type: string
+          title: Type
+        customName:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Customname
+        frequency:
+          anyOf:
+          - $ref: '#/components/schemas/Frequency'
+          - type: 'null'
+        lastRun:
+          type: string
+          format: date
+          title: Lastrun
+        alertUrl:
+          type: string
+          title: Alerturl
+        lawUrl:
+          type: string
+          title: Lawurl
+      additionalProperties: false
+      type: object
+      required:
+      - alertId
+      - type
+      - customName
+      - frequency
+      - lastRun
+      - alertUrl
+      - lawUrl
+      title: Alert
+    AlertRunData:
+      properties:
+        alertId:
+          type: integer
+          title: Alertid
+        type:
+          type: string
+          title: Type
+        runs:
+          additionalProperties:
+            type: string
+          propertyNames:
+            format: date
+          type: object
+          title: Runs
+      additionalProperties: false
+      type: object
+      required:
+      - alertId
+      - type
+      - runs
+      title: AlertRunData
+    AlertItem:
+      properties:
+        url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Url
+        itemId:
+          anyOf:
+          - type: string
+          - type: integer
+          - type: 'null'
+          title: Itemid
+        districtCaseId:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Districtcaseid
+        appealsCaseId:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Appealscaseid
+        stateCaseId:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Statecaseid
+        bankruptcyCaseId:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Bankruptcycaseid
+        itcInvestigationNumber:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Itcinvestigationnumber
+        ptabTrialId:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Ptabtrialid
+        districtCaseUrl:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Districtcaseurl
+        appealsCaseUrl:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Appealscaseurl
+        stateCaseUrl:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Statecaseurl
+        bankruptcyCaseUrl:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Bankruptcycaseurl
+        itcInvestigationUrl:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Itcinvestigationurl
+        ptabTrialUrl:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Ptabtrialurl
+      additionalProperties: false
+      type: object
+      title: AlertItem
+      description: 'A single item resulting from an alert run.
+
+
+        The various caseId and caseUrl fields will only appear when an
+
+        alert item is a part of metadata about a specific case.
+
+
+        For example an alert on a district case docket entry will include the
+
+        districtCaseId and districtCaseUrl here.'
+    Frequency:
+      type: string
+      enum:
+      - Daily
+      - Weekly
+      title: Frequency
+  securitySchemes:
+    JwtAccessBearer:
+      type: http
+      scheme: bearer

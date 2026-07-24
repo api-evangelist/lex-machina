@@ -1,0 +1,102 @@
+openapi: 3.1.0
+info:
+  title: Lex Machina Alerts Authorization API
+  version: '20260324'
+  description: Alerts.
+servers:
+- url: https://api.lexmachina.com
+  description: Lex Machina production API
+tags:
+- name: Authorization
+  description: Provides API authorization.
+paths:
+  /oauth2/token:
+    post:
+      tags:
+      - Authorization
+      summary: Oauth2 Token
+      description: 'Generates a shot lived bearer token used to authenticate an application to the rest of the API.
+
+
+        - **client_id**: client id from the application
+
+        - **client_secret**: client secret from the application
+
+        - **grant_type**: only "client_credentials" are supported at this time
+
+
+        See [https://law.lexmachina.com/api-settings](https://law.lexmachina.com/api-settings) for application management.'
+      operationId: oauth2_token
+      parameters:
+      - name: client_id
+        in: query
+        required: false
+        schema:
+          type: string
+          title: Client Id
+      - name: client_secret
+        in: query
+        required: false
+        schema:
+          type: string
+          title: Client Secret
+      - name: grant_type
+        in: query
+        required: false
+        schema:
+          type: string
+          default: client_credentials
+          title: Grant Type
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+  securitySchemes:
+    JwtAccessBearer:
+      type: http
+      scheme: bearer
