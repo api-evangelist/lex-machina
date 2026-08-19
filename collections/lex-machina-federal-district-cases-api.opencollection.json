@@ -1,0 +1,150 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lex Machina Alerts Federal District Cases API",
+    "version": "20260324"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Federal District Cases",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Analyze District Cases From Query",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lexmachina.com/analyze-district-cases/from-query",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Analyze District Cases From Query"
+        },
+        {
+          "info": {
+            "name": "Analyze District Cases From Alert",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/analyze-district-cases/from-alert/:alert_id",
+            "params": [
+              {
+                "name": "alert_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "analytic_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "on_or_after",
+                "value": "",
+                "type": "query",
+                "description": "alert start date"
+              },
+              {
+                "name": "on_or_before",
+                "value": "",
+                "type": "query",
+                "description": "alert end date"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Analyze District Cases From Alert"
+        },
+        {
+          "info": {
+            "name": "Find District Case By Number",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/find-district-cases",
+            "params": [
+              {
+                "name": "caseNumbers",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "court",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Finds Lex Machina case ids for specified case numbers.\n\n- **case_numbers**: case number search strings\n- **court**: optional court to limit results\n\nMatches results for each individual case number is cut off at 1000 match results.\n\nBecause case number formats vary, and because the case number for the same case can change over time, the search tries to err on the side of being more inclusive.\nSo, this may return more results than you expect.\nFor example, the search ignores judge initials at the e"
+        },
+        {
+          "info": {
+            "name": "Get District Case",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/district-cases/:district_case_id",
+            "params": [
+              {
+                "name": "district_case_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "docket_retrieval",
+                "value": "",
+                "type": "query",
+                "description": "'all' to retrieve docket entries for the case, if not provided no docket entries will be retrieved."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets data for a single federal district case.\n\n- **district_case_id**: the Lex Machina districtCaseId\n- **docket_retrieval**: docket retreival mode"
+        },
+        {
+          "info": {
+            "name": "Query District Cases",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lexmachina.com/query-district-cases",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Queries federal district court cases.\n\n- **data**: the district case query\n\nSee [Querying district cases](https://developer.lexmachina.com/api-reference/district-cases/querying-district-cases/) for documentation.\n\nThe results will contain a list of cases, each with a specificed url and Lex Machina districtCaseId."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,812 @@
+{
+  "item": [
+    {
+      "id": "32ada6ad-7804-4cf7-b003-c312f0ea6d83",
+      "name": "Case Query",
+      "description": {
+        "content": "Provides a filter based way to find cases.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "dabbcbda-f78e-43a2-bbc2-d580085da002",
+          "name": "Query Appeals Cases",
+          "request": {
+            "name": "Query Appeals Cases",
+            "description": {
+              "content": "Queries federal appeals court cases.\n\n- **data**: the appeals case query\n\nSee [https://developer.lexmachina.com/posts/query/appeals_query_usage/](https://developer.lexmachina.com/posts/query/appeals_query_usage/) for query formation.\n\nThe results will contain a list of cases, each with a specificed url and Lex Machina appealsCaseId.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "query-appeals-cases"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"courts\": {\n    \"include\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"exclude\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"caseStatus\": \"<string>\",\n  \"caseTags\": {\n    \"include\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"exclude\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"dates\": {\n    \"filed\": {\n      \"onOrAfter\": \"<date>\",\n      \"onOrBefore\": \"<date>\"\n    },\n    \"terminated\": {\n      \"onOrAfter\": \"<date>\",\n      \"onOrBefore\": \"<date>\"\n    },\n    \"lastDocket\": {\n      \"onOrAfter\": \"<date>\",\n      \"onOrBefore\": \"<date>\"\n    }\n  },\n  \"judges\": {\n    \"include\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"exclude\": [\n      \"<integer>\",\n      \"<integer>\"\n    ]\n  },\n  \"lawFirms\": {\n    \"include\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"exclude\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"includeAppellant\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"excludeAppellant\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"includeAppellee\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"excludeAppellee\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"includeRespondent\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"excludeRespondent\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"includeThirdParty\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"excludeThirdParty\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"includePetitionerMovant\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"excludePetitionerMovant\": [\n      \"<integer>\",\n      \"<integer>\"\n    ]\n  },\n  \"attorneys\": {\n    \"include\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"exclude\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"includeAppellant\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"excludeAppellant\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"includeAppellee\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"excludeAppellee\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"includeRespondent\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"excludeRespondent\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"includeThirdParty\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"excludeThirdParty\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"includePetitionerMovant\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"excludePetitionerMovant\": [\n      \"<integer>\",\n      \"<integer>\"\n    ]\n  },\n  \"parties\": {\n    \"include\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"exclude\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"includeAppellant\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"excludeAppellant\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"includeAppellee\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"excludeAppellee\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"includeRespondent\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"excludeRespondent\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"includeThirdParty\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"excludeThirdParty\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"includePetitionerMovant\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"excludePetitionerMovant\": [\n      \"<integer>\",\n      \"<integer>\"\n    ]\n  },\n  \"originatingVenues\": {\n    \"include\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"exclude\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"originatingCases\": {\n    \"includeDistrictCaseIds\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"excludeDistrictCaseIds\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"includeOriginatingJudges\": {\n      \"districtFederalJudges\": {\n        \"include\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"exclude\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    },\n    \"originatingDistrictCaseCriteria\": {\n      \"courts\": {\n        \"include\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"exclude\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"caseTypes\": {\n        \"include\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"exclude\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    }\n  },\n  \"resolutions\": {\n    \"include\": [\n      {\n        \"summary\": \"<string>\",\n        \"specific\": \"<string>\"\n      },\n      {\n        \"summary\": \"<string>\",\n        \"specific\": \"<string>\"\n      }\n    ],\n    \"exclude\": [\n      {\n        \"summary\": \"<string>\",\n        \"specific\": \"<string>\"\n      },\n      {\n        \"summary\": \"<string>\",\n        \"specific\": \"<string>\"\n      }\n    ]\n  },\n  \"supremeCourtDecisions\": {\n    \"include\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"exclude\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"ordering\": \"ByFirstFiled\",\n  \"page\": 1,\n  \"pageSize\": 5\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b4c6cda9-b333-4f73-83f4-c2d0e45edf51",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "query-appeals-cases"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\"originatingVenues\": {\"include\": [\"Originating Venue: Court of Federal Claims\"]}}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cases\": [\n    {\n      \"url\": \"https://api.lexmachina.com/appeals-cases/2005670885\",\n      \"appealsCaseId\": 2005670885\n    },\n    {\n      \"url\": \"https://api.lexmachina.com/appeals-cases/2005670259\",\n      \"appealsCaseId\": 2005670259\n    },\n    {\n      \"url\": \"https://api.lexmachina.com/appeals-cases/2005670890\",\n      \"appealsCaseId\": 2005670890\n    },\n    {\n      \"url\": \"https://api.lexmachina.com/appeals-cases/2005668241\",\n      \"appealsCaseId\": 2005668241\n    },\n    {\n      \"url\": \"https://api.lexmachina.com/appeals-cases/2005670690\",\n      \"appealsCaseId\": 2005670690\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "df4593f6-6799-4b5f-9b71-29318d20a5c2",
+              "name": "Invalid or expired token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "query-appeals-cases"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\"originatingVenues\": {\"include\": [\"Originating Venue: Court of Federal Claims\"]}}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Token time expired: Signature has expired.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d7d9dc76-a203-4b38-9ce5-83fffd542c1a",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "query-appeals-cases"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\"originatingVenues\": {\"include\": [\"Originating Venue: Court of Federal Claims\"]}}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Unknown id\",\n  \"detail\": \"Not Found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dce7d57f-73fe-48b9-9569-cef6fd46ec03",
+              "name": "Error - 422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "query-appeals-cases"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\"originatingVenues\": {\"include\": [\"Originating Venue: Court of Federal Claims\"]}}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Invalid input\",\n  \"detail\": [\n    {\n      \"type\": \"parsing\",\n      \"loc\": [\n        \"path\",\n        \"query\",\n        \"body\"\n      ],\n      \"msg\": \"invalid input\",\n      \"input\": \"-1\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f7eefee8-be80-4a71-9783-8aca80871d35",
+          "name": "Query District Cases",
+          "request": {
+            "name": "Query District Cases",
+            "description": {
+              "content": "Queries federal district court cases.\n\n- **data**: the district case query\n\nSee [Querying district cases](https://developer.lexmachina.com/api-reference/district-cases/querying-district-cases/) for documentation.\n\nThe results will contain a list of cases, each with a specificed url and Lex Machina districtCaseId.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "query-district-cases"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"caseStatus\": \"<string>\",\n  \"caseTypes\": {\n    \"include\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"exclude\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"caseTags\": {\n    \"include\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"exclude\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"dates\": {\n    \"filed\": {\n      \"onOrAfter\": \"<date>\",\n      \"onOrBefore\": \"<date>\"\n    },\n    \"terminated\": {\n      \"onOrAfter\": \"<date>\",\n      \"onOrBefore\": \"<date>\"\n    },\n    \"trial\": {\n      \"onOrAfter\": \"<date>\",\n      \"onOrBefore\": \"<date>\"\n    },\n    \"lastDocket\": {\n      \"onOrAfter\": \"<date>\",\n      \"onOrBefore\": \"<date>\"\n    }\n  },\n  \"judges\": {\n    \"include\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"exclude\": [\n      \"<integer>\",\n      \"<integer>\"\n    ]\n  },\n  \"magistrates\": {\n    \"include\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"exclude\": [\n      \"<integer>\",\n      \"<integer>\"\n    ]\n  },\n  \"events\": {\n    \"include\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"exclude\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"lawFirms\": {\n    \"include\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"exclude\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"includePlaintiff\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"excludePlaintiff\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"includeDefendant\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"excludeDefendant\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"includeThirdParty\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"excludeThirdParty\": [\n      \"<integer>\",\n      \"<integer>\"\n    ]\n  },\n  \"attorneys\": {\n    \"include\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"exclude\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"includePlaintiff\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"excludePlaintiff\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"includeDefendant\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"excludeDefendant\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"includeThirdParty\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"excludeThirdParty\": [\n      \"<integer>\",\n      \"<integer>\"\n    ]\n  },\n  \"parties\": {\n    \"include\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"exclude\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"includePlaintiff\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"excludePlaintiff\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"includeDefendant\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"excludeDefendant\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"includeThirdParty\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"excludeThirdParty\": [\n      \"<integer>\",\n      \"<integer>\"\n    ]\n  },\n  \"courts\": {\n    \"include\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"exclude\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"resolutions\": {\n    \"include\": [\n      {\n        \"summary\": \"<string>\",\n        \"specific\": \"<string>\"\n      },\n      {\n        \"summary\": \"<string>\",\n        \"specific\": \"<string>\"\n      }\n    ],\n    \"exclude\": [\n      {\n        \"summary\": \"<string>\",\n        \"specific\": \"<string>\"\n      },\n      {\n        \"summary\": \"<string>\",\n        \"specific\": \"<string>\"\n      }\n    ]\n  },\n  \"findings\": [\n    {\n      \"judgmentSource\": {\n        \"include\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"exclude\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"nameType\": {\n        \"include\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"exclude\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"date\": {\n        \"onOrAfter\": \"<date>\",\n        \"onOrBefore\": \"<date>\"\n      },\n      \"awardedToParties\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"awardedAgainstParties\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"patentInvalidityReasons\": {\n        \"include\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      }\n    },\n    {\n      \"judgmentSource\": {\n        \"include\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"exclude\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"nameType\": {\n        \"include\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"exclude\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"date\": {\n        \"onOrAfter\": \"<date>\",\n        \"onOrBefore\": \"<date>\"\n      },\n      \"awardedToParties\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"awardedAgainstParties\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"patentInvalidityReasons\": {\n        \"include\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      }\n    }\n  ],\n  \"remedies\": [\n    {\n      \"judgmentSource\": {\n        \"include\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"exclude\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"nameType\": {\n        \"include\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"exclude\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"date\": {\n        \"onOrAfter\": \"<date>\",\n        \"onOrBefore\": \"<date>\"\n      },\n      \"awardedToParties\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"awardedAgainstParties\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    {\n      \"judgmentSource\": {\n        \"include\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"exclude\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"nameType\": {\n        \"include\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"exclude\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"date\": {\n        \"onOrAfter\": \"<date>\",\n        \"onOrBefore\": \"<date>\"\n      },\n      \"awardedToParties\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"awardedAgainstParties\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    }\n  ],\n  \"damages\": [\n    {\n      \"judgmentSource\": {\n        \"include\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"exclude\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"nameType\": {\n        \"include\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"exclude\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"date\": {\n        \"onOrAfter\": \"<date>\",\n        \"onOrBefore\": \"<date>\"\n      },\n      \"awardedToParties\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"awardedAgainstParties\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"minimumAmount\": \"<number>\"\n    },\n    {\n      \"judgmentSource\": {\n        \"include\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"exclude\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"nameType\": {\n        \"include\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"exclude\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"date\": {\n        \"onOrAfter\": \"<date>\",\n        \"onOrBefore\": \"<date>\"\n      },\n      \"awardedToParties\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"awardedAgainstParties\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"minimumAmount\": \"<number>\"\n    }\n  ],\n  \"patents\": {\n    \"include\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"exclude\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"mdl\": {\n    \"include\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"exclude\": [\n      \"<integer>\",\n      \"<integer>\"\n    ]\n  },\n  \"appellateDecisions\": {\n    \"include\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"exclude\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"ordering\": \"ByFirstFiled\",\n  \"page\": 1,\n  \"pageSize\": 5\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "287eed90-190f-47cf-95c2-8ed27f906afd",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "query-district-cases"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\"courts\": {\"include\": [\"njd\"]}, \"caseTypes\": {\"include\": [\"Contracts\"]}, \"dates\": {\"filed\": {\"onOrAfter\": \"2019-01-01\", \"onOrBefore\": \"2019-12-31\"}, \"terminated\": {\"onOrAfter\": \"2021-01-01\", \"onOrBefore\": \"2021-12-31\"}}, \"page\": 1, \"pageSize\": 3}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cases\": [\n    {\n      \"url\": \"https://api.lexmachina.com/district-cases/2002259499\",\n      \"districtCaseId\": 2002259499\n    },\n    {\n      \"url\": \"https://api.lexmachina.com/district-cases/2002265866\",\n      \"districtCaseId\": 2002265866\n    },\n    {\n      \"url\": \"https://api.lexmachina.com/district-cases/2002268016\",\n      \"districtCaseId\": 2002268016\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "913b3be9-5c8f-4152-bb16-cc834670646b",
+              "name": "Invalid or expired token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "query-district-cases"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\"courts\": {\"include\": [\"njd\"]}, \"caseTypes\": {\"include\": [\"Contracts\"]}, \"dates\": {\"filed\": {\"onOrAfter\": \"2019-01-01\", \"onOrBefore\": \"2019-12-31\"}, \"terminated\": {\"onOrAfter\": \"2021-01-01\", \"onOrBefore\": \"2021-12-31\"}}, \"page\": 1, \"pageSize\": 3}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Token time expired: Signature has expired.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8203c082-dfa0-4d46-a45d-6f65c4090234",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "query-district-cases"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\"courts\": {\"include\": [\"njd\"]}, \"caseTypes\": {\"include\": [\"Contracts\"]}, \"dates\": {\"filed\": {\"onOrAfter\": \"2019-01-01\", \"onOrBefore\": \"2019-12-31\"}, \"terminated\": {\"onOrAfter\": \"2021-01-01\", \"onOrBefore\": \"2021-12-31\"}}, \"page\": 1, \"pageSize\": 3}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Unknown id\",\n  \"detail\": \"Not Found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6f7a50fd-2ca9-4ded-af14-29fe05c3e1ea",
+              "name": "Error - 422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "query-district-cases"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\"courts\": {\"include\": [\"njd\"]}, \"caseTypes\": {\"include\": [\"Contracts\"]}, \"dates\": {\"filed\": {\"onOrAfter\": \"2019-01-01\", \"onOrBefore\": \"2019-12-31\"}, \"terminated\": {\"onOrAfter\": \"2021-01-01\", \"onOrBefore\": \"2021-12-31\"}}, \"page\": 1, \"pageSize\": 3}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Invalid input\",\n  \"detail\": [\n    {\n      \"type\": \"parsing\",\n      \"loc\": [\n        \"path\",\n        \"query\",\n        \"body\"\n      ],\n      \"msg\": \"invalid input\",\n      \"input\": \"-1\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "825a3b11-fe9b-4426-8913-42e42a5021ab",
+          "name": "Query State Cases",
+          "request": {
+            "name": "Query State Cases",
+            "description": {
+              "content": "Queries enhanced state court cases.\n\n- **data**: the state case query\n\nSee [https://developer.lexmachina.com/posts/query/state_query_usage/](https://developer.lexmachina.com/posts/query/state_query_usage/) for query formation.\n\nThe results will contain a list of cases, each with a specificed url and Lex Machina stateCaseId.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "query-state-cases"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"courts\": {\n    \"state\": \"<string>\",\n    \"include\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"exclude\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"caseStatus\": \"<string>\",\n  \"caseTypes\": {\n    \"include\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"exclude\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"caseTags\": {\n    \"include\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"exclude\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"dates\": {\n    \"filed\": {\n      \"onOrAfter\": \"<date>\",\n      \"onOrBefore\": \"<date>\"\n    },\n    \"terminated\": {\n      \"onOrAfter\": \"<date>\",\n      \"onOrBefore\": \"<date>\"\n    },\n    \"trial\": {\n      \"onOrAfter\": \"<date>\",\n      \"onOrBefore\": \"<date>\"\n    },\n    \"lastDocket\": {\n      \"onOrAfter\": \"<date>\",\n      \"onOrBefore\": \"<date>\"\n    }\n  },\n  \"judges\": {\n    \"include\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"exclude\": [\n      \"<integer>\",\n      \"<integer>\"\n    ]\n  },\n  \"events\": {\n    \"include\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"exclude\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"lawFirms\": {\n    \"include\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"exclude\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"includePlaintiff\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"excludePlaintiff\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"includeDefendant\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"excludeDefendant\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"includeThirdParty\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"excludeThirdParty\": [\n      \"<integer>\",\n      \"<integer>\"\n    ]\n  },\n  \"attorneys\": {\n    \"include\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"exclude\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"includePlaintiff\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"excludePlaintiff\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"includeDefendant\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"excludeDefendant\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"includeThirdParty\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"excludeThirdParty\": [\n      \"<integer>\",\n      \"<integer>\"\n    ]\n  },\n  \"parties\": {\n    \"include\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"exclude\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"includePlaintiff\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"excludePlaintiff\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"includeDefendant\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"excludeDefendant\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"includeThirdParty\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"excludeThirdParty\": [\n      \"<integer>\",\n      \"<integer>\"\n    ]\n  },\n  \"resolutions\": {\n    \"include\": [\n      {\n        \"summary\": \"<string>\",\n        \"specific\": \"<string>\"\n      },\n      {\n        \"summary\": \"<string>\",\n        \"specific\": \"<string>\"\n      }\n    ],\n    \"exclude\": [\n      {\n        \"summary\": \"<string>\",\n        \"specific\": \"<string>\"\n      },\n      {\n        \"summary\": \"<string>\",\n        \"specific\": \"<string>\"\n      }\n    ]\n  },\n  \"damages\": [\n    {\n      \"name\": {\n        \"include\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"exclude\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"date\": {\n        \"onOrAfter\": \"<date>\",\n        \"onOrBefore\": \"<date>\"\n      },\n      \"awardedToParties\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"awardedAgainstParties\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"minimumAmount\": \"<number>\"\n    },\n    {\n      \"name\": {\n        \"include\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"exclude\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"date\": {\n        \"onOrAfter\": \"<date>\",\n        \"onOrBefore\": \"<date>\"\n      },\n      \"awardedToParties\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"awardedAgainstParties\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"minimumAmount\": \"<number>\"\n    }\n  ],\n  \"rulings\": [\n    {\n      \"judgmentEvent\": {\n        \"include\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"exclude\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"awardedToParties\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"awardedAgainstParties\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"date\": {\n        \"onOrAfter\": \"<date>\",\n        \"onOrBefore\": \"<date>\"\n      }\n    },\n    {\n      \"judgmentEvent\": {\n        \"include\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"exclude\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"awardedToParties\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"awardedAgainstParties\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"date\": {\n        \"onOrAfter\": \"<date>\",\n        \"onOrBefore\": \"<date>\"\n      }\n    }\n  ],\n  \"ordering\": \"ByFirstFiled\",\n  \"page\": 1,\n  \"pageSize\": 5\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "19205af9-0b19-420e-af3d-6ba22ac9fc10",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "query-state-cases"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"caseStatus\": \"Terminated\",\n  \"courts\": {\n    \"include\": [\n      \"Fort Bend County District Court\"\n    ],\n    \"state\": \"TX\"\n  },\n  \"dates\": {\n    \"filed\": {\n      \"onOrAfter\": \"2016-01-01\"\n    },\n    \"terminated\": {\n      \"onOrBefore\": \"2021-05-01\"\n    }\n  },\n  \"judges\": {\n    \"include\": [\n      1792\n    ]\n  },\n  \"ordering\": \"ByFirstFiled\",\n  \"page\": 1,\n  \"pageSize\": 5\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cases\": [\n    {\n      \"url\": \"https://api.lexmachina.com/state-cases/2003442290\",\n      \"stateCaseId\": 2003442290\n    },\n    {\n      \"url\": \"https://api.lexmachina.com/state-cases/2003442348\",\n      \"stateCaseId\": 2003442348\n    },\n    {\n      \"url\": \"https://api.lexmachina.com/state-cases/2003442352\",\n      \"stateCaseId\": 2003442352\n    },\n    {\n      \"url\": \"https://api.lexmachina.com/state-cases/2003463384\",\n      \"stateCaseId\": 2003463384\n    },\n    {\n      \"url\": \"https://api.lexmachina.com/state-cases/2003442446\",\n      \"stateCaseId\": 2003442446\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "55163f93-c12a-4b69-b7a2-3383ea56384f",
+              "name": "Invalid or expired token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "query-state-cases"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"caseStatus\": \"Terminated\",\n  \"courts\": {\n    \"include\": [\n      \"Fort Bend County District Court\"\n    ],\n    \"state\": \"TX\"\n  },\n  \"dates\": {\n    \"filed\": {\n      \"onOrAfter\": \"2016-01-01\"\n    },\n    \"terminated\": {\n      \"onOrBefore\": \"2021-05-01\"\n    }\n  },\n  \"judges\": {\n    \"include\": [\n      1792\n    ]\n  },\n  \"ordering\": \"ByFirstFiled\",\n  \"page\": 1,\n  \"pageSize\": 5\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Token time expired: Signature has expired.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9bea0a9b-6ae4-4aa0-a1ae-813b03d12b0c",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "query-state-cases"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"caseStatus\": \"Terminated\",\n  \"courts\": {\n    \"include\": [\n      \"Fort Bend County District Court\"\n    ],\n    \"state\": \"TX\"\n  },\n  \"dates\": {\n    \"filed\": {\n      \"onOrAfter\": \"2016-01-01\"\n    },\n    \"terminated\": {\n      \"onOrBefore\": \"2021-05-01\"\n    }\n  },\n  \"judges\": {\n    \"include\": [\n      1792\n    ]\n  },\n  \"ordering\": \"ByFirstFiled\",\n  \"page\": 1,\n  \"pageSize\": 5\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Unknown id\",\n  \"detail\": \"Not Found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bea28ba5-e801-49ed-be7a-7ec34e9b8128",
+              "name": "Error - 422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "query-state-cases"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"caseStatus\": \"Terminated\",\n  \"courts\": {\n    \"include\": [\n      \"Fort Bend County District Court\"\n    ],\n    \"state\": \"TX\"\n  },\n  \"dates\": {\n    \"filed\": {\n      \"onOrAfter\": \"2016-01-01\"\n    },\n    \"terminated\": {\n      \"onOrBefore\": \"2021-05-01\"\n    }\n  },\n  \"judges\": {\n    \"include\": [\n      1792\n    ]\n  },\n  \"ordering\": \"ByFirstFiled\",\n  \"page\": 1,\n  \"pageSize\": 5\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Maximum cases per page is 100\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.lexmachina.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "60b2a6c4-cb7a-4153-b56b-dd4e118e1251",
+    "name": "Lex Machina Alerts Case Query API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Alerts.",
+      "type": "text/plain"
+    }
+  }
+}

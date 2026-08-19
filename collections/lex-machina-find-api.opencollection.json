@@ -1,0 +1,45 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lex Machina Alerts Find API",
+    "version": "20260324"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Find",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Find District Case By Number",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/find-district-cases",
+            "params": [
+              {
+                "name": "caseNumbers",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "court",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Finds Lex Machina case ids for specified case numbers.\n\n- **case_numbers**: case number search strings\n- **court**: optional court to limit results\n\nMatches results for each individual case number is cut off at 1000 match results.\n\nBecause case number formats vary, and because the case number for the same case can change over time, the search tries to err on the side of being more inclusive.\nSo, this may return more results than you expect.\nFor example, the search ignores judge initials at the e"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,278 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lex Machina Alerts List API",
+    "version": "20260324"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "List",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Appealability Rulings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/list-appealability-rulings",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Lists appealability rulings for use with appeals case querying."
+        },
+        {
+          "info": {
+            "name": "List Appellate Decisions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/list-appellate-decisions/FederalDistrict",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Lists appellate decisions for use with appeals case querying."
+        },
+        {
+          "info": {
+            "name": "List Case Resolutions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/list-case-resolutions/:court_type",
+            "params": [
+              {
+                "name": "court_type",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Lists case resolutions given court type for use with querying.\n\n- **court_type**: the relevant court type\n\nEach resoltuon has both a summary and specific field which are valid in combinations listed."
+        },
+        {
+          "info": {
+            "name": "List Case Tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/list-case-tags/:court_type",
+            "params": [
+              {
+                "name": "court_type",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Lists case tags for a given court type for use with querying.\n\n- **court_type**: the relevant court type"
+        },
+        {
+          "info": {
+            "name": "List Case Types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/list-case-types/:court_type",
+            "params": [
+              {
+                "name": "court_type",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Lists case tags for a given court type for use with querying.\n\n- **court_type**: the relevant court type"
+        },
+        {
+          "info": {
+            "name": "List Courts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/list-courts/:court_type",
+            "params": [
+              {
+                "name": "court_type",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Lists courts for a given court type. For use with querying or determining which courts data is avilable for."
+        },
+        {
+          "info": {
+            "name": "List Federal District Damages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/list-damages/FederalDistrict",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Lists of damages for Federal District courts organized by practice area for use with querying."
+        },
+        {
+          "info": {
+            "name": "List State Damages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/list-damages/State",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Lists of damages for State courts organized by practice area for use with querying."
+        },
+        {
+          "info": {
+            "name": "List Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/list-events/:court_type",
+            "params": [
+              {
+                "name": "court_type",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Lists events for a given for a given court type for use with querying.\n\n- **court_type**: the relevant court type"
+        },
+        {
+          "info": {
+            "name": "List Federal District Findings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/list-findings/FederalDistrict",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Lists findings for Federal District courts organized by practice area for use with querying."
+        },
+        {
+          "info": {
+            "name": "List Judgment Sources",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/list-judgment-sources/FederalDistrict",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Lists judgment sources for Federal District courts for use with querying.\n\nThe sources are specific to damages, remedies and findings as presented in the list."
+        },
+        {
+          "info": {
+            "name": "List Judgment Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/list-judgment-events/State",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Lists judgment events for State courts organized for use with querying."
+        },
+        {
+          "info": {
+            "name": "List Originating Venues",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/list-originating-venues/FederalAppeals",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Lists originating venues for use with appeals case querying."
+        },
+        {
+          "info": {
+            "name": "List Supreme Court Decisions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/list-supreme-court-decisions/FederalAppeals",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Lists decisions from the Supreme Court for use with appeals case querying."
+        },
+        {
+          "info": {
+            "name": "List Remedies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/list-remedies/FederalDistrict",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Lists of all the remedies by type for use with federal district case querying."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

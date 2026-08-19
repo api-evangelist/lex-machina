@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lex Machina Alerts Patents API",
+    "version": "20260324"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Patents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Patent",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/patents/:patent_number",
+            "params": [
+              {
+                "name": "patent_number",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets data for a single uspto patent.\n\n- **patent_number**: the patent number"
+        },
+        {
+          "info": {
+            "name": "Get Patents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/patents",
+            "params": [
+              {
+                "name": "patentNumbers",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets data for one or more uspto patents.\n\n- **patentNumbers**: the patent numbers"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

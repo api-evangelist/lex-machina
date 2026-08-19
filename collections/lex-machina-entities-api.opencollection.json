@@ -1,0 +1,326 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lex Machina Alerts Entities API",
+    "version": "20260324"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Entities",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Attorney",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/attorneys/:attorney_id",
+            "params": [
+              {
+                "name": "attorney_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets data for a single attorney.\n\n- **attorney_id**: the Lex Machina attorneyId"
+        },
+        {
+          "info": {
+            "name": "Get Attorneys",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/attorneys",
+            "params": [
+              {
+                "name": "attorneyIds",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets data for one or more attorneys.\n\n- **attorneyIds**: the Lex Machina attorneyIds\n\nIf any of the the attorneyIds given are not the current lexmachina attorneyId, the results will include inputId for disambugation"
+        },
+        {
+          "info": {
+            "name": "Get Bankruptcy Judge",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/bankruptcy-judges/:bankruptcy_judge_id",
+            "params": [
+              {
+                "name": "bankruptcy_judge_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets data for a single federal bankruptcy judge.\n\n- **bankruptcy_judge_id**: the Lex Machina bankruptcyJudgeId"
+        },
+        {
+          "info": {
+            "name": "Get Bankruptcy Judges",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/bankruptcy-judges",
+            "params": [
+              {
+                "name": "bankruptcyJudgeIds",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets data for one or more federal bankruptcy judges.\n\n- **attorneyIds**: the Lex Machina bankruptcyJudgeIds"
+        },
+        {
+          "info": {
+            "name": "Get Federal Judge",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/federal-judges/:federal_judge_id",
+            "params": [
+              {
+                "name": "federal_judge_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets data for a single federal Article III judge.\n\n- **judge_id**: the judge id"
+        },
+        {
+          "info": {
+            "name": "Get Federal Judges",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/federal-judges",
+            "params": [
+              {
+                "name": "federalJudgeIds",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets data for one or more federal Article III judges.\n\n- **judgeIds**: the judge Ids"
+        },
+        {
+          "info": {
+            "name": "Get Law Firm",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/law-firms/:law_firm_id",
+            "params": [
+              {
+                "name": "law_firm_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets data for a single law firm.\n\n- **law_firm_id**: the Lex Machina lawFirmID"
+        },
+        {
+          "info": {
+            "name": "Get Law Firms",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/law-firms",
+            "params": [
+              {
+                "name": "lawFirmIds",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets data for one or more law firms.\n\n- **lawFirmIds**: the Lex Machina lawFirmIds\n\nIf any of the the lawFirmIds given are not the current lexmachina lawFirmId, the results will include inputId for disambugation"
+        },
+        {
+          "info": {
+            "name": "Get Magistrate",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/magistrate-judges/:magistrate_judge_id",
+            "params": [
+              {
+                "name": "magistrate_judge_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets data for a single federal magistrate judge.\n\n- **magistrate_judge_id**: the Lex Machina magistrateJudgeId"
+        },
+        {
+          "info": {
+            "name": "Get Magistrates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/magistrate-judges",
+            "params": [
+              {
+                "name": "magistrateJudgeIds",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets data for a one or more federal magistrate judges.\n\n- **magistrateJudgeIds**: the Lex Machina magistrateJudgeIds"
+        },
+        {
+          "info": {
+            "name": "Get Party",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/parties/:party_id",
+            "params": [
+              {
+                "name": "party_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets data for a single party.\n\n- **party_id**: the Lex Machina partyId"
+        },
+        {
+          "info": {
+            "name": "Get Parties",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/parties",
+            "params": [
+              {
+                "name": "partyIds",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets data for one or more parties.\n\n- **partyIds**: the Lex Machina partyIds\n\nIf any of the the partyIds given are not the current lexmachina partyId, the results will include inputId for disambugation"
+        },
+        {
+          "info": {
+            "name": "Get State Judge",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/state-judges/:state_judge_id",
+            "params": [
+              {
+                "name": "state_judge_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets data on a single state judge.\n\n- **state_judge_id**: the Lex Machina stateJudgeId"
+        },
+        {
+          "info": {
+            "name": "Get State Judges",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/state-judges",
+            "params": [
+              {
+                "name": "stateJudgeIds",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets data on one or more single state judges.\n\n- **stateJudgeIds**: the Lex Machina stateJudgeIds"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

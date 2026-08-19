@@ -1,0 +1,84 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lex Machina Alerts Dockets API",
+    "version": "20260324"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Dockets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get District Docket Entry",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/docket-entries/:docket_entry_id",
+            "params": [
+              {
+                "name": "docket_entry_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets data for a single docket entry.\n\n- **docket_entry_id**: the Lex Machina docketEntryId.\n\nData returned for a docket will vary in format based on context, only the ids and urls for the relevant data will included."
+        },
+        {
+          "info": {
+            "name": "Get Itc Document Entry",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/itc-document-entries/:usitc_document_id",
+            "params": [
+              {
+                "name": "usitc_document_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets data for a single US ITC document.\n\n- **usitc_document_id**: The document id."
+        },
+        {
+          "info": {
+            "name": "Get State Docket Entry",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/state-docket-entries/:state_docket_entry_id",
+            "params": [
+              {
+                "name": "state_docket_entry_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets data for a single docket entry.\n\n- **state_docket_entry_id**: the Lex Machina stateDocketEntryId."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

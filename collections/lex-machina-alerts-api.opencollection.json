@@ -1,0 +1,82 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lex Machina Alerts API",
+    "version": "20260324"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Alerts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Alerts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/alerts",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets a list of all alerts the application has access too."
+        },
+        {
+          "info": {
+            "name": "Get Alert Runs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/alerts/runs/:alert_id",
+            "params": [
+              {
+                "name": "alert_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets a list of all runs an alert has new data for.\n\n- **alert_id**: the id of the alert\n\nEach run represents a new set of relevant items that have been found by the alert on a given day."
+        },
+        {
+          "info": {
+            "name": "Get Alert Run Results",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/alerts/runs/:alert_id/:date",
+            "params": [
+              {
+                "name": "alert_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets a list of all new items for a given alert run.\n\n- **alert_id**: the id of the alert\n- **date**: the date of the run\n\nData returned for an alert run will vary in format based on context, only the ids and urls for the relevant data will included."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

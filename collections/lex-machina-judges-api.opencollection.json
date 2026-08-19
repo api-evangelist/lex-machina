@@ -1,0 +1,216 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lex Machina Alerts Judges API",
+    "version": "20260324"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Judges",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Bankruptcy Judge",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/bankruptcy-judges/:bankruptcy_judge_id",
+            "params": [
+              {
+                "name": "bankruptcy_judge_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets data for a single federal bankruptcy judge.\n\n- **bankruptcy_judge_id**: the Lex Machina bankruptcyJudgeId"
+        },
+        {
+          "info": {
+            "name": "Get Bankruptcy Judges",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/bankruptcy-judges",
+            "params": [
+              {
+                "name": "bankruptcyJudgeIds",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets data for one or more federal bankruptcy judges.\n\n- **attorneyIds**: the Lex Machina bankruptcyJudgeIds"
+        },
+        {
+          "info": {
+            "name": "Get Federal Judge",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/federal-judges/:federal_judge_id",
+            "params": [
+              {
+                "name": "federal_judge_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets data for a single federal Article III judge.\n\n- **judge_id**: the judge id"
+        },
+        {
+          "info": {
+            "name": "Get Federal Judges",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/federal-judges",
+            "params": [
+              {
+                "name": "federalJudgeIds",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets data for one or more federal Article III judges.\n\n- **judgeIds**: the judge Ids"
+        },
+        {
+          "info": {
+            "name": "Get Magistrate",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/magistrate-judges/:magistrate_judge_id",
+            "params": [
+              {
+                "name": "magistrate_judge_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets data for a single federal magistrate judge.\n\n- **magistrate_judge_id**: the Lex Machina magistrateJudgeId"
+        },
+        {
+          "info": {
+            "name": "Get Magistrates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/magistrate-judges",
+            "params": [
+              {
+                "name": "magistrateJudgeIds",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets data for a one or more federal magistrate judges.\n\n- **magistrateJudgeIds**: the Lex Machina magistrateJudgeIds"
+        },
+        {
+          "info": {
+            "name": "Get State Judge",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/state-judges/:state_judge_id",
+            "params": [
+              {
+                "name": "state_judge_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets data on a single state judge.\n\n- **state_judge_id**: the Lex Machina stateJudgeId"
+        },
+        {
+          "info": {
+            "name": "Get State Judges",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/state-judges",
+            "params": [
+              {
+                "name": "stateJudgeIds",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets data on one or more single state judges.\n\n- **stateJudgeIds**: the Lex Machina stateJudgeIds"
+        },
+        {
+          "info": {
+            "name": "Search Judges",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/search-judges",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Searches for attorneys.\n\n- **q**: the query string\n\nThis matches from the beginning of the last name. The search query \"hof\" will match the name \"Hoffman\" but will not match \"Schofield\"."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,1454 @@
+{
+  "item": [
+    {
+      "id": "c34bbec8-4a84-4f53-8c35-4d3f251c8b82",
+      "name": "Federal Appeals Cases",
+      "description": {
+        "content": "Federal court of appeals cases.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9d2ed7e6-09ba-4698-b5a8-d15c2d4a49cc",
+          "name": "Get Appeals Case",
+          "request": {
+            "name": "Get Appeals Case",
+            "description": {
+              "content": "Gets data for a single federal appeals circuit court case.\n\n- **appeals_case_id**: the Lex Machina appealsCaseId",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "appeals-cases",
+                ":appeals_case_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "docket_retrieval",
+                  "value": "<string>",
+                  "description": "'all' to retrieve docket entries for the case, if not provided no docket entries will be retrieved."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "appeals_case_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "120a3d2b-6c58-4ec6-814f-e64000b7e56f",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "appeals-cases",
+                    ":appeals_case_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "docket_retrieval",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "appeals_case_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"appealsCaseId\": 2005396632,\n  \"title\": \"Apple Inc. v. Samsung Electronics Co., Ltd.\",\n  \"court\": \"U.S. Court of Appeals for the Federal Circuit\",\n  \"civilActionNumber\": \"15-2088\",\n  \"status\": \"Terminated\",\n  \"caseTags\": [],\n  \"dates\": {\n    \"filed\": \"2015-09-30\",\n    \"terminated\": \"2015-10-13\",\n    \"lastDocket\": \"2017-02-07\"\n  },\n  \"judges\": [\n    {\n      \"name\": \"Kathleen McDonald O'Malley\",\n      \"federalJudgeId\": 1800\n    },\n    {\n      \"name\": \"Sharon Prost\",\n      \"federalJudgeId\": 2892\n    },\n    {\n      \"name\": \"Raymond T. Chen\",\n      \"federalJudgeId\": 3486\n    }\n  ],\n  \"lawFirms\": [\n    {\n      \"name\": \"WilmerHale\",\n      \"lawFirmId\": 853,\n      \"clientPartyIds\": [\n        2273\n      ]\n    },\n    {\n      \"name\": \"Quinn Emanuel Urquhart & Sullivan\",\n      \"lawFirmId\": 920,\n      \"clientPartyIds\": [\n        2597,\n        228037,\n        3561,\n        3564,\n        30125,\n        3801,\n        123\n      ]\n    },\n    {\n      \"name\": \"Morrison & Foerster\",\n      \"lawFirmId\": 1934,\n      \"clientPartyIds\": [\n        2273\n      ]\n    }\n  ],\n  \"attorneys\": [\n    {\n      \"name\": \"Brett Dylan Proctor\",\n      \"attorneyId\": 24668,\n      \"lawFirmIds\": [\n        920\n      ],\n      \"clientsPartyIds\": [\n        3801,\n        2597,\n        228037,\n        3561,\n        123,\n        3564,\n        30125\n      ]\n    },\n    {\n      \"name\": \"Michael Thomas Zeller\",\n      \"attorneyId\": 51182,\n      \"lawFirmIds\": [\n        920\n      ],\n      \"clientsPartyIds\": [\n        3801,\n        2597,\n        228037,\n        3561,\n        123,\n        3564,\n        30125\n      ]\n    },\n    {\n      \"name\": \"Rachel Krevans\",\n      \"attorneyId\": 59516,\n      \"lawFirmIds\": [\n        1934\n      ],\n      \"clientsPartyIds\": [\n        2273\n      ]\n    },\n    {\n      \"name\": \"Nathaniel Bryan Sabri\",\n      \"attorneyId\": 136984,\n      \"lawFirmIds\": [\n        1934\n      ],\n      \"clientsPartyIds\": [\n        2273\n      ]\n    },\n    {\n      \"name\": \"Victoria Fishman Maroulis\",\n      \"attorneyId\": 149006,\n      \"lawFirmIds\": [\n        920\n      ],\n      \"clientsPartyIds\": [\n        3801,\n        2597,\n        228037,\n        3561,\n        123,\n        3564,\n        30125\n      ]\n    },\n    {\n      \"name\": \"Lauren B. Fletcher\",\n      \"attorneyId\": 389845,\n      \"lawFirmIds\": [\n        853\n      ],\n      \"clientsPartyIds\": [\n        2273\n      ]\n    },\n    {\n      \"name\": \"Mark Daniel Selwyn\",\n      \"attorneyId\": 516395,\n      \"lawFirmIds\": [\n        853\n      ],\n      \"clientsPartyIds\": [\n        2273\n      ]\n    },\n    {\n      \"name\": \"Harold John McElhinny\",\n      \"attorneyId\": 597589,\n      \"lawFirmIds\": [\n        1934\n      ],\n      \"clientsPartyIds\": [\n        2273\n      ]\n    },\n    {\n      \"name\": \"Kathleen Marie Sullivan\",\n      \"attorneyId\": 1134738,\n      \"lawFirmIds\": [\n        920\n      ],\n      \"clientsPartyIds\": [\n        3801,\n        2597,\n        228037,\n        3561,\n        123,\n        3564,\n        30125\n      ]\n    },\n    {\n      \"name\": \"William Frank Lee\",\n      \"attorneyId\": 1454279,\n      \"lawFirmIds\": [\n        853\n      ],\n      \"clientsPartyIds\": [\n        2273\n      ]\n    },\n    {\n      \"name\": \"William Balden Adams\",\n      \"attorneyId\": 2569613,\n      \"lawFirmIds\": [\n        920\n      ],\n      \"clientsPartyIds\": [\n        3801,\n        2597,\n        228037,\n        3561,\n        123,\n        3564,\n        30125\n      ]\n    },\n    {\n      \"name\": \"Sarah R. Frazier\",\n      \"attorneyId\": 2921843,\n      \"lawFirmIds\": [\n        853\n      ],\n      \"clientsPartyIds\": [\n        2273\n      ]\n    },\n    {\n      \"name\": \"Erik Jeffrey Olson\",\n      \"attorneyId\": 6398982,\n      \"lawFirmIds\": [\n        1934\n      ],\n      \"clientsPartyIds\": [\n        2273\n      ]\n    },\n    {\n      \"name\": \"Mark Christopher Fleming\",\n      \"attorneyId\": 89070821,\n      \"lawFirmIds\": [\n        853\n      ],\n      \"clientsPartyIds\": [\n        2273\n      ]\n    },\n    {\n      \"name\": \"Thomas Gregory Sprankling\",\n      \"attorneyId\": 107723076,\n      \"lawFirmIds\": [\n        853\n      ],\n      \"clientsPartyIds\": [\n        2273\n      ]\n    }\n  ],\n  \"parties\": [\n    {\n      \"name\": \"REUTERS AMERICA, LLC\",\n      \"partyId\": 228037,\n      \"role\": \"Third Party\"\n    },\n    {\n      \"name\": \"RESEARCH IN MOTION CORPORATION\",\n      \"partyId\": 3564,\n      \"role\": \"Third Party\"\n    },\n    {\n      \"name\": \"SAMSUNG ELECTRONICS CO., LTD.\",\n      \"partyId\": 123,\n      \"role\": \"Appellant\"\n    },\n    {\n      \"name\": \"SAMSUNG TELECOMMUNICATIONS AMERICA, LLC\",\n      \"partyId\": 30125,\n      \"role\": \"Appellant\"\n    },\n    {\n      \"name\": \"INTERNATIONAL BUSINESS MACHINES CORPORATION\",\n      \"partyId\": 3801,\n      \"role\": \"Third Party\"\n    },\n    {\n      \"name\": \"SAMSUNG ELECTRONICS AMERICA, INC.\",\n      \"partyId\": 2597,\n      \"role\": \"Appellant\"\n    },\n    {\n      \"name\": \"APPLE INC. (a California corporation)\",\n      \"partyId\": 2273,\n      \"role\": \"Appellee\"\n    },\n    {\n      \"name\": \"RESEARCH IN MOTION, LTD.\",\n      \"partyId\": 3561,\n      \"role\": \"Third Party\"\n    }\n  ],\n  \"originatingVenues\": [\n    \"Originating Venue: Federal District Court\"\n  ],\n  \"originatingCases\": [\n    {\n      \"districtCaseId\": 2000007922,\n      \"districtCaseUrl\": \"https://api.lexmachina.com/district-cases/2000007922\",\n      \"judges\": [\n        {\n          \"name\": \"Lucy Haeran Koh\",\n          \"federalJudgeId\": 3279\n        }\n      ],\n      \"caseTypes\": [\n        \"Patent\",\n        \"Trademark\",\n        \"Contracts\",\n        \"Antitrust\"\n      ]\n    }\n  ],\n  \"appealabilityRulings\": [],\n  \"caseResolution\": {\n    \"summary\": \"Appellee Win\",\n    \"specific\": \"Affirmed\",\n    \"docketEntryFiled\": \"2015-10-13\"\n  },\n  \"supremeCourtAndRehearingDecisions\": [],\n  \"docket\": {\n    \"entries\": [],\n    \"retrieved\": \"none\",\n    \"count\": 41\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dbcb7b95-f95f-4e1d-9cca-5da8503a69a0",
+              "name": "Invalid or expired token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "appeals-cases",
+                    ":appeals_case_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "docket_retrieval",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "appeals_case_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Token time expired: Signature has expired.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4509f41d-9e69-48d6-a921-6b537729aa61",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "appeals-cases",
+                    ":appeals_case_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "docket_retrieval",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "appeals_case_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Unknown id\",\n  \"detail\": \"Not Found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "df4d2c99-24d8-4f46-a3e0-b3c331c4b2ac",
+              "name": "Error - 422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "appeals-cases",
+                    ":appeals_case_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "docket_retrieval",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "appeals_case_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Invalid input\",\n  \"detail\": [\n    {\n      \"type\": \"parsing\",\n      \"loc\": [\n        \"path\",\n        \"query\",\n        \"body\"\n      ],\n      \"msg\": \"invalid input\",\n      \"input\": \"-1\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8e2aaca2-649e-449c-b439-752c249fc30e",
+          "name": "List Appealability Rulings",
+          "request": {
+            "name": "List Appealability Rulings",
+            "description": {
+              "content": "Lists appealability rulings for use with appeals case querying.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "list-appealability-rulings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "49e9e045-2351-405e-bbdb-eb26b20e44ba",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-appealability-rulings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  \"Permission to Appeal: Grant\",\n  \"Permission to Appeal: Deny\",\n  \"Certificate of Appealability: Grant\",\n  \"Certificate of Appealability: Deny\",\n  \"Petition for Review: Grant\",\n  \"Petition for Review: Deny\"\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ed221ce4-e58f-4639-8a26-bfe331af5f59",
+              "name": "Invalid or expired token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-appealability-rulings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Token time expired: Signature has expired.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f58686dd-db70-4475-ab0e-d35934e3a1e5",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-appealability-rulings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Unknown id\",\n  \"detail\": \"Not Found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a0af8d0a-fb7e-40cb-bd40-9fef64903d91",
+              "name": "Error - 422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-appealability-rulings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Invalid input\",\n  \"detail\": [\n    {\n      \"type\": \"parsing\",\n      \"loc\": [\n        \"path\",\n        \"query\",\n        \"body\"\n      ],\n      \"msg\": \"invalid input\",\n      \"input\": \"-1\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e9cf4c30-2123-425c-9b4d-46f818342f20",
+          "name": "List Appellate Decisions",
+          "request": {
+            "name": "List Appellate Decisions",
+            "description": {
+              "content": "Lists appellate decisions for use with appeals case querying.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "list-appellate-decisions",
+                "FederalDistrict"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d111e7ad-cacb-4616-b5d4-100d804208dd",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-appellate-decisions",
+                    "FederalDistrict"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  \"Affirmed\",\n  \"Affirmed / Reversed in Part\",\n  \"Reversed\"\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c890b687-9c91-4a21-8da0-61304526ccb5",
+              "name": "Invalid or expired token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-appellate-decisions",
+                    "FederalDistrict"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Token time expired: Signature has expired.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1d06b632-d17d-4c73-aad8-baa87b6570cf",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-appellate-decisions",
+                    "FederalDistrict"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Unknown id\",\n  \"detail\": \"Not Found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aa7e6f52-7f5b-474d-8023-2137793dc8f9",
+              "name": "Error - 422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-appellate-decisions",
+                    "FederalDistrict"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Invalid input\",\n  \"detail\": [\n    {\n      \"type\": \"parsing\",\n      \"loc\": [\n        \"path\",\n        \"query\",\n        \"body\"\n      ],\n      \"msg\": \"invalid input\",\n      \"input\": \"-1\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "540d664e-2e28-41eb-93e7-86d2ea9ca752",
+          "name": "List Originating Venues",
+          "request": {
+            "name": "List Originating Venues",
+            "description": {
+              "content": "Lists originating venues for use with appeals case querying.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "list-originating-venues",
+                "FederalAppeals"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0f92ccf9-98a9-4306-959f-b858f5f634f0",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-originating-venues",
+                    "FederalAppeals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"originatingVenues\": [\n    \"Originating Venue: Board of Immigration Appeals\",\n    \"Originating Venue: Court of Federal Claims\",\n    \"Originating Venue: Federal Bankruptcy Court\",\n    \"Originating Venue: Bankruptcy Appellate Panel\",\n    \"Originating Venue: Federal District Court\",\n    \"Originating Venue: Other Agency\",\n    \"Originating Venue: ITC\",\n    \"Originating Venue: Other Court\",\n    \"Originating Venue: PTAB\"\n  ],\n  \"court\": {\n    \"name\": \"All Federal Appeals Courts\",\n    \"type\": \"FederalAppeals\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8f676359-8538-4f47-9952-e34e86bcd3e7",
+              "name": "Invalid or expired token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-originating-venues",
+                    "FederalAppeals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Token time expired: Signature has expired.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "35db36e9-3947-414e-8be7-515f50aaac5f",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-originating-venues",
+                    "FederalAppeals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Unknown id\",\n  \"detail\": \"Not Found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c7b80536-d139-42ab-976d-5000a5d47aa8",
+              "name": "Error - 422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-originating-venues",
+                    "FederalAppeals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Invalid input\",\n  \"detail\": [\n    {\n      \"type\": \"parsing\",\n      \"loc\": [\n        \"path\",\n        \"query\",\n        \"body\"\n      ],\n      \"msg\": \"invalid input\",\n      \"input\": \"-1\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d8a9dd34-2f54-4d4e-936f-784bd9c61dc4",
+          "name": "List Supreme Court Decisions",
+          "request": {
+            "name": "List Supreme Court Decisions",
+            "description": {
+              "content": "Lists decisions from the Supreme Court for use with appeals case querying.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "list-supreme-court-decisions",
+                "FederalAppeals"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ac0bce6e-028a-469a-9d1a-34aa0304f070",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-supreme-court-decisions",
+                    "FederalAppeals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  \"Affirmed by SCOTUS\",\n  \"Affirmed / Reversed in Part by SCOTUS\",\n  \"Reversed by SCOTUS\"\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b64fe461-6ea7-4959-9de0-aa2e440b59bf",
+              "name": "Invalid or expired token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-supreme-court-decisions",
+                    "FederalAppeals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Token time expired: Signature has expired.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "617c25eb-fcf3-4b19-81cb-884f9b0027c2",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-supreme-court-decisions",
+                    "FederalAppeals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Unknown id\",\n  \"detail\": \"Not Found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0264a0e8-30d1-493b-9f45-69219ed6694c",
+              "name": "Error - 422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-supreme-court-decisions",
+                    "FederalAppeals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Invalid input\",\n  \"detail\": [\n    {\n      \"type\": \"parsing\",\n      \"loc\": [\n        \"path\",\n        \"query\",\n        \"body\"\n      ],\n      \"msg\": \"invalid input\",\n      \"input\": \"-1\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cc761238-c545-43f2-b6b3-28f9a81d75f0",
+          "name": "Query Appeals Cases",
+          "request": {
+            "name": "Query Appeals Cases",
+            "description": {
+              "content": "Queries federal appeals court cases.\n\n- **data**: the appeals case query\n\nSee [https://developer.lexmachina.com/posts/query/appeals_query_usage/](https://developer.lexmachina.com/posts/query/appeals_query_usage/) for query formation.\n\nThe results will contain a list of cases, each with a specificed url and Lex Machina appealsCaseId.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "query-appeals-cases"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"courts\": {\n    \"include\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"exclude\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"caseStatus\": \"<string>\",\n  \"caseTags\": {\n    \"include\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"exclude\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"dates\": {\n    \"filed\": {\n      \"onOrAfter\": \"<date>\",\n      \"onOrBefore\": \"<date>\"\n    },\n    \"terminated\": {\n      \"onOrAfter\": \"<date>\",\n      \"onOrBefore\": \"<date>\"\n    },\n    \"lastDocket\": {\n      \"onOrAfter\": \"<date>\",\n      \"onOrBefore\": \"<date>\"\n    }\n  },\n  \"judges\": {\n    \"include\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"exclude\": [\n      \"<integer>\",\n      \"<integer>\"\n    ]\n  },\n  \"lawFirms\": {\n    \"include\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"exclude\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"includeAppellant\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"excludeAppellant\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"includeAppellee\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"excludeAppellee\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"includeRespondent\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"excludeRespondent\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"includeThirdParty\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"excludeThirdParty\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"includePetitionerMovant\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"excludePetitionerMovant\": [\n      \"<integer>\",\n      \"<integer>\"\n    ]\n  },\n  \"attorneys\": {\n    \"include\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"exclude\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"includeAppellant\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"excludeAppellant\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"includeAppellee\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"excludeAppellee\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"includeRespondent\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"excludeRespondent\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"includeThirdParty\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"excludeThirdParty\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"includePetitionerMovant\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"excludePetitionerMovant\": [\n      \"<integer>\",\n      \"<integer>\"\n    ]\n  },\n  \"parties\": {\n    \"include\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"exclude\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"includeAppellant\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"excludeAppellant\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"includeAppellee\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"excludeAppellee\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"includeRespondent\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"excludeRespondent\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"includeThirdParty\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"excludeThirdParty\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"includePetitionerMovant\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"excludePetitionerMovant\": [\n      \"<integer>\",\n      \"<integer>\"\n    ]\n  },\n  \"originatingVenues\": {\n    \"include\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"exclude\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"originatingCases\": {\n    \"includeDistrictCaseIds\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"excludeDistrictCaseIds\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"includeOriginatingJudges\": {\n      \"districtFederalJudges\": {\n        \"include\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"exclude\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    },\n    \"originatingDistrictCaseCriteria\": {\n      \"courts\": {\n        \"include\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"exclude\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"caseTypes\": {\n        \"include\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"exclude\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    }\n  },\n  \"resolutions\": {\n    \"include\": [\n      {\n        \"summary\": \"<string>\",\n        \"specific\": \"<string>\"\n      },\n      {\n        \"summary\": \"<string>\",\n        \"specific\": \"<string>\"\n      }\n    ],\n    \"exclude\": [\n      {\n        \"summary\": \"<string>\",\n        \"specific\": \"<string>\"\n      },\n      {\n        \"summary\": \"<string>\",\n        \"specific\": \"<string>\"\n      }\n    ]\n  },\n  \"supremeCourtDecisions\": {\n    \"include\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"exclude\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"ordering\": \"ByFirstFiled\",\n  \"page\": 1,\n  \"pageSize\": 5\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b45e2a6b-dda7-46bb-8034-247771d6ed38",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "query-appeals-cases"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\"originatingVenues\": {\"include\": [\"Originating Venue: Court of Federal Claims\"]}}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cases\": [\n    {\n      \"url\": \"https://api.lexmachina.com/appeals-cases/2005670885\",\n      \"appealsCaseId\": 2005670885\n    },\n    {\n      \"url\": \"https://api.lexmachina.com/appeals-cases/2005670259\",\n      \"appealsCaseId\": 2005670259\n    },\n    {\n      \"url\": \"https://api.lexmachina.com/appeals-cases/2005670890\",\n      \"appealsCaseId\": 2005670890\n    },\n    {\n      \"url\": \"https://api.lexmachina.com/appeals-cases/2005668241\",\n      \"appealsCaseId\": 2005668241\n    },\n    {\n      \"url\": \"https://api.lexmachina.com/appeals-cases/2005670690\",\n      \"appealsCaseId\": 2005670690\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "566d7978-1ca1-4501-ab7d-67f642a0f344",
+              "name": "Invalid or expired token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "query-appeals-cases"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\"originatingVenues\": {\"include\": [\"Originating Venue: Court of Federal Claims\"]}}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Token time expired: Signature has expired.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bb5f4599-f909-45ac-b1ff-a0432fee4194",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "query-appeals-cases"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\"originatingVenues\": {\"include\": [\"Originating Venue: Court of Federal Claims\"]}}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Unknown id\",\n  \"detail\": \"Not Found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1a7f75f0-0de6-47c7-862a-b3f322a84a67",
+              "name": "Error - 422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "query-appeals-cases"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\"originatingVenues\": {\"include\": [\"Originating Venue: Court of Federal Claims\"]}}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Invalid input\",\n  \"detail\": [\n    {\n      \"type\": \"parsing\",\n      \"loc\": [\n        \"path\",\n        \"query\",\n        \"body\"\n      ],\n      \"msg\": \"invalid input\",\n      \"input\": \"-1\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.lexmachina.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "81d40c29-0bc4-499a-9d39-ae5bc534385a",
+    "name": "Lex Machina Alerts Federal Appeals Cases API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Alerts.",
+      "type": "text/plain"
+    }
+  }
+}

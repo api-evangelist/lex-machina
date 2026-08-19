@@ -1,0 +1,46 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lex Machina Alerts Bankruptcy Cases API",
+    "version": "20260324"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Bankruptcy Cases",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Bankruptcy Case",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/bankruptcy-cases/:bankruptcy_case_id",
+            "params": [
+              {
+                "name": "bankruptcy_case_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "docket_retrieval",
+                "value": "",
+                "type": "query",
+                "description": "'all' to retrieve docket entries for the case, if not provided no docket entries will be retrieved."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets data for a single federal bankruptcy court case.\n\n- **bankruptcy_case_id**: the Lex Machina bankruptcyCaseId"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

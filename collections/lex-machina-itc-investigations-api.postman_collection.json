@@ -1,0 +1,319 @@
+{
+  "item": [
+    {
+      "id": "03740330-8c67-492c-ad5a-afc047441b57",
+      "name": "ITC Investigations",
+      "description": {
+        "content": "ITC Investigations.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a006ea4d-38d7-4cac-a1b0-0fccef3a367a",
+          "name": "Get Itc Investigation",
+          "request": {
+            "name": "Get Itc Investigation",
+            "description": {
+              "content": "Gets data for a single US ITC investigation.\n\n- **itc_investigation_id**: the ITC investigation number\n- **docket_retrieval**: docket retreival mode\n\nThe investigation number format should exclude the leading \"337-TA-\"",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "itc-investigations",
+                ":itc_investigation_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "document_retrieval",
+                  "value": "<string>",
+                  "description": "'all' to retrieve all documents for the investigation, if not provided documents will not be returned."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "itc_investigation_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "54551ea7-d1a5-482f-80e6-596745e66155",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "itc-investigations",
+                    ":itc_investigation_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "document_retrieval",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itc_investigation_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"itcInvestigationId\": \"998\",\n  \"investigationNumber\": \"337-TA-998\",\n  \"title\": \"Certain Hybrid Electric Vehicles Components Thereof; Inv. No. 337-TA-998\",\n  \"investigationTypes\": [\n    \"Patent\"\n  ],\n  \"status\": \"Terminated\",\n  \"dates\": {\n    \"notice\": \"2016-05-23\",\n    \"terminated\": \"2017-02-01\"\n  },\n  \"administrativeLawJudges\": [\n    {\n      \"name\": \"Thomas Pender\"\n    }\n  ],\n  \"dispositions\": [\n    \"Settlement\"\n  ],\n  \"parties\": [\n    {\n      \"name\": \"Volkswagen Group of America, Inc.\",\n      \"role\": \"respondent\"\n    },\n    {\n      \"name\": \"Volkswagen AG\",\n      \"role\": \"respondent\"\n    },\n    {\n      \"name\": \"Porsche Cars North America, Inc.\",\n      \"role\": \"respondent\"\n    },\n    {\n      \"name\": \"Dr. Ing. h.c. F. Porsche AG\",\n      \"role\": \"respondent\"\n    },\n    {\n      \"name\": \"Audi of America, LLC\",\n      \"role\": \"respondent\"\n    },\n    {\n      \"name\": \"Audi AG\",\n      \"role\": \"respondent\"\n    },\n    {\n      \"name\": \"Paice LLC\",\n      \"role\": \"complainant\"\n    },\n    {\n      \"name\": \"Abell Foundation, Inc.\",\n      \"role\": \"complainant\"\n    },\n    {\n      \"name\": \"Dr. Ing. H.C. F. Porsche AG\",\n      \"role\": \"respondent\"\n    }\n  ],\n  \"patents\": [\n    {\n      \"number\": \"7104347\",\n      \"title\": \"Hybrid vehicles\"\n    },\n    {\n      \"number\": \"7237634\",\n      \"title\": \"Hybrid vehicles\"\n    },\n    {\n      \"number\": \"8214097\",\n      \"title\": \"Hybrid vehicles\"\n    }\n  ],\n  \"itcDocumentList\": {\n    \"entries\": [],\n    \"retrieved\": \"none\",\n    \"count\": 199\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9bedca35-a22d-4fd4-8bad-4a3b4c300b46",
+              "name": "Invalid or expired token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "itc-investigations",
+                    ":itc_investigation_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "document_retrieval",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itc_investigation_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Token time expired: Signature has expired.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fc862c86-42ba-4a75-878b-417c23608ca0",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "itc-investigations",
+                    ":itc_investigation_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "document_retrieval",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itc_investigation_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Unknown id\",\n  \"detail\": \"Not Found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8a2c53c0-b7c6-4562-bce8-36c92fa02af0",
+              "name": "Error - 422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "itc-investigations",
+                    ":itc_investigation_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "document_retrieval",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itc_investigation_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Invalid input\",\n  \"detail\": [\n    {\n      \"type\": \"parsing\",\n      \"loc\": [\n        \"path\",\n        \"query\",\n        \"body\"\n      ],\n      \"msg\": \"invalid input\",\n      \"input\": \"-1\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.lexmachina.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "09d3e8f1-c74b-4918-9939-fbbd0f75ea91",
+    "name": "Lex Machina Alerts ITC Investigations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Alerts.",
+      "type": "text/plain"
+    }
+  }
+}

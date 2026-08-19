@@ -1,0 +1,125 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lex Machina Alerts Federal Appeals Cases API",
+    "version": "20260324"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Federal Appeals Cases",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Appeals Case",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/appeals-cases/:appeals_case_id",
+            "params": [
+              {
+                "name": "appeals_case_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "docket_retrieval",
+                "value": "",
+                "type": "query",
+                "description": "'all' to retrieve docket entries for the case, if not provided no docket entries will be retrieved."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets data for a single federal appeals circuit court case.\n\n- **appeals_case_id**: the Lex Machina appealsCaseId"
+        },
+        {
+          "info": {
+            "name": "List Appealability Rulings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/list-appealability-rulings",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Lists appealability rulings for use with appeals case querying."
+        },
+        {
+          "info": {
+            "name": "List Appellate Decisions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/list-appellate-decisions/FederalDistrict",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Lists appellate decisions for use with appeals case querying."
+        },
+        {
+          "info": {
+            "name": "List Originating Venues",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/list-originating-venues/FederalAppeals",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Lists originating venues for use with appeals case querying."
+        },
+        {
+          "info": {
+            "name": "List Supreme Court Decisions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/list-supreme-court-decisions/FederalAppeals",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Lists decisions from the Supreme Court for use with appeals case querying."
+        },
+        {
+          "info": {
+            "name": "Query Appeals Cases",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lexmachina.com/query-appeals-cases",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Queries federal appeals court cases.\n\n- **data**: the appeals case query\n\nSee [https://developer.lexmachina.com/posts/query/appeals_query_usage/](https://developer.lexmachina.com/posts/query/appeals_query_usage/) for query formation.\n\nThe results will contain a list of cases, each with a specificed url and Lex Machina appealsCaseId."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

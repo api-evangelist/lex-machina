@@ -1,0 +1,627 @@
+{
+  "item": [
+    {
+      "id": "7db7677c-d4e1-4189-acbb-5d6d7c2a2546",
+      "name": "Analytics",
+      "description": {
+        "content": "Analytics.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a3162d51-84cf-4ae4-90d5-e4e54bbf1dda",
+          "name": "Analyze District Cases From Query",
+          "request": {
+            "name": "Analyze District Cases From Query",
+            "description": {},
+            "url": {
+              "path": [
+                "analyze-district-cases",
+                "from-query"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"analyticType\": \"<string>\",\n  \"districtCaseQuery\": {\n    \"caseStatus\": \"<string>\",\n    \"caseTypes\": {\n      \"include\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"exclude\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"caseTags\": {\n      \"include\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"exclude\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"dates\": {\n      \"filed\": {\n        \"onOrAfter\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"onOrBefore\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"terminated\": {\n        \"onOrAfter\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"onOrBefore\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"trial\": {\n        \"onOrAfter\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"onOrBefore\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"lastDocket\": {\n        \"onOrAfter\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"onOrBefore\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    },\n    \"judges\": {\n      \"include\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"exclude\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    \"magistrates\": {\n      \"include\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"exclude\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    \"events\": {\n      \"include\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"exclude\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"lawFirms\": {\n      \"include\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"exclude\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"includePlaintiff\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"excludePlaintiff\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"includeDefendant\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"excludeDefendant\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"includeThirdParty\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"excludeThirdParty\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    \"attorneys\": {\n      \"include\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"exclude\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"includePlaintiff\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"excludePlaintiff\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"includeDefendant\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"excludeDefendant\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"includeThirdParty\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"excludeThirdParty\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    \"parties\": {\n      \"include\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"exclude\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"includePlaintiff\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"excludePlaintiff\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"includeDefendant\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"excludeDefendant\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"includeThirdParty\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"excludeThirdParty\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    \"courts\": {\n      \"include\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"exclude\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"resolutions\": {\n      \"include\": [\n        {\n          \"summary\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"specific\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"summary\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"specific\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"exclude\": [\n        {\n          \"summary\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"specific\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"summary\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"specific\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    },\n    \"findings\": [\n      {\n        \"judgmentSource\": {\n          \"include\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"exclude\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"nameType\": {\n          \"include\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"exclude\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"date\": {\n          \"onOrAfter\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"onOrBefore\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"awardedToParties\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"awardedAgainstParties\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"patentInvalidityReasons\": {\n          \"include\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      {\n        \"judgmentSource\": {\n          \"include\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"exclude\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"nameType\": {\n          \"include\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"exclude\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"date\": {\n          \"onOrAfter\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"onOrBefore\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"awardedToParties\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"awardedAgainstParties\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"patentInvalidityReasons\": {\n          \"include\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      }\n    ],\n    \"remedies\": [\n      {\n        \"judgmentSource\": {\n          \"include\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"exclude\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"nameType\": {\n          \"include\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"exclude\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"date\": {\n          \"onOrAfter\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"onOrBefore\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"awardedToParties\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"awardedAgainstParties\": [\n          \"<integer>\",\n          \"<integer>\"\n        ]\n      },\n      {\n        \"judgmentSource\": {\n          \"include\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"exclude\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"nameType\": {\n          \"include\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"exclude\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"date\": {\n          \"onOrAfter\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"onOrBefore\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"awardedToParties\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"awardedAgainstParties\": [\n          \"<integer>\",\n          \"<integer>\"\n        ]\n      }\n    ],\n    \"damages\": [\n      {\n        \"judgmentSource\": {\n          \"include\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"exclude\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"nameType\": {\n          \"include\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"exclude\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"date\": {\n          \"onOrAfter\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"onOrBefore\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"awardedToParties\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"awardedAgainstParties\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"minimumAmount\": \"<number>\"\n      },\n      {\n        \"judgmentSource\": {\n          \"include\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"exclude\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"nameType\": {\n          \"include\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"exclude\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"date\": {\n          \"onOrAfter\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"onOrBefore\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"awardedToParties\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"awardedAgainstParties\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"minimumAmount\": \"<number>\"\n      }\n    ],\n    \"patents\": {\n      \"include\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"exclude\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"mdl\": {\n      \"include\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"exclude\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    \"appellateDecisions\": {\n      \"include\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"exclude\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"ordering\": \"ByFirstFiled\",\n    \"page\": 1,\n    \"pageSize\": 5\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "75247465-690d-4bee-b35c-89dfbab09eaf",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "analyze-district-cases",
+                    "from-query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\"analyticType\": \"LawFirmCountByRole\", \"districtCaseQuery\": {\"courts\": {\"include\": [\"njd\"]}, \"caseTypes\": {\"include\": [\"Contracts\"]}, \"dates\": {\"filed\": {\"onOrAfter\": \"2019-01-01\", \"onOrBefore\": \"2019-12-31\"}, \"terminated\": {\"onOrAfter\": \"2021-01-01\", \"onOrBefore\": \"2021-12-31\"}}}}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"totalCases\": 63,\n  \"aggregation\": {\n    \"data\": [\n      {\n        \"lawFirmId\": 3571,\n        \"lawFirmName\": \"State of New Jersey\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 12\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 4743,\n        \"lawFirmName\": \"Greenbaum, Rowe, Smith & Davis\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 13\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 79274506,\n        \"lawFirmName\": \"John Zidziunas & Associates\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 12\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 74149061,\n        \"lawFirmName\": \"Riker Danzig\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 11\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 73892766,\n        \"lawFirmName\": \"Nukk-Freeman\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 11\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 69826,\n        \"lawFirmName\": \"Clark Hill\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 10\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 2764992,\n        \"lawFirmName\": \"Price, Meese, Shulman & D'Arminio\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 3\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 4\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 948987,\n        \"lawFirmName\": \"Connell Foley\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 6\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 160737897,\n        \"lawFirmName\": \"Campbell Rocco Law\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 6\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 73924463,\n        \"lawFirmName\": \"Sills Cummis & Gross\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 6\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 28526743,\n        \"lawFirmName\": \"Schenck Price Smith & King\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 5\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 1\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 95470716,\n        \"lawFirmName\": \"Randy Scott Zelin\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 6\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 79063,\n        \"lawFirmName\": \"Herzfeld & Rubin\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 5\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 485015,\n        \"lawFirmName\": \"Post & Schell\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 5\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 433,\n        \"lawFirmName\": \"Reed Smith\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 5\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 24440,\n        \"lawFirmName\": \"Ballard Spahr\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 3\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 119127128,\n        \"lawFirmName\": \"Coughlin Midlige & Garland\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 4\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 13647919,\n        \"lawFirmName\": \"Saiber\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 3\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 16,\n        \"lawFirmName\": \"Greenberg Traurig\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 4\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 226013496,\n        \"lawFirmName\": \"Fox Rothschild\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 3\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 78110100,\n        \"lawFirmName\": \"Trinity & Farsiou\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 3\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 2634106,\n        \"lawFirmName\": \"Houser & Allison\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 3\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 2944840,\n        \"lawFirmName\": \"Chiesa Shahinian & Giantomasi\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 2\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 1\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 1927,\n        \"lawFirmName\": \"Saul Ewing Arnstein & Lehr\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 3\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 76758445,\n        \"lawFirmName\": \"White and Williams\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 2\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 9441075,\n        \"lawFirmName\": \"Braff, Harris, Sukoneck & Maloof\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 3\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 3625370,\n        \"lawFirmName\": \"Wolff & Samson\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 2\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 1\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 2544529,\n        \"lawFirmName\": \"Feder Kaszovitz\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 3\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 21177272,\n        \"lawFirmName\": \"Blank Rome\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 3\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 198107902,\n        \"lawFirmName\": \"Landman Corsi Ballaine & Ford\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 3\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 91790,\n        \"lawFirmName\": \"Lake & Cobb\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 3\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 110748325,\n        \"lawFirmName\": \"Finestein & Malloy\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 3\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 1359265,\n        \"lawFirmName\": \"John E. Osborn\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 3\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 32792,\n        \"lawFirmName\": \"Wilson Elser\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 2\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 191985184,\n        \"lawFirmName\": \"Law Offices of Joel C. Seltzer\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 2\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 53613883,\n        \"lawFirmName\": \"Fishkin Lucks\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 2\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 16080674,\n        \"lawFirmName\": \"Zukerman Gore Brandeis & Crossman\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 2\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 87952,\n        \"lawFirmName\": \"FordHarrison\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 2\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 54662,\n        \"lawFirmName\": \"Lewis Brisbois Bisgaard & Smith\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 2\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 86880158,\n        \"lawFirmName\": \"Anderson & Shah\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 2\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 45565730,\n        \"lawFirmName\": \"Littleton Park Joyce Ughetta & Kelly\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 2\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 192889343,\n        \"lawFirmName\": \"Gennet, Kallmann, Antin, Sweetman & Nichols\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 2\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 10016960,\n        \"lawFirmName\": \"MARK S. KANCHER\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 284166,\n        \"lawFirmName\": \"Marks & Klein\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 2\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 3641580,\n        \"lawFirmName\": \"Gordon Rees Scully Mansukhani\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 2\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 482562,\n        \"lawFirmName\": \"McCarter & English\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 8286817,\n        \"lawFirmName\": \"McElroy, Deutsch, Mulvaney & Carpenter\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 74592432,\n        \"lawFirmName\": \"McNelly Law Group\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 2\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 871412,\n        \"lawFirmName\": \"Bressler, Amery & Ross\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 2\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 211807676,\n        \"lawFirmName\": \"Brown & Connery\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 159371016,\n        \"lawFirmName\": \"Hurvitz & Waldman\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 2\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 604,\n        \"lawFirmName\": \"Department of Justice\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 2\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 5000,\n        \"lawFirmName\": \"Dinsmore & Shohl\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 2\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 14953455,\n        \"lawFirmName\": \"KML Law Group\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 2\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 2840450,\n        \"lawFirmName\": \"Robins Kaplan\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 2\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 48787777,\n        \"lawFirmName\": \"Rosenblatt Law (rosenblattlegal.com)\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 2\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 84836034,\n        \"lawFirmName\": \"Scarinci Hollenbeck\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 2\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 1200526,\n        \"lawFirmName\": \"Sherman Silverstein Kohl Rose & Podolsky\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 2\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 14984471,\n        \"lawFirmName\": \"Donnelly Minter & Kelly\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 2\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 2559918,\n        \"lawFirmName\": \"Lauletta Birnbaum\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 2\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 204149042,\n        \"lawFirmName\": \"Thomas Paschos & Associates\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 2\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 72715108,\n        \"lawFirmName\": \"ARBUS MAYBRUCH & GOODE\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 2\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 108090,\n        \"lawFirmName\": \"Cavanagh Law Firm\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 2\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 73726804,\n        \"lawFirmName\": \"Triarsi, Betancourt, Wukovits & Dugan\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 2\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 25034,\n        \"lawFirmName\": \"Troutman Pepper Locke\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 2\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 32096952,\n        \"lawFirmName\": \"Verner Simon\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 2\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 720671,\n        \"lawFirmName\": \"FisherBroyles\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 57787079,\n        \"lawFirmName\": \"Law Offices of Frank Lagano\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 2\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 16233164,\n        \"lawFirmName\": \"Whiteman Law Group (whitemanlawgroup.com)\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 2\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 175082254,\n        \"lawFirmName\": \"The Choi Law Group\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 9007590,\n        \"lawFirmName\": \"TheChoiLawGroup\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 43709706,\n        \"lawFirmName\": \"Abilheira & Associates\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 2259387,\n        \"lawFirmName\": \"The Sultzer Law Group\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 295568,\n        \"lawFirmName\": \"Thomas, Thomas & Hafer\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 72927124,\n        \"lawFirmName\": \"TorricellaLaw\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 1103546,\n        \"lawFirmName\": \"Trachtman & Trachtman (trachtmanlaw.com)\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 2763131,\n        \"lawFirmName\": \"Walsh & Walsh, Esqs.\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 50008484,\n        \"lawFirmName\": \"Warshaw Burstein\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 10357,\n        \"lawFirmName\": \"Weir & Partners\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 2537860,\n        \"lawFirmName\": \"Wu & Kao\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 62232367,\n        \"lawFirmName\": \"The Law Offices of Bruce E. Baldinger\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 87592700,\n        \"lawFirmName\": \"Ameri Law Firm\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 73646052,\n        \"lawFirmName\": \"Antar Law Firm\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 241440,\n        \"lawFirmName\": \"Archer & Greiner\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 479700,\n        \"lawFirmName\": \"Armstrong Teasdale\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 709843,\n        \"lawFirmName\": \"Ausley & McMullen\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 122592469,\n        \"lawFirmName\": \"Berger Law Group (bergerlawpc.com)\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 2735110,\n        \"lawFirmName\": \"Beshada Farnese\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 8195708,\n        \"lawFirmName\": \"Billet & Associates\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 53440905,\n        \"lawFirmName\": \"Bolan Jahnsen Dacey\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 167401,\n        \"lawFirmName\": \"Brach Eichler\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 126,\n        \"lawFirmName\": \"Buchanan Ingersoll & Rooney\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 129518605,\n        \"lawFirmName\": \"Carkhuff & Radmin\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 8722539,\n        \"lawFirmName\": \"Casey & Barnett\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 8072075,\n        \"lawFirmName\": \"Clark & Fox\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 69545896,\n        \"lawFirmName\": \"Cooper Levenson\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 10918693,\n        \"lawFirmName\": \"Cruser, Mitchell, Novitz, Sanchez, Gaston & Zimet\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 8142859,\n        \"lawFirmName\": \"de Luca Levine\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 8289965,\n        \"lawFirmName\": \"Duane Morris\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 54210250,\n        \"lawFirmName\": \"ExteNet Systems\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 376452,\n        \"lawFirmName\": \"FBT Gibbons\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 1\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 52792274,\n        \"lawFirmName\": \"Fein, Such, Kahn & Shepard\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 62784769,\n        \"lawFirmName\": \"Fink Law (finkpc.com)\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 2779711,\n        \"lawFirmName\": \"Fisher Zucker\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 16109046,\n        \"lawFirmName\": \"Furey & Baldassari\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 13760421,\n        \"lawFirmName\": \"Genova Burns\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 3467799,\n        \"lawFirmName\": \"Guarino & Co. Law Firm\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 8740242,\n        \"lawFirmName\": \"Hedinger & Lawless\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 358108,\n        \"lawFirmName\": \"Hellring, Lindeman, Goldstein & Siegal\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 160207893,\n        \"lawFirmName\": \"High Swartz\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 1281,\n        \"lawFirmName\": \"Hogan Lovells\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 92502870,\n        \"lawFirmName\": \"Inglesino, Webster, Wyciskala & Taylor\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 1\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 2572038,\n        \"lawFirmName\": \"Katz Melinger\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 8763835,\n        \"lawFirmName\": \"Koller Law\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 549711,\n        \"lawFirmName\": \"Kudman Trachten Aloe\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 2227,\n        \"lawFirmName\": \"Kutak Rock\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 14012286,\n        \"lawFirmName\": \"Law Firm of Omar T. Mohammedi\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 41414585,\n        \"lawFirmName\": \"Law Office of Alexander Sakin\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 9362939,\n        \"lawFirmName\": \"Law Office of Dante DiPirro\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 62665815,\n        \"lawFirmName\": \"LAW OFFICE OF JOSEPH BASSO\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 3422064,\n        \"lawFirmName\": \"Law Office of Matthew H. Sontz\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 90856221,\n        \"lawFirmName\": \"LAW OFFICE OF MICHAEL K. ARROYO\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 4534806,\n        \"lawFirmName\": \"Law Office of Solomon E. Antar, Esq.\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 1330553,\n        \"lawFirmName\": \"Law Offices of Sheryl Mintz Goski\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 1\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 27625,\n        \"lawFirmName\": \"LeClairRyan\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 526832,\n        \"lawFirmName\": \"Lindabury, McCormick, Estabrook & Cooper\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 8758043,\n        \"lawFirmName\": \"Litman, Asche & Gioiella\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 16300000,\n        \"lawFirmName\": \"Lum, Drasco & Positan\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 1\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 186081396,\n        \"lawFirmName\": \"Marco & Sitaras\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 87951007,\n        \"lawFirmName\": \"Mavinkurve & Patel\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 23879,\n        \"lawFirmName\": \"McDonald Hopkins\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 99376948,\n        \"lawFirmName\": \"MCGUIRE LAW (CAROLYN M. MCGUIRE)\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 231206,\n        \"lawFirmName\": \"McGuireWoods\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 113516710,\n        \"lawFirmName\": \"Mellinger Kartzman\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 110402020,\n        \"lawFirmName\": \"Mensing Law\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 45200100,\n        \"lawFirmName\": \"MONTGOMERY McCRACKEN WALKER & RHOADS\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 175183,\n        \"lawFirmName\": \"Morrison Cohen\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 1\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 2544544,\n        \"lawFirmName\": \"Newman & Simpson\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 176436321,\n        \"lawFirmName\": \"Norris McLaughlin\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 2345451,\n        \"lawFirmName\": \"NOVA IP Law\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 2538578,\n        \"lawFirmName\": \"Offit Kurman\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 1\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 136372,\n        \"lawFirmName\": \"OlenderFeldman\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 2732255,\n        \"lawFirmName\": \"Price Parkinson & Kerr\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 43444228,\n        \"lawFirmName\": \"Ramp & Pisani, Esqs\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 85697163,\n        \"lawFirmName\": \"RAUCHWAY LAW (rauchwaylaw.com)\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 134,\n        \"lawFirmName\": \"Shumaker, Loop & Kendrick\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 9542806,\n        \"lawFirmName\": \"Sidney L. Gold & Associates\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 8511620,\n        \"lawFirmName\": \"Szaferman Lakind Blumstein & Blader\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"lawFirmId\": 1716416,\n        \"lawFirmName\": \"The Basil Law Group\",\n        \"rolesAndCounts\": [\n          {\n            \"role\": \"Plaintiff\",\n            \"count\": 1\n          },\n          {\n            \"role\": \"Defendant\",\n            \"count\": 0\n          },\n          {\n            \"role\": \"Third Party\",\n            \"count\": 0\n          }\n        ]\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7aadf0a0-148d-4560-a02e-b4639d5d9f21",
+              "name": "Invalid or expired token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "analyze-district-cases",
+                    "from-query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\"analyticType\": \"LawFirmCountByRole\", \"districtCaseQuery\": {\"courts\": {\"include\": [\"njd\"]}, \"caseTypes\": {\"include\": [\"Contracts\"]}, \"dates\": {\"filed\": {\"onOrAfter\": \"2019-01-01\", \"onOrBefore\": \"2019-12-31\"}, \"terminated\": {\"onOrAfter\": \"2021-01-01\", \"onOrBefore\": \"2021-12-31\"}}}}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Token time expired: Signature has expired.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4cd98a7d-a697-4f83-92d6-c7f626f33de9",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "analyze-district-cases",
+                    "from-query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\"analyticType\": \"LawFirmCountByRole\", \"districtCaseQuery\": {\"courts\": {\"include\": [\"njd\"]}, \"caseTypes\": {\"include\": [\"Contracts\"]}, \"dates\": {\"filed\": {\"onOrAfter\": \"2019-01-01\", \"onOrBefore\": \"2019-12-31\"}, \"terminated\": {\"onOrAfter\": \"2021-01-01\", \"onOrBefore\": \"2021-12-31\"}}}}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Unknown id\",\n  \"detail\": \"Not Found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5f7921b1-b89b-4db3-a9b8-e9aef4c99a29",
+              "name": "Error - 422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "analyze-district-cases",
+                    "from-query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\"analyticType\": \"LawFirmCountByRole\", \"districtCaseQuery\": {\"courts\": {\"include\": [\"njd\"]}, \"caseTypes\": {\"include\": [\"Contracts\"]}, \"dates\": {\"filed\": {\"onOrAfter\": \"2019-01-01\", \"onOrBefore\": \"2019-12-31\"}, \"terminated\": {\"onOrAfter\": \"2021-01-01\", \"onOrBefore\": \"2021-12-31\"}}}}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Invalid input\",\n  \"detail\": [\n    {\n      \"type\": \"parsing\",\n      \"loc\": [\n        \"path\",\n        \"query\",\n        \"body\"\n      ],\n      \"msg\": \"invalid input\",\n      \"input\": \"-1\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1f39ba72-5ff2-4f31-89bd-ccc273c74897",
+          "name": "Analyze District Cases From Alert",
+          "request": {
+            "name": "Analyze District Cases From Alert",
+            "description": {},
+            "url": {
+              "path": [
+                "analyze-district-cases",
+                "from-alert",
+                ":alert_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "analytic_type",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "on_or_after",
+                  "value": "<date>",
+                  "description": "alert start date"
+                },
+                {
+                  "disabled": false,
+                  "key": "on_or_before",
+                  "value": "<date>",
+                  "description": "alert end date"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "alert_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e4b5149b-9f0d-4311-be4a-2469cf3d44d8",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "analyze-district-cases",
+                    "from-alert",
+                    ":alert_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "analytic_type",
+                      "value": "PartyCountByRole"
+                    },
+                    {
+                      "key": "on_or_after",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "on_or_before",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "alert_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"totalCases\": 1633,\n  \"aggregation\": {\n    \"data\": [\n      {\n        \"caseType\": \"Patent\",\n        \"count\": 1632\n      },\n      {\n        \"caseType\": \"Trademark\",\n        \"count\": 74\n      },\n      {\n        \"caseType\": \"Contracts\",\n        \"count\": 53\n      },\n      {\n        \"caseType\": \"Copyright\",\n        \"count\": 14\n      },\n      {\n        \"caseType\": \"Trade Secret\",\n        \"count\": 7\n      },\n      {\n        \"caseType\": \"Antitrust\",\n        \"count\": 5\n      },\n      {\n        \"caseType\": \"Internet\",\n        \"count\": 1\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c7336a70-7d76-4f34-9ac7-0ae91d14cab5",
+              "name": "Invalid or expired token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "analyze-district-cases",
+                    "from-alert",
+                    ":alert_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "analytic_type",
+                      "value": "PartyCountByRole"
+                    },
+                    {
+                      "key": "on_or_after",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "on_or_before",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "alert_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Token time expired: Signature has expired.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "527ad9c6-03dc-4884-a512-79ca13445322",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "analyze-district-cases",
+                    "from-alert",
+                    ":alert_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "analytic_type",
+                      "value": "PartyCountByRole"
+                    },
+                    {
+                      "key": "on_or_after",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "on_or_before",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "alert_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Unknown id\",\n  \"detail\": \"Not Found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9e393feb-3b12-4174-b9e5-666768fddddb",
+              "name": "Error - 422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "analyze-district-cases",
+                    "from-alert",
+                    ":alert_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "analytic_type",
+                      "value": "PartyCountByRole"
+                    },
+                    {
+                      "key": "on_or_after",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "on_or_before",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "alert_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Invalid input\",\n  \"detail\": [\n    {\n      \"type\": \"parsing\",\n      \"loc\": [\n        \"path\",\n        \"query\",\n        \"body\"\n      ],\n      \"msg\": \"invalid input\",\n      \"input\": \"-1\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.lexmachina.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "ac4afe4f-fa06-4328-aa28-f58ac12843e8",
+    "name": "Lex Machina Alerts Analytics API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Alerts.",
+      "type": "text/plain"
+    }
+  }
+}

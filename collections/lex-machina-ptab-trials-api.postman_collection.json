@@ -1,0 +1,552 @@
+{
+  "item": [
+    {
+      "id": "2ab896ef-549d-4c29-883b-735e1f3eb54e",
+      "name": "PTAB Trials",
+      "description": {
+        "content": "PTAB Trials.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cd4e29a2-3055-40e5-a88b-356c8c534e9b",
+          "name": "Get Ptab Trial",
+          "request": {
+            "name": "Get Ptab Trial",
+            "description": {
+              "content": "Gets data for a single PTAB trial.\n\n- **ptab_trial_id**: the Lex Machina PTAB Trial id",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ptab-trials",
+                ":ptab_trial_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "ptab_trial_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c1415f1d-4cea-4d8d-9142-4a8e7a1fd054",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ptab-trials",
+                    ":ptab_trial_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "ptab_trial_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ptabTrialId\": 12769,\n  \"ptabTrialNumber\": \"IPR2021-00545\",\n  \"status\": \"Terminated\",\n  \"dates\": {\n    \"filed\": \"2021-02-26\",\n    \"terminated\": \"2022-09-06\",\n    \"institutionDecision\": \"2021-09-08\",\n    \"finalDecision\": \"2022-09-06\"\n  },\n  \"usptoPatentTechnologyCenter\": {\n    \"number\": 3700,\n    \"name\": \"Mechanical Engineering, Manufacturing, Products\"\n  },\n  \"administrativePatentJudges\": [\n    {\n      \"name\": \"Terrence W. McMillin\",\n      \"administrativePatentJudgeId\": 362,\n      \"details\": [\n        {\n          \"stage\": \"Final Decision\",\n          \"role\": \"Non-Presiding\"\n        },\n        {\n          \"stage\": \"Institution Decision\",\n          \"role\": \"Non-Presiding\"\n        }\n      ]\n    },\n    {\n      \"name\": \"Jason W. Melvin\",\n      \"administrativePatentJudgeId\": 370,\n      \"details\": [\n        {\n          \"stage\": \"Final Decision\",\n          \"role\": \"Presiding\"\n        },\n        {\n          \"stage\": \"Institution Decision\",\n          \"role\": \"Presiding\"\n        }\n      ]\n    },\n    {\n      \"name\": \"Barry L. Grossman\",\n      \"administrativePatentJudgeId\": 196,\n      \"details\": [\n        {\n          \"stage\": \"Final Decision\",\n          \"role\": \"Non-Presiding\"\n        },\n        {\n          \"stage\": \"Institution Decision\",\n          \"role\": \"Non-Presiding\"\n        }\n      ]\n    }\n  ],\n  \"lawFirms\": [\n    {\n      \"name\": \"Fish & Richardson\",\n      \"lawFirmId\": 906,\n      \"clientPartyIds\": [\n        1501\n      ]\n    },\n    {\n      \"name\": \"Finnegan, Henderson, Farabow, Garrett & Dunner\",\n      \"lawFirmId\": 528,\n      \"clientPartyIds\": [\n        2079879,\n        3211274,\n        45689903,\n        59175093,\n        479096,\n        479097\n      ]\n    }\n  ],\n  \"attorneys\": [\n    {\n      \"name\": \"Kai Rajan\",\n      \"attorneyId\": 45403013,\n      \"lawFirmIds\": [\n        528\n      ],\n      \"clientsPartyIds\": [\n        59175093,\n        2079879,\n        479096,\n        479097,\n        3211274,\n        45689903\n      ]\n    },\n    {\n      \"name\": \"Daniel C. Tucker\",\n      \"attorneyId\": 80245438,\n      \"lawFirmIds\": [\n        528\n      ],\n      \"clientsPartyIds\": [\n        59175093,\n        2079879,\n        479096,\n        479097,\n        3211274,\n        45689903\n      ]\n    },\n    {\n      \"name\": \"Benjamin Aaron Saidman\",\n      \"attorneyId\": 107793127,\n      \"lawFirmIds\": [\n        528\n      ],\n      \"clientsPartyIds\": [\n        59175093,\n        2079879,\n        479096,\n        479097,\n        3211274,\n        45689903\n      ]\n    },\n    {\n      \"name\": \"Michael Vincent Young Sr.\",\n      \"attorneyId\": 1421783,\n      \"lawFirmIds\": [\n        528\n      ],\n      \"clientsPartyIds\": [\n        59175093,\n        2079879,\n        479096,\n        479097,\n        3211274,\n        45689903\n      ]\n    },\n    {\n      \"name\": \"Erika Harmon Arner\",\n      \"attorneyId\": 1355622,\n      \"lawFirmIds\": [\n        528\n      ],\n      \"clientsPartyIds\": [\n        59175093,\n        2079879,\n        479096,\n        479097,\n        3211274,\n        45689903\n      ]\n    },\n    {\n      \"name\": \"Roberto J. Devoto\",\n      \"attorneyId\": 145530298,\n      \"lawFirmIds\": [\n        906\n      ],\n      \"clientsPartyIds\": [\n        1501\n      ]\n    },\n    {\n      \"name\": \"Hyun Jin In\",\n      \"attorneyId\": 42758383,\n      \"lawFirmIds\": [\n        906\n      ],\n      \"clientsPartyIds\": [\n        1501\n      ]\n    },\n    {\n      \"name\": \"Jeremy J. Monaldo\",\n      \"attorneyId\": 3813930,\n      \"lawFirmIds\": [\n        906\n      ],\n      \"clientsPartyIds\": [\n        1501\n      ]\n    },\n    {\n      \"name\": \"Walter Karl Renner\",\n      \"attorneyId\": 962854,\n      \"lawFirmIds\": [\n        906\n      ],\n      \"clientsPartyIds\": [\n        1501\n      ]\n    }\n  ],\n  \"parties\": [\n    {\n      \"name\": \"iRobot Corporation\",\n      \"partyId\": 59175096,\n      \"role\": \"Patent Owner\"\n    },\n    {\n      \"name\": \"SharkNinja Sales Company\",\n      \"partyId\": 59175095,\n      \"role\": \"Petitioner\"\n    },\n    {\n      \"name\": \"EP Midco LLC\",\n      \"partyId\": 59175099,\n      \"role\": \"Petitioner\"\n    },\n    {\n      \"name\": \"SharkNinja Hong Kong Co. Ltd.\",\n      \"partyId\": 59175093,\n      \"role\": \"Petitioner\"\n    },\n    {\n      \"name\": \"SharkNinja Management Company\",\n      \"partyId\": 59175094,\n      \"role\": \"Petitioner\"\n    },\n    {\n      \"name\": \"SharkNinja Operating LLC\",\n      \"partyId\": 59175098,\n      \"role\": \"Petitioner\"\n    },\n    {\n      \"name\": \"SharkNinja Management LLC\",\n      \"partyId\": 59175097,\n      \"role\": \"Petitioner\"\n    }\n  ],\n  \"trialType\": \"IPR\",\n  \"trialTags\": [\n    \"Appealed\"\n  ],\n  \"trialResolution\": \"Final Decision: Mixed Claim Findings\",\n  \"patent\": {\n    \"number\": \"7571511\",\n    \"title\": \"Autonomous floor-cleaning robot\",\n    \"applicationNumber\": \"10818073\"\n  },\n  \"claimFindings\": [\n    {\n      \"numbers\": [\n        1,\n        8,\n        9,\n        10,\n        11,\n        12,\n        14,\n        16,\n        17,\n        18,\n        19,\n        22,\n        23\n      ],\n      \"petition\": \"Petitioned\",\n      \"institutionDecision\": \"Instituted\",\n      \"finalWrittenDecision\": \"Unpatentable\"\n    },\n    {\n      \"numbers\": [\n        24,\n        25,\n        32,\n        33,\n        34,\n        36,\n        37,\n        55,\n        56,\n        62\n      ],\n      \"petition\": \"Petitioned\",\n      \"institutionDecision\": \"Instituted\",\n      \"finalWrittenDecision\": \"Upheld\"\n    }\n  ],\n  \"petitionStageGrounds\": {\n    \"statutes\": [\n      \"103\"\n    ],\n    \"priorArt\": [\n      {\n        \"priorArtType\": \"Foreign Patent / Application\",\n        \"priorArtReferences\": [\n          \"Toyoda\",\n          \"Ye\"\n        ]\n      },\n      {\n        \"priorArtType\": \"Other Publication\",\n        \"priorArtReferences\": [\n          \"Jones\"\n        ]\n      },\n      {\n        \"priorArtType\": \"US Patent\",\n        \"priorArtReferences\": [\n          \"Horst\",\n          \"Bisset\"\n        ]\n      }\n    ]\n  },\n  \"institutionDecisionGrounds\": [\n    {\n      \"decision\": \"Instituted\",\n      \"statute\": \"103\",\n      \"claims\": [\n        16,\n        17\n      ],\n      \"priorArt\": [\n        {\n          \"priorArtType\": \"Foreign Patent / Application\",\n          \"priorArtReferences\": [\n            \"Toyoda\"\n          ]\n        },\n        {\n          \"priorArtType\": \"US Patent\",\n          \"priorArtReferences\": [\n            \"Horst\",\n            \"Bisset\"\n          ]\n        }\n      ]\n    },\n    {\n      \"decision\": \"Instituted\",\n      \"statute\": \"103\",\n      \"claims\": [\n        1,\n        8,\n        9,\n        10,\n        11,\n        12,\n        16,\n        18,\n        19,\n        22,\n        23,\n        24,\n        25,\n        32,\n        33,\n        34,\n        37,\n        55,\n        56,\n        62\n      ],\n      \"priorArt\": [\n        {\n          \"priorArtType\": \"Foreign Patent / Application\",\n          \"priorArtReferences\": [\n            \"Toyoda\"\n          ]\n        },\n        {\n          \"priorArtType\": \"US Patent\",\n          \"priorArtReferences\": [\n            \"Bisset\"\n          ]\n        }\n      ]\n    },\n    {\n      \"decision\": \"Instituted\",\n      \"statute\": \"103\",\n      \"claims\": [\n        36,\n        14\n      ],\n      \"priorArt\": [\n        {\n          \"priorArtType\": \"Foreign Patent / Application\",\n          \"priorArtReferences\": [\n            \"Ye\"\n          ]\n        },\n        {\n          \"priorArtType\": \"Other Publication\",\n          \"priorArtReferences\": [\n            \"Jones\"\n          ]\n        },\n        {\n          \"priorArtType\": \"US Patent\",\n          \"priorArtReferences\": [\n            \"Bisset\"\n          ]\n        }\n      ]\n    },\n    {\n      \"decision\": \"Instituted\",\n      \"statute\": \"103\",\n      \"claims\": [\n        1,\n        8,\n        9,\n        10,\n        11,\n        12,\n        16,\n        18,\n        19,\n        22,\n        23,\n        24,\n        25,\n        32,\n        33,\n        34,\n        37,\n        55,\n        56,\n        62\n      ],\n      \"priorArt\": [\n        {\n          \"priorArtType\": \"Foreign Patent / Application\",\n          \"priorArtReferences\": [\n            \"Ye\"\n          ]\n        },\n        {\n          \"priorArtType\": \"US Patent\",\n          \"priorArtReferences\": [\n            \"Bisset\"\n          ]\n        }\n      ]\n    },\n    {\n      \"decision\": \"Instituted\",\n      \"statute\": \"103\",\n      \"claims\": [\n        16,\n        17\n      ],\n      \"priorArt\": [\n        {\n          \"priorArtType\": \"Foreign Patent / Application\",\n          \"priorArtReferences\": [\n            \"Ye\"\n          ]\n        },\n        {\n          \"priorArtType\": \"US Patent\",\n          \"priorArtReferences\": [\n            \"Horst\",\n            \"Bisset\"\n          ]\n        }\n      ]\n    },\n    {\n      \"decision\": \"Instituted\",\n      \"statute\": \"103\",\n      \"claims\": [\n        36,\n        14\n      ],\n      \"priorArt\": [\n        {\n          \"priorArtType\": \"Foreign Patent / Application\",\n          \"priorArtReferences\": [\n            \"Toyoda\"\n          ]\n        },\n        {\n          \"priorArtType\": \"Other Publication\",\n          \"priorArtReferences\": [\n            \"Jones\"\n          ]\n        },\n        {\n          \"priorArtType\": \"US Patent\",\n          \"priorArtReferences\": [\n            \"Bisset\"\n          ]\n        }\n      ]\n    }\n  ],\n  \"finalDecisionGrounds\": [\n    {\n      \"decision\": \"Unpatentable\",\n      \"statute\": \"103\",\n      \"claims\": [\n        1,\n        8,\n        9,\n        10,\n        11,\n        12,\n        16,\n        18,\n        19,\n        22,\n        23\n      ],\n      \"priorArt\": [\n        {\n          \"priorArtType\": \"Foreign Patent / Application\",\n          \"priorArtReferences\": [\n            \"Toyoda\"\n          ]\n        },\n        {\n          \"priorArtType\": \"US Patent\",\n          \"priorArtReferences\": [\n            \"Bisset\"\n          ]\n        }\n      ]\n    },\n    {\n      \"decision\": \"Upheld\",\n      \"statute\": \"103\",\n      \"claims\": [\n        36\n      ],\n      \"priorArt\": [\n        {\n          \"priorArtType\": \"Foreign Patent / Application\",\n          \"priorArtReferences\": [\n            \"Toyoda\"\n          ]\n        },\n        {\n          \"priorArtType\": \"Other Publication\",\n          \"priorArtReferences\": [\n            \"Jones\"\n          ]\n        },\n        {\n          \"priorArtType\": \"US Patent\",\n          \"priorArtReferences\": [\n            \"Bisset\"\n          ]\n        }\n      ]\n    },\n    {\n      \"decision\": \"Unpatentable\",\n      \"statute\": \"103\",\n      \"claims\": [\n        14\n      ],\n      \"priorArt\": [\n        {\n          \"priorArtType\": \"Foreign Patent / Application\",\n          \"priorArtReferences\": [\n            \"Toyoda\"\n          ]\n        },\n        {\n          \"priorArtType\": \"Other Publication\",\n          \"priorArtReferences\": [\n            \"Jones\"\n          ]\n        },\n        {\n          \"priorArtType\": \"US Patent\",\n          \"priorArtReferences\": [\n            \"Bisset\"\n          ]\n        }\n      ]\n    },\n    {\n      \"decision\": \"Upheld\",\n      \"statute\": \"103\",\n      \"claims\": [\n        32,\n        33,\n        34,\n        37,\n        55,\n        24,\n        25,\n        56,\n        62\n      ],\n      \"priorArt\": [\n        {\n          \"priorArtType\": \"Foreign Patent / Application\",\n          \"priorArtReferences\": [\n            \"Toyoda\"\n          ]\n        },\n        {\n          \"priorArtType\": \"US Patent\",\n          \"priorArtReferences\": [\n            \"Bisset\"\n          ]\n        }\n      ]\n    },\n    {\n      \"decision\": \"Unpatentable\",\n      \"statute\": \"103\",\n      \"claims\": [\n        16,\n        17\n      ],\n      \"priorArt\": [\n        {\n          \"priorArtType\": \"Foreign Patent / Application\",\n          \"priorArtReferences\": [\n            \"Toyoda\"\n          ]\n        },\n        {\n          \"priorArtType\": \"US Patent\",\n          \"priorArtReferences\": [\n            \"Horst\",\n            \"Bisset\"\n          ]\n        }\n      ]\n    },\n    {\n      \"decision\": \"Upheld\",\n      \"statute\": \"103\",\n      \"claims\": [\n        1,\n        8,\n        9,\n        10,\n        11,\n        12,\n        16,\n        18,\n        19,\n        22,\n        23,\n        24,\n        25,\n        32,\n        33,\n        34,\n        37,\n        55,\n        56,\n        62\n      ],\n      \"priorArt\": [\n        {\n          \"priorArtType\": \"Foreign Patent / Application\",\n          \"priorArtReferences\": [\n            \"Ye\"\n          ]\n        },\n        {\n          \"priorArtType\": \"US Patent\",\n          \"priorArtReferences\": [\n            \"Bisset\"\n          ]\n        }\n      ]\n    },\n    {\n      \"decision\": \"Upheld\",\n      \"statute\": \"103\",\n      \"claims\": [\n        16,\n        17\n      ],\n      \"priorArt\": [\n        {\n          \"priorArtType\": \"Foreign Patent / Application\",\n          \"priorArtReferences\": [\n            \"Ye\"\n          ]\n        },\n        {\n          \"priorArtType\": \"US Patent\",\n          \"priorArtReferences\": [\n            \"Horst\",\n            \"Bisset\"\n          ]\n        }\n      ]\n    },\n    {\n      \"decision\": \"Upheld\",\n      \"statute\": \"103\",\n      \"claims\": [\n        36,\n        14\n      ],\n      \"priorArt\": [\n        {\n          \"priorArtType\": \"Foreign Patent / Application\",\n          \"priorArtReferences\": [\n            \"Ye\"\n          ]\n        },\n        {\n          \"priorArtType\": \"Other Publication\",\n          \"priorArtReferences\": [\n            \"Jones\"\n          ]\n        },\n        {\n          \"priorArtType\": \"US Patent\",\n          \"priorArtReferences\": [\n            \"Bisset\"\n          ]\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "73d1521e-f603-42ec-a057-ce1a8e1d3aff",
+              "name": "Invalid or expired token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ptab-trials",
+                    ":ptab_trial_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "ptab_trial_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Token time expired: Signature has expired.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f9db43ab-445e-4cde-8de9-1002976bbfd6",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ptab-trials",
+                    ":ptab_trial_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "ptab_trial_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Unknown id\",\n  \"detail\": \"Not Found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0583f601-f0f8-4129-9a60-d47a6f2b7809",
+              "name": "Error - 422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ptab-trials",
+                    ":ptab_trial_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "ptab_trial_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Invalid input\",\n  \"detail\": [\n    {\n      \"type\": \"parsing\",\n      \"loc\": [\n        \"path\",\n        \"query\",\n        \"body\"\n      ],\n      \"msg\": \"invalid input\",\n      \"input\": \"-1\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2b22db7d-ea38-4bde-8304-af12fcdd6dc4",
+          "name": "Get Ptab Trial By Number",
+          "request": {
+            "name": "Get Ptab Trial By Number",
+            "description": {
+              "content": "Gets data for a single PTAB trial via the trial number.\n\n- **ptab_trial_number**: a PTAB Trial number in the format TTTYYYY-NNNNN where\n\n    TTT is one of IPR, CBM, or PGR\n\n    YYYY is a four digit year\n\n    NNNNN is a five digit trial number (including leading zeros)\n\n    Examples: IPR2013-00273, CBM2015-00182, PGR2025-00084",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ptab-trials",
+                ":ptab_trial_number"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ptab_trial_number",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "6cadfe27-7efd-47ef-937d-81bd557612e7",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ptab-trials",
+                    ":ptab_trial_number"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ptab_trial_number",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ptabTrialId\": 3887,\n  \"ptabTrialNumber\": \"CBM2015-00182\",\n  \"status\": \"Terminated\",\n  \"dates\": {\n    \"filed\": \"2015-09-11\",\n    \"terminated\": \"2017-02-28\",\n    \"institutionDecision\": \"2016-03-03\",\n    \"finalDecision\": \"2017-02-28\"\n  },\n  \"usptoPatentTechnologyCenter\": {\n    \"number\": 3600,\n    \"name\": \"Transportation, Construction, Electronic Commerce, Agriculture, National Security and License & Review\"\n  },\n  \"administrativePatentJudges\": [\n    {\n      \"name\": \"Sally C. Medley\",\n      \"administrativePatentJudgeId\": 222,\n      \"details\": [\n        {\n          \"stage\": \"Final Decision\",\n          \"role\": \"Non-Presiding\"\n        },\n        {\n          \"stage\": \"Institution Decision\",\n          \"role\": \"Non-Presiding\"\n        }\n      ]\n    },\n    {\n      \"name\": \"Jeremy M. Plenzler\",\n      \"administrativePatentJudgeId\": 242,\n      \"details\": [\n        {\n          \"stage\": \"Final Decision\",\n          \"role\": \"Presiding\"\n        },\n        {\n          \"stage\": \"Institution Decision\",\n          \"role\": \"Presiding\"\n        }\n      ]\n    },\n    {\n      \"name\": \"Meredith C. Petravick\",\n      \"administrativePatentJudgeId\": 181,\n      \"details\": [\n        {\n          \"stage\": \"Final Decision\",\n          \"role\": \"Non-Presiding\"\n        },\n        {\n          \"stage\": \"Institution Decision\",\n          \"role\": \"Non-Presiding\"\n        }\n      ]\n    }\n  ],\n  \"lawFirms\": [\n    {\n      \"name\": \"Sterne, Kessler, Goldstein & Fox\",\n      \"lawFirmId\": 227813753,\n      \"clientPartyIds\": [\n        274627299,\n        65047,\n        492521,\n        492522,\n        65046,\n        244150\n      ]\n    },\n    {\n      \"name\": \"Fish & Richardson\",\n      \"lawFirmId\": 906,\n      \"clientPartyIds\": [\n        274627299,\n        65047,\n        492521,\n        492522,\n        65046,\n        244150\n      ]\n    },\n    {\n      \"name\": \"McDonnell Boehnen Hulbert & Berghoff\",\n      \"lawFirmId\": 46836,\n      \"clientPartyIds\": [\n        70288\n      ]\n    },\n    {\n      \"name\": \"Finnegan, Henderson, Farabow, Garrett & Dunner\",\n      \"lawFirmId\": 528,\n      \"clientPartyIds\": [\n        70288\n      ]\n    },\n    {\n      \"name\": \"Trading Technologies International\",\n      \"lawFirmId\": 46839,\n      \"clientPartyIds\": [\n        70288\n      ]\n    }\n  ],\n  \"attorneys\": [\n    {\n      \"name\": \"Richard M. Bemben\",\n      \"attorneyId\": 44310261,\n      \"lawFirmIds\": [\n        227813753\n      ],\n      \"clientsPartyIds\": [\n        274627299,\n        65046,\n        65047,\n        244150,\n        492521,\n        492522\n      ]\n    },\n    {\n      \"name\": \"John C. Phillips\",\n      \"attorneyId\": 107715852,\n      \"lawFirmIds\": [\n        906\n      ],\n      \"clientsPartyIds\": [\n        274627299,\n        65046,\n        65047,\n        244150,\n        492521,\n        492522\n      ]\n    },\n    {\n      \"name\": \"Leif R. Sigmond Jr.\",\n      \"attorneyId\": 46832,\n      \"lawFirmIds\": [\n        46836\n      ],\n      \"clientsPartyIds\": [\n        70288\n      ]\n    },\n    {\n      \"name\": \"Lori Ann Gordon\",\n      \"attorneyId\": 575044,\n      \"lawFirmIds\": [\n        227813753\n      ],\n      \"clientsPartyIds\": [\n        274627299,\n        65046,\n        65047,\n        244150,\n        492521,\n        492522\n      ]\n    },\n    {\n      \"name\": \"Rachel Lauren Emsley\",\n      \"attorneyId\": 1519420,\n      \"lawFirmIds\": [\n        528\n      ],\n      \"clientsPartyIds\": [\n        70288\n      ]\n    },\n    {\n      \"name\": \"Steven F. Borsand\",\n      \"attorneyId\": 46839,\n      \"lawFirmIds\": [\n        46839\n      ],\n      \"clientsPartyIds\": [\n        70288\n      ]\n    },\n    {\n      \"name\": \"Robert Evan Sokohl\",\n      \"attorneyId\": 107756427,\n      \"lawFirmIds\": [\n        227813753\n      ],\n      \"clientsPartyIds\": [\n        274627299,\n        65046,\n        65047,\n        244150,\n        492521,\n        492522\n      ]\n    },\n    {\n      \"name\": \"Jay Quentin Knobloch\",\n      \"attorneyId\": 71272425,\n      \"lawFirmIds\": [\n        46839\n      ],\n      \"clientsPartyIds\": [\n        70288\n      ]\n    },\n    {\n      \"name\": \"Joshua Lawrence Goldberg\",\n      \"attorneyId\": 885924,\n      \"lawFirmIds\": [\n        528\n      ],\n      \"clientsPartyIds\": [\n        70288\n      ]\n    },\n    {\n      \"name\": \"Kevin Dale Rodkey\",\n      \"attorneyId\": 23264,\n      \"lawFirmIds\": [\n        528\n      ],\n      \"clientsPartyIds\": [\n        70288\n      ]\n    },\n    {\n      \"name\": \"Jennifer Marie Kurcz\",\n      \"attorneyId\": 283262150,\n      \"lawFirmIds\": [\n        46836\n      ],\n      \"clientsPartyIds\": [\n        70288\n      ]\n    },\n    {\n      \"name\": \"Cory Clifford Bell\",\n      \"attorneyId\": 87532029,\n      \"lawFirmIds\": [\n        528\n      ],\n      \"clientsPartyIds\": [\n        70288\n      ]\n    },\n    {\n      \"name\": \"Erika Harmon Arner\",\n      \"attorneyId\": 1355622,\n      \"lawFirmIds\": [\n        528\n      ],\n      \"clientsPartyIds\": [\n        70288\n      ]\n    },\n    {\n      \"name\": \"Michael David Gannon\",\n      \"attorneyId\": 46834,\n      \"lawFirmIds\": [\n        46836\n      ],\n      \"clientsPartyIds\": [\n        70288\n      ]\n    }\n  ],\n  \"parties\": [\n    {\n      \"name\": \"TradeStation Group, Inc.\",\n      \"partyId\": 31357911,\n      \"role\": \"Petitioner\"\n    },\n    {\n      \"name\": \"Interactive Brokers LLC\",\n      \"partyId\": 31357913,\n      \"role\": \"Petitioner\"\n    },\n    {\n      \"name\": \"TradeStation Securities, Inc.\",\n      \"partyId\": 31357912,\n      \"role\": \"Petitioner\"\n    },\n    {\n      \"name\": \"TradeStation Technologies, Inc.\",\n      \"partyId\": 31357915,\n      \"role\": \"Petitioner\"\n    },\n    {\n      \"name\": \"IBFX, Inc.\",\n      \"partyId\": 31357914,\n      \"role\": \"Petitioner\"\n    },\n    {\n      \"name\": \"IBG LLC\",\n      \"partyId\": 33522008,\n      \"role\": \"Petitioner\"\n    },\n    {\n      \"name\": \"Trading Technologies International, Inc.\",\n      \"partyId\": 20016861,\n      \"role\": \"Patent Owner\"\n    }\n  ],\n  \"trialType\": \"CBM\",\n  \"trialTags\": [\n    \"Appealed\"\n  ],\n  \"trialResolution\": \"Final Decision: All Claims Unpatentable\",\n  \"patent\": {\n    \"number\": \"6772132\",\n    \"title\": \"Click based trading with intuitive grid display of market depth\",\n    \"applicationNumber\": 9590692\n  },\n  \"claimFindings\": [\n    {\n      \"numbers\": [\n        1,\n        2,\n        3,\n        4,\n        5,\n        6,\n        7,\n        8,\n        9,\n        10,\n        11,\n        12,\n        13,\n        14,\n        15,\n        16,\n        17,\n        18,\n        19,\n        20,\n        21,\n        22,\n        23,\n        24,\n        25,\n        26,\n        27,\n        28,\n        29,\n        30,\n        31,\n        32,\n        33,\n        34,\n        35,\n        36,\n        37,\n        38,\n        39,\n        40,\n        41,\n        42,\n        43,\n        44,\n        45,\n        46,\n        47,\n        48,\n        49,\n        50,\n        51,\n        52,\n        53,\n        54,\n        55,\n        56\n      ],\n      \"petition\": \"Petitioned\",\n      \"institutionDecision\": \"Instituted\",\n      \"finalWrittenDecision\": \"Unpatentable\"\n    }\n  ],\n  \"petitionStageGrounds\": {\n    \"statutes\": [\n      \"103\",\n      \"101\"\n    ],\n    \"priorArt\": [\n      {\n        \"priorArtType\": \"Foreign Patent / Application\",\n        \"priorArtReferences\": [\n          \"May\",\n          \"Belden\"\n        ]\n      },\n      {\n        \"priorArtType\": \"Other Publication\",\n        \"priorArtReferences\": [\n          \"TSE\"\n        ]\n      },\n      {\n        \"priorArtType\": \"US Patent\",\n        \"priorArtReferences\": [\n          \"Silverman\",\n          \"Gutterman\",\n          \"Paal\"\n        ]\n      }\n    ]\n  },\n  \"institutionDecisionGrounds\": [\n    {\n      \"decision\": \"Instituted\",\n      \"statute\": \"103\",\n      \"claims\": [\n        5,\n        6,\n        39,\n        12,\n        13,\n        49,\n        18,\n        19,\n        29\n      ],\n      \"priorArt\": [\n        {\n          \"priorArtType\": \"Foreign Patent / Application\",\n          \"priorArtReferences\": [\n            \"Belden\"\n          ]\n        },\n        {\n          \"priorArtType\": \"Other Publication\",\n          \"priorArtReferences\": [\n            \"TSE\"\n          ]\n        },\n        {\n          \"priorArtType\": \"US Patent\",\n          \"priorArtReferences\": [\n            \"Gutterman\"\n          ]\n        }\n      ]\n    },\n    {\n      \"decision\": \"Instituted\",\n      \"statute\": \"103\",\n      \"claims\": [\n        17,\n        11,\n        4\n      ],\n      \"priorArt\": [\n        {\n          \"priorArtType\": \"Foreign Patent / Application\",\n          \"priorArtReferences\": [\n            \"May\",\n            \"Belden\"\n          ]\n        },\n        {\n          \"priorArtType\": \"Other Publication\",\n          \"priorArtReferences\": [\n            \"TSE\"\n          ]\n        }\n      ]\n    },\n    {\n      \"decision\": \"Instituted\",\n      \"statute\": \"101\",\n      \"claims\": [\n        1,\n        2,\n        3,\n        4,\n        5,\n        6,\n        7,\n        8,\n        9,\n        10,\n        11,\n        12,\n        13,\n        14,\n        15,\n        16,\n        17,\n        18,\n        19,\n        20,\n        21,\n        22,\n        23,\n        24,\n        25,\n        26,\n        27,\n        28,\n        29,\n        30,\n        31,\n        32,\n        33,\n        34,\n        35,\n        36,\n        37,\n        38,\n        39,\n        40,\n        41,\n        42,\n        43,\n        44,\n        45,\n        46,\n        47,\n        48,\n        49,\n        50,\n        51,\n        52,\n        53,\n        54,\n        55,\n        56\n      ],\n      \"priorArt\": []\n    },\n    {\n      \"decision\": \"Denied Institution\",\n      \"statute\": \"103\",\n      \"claims\": [\n        17,\n        11,\n        4\n      ],\n      \"priorArt\": [\n        {\n          \"priorArtType\": \"Foreign Patent / Application\",\n          \"priorArtReferences\": [\n            \"May\",\n            \"Belden\"\n          ]\n        },\n        {\n          \"priorArtType\": \"US Patent\",\n          \"priorArtReferences\": [\n            \"Silverman\",\n            \"Gutterman\"\n          ]\n        }\n      ]\n    },\n    {\n      \"decision\": \"Denied Institution\",\n      \"statute\": \"103\",\n      \"claims\": [\n        34,\n        44,\n        23\n      ],\n      \"priorArt\": [\n        {\n          \"priorArtType\": \"Foreign Patent / Application\",\n          \"priorArtReferences\": [\n            \"Belden\"\n          ]\n        },\n        {\n          \"priorArtType\": \"US Patent\",\n          \"priorArtReferences\": [\n            \"Silverman\",\n            \"Gutterman\",\n            \"Paal\"\n          ]\n        }\n      ]\n    },\n    {\n      \"decision\": \"Denied Institution\",\n      \"statute\": \"103\",\n      \"claims\": [\n        1,\n        2,\n        3,\n        5,\n        6,\n        7,\n        8,\n        9,\n        10,\n        13,\n        14,\n        15,\n        16,\n        18,\n        19,\n        20,\n        21,\n        22,\n        23,\n        25,\n        26,\n        27,\n        28,\n        29,\n        30,\n        31,\n        32,\n        33,\n        35,\n        36,\n        37,\n        38,\n        39,\n        40,\n        41,\n        42,\n        43,\n        45,\n        46,\n        47,\n        48,\n        49,\n        50,\n        51,\n        52,\n        53,\n        54,\n        55,\n        56\n      ],\n      \"priorArt\": [\n        {\n          \"priorArtType\": \"Foreign Patent / Application\",\n          \"priorArtReferences\": [\n            \"Belden\"\n          ]\n        },\n        {\n          \"priorArtType\": \"US Patent\",\n          \"priorArtReferences\": [\n            \"Silverman\",\n            \"Gutterman\"\n          ]\n        }\n      ]\n    },\n    {\n      \"decision\": \"Instituted\",\n      \"statute\": \"103\",\n      \"claims\": [\n        1,\n        2,\n        3,\n        7,\n        8,\n        9,\n        10,\n        14,\n        15,\n        16,\n        20,\n        21,\n        22,\n        23,\n        24,\n        25,\n        26,\n        27,\n        28,\n        30,\n        31,\n        32,\n        33,\n        34,\n        35,\n        36,\n        37,\n        38,\n        40,\n        41,\n        42,\n        43,\n        44,\n        45,\n        46,\n        47,\n        48,\n        50,\n        51,\n        52,\n        53,\n        54,\n        55,\n        56\n      ],\n      \"priorArt\": [\n        {\n          \"priorArtType\": \"Foreign Patent / Application\",\n          \"priorArtReferences\": [\n            \"Belden\"\n          ]\n        },\n        {\n          \"priorArtType\": \"Other Publication\",\n          \"priorArtReferences\": [\n            \"TSE\"\n          ]\n        }\n      ]\n    }\n  ],\n  \"finalDecisionGrounds\": [\n    {\n      \"decision\": \"Unpatentable\",\n      \"statute\": \"103\",\n      \"claims\": [\n        1,\n        2,\n        3,\n        7,\n        8,\n        9,\n        10,\n        14,\n        15,\n        16,\n        20,\n        21,\n        22,\n        23,\n        24,\n        25,\n        26,\n        27,\n        28,\n        30,\n        31,\n        32,\n        33,\n        34,\n        35,\n        36,\n        37,\n        38,\n        40,\n        41,\n        42,\n        43,\n        44,\n        45,\n        46,\n        47,\n        48,\n        50,\n        51,\n        52,\n        53,\n        54,\n        55,\n        56\n      ],\n      \"priorArt\": [\n        {\n          \"priorArtType\": \"Foreign Patent / Application\",\n          \"priorArtReferences\": [\n            \"Belden\"\n          ]\n        },\n        {\n          \"priorArtType\": \"Other Publication\",\n          \"priorArtReferences\": [\n            \"TSE\"\n          ]\n        }\n      ]\n    },\n    {\n      \"decision\": \"Unpatentable\",\n      \"statute\": \"103\",\n      \"claims\": [\n        17,\n        11,\n        4\n      ],\n      \"priorArt\": [\n        {\n          \"priorArtType\": \"Foreign Patent / Application\",\n          \"priorArtReferences\": [\n            \"May\",\n            \"Belden\"\n          ]\n        },\n        {\n          \"priorArtType\": \"Other Publication\",\n          \"priorArtReferences\": [\n            \"TSE\"\n          ]\n        }\n      ]\n    },\n    {\n      \"decision\": \"Unpatentable\",\n      \"statute\": \"101\",\n      \"claims\": [\n        1,\n        2,\n        3,\n        4,\n        5,\n        6,\n        7,\n        8,\n        9,\n        10,\n        11,\n        12,\n        13,\n        14,\n        15,\n        16,\n        17,\n        18,\n        19,\n        20,\n        21,\n        22,\n        23,\n        24,\n        25,\n        26,\n        27,\n        28,\n        29,\n        30,\n        31,\n        32,\n        33,\n        34,\n        35,\n        36,\n        37,\n        38,\n        39,\n        40,\n        41,\n        42,\n        43,\n        44,\n        45,\n        46,\n        47,\n        48,\n        49,\n        50,\n        51,\n        52,\n        53,\n        54,\n        55,\n        56\n      ],\n      \"priorArt\": []\n    },\n    {\n      \"decision\": \"Unpatentable\",\n      \"statute\": \"103\",\n      \"claims\": [\n        5,\n        6,\n        39,\n        12,\n        13,\n        49,\n        18,\n        19,\n        29\n      ],\n      \"priorArt\": [\n        {\n          \"priorArtType\": \"Foreign Patent / Application\",\n          \"priorArtReferences\": [\n            \"Belden\"\n          ]\n        },\n        {\n          \"priorArtType\": \"Other Publication\",\n          \"priorArtReferences\": [\n            \"TSE\"\n          ]\n        },\n        {\n          \"priorArtType\": \"US Patent\",\n          \"priorArtReferences\": [\n            \"Gutterman\"\n          ]\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c4f2cc08-99a5-4232-9bba-96b3b9574297",
+              "name": "Invalid or expired token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ptab-trials",
+                    ":ptab_trial_number"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ptab_trial_number",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Token time expired: Signature has expired.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c440badc-ce62-440c-b160-71454c38e0b4",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ptab-trials",
+                    ":ptab_trial_number"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ptab_trial_number",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Unknown id\",\n  \"detail\": \"Not Found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "46389759-5bed-468d-a088-3279d71a19de",
+              "name": "Error - 422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ptab-trials",
+                    ":ptab_trial_number"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ptab_trial_number",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Invalid input\",\n  \"detail\": [\n    {\n      \"type\": \"parsing\",\n      \"loc\": [\n        \"path\",\n        \"query\",\n        \"body\"\n      ],\n      \"msg\": \"invalid input\",\n      \"input\": \"-1\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.lexmachina.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "d3922fd0-a66e-490a-ac90-2ec94afa260b",
+    "name": "Lex Machina Alerts PTAB Trials API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Alerts.",
+      "type": "text/plain"
+    }
+  }
+}

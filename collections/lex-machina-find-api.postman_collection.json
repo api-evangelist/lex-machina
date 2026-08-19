@@ -1,0 +1,301 @@
+{
+  "item": [
+    {
+      "id": "ab143e81-7793-41a2-ba87-a153d7faf6d9",
+      "name": "Find",
+      "description": {
+        "content": "Find matches based on free text searches",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bf9116a7-76b1-430f-bb6e-e1aaa9d27d41",
+          "name": "Find District Case By Number",
+          "request": {
+            "name": "Find District Case By Number",
+            "description": {
+              "content": "Finds Lex Machina case ids for specified case numbers.\n\n- **case_numbers**: case number search strings\n- **court**: optional court to limit results\n\nMatches results for each individual case number is cut off at 1000 match results.\n\nBecause case number formats vary, and because the case number for the same case can change over time, the search tries to err on the side of being more inclusive.\nSo, this may return more results than you expect.\nFor example, the search ignores judge initials at the end of case numbers.\nSo, for case number \"1:19-cv-00077-NLH-KMW\", the trailing initials \"NLH\" and \"KMW\" will be ignored.\n\nThe court param is optional and can be any of the name versions given by the /list-courts endpoint (must match capitalization).\nProviding a value for the court param will filter all case number searches in the request for cases within that court.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "find-district-cases"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "caseNumbers",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "caseNumbers",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "court",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "733f58cd-4151-4da3-a4d7-389ad9db21a4",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "find-district-cases"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "caseNumbers",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "court",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"totalCount\": 1,\n    \"inputCaseNumber\": \"1:11-cv-11681\",\n    \"inputCourt\": \"U.S. District Court for the District of Massachusetts\",\n    \"matches\": [\n      {\n        \"url\": \"https://api.lexmachina.com/district-cases/2000026401\",\n        \"districtCaseId\": 2000026401,\n        \"caseNumber\": \"1:11-cv-11681\",\n        \"court\": \"U.S. District Court for the District of Massachusetts\",\n        \"title\": \"Momenta Pharmaceuticals, Inc. et al v. Amphastar Pharmaceuticals, Inc. et al\"\n      }\n    ]\n  },\n  {\n    \"totalCount\": 1,\n    \"inputCaseNumber\": \"1:24-cv-11928\",\n    \"inputCourt\": \"U.S. District Court for the District of Massachusetts\",\n    \"matches\": [\n      {\n        \"url\": \"https://api.lexmachina.com/district-cases/2034403653\",\n        \"districtCaseId\": 2034403653,\n        \"caseNumber\": \"1:24-cv-11928\",\n        \"court\": \"U.S. District Court for the District of Massachusetts\",\n        \"title\": \"Anderson-O'Brien v. Sika Corporation\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cff68224-22f4-4767-b889-e886d91d11f1",
+              "name": "Invalid or expired token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "find-district-cases"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "caseNumbers",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "court",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Token time expired: Signature has expired.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c93cb8f3-034e-404f-8b2e-a58ebf0dabae",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "find-district-cases"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "caseNumbers",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "court",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Unknown id\",\n  \"detail\": \"Not Found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e8da8651-73a7-47cb-b342-41f9652b93bf",
+              "name": "Error - 422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "find-district-cases"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "caseNumbers",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "court",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Invalid input\",\n  \"detail\": [\n    {\n      \"type\": \"parsing\",\n      \"loc\": [\n        \"path\",\n        \"query\",\n        \"body\"\n      ],\n      \"msg\": \"invalid input\",\n      \"input\": \"-1\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.lexmachina.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "06333802-b90e-4d20-9031-bb4c3d7a718b",
+    "name": "Lex Machina Alerts Find API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Alerts.",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lex Machina Alerts Attorneys API",
+    "version": "20260324"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Attorneys",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Attorney",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/attorneys/:attorney_id",
+            "params": [
+              {
+                "name": "attorney_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets data for a single attorney.\n\n- **attorney_id**: the Lex Machina attorneyId"
+        },
+        {
+          "info": {
+            "name": "Get Attorneys",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/attorneys",
+            "params": [
+              {
+                "name": "attorneyIds",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets data for one or more attorneys.\n\n- **attorneyIds**: the Lex Machina attorneyIds\n\nIf any of the the attorneyIds given are not the current lexmachina attorneyId, the results will include inputId for disambugation"
+        },
+        {
+          "info": {
+            "name": "Search Attorneys",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/search-attorneys",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageNumber",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Searches for attorneys.\n\n- **q**: the query string\n- **page_number**: page number of the results\n- **page_size**:  results per page\n\nThis is a case-insensitive search that will match anywhere within the name of the attorney.\n\nThe results will have page and totalCount fields as well as a convenience link via the field nextPage."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

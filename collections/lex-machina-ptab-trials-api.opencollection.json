@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lex Machina Alerts PTAB Trials API",
+    "version": "20260324"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "PTAB Trials",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Ptab Trial",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/ptab-trials/:ptab_trial_id",
+            "params": [
+              {
+                "name": "ptab_trial_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets data for a single PTAB trial.\n\n- **ptab_trial_id**: the Lex Machina PTAB Trial id"
+        },
+        {
+          "info": {
+            "name": "Get Ptab Trial By Number",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/ptab-trials/:ptab_trial_number",
+            "params": [
+              {
+                "name": "ptab_trial_number",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets data for a single PTAB trial via the trial number.\n\n- **ptab_trial_number**: a PTAB Trial number in the format TTTYYYY-NNNNN where\n\n    TTT is one of IPR, CBM, or PGR\n\n    YYYY is a four digit year\n\n    NNNNN is a five digit trial number (including leading zeros)\n\n    Examples: IPR2013-00273, CBM2015-00182, PGR2025-00084"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

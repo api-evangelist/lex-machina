@@ -1,0 +1,109 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lex Machina Alerts Parties API",
+    "version": "20260324"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Parties",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Party",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/parties/:party_id",
+            "params": [
+              {
+                "name": "party_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets data for a single party.\n\n- **party_id**: the Lex Machina partyId"
+        },
+        {
+          "info": {
+            "name": "Get Parties",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/parties",
+            "params": [
+              {
+                "name": "partyIds",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets data for one or more parties.\n\n- **partyIds**: the Lex Machina partyIds\n\nIf any of the the partyIds given are not the current lexmachina partyId, the results will include inputId for disambugation"
+        },
+        {
+          "info": {
+            "name": "Search Parties",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/search-parties",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageNumber",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Searches for parties.\n\n- **q**: the query string\n- **page_number**: page number of the results\n- **page_size**:  results per page\n\nThis is a case-insensitive search that will match anywhere within the name of the party.\n\nThe results will have page and totalCount fields as well as a convenience link via the field nextPage."
+        },
+        {
+          "info": {
+            "name": "Get Party Groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/party-groups",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets a list of all party groups the user has created."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

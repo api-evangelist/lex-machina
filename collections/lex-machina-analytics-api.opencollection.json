@@ -1,0 +1,76 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lex Machina Alerts Analytics API",
+    "version": "20260324"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Analytics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Analyze District Cases From Query",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lexmachina.com/analyze-district-cases/from-query",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Analyze District Cases From Query"
+        },
+        {
+          "info": {
+            "name": "Analyze District Cases From Alert",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/analyze-district-cases/from-alert/:alert_id",
+            "params": [
+              {
+                "name": "alert_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "analytic_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "on_or_after",
+                "value": "",
+                "type": "query",
+                "description": "alert start date"
+              },
+              {
+                "name": "on_or_before",
+                "value": "",
+                "type": "query",
+                "description": "alert end date"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Analyze District Cases From Alert"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

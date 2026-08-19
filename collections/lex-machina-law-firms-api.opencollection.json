@@ -1,0 +1,94 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lex Machina Alerts Law Firms API",
+    "version": "20260324"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Law Firms",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Law Firm",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/law-firms/:law_firm_id",
+            "params": [
+              {
+                "name": "law_firm_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets data for a single law firm.\n\n- **law_firm_id**: the Lex Machina lawFirmID"
+        },
+        {
+          "info": {
+            "name": "Get Law Firms",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/law-firms",
+            "params": [
+              {
+                "name": "lawFirmIds",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets data for one or more law firms.\n\n- **lawFirmIds**: the Lex Machina lawFirmIds\n\nIf any of the the lawFirmIds given are not the current lexmachina lawFirmId, the results will include inputId for disambugation"
+        },
+        {
+          "info": {
+            "name": "Seach Law Firms",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/search-law-firms",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageNumber",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Searches for law firms.\n\n- **q**: the query string\n- **page_number**: page number of the results\n- **page_size**:  results per page\n\nThis is a case-insensitive search that will match anywhere within the name of the firm.\n\nThe results will have page and totalCount fields as well as a convenience link via the field nextPage."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

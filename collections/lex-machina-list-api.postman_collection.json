@@ -1,0 +1,3527 @@
+{
+  "item": [
+    {
+      "id": "d2364fc3-6a67-43fd-9a2c-b8aa75c6423e",
+      "name": "List",
+      "description": {
+        "content": "Provides cannonical lists for specific fields.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "17cfad5c-c809-4479-82f2-c07e7c4ce8fc",
+          "name": "List Appealability Rulings",
+          "request": {
+            "name": "List Appealability Rulings",
+            "description": {
+              "content": "Lists appealability rulings for use with appeals case querying.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "list-appealability-rulings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "556d2357-ad87-408a-a30f-99e6c9060d47",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-appealability-rulings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  \"Permission to Appeal: Grant\",\n  \"Permission to Appeal: Deny\",\n  \"Certificate of Appealability: Grant\",\n  \"Certificate of Appealability: Deny\",\n  \"Petition for Review: Grant\",\n  \"Petition for Review: Deny\"\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7df20f9c-88a1-410e-95e7-a0bbbbed239a",
+              "name": "Invalid or expired token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-appealability-rulings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Token time expired: Signature has expired.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e0ff23c5-4d85-40e3-99c5-af432c058015",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-appealability-rulings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Unknown id\",\n  \"detail\": \"Not Found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "445a7341-1aff-4685-80ee-a0cd6dde27e7",
+              "name": "Error - 422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-appealability-rulings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Invalid input\",\n  \"detail\": [\n    {\n      \"type\": \"parsing\",\n      \"loc\": [\n        \"path\",\n        \"query\",\n        \"body\"\n      ],\n      \"msg\": \"invalid input\",\n      \"input\": \"-1\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "812251e8-362a-46a6-8ee3-84d618884308",
+          "name": "List Appellate Decisions",
+          "request": {
+            "name": "List Appellate Decisions",
+            "description": {
+              "content": "Lists appellate decisions for use with appeals case querying.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "list-appellate-decisions",
+                "FederalDistrict"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "46bfec96-de21-4f4f-9ab1-2cd2f01e655d",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-appellate-decisions",
+                    "FederalDistrict"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  \"Affirmed\",\n  \"Affirmed / Reversed in Part\",\n  \"Reversed\"\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "69f45e97-1702-41ff-bdc5-9008534b21b8",
+              "name": "Invalid or expired token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-appellate-decisions",
+                    "FederalDistrict"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Token time expired: Signature has expired.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f3097b37-ef72-4512-b38f-040a5cc6871c",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-appellate-decisions",
+                    "FederalDistrict"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Unknown id\",\n  \"detail\": \"Not Found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dc7fc4c3-43f2-4443-8795-02ff679ad12c",
+              "name": "Error - 422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-appellate-decisions",
+                    "FederalDistrict"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Invalid input\",\n  \"detail\": [\n    {\n      \"type\": \"parsing\",\n      \"loc\": [\n        \"path\",\n        \"query\",\n        \"body\"\n      ],\n      \"msg\": \"invalid input\",\n      \"input\": \"-1\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6e13c5fe-1c5e-4ef5-8bbc-e501c2d3f20e",
+          "name": "List Case Resolutions",
+          "request": {
+            "name": "List Case Resolutions",
+            "description": {
+              "content": "Lists case resolutions given court type for use with querying.\n\n- **court_type**: the relevant court type\n\nEach resoltuon has both a summary and specific field which are valid in combinations listed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "list-case-resolutions",
+                ":court_type"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "court_type",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2b93312c-a483-469b-ac1c-542d153afec0",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-case-resolutions",
+                    ":court_type"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "court_type",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"court\": {\n    \"name\": \"All Federal District Courts\",\n    \"type\": \"FederalDistrict\"\n  },\n  \"caseResolutions\": [\n    {\n      \"summary\": \"Claimant Win\",\n      \"specific\": \"Summary Judgment\"\n    },\n    {\n      \"summary\": \"Claimant Win\",\n      \"specific\": \"Default Judgment\"\n    },\n    {\n      \"summary\": \"Claimant Win\",\n      \"specific\": \"Consent Judgment\"\n    },\n    {\n      \"summary\": \"Claimant Win\",\n      \"specific\": \"Trial\"\n    },\n    {\n      \"summary\": \"Claimant Win\",\n      \"specific\": \"Judgment on the Pleadings\"\n    },\n    {\n      \"summary\": \"Claimant Win\",\n      \"specific\": \"Decision on Bankruptcy Appeal\"\n    },\n    {\n      \"summary\": \"Claimant Win\",\n      \"specific\": \"Judgment as a Matter of Law\"\n    },\n    {\n      \"summary\": \"Claim Defendant Win\",\n      \"specific\": \"Judgment as a Matter of Law\"\n    },\n    {\n      \"summary\": \"Claim Defendant Win\",\n      \"specific\": \"Summary Judgment\"\n    },\n    {\n      \"summary\": \"Claim Defendant Win\",\n      \"specific\": \"Default Judgment\"\n    },\n    {\n      \"summary\": \"Claim Defendant Win\",\n      \"specific\": \"Consent Judgment\"\n    },\n    {\n      \"summary\": \"Claim Defendant Win\",\n      \"specific\": \"Trial\"\n    },\n    {\n      \"summary\": \"Claim Defendant Win\",\n      \"specific\": \"Judgment on the Pleadings\"\n    },\n    {\n      \"summary\": \"Claim Defendant Win\",\n      \"specific\": \"Decision on Bankruptcy Appeal\"\n    },\n    {\n      \"summary\": \"Likely Settlement\",\n      \"specific\": \"Class Action Settlement\"\n    },\n    {\n      \"summary\": \"Likely Settlement\",\n      \"specific\": \"Likely Settlement\"\n    },\n    {\n      \"summary\": \"Procedural\",\n      \"specific\": \"Interdistrict Transfer\"\n    },\n    {\n      \"summary\": \"Procedural\",\n      \"specific\": \"Consolidation\"\n    },\n    {\n      \"summary\": \"Procedural\",\n      \"specific\": \"Multidistrict Litigation\"\n    },\n    {\n      \"summary\": \"Procedural\",\n      \"specific\": \"Severance\"\n    },\n    {\n      \"summary\": \"Procedural\",\n      \"specific\": \"Contested Dismissal\"\n    },\n    {\n      \"summary\": \"Procedural\",\n      \"specific\": \"Stay\"\n    },\n    {\n      \"summary\": \"Procedural\",\n      \"specific\": \"Sealed\"\n    },\n    {\n      \"summary\": \"Procedural\",\n      \"specific\": \"Dismissal\"\n    },\n    {\n      \"summary\": \"Procedural\",\n      \"specific\": \"Intradistrict Transfer\"\n    },\n    {\n      \"summary\": \"Procedural\",\n      \"specific\": \"Appeal Pending\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4d66e77b-a1aa-4c62-9cea-e60274ccbd68",
+              "name": "Invalid or expired token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-case-resolutions",
+                    ":court_type"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "court_type",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Token time expired: Signature has expired.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f4641c73-a04a-4816-891f-577e5f20ea47",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-case-resolutions",
+                    ":court_type"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "court_type",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Unknown id\",\n  \"detail\": \"Not Found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d533484b-9397-4549-a625-55db702de68c",
+              "name": "Error - 422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-case-resolutions",
+                    ":court_type"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "court_type",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"type\": \"enum\",\n      \"loc\": [\n        \"path\",\n        \"court_type\"\n      ],\n      \"msg\": \"Input should be 'FederalDistrict', 'State', 'FederalAppeals', 'FederalBankruptcy', 'PTAB' or 'ITC'\",\n      \"input\": \"string\",\n      \"ctx\": {\n        \"expected\": \"'FederalDistrict', 'State', 'FederalAppeals', 'FederalBankruptcy', 'PTAB' or 'ITC'\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "506e004c-5dcb-45f7-9f08-ccde844e2bfb",
+          "name": "List Case Tags",
+          "request": {
+            "name": "List Case Tags",
+            "description": {
+              "content": "Lists case tags for a given court type for use with querying.\n\n- **court_type**: the relevant court type",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "list-case-tags",
+                ":court_type"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "court_type",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ab8c3024-febd-4dca-b254-46c8493dd82b",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-case-tags",
+                    ":court_type"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "court_type",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"court\": {\n      \"name\": \"All Federal District Courts\",\n      \"type\": \"FederalDistrict\"\n    },\n    \"caseTags\": [\n      \"Design Patent\",\n      \"Motor Vehicle\",\n      \"Premises Liability\",\n      \"Federal Tort Claims Act\",\n      \"Trial\",\n      \"COVID-19\",\n      \"Mass Tort: Deepwater Horizon\",\n      \"Mass Tort: Doe Run Resources\",\n      \"Mass Tort: World Trade Center\",\n      \"State Employment Claim\",\n      \"Admiralty / Maritime\",\n      \"ADA (Civil Rights)\",\n      \"Police Action\",\n      \"Data: Personally Identifiable Information\",\n      \"Business Interruption\",\n      \"Data: Protected Health Information\",\n      \"Declaratory Judgment (IP)\",\n      \"Appealed\",\n      \"Order re: Summary Judgment\",\n      \"ANDA\",\n      \"SCOTUS Decision\",\n      \"CFAA\",\n      \"ECPA\",\n      \"DMCA\",\n      \"Retaliation (False Claims)\",\n      \"Fair Housing Act\",\n      \"Foreclosure\",\n      \"Rent / Lease / Ejectment\",\n      \"Torts to Land\",\n      \"Land Condemnation\",\n      \"Bench Trial\",\n      \"Jury Trial\",\n      \"Claim Construction Hearing\",\n      \"ADA: Auditory / Visual Accommodation\",\n      \"ADA: Mobility Accommodation\",\n      \"ADA: Service Animal Accommodation\",\n      \"ADA: Website Access Accommodation\",\n      \"ADA High-Volume Plaintiff\",\n      \"USA Filed (False Claims)\",\n      \"Healthcare (False Claims)\",\n      \"Government Contract (False Claims)\",\n      \"Qui Tam (False Claims)\",\n      \"Voting\",\n      \"Education\",\n      \"First Amendment\",\n      \"Consumer Fraud\",\n      \"Equitable Subrogation\",\n      \"Counterfeiting\",\n      \"Non-Compete\",\n      \"Biometric Privacy\",\n      \"Pro Se\",\n      \"Order re: Expert Admissibility\",\n      \"APA\",\n      \"File Sharing\",\n      \"Cybersquatting\",\n      \"Derivative Suit\",\n      \"Dilution\",\n      \"Commodity Exchange Act\",\n      \"Section 11 / 12\",\n      \"Section 14\",\n      \"Section 20(a)\",\n      \"Class Action\",\n      \"Government Plaintiff\",\n      \"SEC Enforcement: Settled Complaint\",\n      \"Securities Fraud (§ 10(b) / 10b-5)\",\n      \"SEC Enforcement: Contested\",\n      \"DOJ/FTC Enforcement: Contested\",\n      \"DOJ/FTC Enforcement: Administrative\",\n      \"Robinson-Patman Act\",\n      \"Order re: Dismiss (Contested)\",\n      \"Order re: Class Certification\",\n      \"MDL Master Case\",\n      \"MDL Associated Case\",\n      \"Commercial\",\n      \"Discrimination (Federal)\",\n      \"Retaliation (Federal)\",\n      \"Harassment (Federal)\",\n      \"Miller Act\",\n      \"Accommodation (Federal)\",\n      \"Chapter 11\",\n      \"Adversary Proceeding\",\n      \"Proposed FFCL (28 U.S.C. § 157(c)(1))\",\n      \"Withdrawal of the Reference\",\n      \"Bankruptcy Appeal\",\n      \"High-Volume Plaintiff\",\n      \"Business Tort\",\n      \"Removal\",\n      \"Product: Aircraft\",\n      \"Product: Asbestos\",\n      \"Product: Vehicle\",\n      \"Warranty / Economic Loss\",\n      \"Chapter 7\",\n      \"Chapter 13\",\n      \"Business Debtor\",\n      \"Individual Debtor\",\n      \"ADA (Employment)\",\n      \"Subrogation (Product Liability)\",\n      \"Chapter 9\",\n      \"Chapter 12\",\n      \"Chapter 15\",\n      \"FMLA\",\n      \"FLSA\",\n      \"EEOC Charging Party\",\n      \"Product: Medical Device / Pharmaceutical\",\n      \"FLSA Collective Action\",\n      \"Order re: FLSA Conditional Certification\",\n      \"Defend Trade Secrets Act\",\n      \"Schedule A Defendants\",\n      \"Hurricane Related\",\n      \"UM / UIM\",\n      \"Policy: Auto\",\n      \"Policy: Business Liability\",\n      \"Policy: Homeowners\",\n      \"Policy: Life\",\n      \"Claim Denial (ERISA)\",\n      \"Delinquent Contribution (ERISA)\",\n      \"Plan Reimbursement\",\n      \"Withdrawal Liability (ERISA)\",\n      \"Franchise Agreement\",\n      \"Negotiable Instrument\",\n      \"Breach of Contract\",\n      \"Data: Financial Records\",\n      \"Non-Commercial\",\n      \"RICO\",\n      \"Forfeiture / Penalty\",\n      \"Immigration\",\n      \"Mass Tort: DuPont C-8\",\n      \"FTC / CFPB Enforcement\",\n      \"Fair Credit Reporting Act\",\n      \"Fair Debt Collection Practices Act\",\n      \"Real Estate Settlement Procedures Act\",\n      \"Truth In Lending Act\",\n      \"Unfair / Deceptive Trade Practices\",\n      \"Telephone Consumer Protection Act\",\n      \"Data Breach\",\n      \"CERCLA\",\n      \"Clean Water Act\",\n      \"Clean Air Act\",\n      \"Endangered Species Act\",\n      \"RCRA\",\n      \"NEPA\",\n      \"Partnership Items\",\n      \"IRS Summons\",\n      \"Tax Preparer Penalty\",\n      \"Deepwater Horizon\",\n      \"FOIA\",\n      \"Medical Malpractice\"\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4162cdd1-01a4-4a1a-a8a2-072eda931060",
+              "name": "Invalid or expired token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-case-tags",
+                    ":court_type"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "court_type",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Token time expired: Signature has expired.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9d8a9f0d-e3d9-4f4b-ab52-5f82fd06e94a",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-case-tags",
+                    ":court_type"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "court_type",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Unknown id\",\n  \"detail\": \"Not Found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cf77fa1e-7738-4a26-b510-b89910669fd0",
+              "name": "Error - 422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-case-tags",
+                    ":court_type"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "court_type",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"type\": \"enum\",\n      \"loc\": [\n        \"path\",\n        \"court_type\"\n      ],\n      \"msg\": \"Input should be 'FederalDistrict', 'State', 'FederalAppeals', 'FederalBankruptcy', 'PTAB' or 'ITC'\",\n      \"input\": \"string\",\n      \"ctx\": {\n        \"expected\": \"'FederalDistrict', 'State', 'FederalAppeals', 'FederalBankruptcy', 'PTAB' or 'ITC'\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "604bf783-8420-4939-a636-0aa7f76b47fa",
+          "name": "List Case Types",
+          "request": {
+            "name": "List Case Types",
+            "description": {
+              "content": "Lists case tags for a given court type for use with querying.\n\n- **court_type**: the relevant court type",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "list-case-types",
+                ":court_type"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "court_type",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "6f0467fc-4f12-4796-a490-a59ce2b1d402",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-case-types",
+                    ":court_type"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "court_type",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"court\": {\n      \"name\": \"All Federal District Courts\",\n      \"type\": \"FederalDistrict\"\n    },\n    \"caseTypes\": [\n      \"Antitrust\",\n      \"Bankruptcy\",\n      \"Civil Rights\",\n      \"Class Action\",\n      \"Consumer Protection\",\n      \"Contracts\",\n      \"Copyright\",\n      \"ERISA\",\n      \"Employment\",\n      \"Environmental\",\n      \"False Claims\",\n      \"Insurance\",\n      \"Internet\",\n      \"Patent\",\n      \"Product Liability\",\n      \"Real Property\",\n      \"Securities\",\n      \"Surety Bond\",\n      \"Tax\",\n      \"Torts\",\n      \"Trade Secret\",\n      \"Trademark\",\n      \"Uncategorized Case\"\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3798e401-0016-488e-a2c3-4d50e5bf7df3",
+              "name": "Invalid or expired token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-case-types",
+                    ":court_type"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "court_type",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Token time expired: Signature has expired.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "55c413f3-2151-460f-80d1-3e96bf5e9af7",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-case-types",
+                    ":court_type"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "court_type",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Unknown id\",\n  \"detail\": \"Not Found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "98be2f54-7a4f-4ae9-8b95-1867185d1430",
+              "name": "Error - 422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-case-types",
+                    ":court_type"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "court_type",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"type\": \"enum\",\n      \"loc\": [\n        \"path\",\n        \"court_type\"\n      ],\n      \"msg\": \"Input should be 'FederalDistrict', 'State', 'FederalAppeals', 'FederalBankruptcy', 'PTAB' or 'ITC'\",\n      \"input\": \"string\",\n      \"ctx\": {\n        \"expected\": \"'FederalDistrict', 'State', 'FederalAppeals', 'FederalBankruptcy', 'PTAB' or 'ITC'\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "56eb1414-580d-4d45-9056-b93e0b5a6a14",
+          "name": "List Courts",
+          "request": {
+            "name": "List Courts",
+            "description": {
+              "content": "Lists courts for a given court type. For use with querying or determining which courts data is avilable for.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "list-courts",
+                ":court_type"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "court_type",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d841a349-9b9a-4bc4-831e-357c8061745f",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-courts",
+                    ":court_type"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "court_type",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"U.S. District Court for the District of Alaska\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"D.Alaska\",\n    \"abbreviation\": \"akd\"\n  },\n  {\n    \"name\": \"U.S. District Court for the Middle District of Alabama\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"M.D.Ala.\",\n    \"abbreviation\": \"almd\"\n  },\n  {\n    \"name\": \"U.S. District Court for the Northern District of Alabama\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"N.D.Ala.\",\n    \"abbreviation\": \"alnd\"\n  },\n  {\n    \"name\": \"U.S. District Court for the Southern District of Alabama\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"S.D.Ala.\",\n    \"abbreviation\": \"alsd\"\n  },\n  {\n    \"name\": \"U.S. District Court for the Eastern District of Arkansas\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"E.D.Ark.\",\n    \"abbreviation\": \"ared\"\n  },\n  {\n    \"name\": \"U.S. District Court for the Western District of Arkansas\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"W.D.Ark.\",\n    \"abbreviation\": \"arwd\"\n  },\n  {\n    \"name\": \"U.S. District Court for the District of Arizona\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"D.Ariz.\",\n    \"abbreviation\": \"azd\"\n  },\n  {\n    \"name\": \"U.S. District Court for the Central District of California\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"C.D.Cal.\",\n    \"abbreviation\": \"cacd\"\n  },\n  {\n    \"name\": \"U.S. District Court for the Eastern District of California\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"E.D.Cal.\",\n    \"abbreviation\": \"caed\"\n  },\n  {\n    \"name\": \"U.S. District Court for the Northern District of California\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"N.D.Cal.\",\n    \"abbreviation\": \"cand\"\n  },\n  {\n    \"name\": \"U.S. District Court for the Southern District of California\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"S.D.Cal.\",\n    \"abbreviation\": \"casd\"\n  },\n  {\n    \"name\": \"U.S. District Court for the District of Colorado\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"D.Colo.\",\n    \"abbreviation\": \"cod\"\n  },\n  {\n    \"name\": \"U.S. District Court for the District of Connecticut\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"D.Conn.\",\n    \"abbreviation\": \"ctd\"\n  },\n  {\n    \"name\": \"U.S. District Court for the District of Columbia\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"D.D.C.\",\n    \"abbreviation\": \"dcd\"\n  },\n  {\n    \"name\": \"U.S. District Court for the District of Delaware\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"D.Del.\",\n    \"abbreviation\": \"ded\"\n  },\n  {\n    \"name\": \"U.S. District Court for the Middle District of Florida\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"M.D.Fla.\",\n    \"abbreviation\": \"flmd\"\n  },\n  {\n    \"name\": \"U.S. District Court for the Northern District of Florida\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"N.D.Fla.\",\n    \"abbreviation\": \"flnd\"\n  },\n  {\n    \"name\": \"U.S. District Court for the Southern District of Florida\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"S.D.Fla.\",\n    \"abbreviation\": \"flsd\"\n  },\n  {\n    \"name\": \"U.S. District Court for the Middle District of Georgia\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"M.D.Ga.\",\n    \"abbreviation\": \"gamd\"\n  },\n  {\n    \"name\": \"U.S. District Court for the Northern District of Georgia\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"N.D.Ga.\",\n    \"abbreviation\": \"gand\"\n  },\n  {\n    \"name\": \"U.S. District Court for the Southern District of Georgia\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"S.D.Ga.\",\n    \"abbreviation\": \"gasd\"\n  },\n  {\n    \"name\": \"U.S. District Court for the District of Guam\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"D.Guam\",\n    \"abbreviation\": \"gud\"\n  },\n  {\n    \"name\": \"U.S. District Court for the District of Hawaii\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"D.Haw.\",\n    \"abbreviation\": \"hid\"\n  },\n  {\n    \"name\": \"U.S. District Court for the Northern District of Iowa\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"N.D.Iowa\",\n    \"abbreviation\": \"iand\"\n  },\n  {\n    \"name\": \"U.S. District Court for the Southern District of Iowa\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"S.D.Iowa\",\n    \"abbreviation\": \"iasd\"\n  },\n  {\n    \"name\": \"U.S. District Court for the District of Idaho\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"D.Idaho\",\n    \"abbreviation\": \"idd\"\n  },\n  {\n    \"name\": \"U.S. District Court for the Central District of Illinois\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"C.D.Ill.\",\n    \"abbreviation\": \"ilcd\"\n  },\n  {\n    \"name\": \"U.S. District Court for the Northern District of Illinois\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"N.D.Ill.\",\n    \"abbreviation\": \"ilnd\"\n  },\n  {\n    \"name\": \"U.S. District Court for the Southern District of Illinois\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"S.D.Ill.\",\n    \"abbreviation\": \"ilsd\"\n  },\n  {\n    \"name\": \"U.S. District Court for the Northern District of Indiana\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"N.D.Ind.\",\n    \"abbreviation\": \"innd\"\n  },\n  {\n    \"name\": \"U.S. District Court for the Southern District of Indiana\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"S.D.Ind.\",\n    \"abbreviation\": \"insd\"\n  },\n  {\n    \"name\": \"U.S. District Court for the District of Kansas\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"D.Kan.\",\n    \"abbreviation\": \"ksd\"\n  },\n  {\n    \"name\": \"U.S. District Court for the Eastern District of Kentucky\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"E.D.Ky.\",\n    \"abbreviation\": \"kyed\"\n  },\n  {\n    \"name\": \"U.S. District Court for the Western District of Kentucky\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"W.D.Ky.\",\n    \"abbreviation\": \"kywd\"\n  },\n  {\n    \"name\": \"U.S. District Court for the Eastern District of Louisiana\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"E.D.La.\",\n    \"abbreviation\": \"laed\"\n  },\n  {\n    \"name\": \"U.S. District Court for the Middle District of Louisiana\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"M.D.La.\",\n    \"abbreviation\": \"lamd\"\n  },\n  {\n    \"name\": \"U.S. District Court for the Western District of Louisiana\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"W.D.La.\",\n    \"abbreviation\": \"lawd\"\n  },\n  {\n    \"name\": \"U.S. District Court for the District of Massachusetts\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"D.Mass.\",\n    \"abbreviation\": \"mad\"\n  },\n  {\n    \"name\": \"U.S. District Court for the District of Maryland\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"D.Md.\",\n    \"abbreviation\": \"mdd\"\n  },\n  {\n    \"name\": \"U.S. District Court for the District of Maine\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"D.Me.\",\n    \"abbreviation\": \"med\"\n  },\n  {\n    \"name\": \"U.S. District Court for the Eastern District of Michigan\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"E.D.Mich.\",\n    \"abbreviation\": \"mied\"\n  },\n  {\n    \"name\": \"U.S. District Court for the Western District of Michigan\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"W.D.Mich.\",\n    \"abbreviation\": \"miwd\"\n  },\n  {\n    \"name\": \"U.S. District Court for the District of Minnesota\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"D.Minn.\",\n    \"abbreviation\": \"mnd\"\n  },\n  {\n    \"name\": \"U.S. District Court for the Eastern District of Missouri\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"E.D.Mo.\",\n    \"abbreviation\": \"moed\"\n  },\n  {\n    \"name\": \"U.S. District Court for the Western District of Missouri\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"W.D.Mo.\",\n    \"abbreviation\": \"mowd\"\n  },\n  {\n    \"name\": \"U.S. District Court for the Northern District of Mississippi\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"N.D.Miss.\",\n    \"abbreviation\": \"msnd\"\n  },\n  {\n    \"name\": \"U.S. District Court for the Southern District of Mississippi\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"S.D.Miss.\",\n    \"abbreviation\": \"mssd\"\n  },\n  {\n    \"name\": \"U.S. District Court for the District of Montana\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"D.Mont.\",\n    \"abbreviation\": \"mtd\"\n  },\n  {\n    \"name\": \"U.S. District Court for the Eastern District of North Carolina\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"E.D.N.C.\",\n    \"abbreviation\": \"nced\"\n  },\n  {\n    \"name\": \"U.S. District Court for the Middle District of North Carolina\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"M.D.N.C.\",\n    \"abbreviation\": \"ncmd\"\n  },\n  {\n    \"name\": \"U.S. District Court for the Western District of North Carolina\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"W.D.N.C.\",\n    \"abbreviation\": \"ncwd\"\n  },\n  {\n    \"name\": \"U.S. District Court for the District of North Dakota\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"D.N.D.\",\n    \"abbreviation\": \"ndd\"\n  },\n  {\n    \"name\": \"U.S. District Court for the District of Nebraska\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"D.Neb.\",\n    \"abbreviation\": \"ned\"\n  },\n  {\n    \"name\": \"U.S. District Court for the District of New Hampshire\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"D.N.H.\",\n    \"abbreviation\": \"nhd\"\n  },\n  {\n    \"name\": \"U.S. District Court for the District of New Jersey\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"D.N.J.\",\n    \"abbreviation\": \"njd\"\n  },\n  {\n    \"name\": \"U.S. District Court for the District of New Mexico\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"D.N.M.\",\n    \"abbreviation\": \"nmd\"\n  },\n  {\n    \"name\": \"U.S. District Court for the District of Northern Mariana Islands\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"D.N.Mar.I.\",\n    \"abbreviation\": \"nmid\"\n  },\n  {\n    \"name\": \"U.S. District Court for the District of Nevada\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"D.Nev.\",\n    \"abbreviation\": \"nvd\"\n  },\n  {\n    \"name\": \"U.S. District Court for the Eastern District of New York\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"E.D.N.Y.\",\n    \"abbreviation\": \"nyed\"\n  },\n  {\n    \"name\": \"U.S. District Court for the Northern District of New York\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"N.D.N.Y.\",\n    \"abbreviation\": \"nynd\"\n  },\n  {\n    \"name\": \"U.S. District Court for the Southern District of New York\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"S.D.N.Y.\",\n    \"abbreviation\": \"nysd\"\n  },\n  {\n    \"name\": \"U.S. District Court for the Western District of New York\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"W.D.N.Y.\",\n    \"abbreviation\": \"nywd\"\n  },\n  {\n    \"name\": \"U.S. District Court for the Northern District of Ohio\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"N.D.Ohio\",\n    \"abbreviation\": \"ohnd\"\n  },\n  {\n    \"name\": \"U.S. District Court for the Southern District of Ohio\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"S.D.Ohio\",\n    \"abbreviation\": \"ohsd\"\n  },\n  {\n    \"name\": \"U.S. District Court for the Eastern District of Oklahoma\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"E.D.Okla.\",\n    \"abbreviation\": \"oked\"\n  },\n  {\n    \"name\": \"U.S. District Court for the Northern District of Oklahoma\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"N.D.Okla.\",\n    \"abbreviation\": \"oknd\"\n  },\n  {\n    \"name\": \"U.S. District Court for the Western District of Oklahoma\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"W.D.Okla.\",\n    \"abbreviation\": \"okwd\"\n  },\n  {\n    \"name\": \"U.S. District Court for the District of Oregon\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"D.Or.\",\n    \"abbreviation\": \"ord\"\n  },\n  {\n    \"name\": \"U.S. District Court for the Eastern District of Pennsylvania\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"E.D.Pa.\",\n    \"abbreviation\": \"paed\"\n  },\n  {\n    \"name\": \"U.S. District Court for the Middle District of Pennsylvania\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"M.D.Pa.\",\n    \"abbreviation\": \"pamd\"\n  },\n  {\n    \"name\": \"U.S. District Court for the Western District of Pennsylvania\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"W.D.Pa.\",\n    \"abbreviation\": \"pawd\"\n  },\n  {\n    \"name\": \"U.S. District Court for the District of Puerto Rico\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"D.P.R.\",\n    \"abbreviation\": \"prd\"\n  },\n  {\n    \"name\": \"U.S. District Court for the District of Rhode Island\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"D.R.I.\",\n    \"abbreviation\": \"rid\"\n  },\n  {\n    \"name\": \"U.S. District Court for the District of South Carolina\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"D.S.C.\",\n    \"abbreviation\": \"scd\"\n  },\n  {\n    \"name\": \"U.S. District Court for the District of South Dakota\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"D.S.D.\",\n    \"abbreviation\": \"sdd\"\n  },\n  {\n    \"name\": \"U.S. District Court for the Eastern District of Tennessee\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"E.D.Tenn.\",\n    \"abbreviation\": \"tned\"\n  },\n  {\n    \"name\": \"U.S. District Court for the Middle District of Tennessee\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"M.D.Tenn.\",\n    \"abbreviation\": \"tnmd\"\n  },\n  {\n    \"name\": \"U.S. District Court for the Western District of Tennessee\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"W.D.Tenn.\",\n    \"abbreviation\": \"tnwd\"\n  },\n  {\n    \"name\": \"U.S. District Court for the Eastern District of Texas\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"E.D.Tex.\",\n    \"abbreviation\": \"txed\"\n  },\n  {\n    \"name\": \"U.S. District Court for the Northern District of Texas\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"N.D.Tex.\",\n    \"abbreviation\": \"txnd\"\n  },\n  {\n    \"name\": \"U.S. District Court for the Southern District of Texas\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"S.D.Tex.\",\n    \"abbreviation\": \"txsd\"\n  },\n  {\n    \"name\": \"U.S. District Court for the Western District of Texas\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"W.D.Tex.\",\n    \"abbreviation\": \"txwd\"\n  },\n  {\n    \"name\": \"U.S. District Court for the District of Utah\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"D.Utah\",\n    \"abbreviation\": \"utd\"\n  },\n  {\n    \"name\": \"U.S. District Court for the Eastern District of Virginia\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"E.D.Va.\",\n    \"abbreviation\": \"vaed\"\n  },\n  {\n    \"name\": \"U.S. District Court for the Western District of Virginia\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"W.D.Va.\",\n    \"abbreviation\": \"vawd\"\n  },\n  {\n    \"name\": \"U.S. District Court for the District of the Virgin Islands\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"D.V.I.\",\n    \"abbreviation\": \"vid\"\n  },\n  {\n    \"name\": \"U.S. District Court for the District of Vermont\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"D.Vt.\",\n    \"abbreviation\": \"vtd\"\n  },\n  {\n    \"name\": \"U.S. District Court for the Eastern District of Washington\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"E.D.Wash.\",\n    \"abbreviation\": \"waed\"\n  },\n  {\n    \"name\": \"U.S. District Court for the Western District of Washington\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"W.D.Wash.\",\n    \"abbreviation\": \"wawd\"\n  },\n  {\n    \"name\": \"U.S. District Court for the Eastern District of Wisconsin\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"E.D.Wis.\",\n    \"abbreviation\": \"wied\"\n  },\n  {\n    \"name\": \"U.S. District Court for the Western District of Wisconsin\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"W.D.Wis.\",\n    \"abbreviation\": \"wiwd\"\n  },\n  {\n    \"name\": \"U.S. District Court for the Northern District of West Virginia\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"N.D.W.Va.\",\n    \"abbreviation\": \"wvnd\"\n  },\n  {\n    \"name\": \"U.S. District Court for the Southern District of West Virginia\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"S.D.W.Va.\",\n    \"abbreviation\": \"wvsd\"\n  },\n  {\n    \"name\": \"U.S. District Court for the District of Wyoming\",\n    \"type\": \"FederalDistrict\",\n    \"shortName\": \"D.Wyo.\",\n    \"abbreviation\": \"wyd\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5ca60478-8f3b-4d63-acb6-b0aacff032a1",
+              "name": "Invalid or expired token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-courts",
+                    ":court_type"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "court_type",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Token time expired: Signature has expired.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2d3a4fa5-6e26-4e67-986c-981b663a4cc5",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-courts",
+                    ":court_type"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "court_type",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Unknown id\",\n  \"detail\": \"Not Found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "70e1b330-cfb2-4021-9b47-c5c771a3d516",
+              "name": "Error - 422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-courts",
+                    ":court_type"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "court_type",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Case Tags not used for PTAB\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "abdeafff-8db8-46d9-a386-0bed64c3c7bc",
+          "name": "List Federal District Damages",
+          "request": {
+            "name": "List Federal District Damages",
+            "description": {
+              "content": "Lists of damages for Federal District courts organized by practice area for use with querying.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "list-damages",
+                "FederalDistrict"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "81b70c15-a40d-4bfd-bf7e-0914c90f2699",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-damages",
+                    "FederalDistrict"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"court\": {\n    \"name\": \"All Federal District Courts\",\n    \"type\": \"FederalDistrict\"\n  },\n  \"damagesByPraticeArea\": {\n    \"General\": [\n      \"Other / Mixed Damage Types\",\n      \"Attorneys' Fees / Costs\",\n      \"Prejudgment Interest\"\n    ],\n    \"Copyright\": [\n      \"Actual Damages / Infringer's Profits (Copyright)\",\n      \"Statutory Damages (Copyright)\",\n      \"Mass Counterfeiter Default Damages (Copyright)\"\n    ],\n    \"Patent\": [\n      \"Reasonable Royalty (Patent)\",\n      \"Reasonable Royalty\",\n      \"Lost Profits (Patent)\",\n      \"Enhanced Damages (Patent)\",\n      \"Mass Counterfeiter Default Damages (Patent)\"\n    ],\n    \"Trademark\": [\n      \"Actual Damages / Infringer's Profits (Trademark)\",\n      \"Statutory Damages (Trademark)\",\n      \"Enhanced Damages (Trademark)\",\n      \"Mass Counterfeiter Default Damages (Trademark)\",\n      \"Mass Counterfeiter Default Damages\"\n    ],\n    \"Securities\": [\n      \"SEC / CFTC Penalties\",\n      \"Disgorgement (Securities)\",\n      \"Other Securities Damages\",\n      \"Shareholder Derivative Settlement\"\n    ],\n    \"Antitrust\": [\n      \"Antitrust Violation Damages\",\n      \"Enhanced Damages (Antitrust)\"\n    ],\n    \"Employment\": [\n      \"Backpay\",\n      \"Front Pay\",\n      \"Liquidated Damages (Employment)\",\n      \"Other Compensatory Damages (Employment)\",\n      \"Civil Money Penalties (Employment)\",\n      \"State Statutory Penalties\",\n      \"State Statutory Penalties (Employment)\",\n      \"Emotional Distress\",\n      \"Punitive Damages (Employment)\",\n      \"Collective Action Settlement\",\n      \"EEOC Class Settlement\",\n      \"Enhanced Damages (Employment)\"\n    ],\n    \"Product Liability\": [\n      \"Personal Injury: Economic\",\n      \"Personal Injury: Non-Economic\",\n      \"Personal Injury: Unspecified\",\n      \"Property Damages\",\n      \"Other Product Liability Damages\",\n      \"Punitive Damages (Product Liability)\"\n    ],\n    \"Bankruptcy\": [\n      \"Actual Damages (Bankruptcy)\",\n      \"Other Bankruptcy Damages\",\n      \"Punitive Damages (Bankruptcy)\"\n    ],\n    \"Trade Secret\": [\n      \"Actual Damages / Lost Profits\",\n      \"Punitive / Willfulness Damages\",\n      \"Reasonable Royalty (Trade Secret)\"\n    ],\n    \"Insurance\": [\n      \"Contract Damages (Insurance)\",\n      \"Restitution (Insurance)\",\n      \"Emotional Distress Damages (Insurance)\",\n      \"Emotional Distress Damages\",\n      \"Tort Damages\",\n      \"Punitive Damages (Insurance)\",\n      \"Enhanced Damages (Insurance)\"\n    ],\n    \"ERISA\": [\n      \"ERISA Plan Benefits\",\n      \"Liquidated Damages (ERISA)\",\n      \"Interest on Unpaid Contributions\",\n      \"Administrative Fees\",\n      \"Disclosure Penalties\",\n      \"Disgorgement (ERISA)\",\n      \"Restitution (ERISA)\",\n      \"Civil Money Penalties (ERISA)\"\n    ],\n    \"Contracts\": [\n      \"Contract Damages (Contracts)\",\n      \"Liquidated Damages (Contracts)\",\n      \"Restitution (Contracts)\",\n      \"Tort Compensatory Damages (Contracts)\",\n      \"Punitive Damages (Contracts)\",\n      \"Enhanced Damages (Contracts)\"\n    ],\n    \"Environmental\": [\n      \"CERCLA Cost Recovery / Contribution\",\n      \"Natural Resource Damages / Assessment Costs\",\n      \"Civil Money Penalties (Environmental)\",\n      \"Environmental Project / Mitigation Fund\",\n      \"Punitive Damages (Environmental)\"\n    ],\n    \"Tax\": [\n      \"Tax / Penalty Assessed\",\n      \"Refund\"\n    ],\n    \"Consumer Protection\": [\n      \"Statutory Damages (Consumer Protection)\",\n      \"Compensatory Damages (Consumer Protection)\",\n      \"Enhanced / Trebled Damages\",\n      \"Punitive Damages (Consumer Protection)\",\n      \"Civil Money Penalties (Consumer Protection)\",\n      \"Restitution (Consumer Protection)\",\n      \"Settled Claim Damages (Consumer Protection)\"\n    ],\n    \"Torts\": [\n      \"Lost Wages (Torts)\",\n      \"Medical Expenses (Torts)\",\n      \"Pain and Suffering (Torts)\",\n      \"Loss of Support\",\n      \"Survivor Expenses\",\n      \"Loss of Consortium (Torts)\",\n      \"General Compensatory Damages\",\n      \"Punitive Damages (Torts)\"\n    ],\n    \"Civil Rights\": [\n      \"Compensatory Damages (Civil Rights)\",\n      \"State Statutory Damages\",\n      \"State Statutory Damages (Civil Rights)\",\n      \"Nominal Damages (Civil Rights)\",\n      \"Nominal Damages\",\n      \"Punitive Damages (Civil Rights)\",\n      \"Civil Penalties (Civil Rights)\"\n    ],\n    \"False Claims\": [\n      \"Actual Damages (False Claims)\",\n      \"Treble Damages\",\n      \"Civil Penalties (False Claims)\",\n      \"Restitution (False Claims)\",\n      \"Settled Claim Damages (False Claims)\",\n      \"Relator Share\",\n      \"Back Pay\",\n      \"Special Damages (False Claims)\"\n    ],\n    \"Internet\": [\n      \"Actual Damages / Disgorgement\",\n      \"Statutory Damages (Internet)\",\n      \"Punitive Damages (Internet)\"\n    ],\n    \"Surety Bond\": [\n      \"Contract Damages (Surety Bond)\",\n      \"Tort Compensatory Damages (Surety Bond)\"\n    ],\n    \"Real Property\": [\n      \"Contract Damages (Real Property)\",\n      \"Contract Damages \",\n      \"Compensatory Damages (Real Property)\",\n      \"Actual Damages\",\n      \"Actual Damages (Real Property)\",\n      \"Restitution (Real Property)\",\n      \"Restitution \",\n      \"Nominal Damages (Real Property)\",\n      \"Nominal Damages \",\n      \"Special Damages (Real Property)\",\n      \"Special Damages \",\n      \"Just Compensation\",\n      \"Settled Claim Damages (Real Property)\",\n      \"Settled Claim Damages \",\n      \"Punitive Damages (Real Property)\",\n      \"Punitive Damages \"\n    ],\n    \"Class Action\": [\n      \"Approved Class Action Settlement (Class Action)\"\n    ],\n    \"Uncategorized Case\": [\n      \"Actual / Compensatory Damages\",\n      \"Compensatory / Actual Damages\",\n      \"Statutory Damages (Uncategorized Case)\",\n      \"Statutory Damages (No Type)\",\n      \"Restitution (Uncategorized Case)\",\n      \"Restitution (No Type)\",\n      \"Punitive Damages (Uncategorized Case)\",\n      \"Punitive Damages (No Type)\",\n      \"Liquidated Damages (Uncategorized Case)\",\n      \"Liquidated Damages (No Type)\",\n      \"Emotional Distress Damages (Uncategorized Case)\",\n      \"Emotional Distress Damages (No Type)\",\n      \"Penalty Damages\",\n      \"Settled Claim Damages (Uncategorized Case)\",\n      \"Settled Claim Damages (No Type)\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c898d839-02c9-4475-a546-7e297ca3b33f",
+              "name": "Invalid or expired token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-damages",
+                    "FederalDistrict"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Token time expired: Signature has expired.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "36601877-fe92-4539-8c77-0394572d0b85",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-damages",
+                    "FederalDistrict"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Unknown id\",\n  \"detail\": \"Not Found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d3c76d74-e8c7-4b4f-816b-4b016fcc2f52",
+              "name": "Error - 422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-damages",
+                    "FederalDistrict"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Invalid input\",\n  \"detail\": [\n    {\n      \"type\": \"parsing\",\n      \"loc\": [\n        \"path\",\n        \"query\",\n        \"body\"\n      ],\n      \"msg\": \"invalid input\",\n      \"input\": \"-1\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d1eb83af-9c1e-4b13-b539-785fed119ce1",
+          "name": "List State Damages",
+          "request": {
+            "name": "List State Damages",
+            "description": {
+              "content": "Lists of damages for State courts organized by practice area for use with querying.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "list-damages",
+                "State"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a1e2ee29-f636-4ce1-8451-1f2cecb91b05",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-damages",
+                    "State"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"court\": {\n    \"name\": \"All State Courts\",\n    \"type\": \"State\"\n  },\n  \"damages\": [\n    \"General Damages (Judgment on Merits)\",\n    \"General Damages (Jury Verdict)\",\n    \"Attorneys' Fees / Costs\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "71f21c7b-9663-4e30-a58e-af131ad1b2f2",
+              "name": "Invalid or expired token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-damages",
+                    "State"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Token time expired: Signature has expired.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f47c8b76-47d4-4301-b3af-2cbdf6ee10c6",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-damages",
+                    "State"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Unknown id\",\n  \"detail\": \"Not Found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f773c871-7332-4f11-bc59-71138395dc89",
+              "name": "Error - 422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-damages",
+                    "State"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Invalid input\",\n  \"detail\": [\n    {\n      \"type\": \"parsing\",\n      \"loc\": [\n        \"path\",\n        \"query\",\n        \"body\"\n      ],\n      \"msg\": \"invalid input\",\n      \"input\": \"-1\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9e3848e3-6493-4167-9bd2-77ad49e83409",
+          "name": "List Events",
+          "request": {
+            "name": "List Events",
+            "description": {
+              "content": "Lists events for a given for a given court type for use with querying.\n\n- **court_type**: the relevant court type",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "list-events",
+                ":court_type"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "court_type",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a7ed1da7-2d48-4e8b-b742-6e083d7617eb",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-events",
+                    ":court_type"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "court_type",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"court\": {\n    \"name\": \"All Federal District Courts\",\n    \"type\": \"FederalDistrict\"\n  },\n  \"events\": [\n    \"Markman Hearing\",\n    \"Permanent Injuction\",\n    \"Summary Judgment\",\n    \"Dismiss (Contested)\",\n    \"Filed\",\n    \"Terminated\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a6f87272-5f04-4149-9852-e1ad7a485cb2",
+              "name": "Invalid or expired token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-events",
+                    ":court_type"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "court_type",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Token time expired: Signature has expired.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e781d3b5-e24c-4120-a183-a09bda5dc1d3",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-events",
+                    ":court_type"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "court_type",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Unknown id\",\n  \"detail\": \"Not Found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f029f31d-0913-4c94-a5e4-96f8ee5b2289",
+              "name": "Error - 422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-events",
+                    ":court_type"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "court_type",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Events not used for PTAB\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "656c07cb-9a7a-488a-8aa5-d3f71708cd97",
+          "name": "List Federal District Findings",
+          "request": {
+            "name": "List Federal District Findings",
+            "description": {
+              "content": "Lists findings for Federal District courts organized by practice area for use with querying.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "list-findings",
+                "FederalDistrict"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2b9882db-1448-4096-bf60-fc069a735e24",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-findings",
+                    "FederalDistrict"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"court\": {\n    \"name\": \"All Federal District Courts\",\n    \"type\": \"FederalDistrict\"\n  },\n  \"findingsByPracticeArea\": {\n    \"Trademark\": [\n      \"Ownership / Validity\",\n      \"No Ownership / Validity\",\n      \"Trademark Infringement / False Designation of Origin\",\n      \"No Trademark Infringement / False Designation of Origin\",\n      \"Dilution\",\n      \"No Dilution\",\n      \"Cybersquatting\",\n      \"No Cybersquatting\",\n      \"False Advertising\",\n      \"No False Advertising\",\n      \"Willfulness / Bad Faith\",\n      \"No Willfulness / Bad Faith\",\n      \"License or Equitable Defense\",\n      \"No License or Equitable Defense\",\n      \"Fair Use Defense\",\n      \"No Fair Use Defense\"\n    ],\n    \"Copyright\": [\n      \"Ownership / Validity\",\n      \"No Ownership / Validity\",\n      \"Infringement\",\n      \"No Infringement\",\n      \"Willfulness / Bad Faith\",\n      \"No Willfulness / Bad Faith\",\n      \"License or Equitable Defense\",\n      \"No License or Equitable Defense\",\n      \"Fair Use Defense\",\n      \"No Fair Use Defense\"\n    ],\n    \"Patent\": [\n      \"Infringement\",\n      \"No Infringement\",\n      \"Invalidity\",\n      \"No Invalidity\",\n      \"Unenforceability\",\n      \"No Unenforceability\"\n    ],\n    \"Securities\": [\n      \"Securities Act Violation\",\n      \"No Securities Act Violation\",\n      \"Exchange Act Violation\",\n      \"No Exchange Act Violation\",\n      \"Other Securities Violation\",\n      \"No Other Securities Violation\",\n      \"Statute of Limitations Defense\",\n      \"No Statute of Limitations Defense\",\n      \"Plaintiff Knowledge Defense\",\n      \"No Plaintiff Knowledge Defense\",\n      \"Cautionary Language / Safe Harbor Defense\",\n      \"No Cautionary Language / Safe Harbor Defense\"\n    ],\n    \"Antitrust\": [\n      \"Sherman Act § 1 Violation (Restraint of Trade)\",\n      \"No Sherman Act § 1 Violation (Restraint of Trade)\",\n      \"Sherman Act § 2 Violation (Monopolization)\",\n      \"No Sherman Act § 2 Violation (Monopolization)\",\n      \"Sherman Act § 1 / Clayton Act § 3 Violation (Tying)\",\n      \"No Sherman Act § 1 / Clayton Act § 3 Violation (Tying)\",\n      \"Clayton Act § 7 Violation (Mergers)\",\n      \"No Clayton Act § 7 Violation (Mergers)\",\n      \"Robinson-Patman Act Violation (Price Discrimination)\",\n      \"No Robinson-Patman Act Violation (Price Discrimination)\",\n      \"Other Federal Antitrust Violation\",\n      \"No Other Federal Antitrust Violation\",\n      \"Antitrust Exemption Defense\",\n      \"No Antitrust Exemption Defense\",\n      \"Rule of Reason Defense\",\n      \"No Rule of Reason Defense\",\n      \"No Antitrust Injury\"\n    ],\n    \"Employment\": [\n      \"Title VII Discrimination: Race / Color\",\n      \"No Title VII Discrimination: Race / Color\",\n      \"Title VII Discrimination: Religion\",\n      \"No Title VII Discrimination: Religion\",\n      \"Title VII Discrimination: National Origin\",\n      \"No Title VII Discrimination: National Origin\",\n      \"Title VII Discrimination: Sex / Gender\",\n      \"No Title VII Discrimination: Sex / Gender\",\n      \"ADEA Discrimination: Age\",\n      \"No ADEA Discrimination: Age\",\n      \"ADA Discrimination: Disability\",\n      \"No ADA Discrimination: Disability\",\n      \"PDA Discrimination: Pregnancy\",\n      \"No PDA Discrimination: Pregnancy\",\n      \"§ 1981 / § 1983 Discrimination\",\n      \"No § 1981 / § 1983 Discrimination\",\n      \"Equal Pay Act Discrimination\",\n      \"No Equal Pay Act Discrimination\",\n      \"Rehabilitation Act Discrimination\",\n      \"No Rehabilitation Act Discrimination\",\n      \"USERRA Discrimination\",\n      \"No USERRA Discrimination\",\n      \"Discrimination: Other Federal Statute\",\n      \"No Discrimination: Other Federal Statute\",\n      \"FLSA Violation\",\n      \"No FLSA Violation\",\n      \"FMLA Violation\",\n      \"No FMLA Violation\",\n      \"Wage / Hour Violation: Other Federal Statute\",\n      \"No Wage / Hour Violation: Other Federal Statute\",\n      \"Retaliation\",\n      \"No Retaliation\",\n      \"Hostile Work Environment / Harassment\",\n      \"No Hostile Work Environment / Harassment\",\n      \"Failure to Accommodate\",\n      \"No Failure to Accommodate\",\n      \"Willfulness\",\n      \"No Willfulness\",\n      \"State Law Discrimination\",\n      \"No State Law Discrimination\",\n      \"State Law Labor Violation\",\n      \"No State Law Labor Violation\",\n      \"State Law Retaliation\",\n      \"No State Law Retaliation\",\n      \"State Law Harassment\",\n      \"No State Law Harassment\",\n      \"State Law Failure to Accommodate\",\n      \"No State Law Failure to Accommodate\",\n      \"Other State Employment Law Violation\",\n      \"No Other State Employment Law Violation\",\n      \"Common Law / Public Policy Violation\",\n      \"No Common Law / Public Policy Violation\",\n      \"Legitimate Reason Defense\",\n      \"No Legitimate Reason Defense\",\n      \"Time-Barred Defense\",\n      \"No Time-Barred Defense\",\n      \"Failure to Mitigate Defense\",\n      \"No Failure to Mitigate Defense\",\n      \"Failure to Exhaust Administrative Remedies Defense\",\n      \"No Failure to Exhaust Administrative Remedies Defense\",\n      \"Attendance Violation Defense\",\n      \"No Attendance Violation Defense\",\n      \"Estoppel Defense\",\n      \"No Estoppel Defense\",\n      \"Exemption Defense\",\n      \"No Exemption Defense\",\n      \"Good Faith Defense\",\n      \"No Good Faith Defense\",\n      \"Improper Notice Defense\",\n      \"No Improper Notice Defense\"\n    ],\n    \"Product Liability\": [\n      \"Breach of Warranty\",\n      \"No Breach of Warranty\",\n      \"Defective Product: Design\",\n      \"No Defective Product: Design\",\n      \"Defective Product: Manufacture\",\n      \"No Defective Product: Manufacture\",\n      \"Defective Product: Warnings\",\n      \"No Defective Product: Warnings\",\n      \"Defective Product: Unspecified\",\n      \"No Defective Product: Unspecified\",\n      \"Negligence\",\n      \"No Negligence\",\n      \"Tortious Misrepresentation\",\n      \"No Tortious Misrepresentation\",\n      \"Punitive Damages Conduct\",\n      \"No Punitive Damages Conduct\",\n      \"Consumer Protection Law Violation\",\n      \"No Consumer Protection Law Violation\",\n      \"Fraud on the FDA\",\n      \"No Fraud on the FDA\",\n      \"Comparative Fault Defense\",\n      \"No Comparative Fault Defense\",\n      \"Preemption Defense\",\n      \"No Preemption Defense\",\n      \"Statute of Limitations Defense\",\n      \"No Statute of Limitations Defense\",\n      \"Statute of Repose Defense\",\n      \"No Statute of Repose Defense\",\n      \"Manufacturer Not Proven\",\n      \"Product Did Not Cause Injury\"\n    ],\n    \"Bankruptcy\": [\n      \"Procedural / Jurisdictional - Claimant Win\",\n      \"Procedural / Jurisdictional - Claim Defendant Win\",\n      \"Malfeasance and Remedies - Claimant Win\",\n      \"Malfeasance and Remedies - Claim Defendant Win\",\n      \"Officers - Claimant Win\",\n      \"Officers - Claim Defendant Win\",\n      \"Administration - Claimant Win\",\n      \"Administration - Claim Defendant Win\",\n      \"Lift of Automatic Stay - Claimant Win\",\n      \"Lift of Automatic Stay - Claim Defendant Win\",\n      \"Debtor's Rights and Duties - Claimant Win\",\n      \"Debtor's Rights and Duties - Claim Defendant Win\",\n      \"Plan and Disclosure Statement - Claimant Win\",\n      \"Plan and Disclosure Statement - Claim Defendant Win\",\n      \"Objection to Confirmation - Claimant Win\",\n      \"Objection to Confirmation - Claim Defendant Win\",\n      \"Property of the Estate - Claimant Win\",\n      \"Property of the Estate - Claim Defendant Win\",\n      \"Dismissal and Conversion - Claimant Win\",\n      \"Dismissal and Conversion - Claim Defendant Win\",\n      \"Discharge and Dischargeability - Claimant Win\",\n      \"Discharge and Dischargeability - Claim Defendant Win\",\n      \"Claims and Liens - Claimant Win\",\n      \"Claims and Liens - Claim Defendant Win\",\n      \"Objection to Proof of Claim - Claimant Win\",\n      \"Objection to Proof of Claim - Claim Defendant Win\",\n      \"Avoidance - Claimant Win\",\n      \"Avoidance - Claim Defendant Win\",\n      \"State or Other Federal Law - Claimant Win\",\n      \"State or Other Federal Law - Claim Defendant Win\",\n      \"Motion to Withdraw the Reference Granted\",\n      \"Motion to Withdraw the Reference Denied\"\n    ],\n    \"Trade Secret\": [\n      \"Ownership / Validity\",\n      \"Failure to Identify Trade Secret\",\n      \"Failure to Maintain Secrecy\",\n      \"Generally Known / Readily Ascertainable\",\n      \"No Ownership / Validity: Wrong Entity\",\n      \"No Ownership / Validity: Other / Unspecified\",\n      \"DTSA Trade Secret Misappropriation\",\n      \"No DTSA Trade Secret Misappropriation\",\n      \"State Law Trade Secret Misappropriation\",\n      \"No State Law Trade Secret Misappropriation\",\n      \"Willfulness / Malicious Behavior\",\n      \"No Willfulness / Malicious Behavior\",\n      \"Independent Development Defense\",\n      \"No Independent Development Defense\",\n      \"Equitable or Time-Barred Defense\",\n      \"No Equitable or Time-Barred Defense\"\n    ],\n    \"Insurance\": [\n      \"Duty to Defend\",\n      \"No Duty to Defend\",\n      \"Duty to Indemnify / Pay\",\n      \"No Duty to Indemnify / Pay\",\n      \"Other Breach of Contract\",\n      \"No Other Breach of Contract\",\n      \"Occurrence Within the Policy\",\n      \"No Occurrence Within the Policy\",\n      \"Policy Exclusion\",\n      \"No Policy Exclusion\",\n      \"Insurable Interest / Is an Insured\",\n      \"No Insurable Interest / Not an Insured\",\n      \"Notice of Claim\",\n      \"No Notice of Claim\",\n      \"Proof of Loss\",\n      \"No Proof of Loss\",\n      \"Failure to Pay Premium\",\n      \"No Failure to Pay Premium\",\n      \"Other Condition Precedent Met\",\n      \"Other Condition Precedent Not Met\",\n      \"Policy Interpretation in Favor of Insured\",\n      \"Policy Interpretation in Favor of Insurer\",\n      \"Insured Negligence\",\n      \"No Insured Negligence\",\n      \"Insurer Negligence\",\n      \"No Insurer Negligence\",\n      \"Bad Faith\",\n      \"No Bad Faith\",\n      \"Insured Fraud / Misrepresentation\",\n      \"No Insured Fraud / Misrepresentation\",\n      \"Insurer Fraud / Misrepresentation\",\n      \"No Insurer Fraud / Misrepresentation\",\n      \"Unjust Enrichment\",\n      \"No Unjust Enrichment\",\n      \"Estoppel / Waiver\",\n      \"No Estoppel / Waiver\",\n      \"Statute of Limitations Defense\",\n      \"No Statute of Limitations Defense\"\n    ],\n    \"ERISA\": [\n      \"ERISA Covered Plan\",\n      \"No ERISA Covered Plan\",\n      \"Plan Participant / Beneficiary\",\n      \"No Plan Participant / Beneficiary\",\n      \"Plan Fiduciary\",\n      \"No Plan Fiduciary\",\n      \"ERISA Preemption\",\n      \"No ERISA Preemption\",\n      \"Delinquent Contribution\",\n      \"No Delinquent Contribution\",\n      \"Withdrawal Liability\",\n      \"No Withdrawal Liability\",\n      \"Improper Claim Denial\",\n      \"No Improper Claim Denial\",\n      \"Plan Reimbursement\",\n      \"No Plan Reimbursement\",\n      \"Breach of Fiduciary Duty\",\n      \"No Breach of Fiduciary Duty\",\n      \"Administrative Violation\",\n      \"No Administrative Violation\",\n      \"Exemption Defense\",\n      \"No Exemption Defense\",\n      \"Failure to Exhaust Administrative Remedies Defense\",\n      \"No Failure to Exhaust Administrative Remedies Defense\",\n      \"Time-Barred Defense\",\n      \"No Time-Barred Defense\",\n      \"Contract / Waiver Defense\",\n      \"No Contract / Waiver Defense\",\n      \"Court-Ordered Review\"\n    ],\n    \"Contracts\": [\n      \"Contract Breach\",\n      \"No Contract Breach\",\n      \"Contract Existence\",\n      \"No Contract Existence\",\n      \"Contract Termination\",\n      \"No Contract Termination\",\n      \"Unjust Enrichment\",\n      \"No Unjust Enrichment\",\n      \"Contract Defense\",\n      \"No Contract Defense\",\n      \"Conversion\",\n      \"No Conversion\",\n      \"Fraud / Misrepresentation\",\n      \"No Fraud / Misrepresentation\",\n      \"Tortious Interference\",\n      \"No Tortious Interference\",\n      \"Negligence\",\n      \"No Negligence\",\n      \"Tort Defense\",\n      \"No Tort Defense\",\n      \"Defamation / Trade Libel\",\n      \"No Defamation / Trade Libel\",\n      \"Breach of Fiduciary Duty\",\n      \"No Breach of Fiduciary Duty\"\n    ],\n    \"Environmental\": [\n      \"CERCLA Liability\",\n      \"No CERCLA Liability\",\n      \"Clean Water Act Violation\",\n      \"No Clean Water Act Violation\",\n      \"Clean Air Act Violation\",\n      \"No Clean Air Act Violation\",\n      \"RCRA Violation\",\n      \"No RCRA Violation\",\n      \"NEPA Violation\",\n      \"No NEPA Violation\",\n      \"Endangered Species Act Violation\",\n      \"No Endangered Species Act Violation\",\n      \"SDWA Violation\",\n      \"No SDWA Violation\",\n      \"Other Environmental Violation\",\n      \"No Other Environmental Violation\",\n      \"Standing\",\n      \"No Standing\",\n      \"Preemption of State Law\",\n      \"No Preemption of State Law\",\n      \"Statute of Limitations Defense\",\n      \"No Statute of Limitations Defense\",\n      \"Diligent Prosecution Defense\",\n      \"No Diligent Prosecution Defense\",\n      \"Noncompliant Notice Defense\",\n      \"No Noncompliant Notice Defense\",\n      \"CERCLA Third Party / Landowner Defense\",\n      \"No CERCLA Third Party / Landowner Defense\",\n      \"Failure to Exhaust Administrative Remedies Defense\",\n      \"No Failure to Exhaust Administrative Remedies Defense\"\n    ],\n    \"Tax\": [\n      \"Reduction of Tax Claim to Judgment\",\n      \"No Reduction of Tax Claim to Judgment\",\n      \"Foreclosure of Federal Tax Lien\",\n      \"No Foreclosure of Federal Tax Lien\",\n      \"Enforcement of IRS Summons\",\n      \"No Enforcement of IRS Summons\",\n      \"Erroneous / Improper Refund\",\n      \"No Erroneous / Improper Refund\",\n      \"Responsible Party\",\n      \"No Responsible Party\",\n      \"Tax Refund / Abatement of Penalty\",\n      \"No Tax Refund / Abatement of Penalty\",\n      \"Wrongful / Erroneous Tax Assessment\",\n      \"No Wrongful / Erroneous Tax Assessment\",\n      \"Wrongful Levy\",\n      \"Enforcement of Levy\",\n      \"Tax Exempt\",\n      \"Not Tax Exempt\",\n      \"Unlawful Disclosure\",\n      \"No Unlawful Disclosure\",\n      \"Readjustment of Partnership Items\",\n      \"No Readjustment of Partnership Items\",\n      \"Fraud\",\n      \"No Fraud\",\n      \"Negligence\",\n      \"No Negligence\",\n      \"Valid Lien\",\n      \"Invalid Lien\",\n      \"Quiet Title\",\n      \"IRS Statute of Limitations Defense\",\n      \"No IRS Statute of Limitations Defense\",\n      \"Failure to Exhaust Administrative Remedies\",\n      \"No Failure to Exhaust Administrative Remedies\",\n      \"Failure to Follow Proper Procedural Requirements\",\n      \"No Failure to Follow Proper Procedural Requirements\",\n      \"Standing\",\n      \"No Standing\",\n      \"Estoppel\",\n      \"No Estoppel\"\n    ],\n    \"Consumer Protection\": [\n      \"FCRA Violation\",\n      \"No FCRA Violation\",\n      \"FDCPA Violation\",\n      \"No FDCPA Violation\",\n      \"RESPA Violation\",\n      \"No RESPA Violation\",\n      \"TCPA Violation\",\n      \"No TCPA Violation\",\n      \"TILA Violation\",\n      \"No TILA Violation\",\n      \"Other Federal Consumer Finance Violation\",\n      \"No Other Federal Consumer Finance Violation\",\n      \"Federal Enforcement Violation\",\n      \"No Federal Enforcement Violation\",\n      \"State Consumer Finance Violation\",\n      \"No State Consumer Finance Violation\",\n      \"State UDTP Violation\",\n      \"No State UDTP Violation\",\n      \"Data Breach: Contract Violation\",\n      \"No Data Breach: Contract Violation\",\n      \"Data Breach: Notification / Handling Violation\",\n      \"No Data Breach: Notification / Handling Violation\",\n      \"Fraud / Misrepresentation\",\n      \"No Fraud / Misrepresentation\",\n      \"Negligence\",\n      \"No Negligence\",\n      \"Willfulness\",\n      \"No Willfulness\",\n      \"Bad Faith Prosecution\",\n      \"No Bad Faith Prosecution\",\n      \"Bona Fide Error Defense\",\n      \"No Bona Fide Error Defense\",\n      \"Common Law or Equitable Defense\",\n      \"No Common Law or Equitable Defense\",\n      \"Other Statutory Defense\",\n      \"No Other Statutory Defense\",\n      \"Time-Barred Defense\",\n      \"No Time-Barred Defense\",\n      \"No Data Breach: Standing\",\n      \"Biometric Privacy Violation\",\n      \"No Biometric Privacy Violation\"\n    ],\n    \"Torts\": [\n      \"Negligence\",\n      \"No Negligence: Duty / Breach\",\n      \"No Negligence: Causation / Harm\",\n      \"No Negligence: Expert Required\",\n      \"No Negligence: Unspecified\",\n      \"No Vicarious Liability\",\n      \"Lack of Informed Consent\",\n      \"No Lack of Informed Consent\",\n      \"Loss of Consortium\",\n      \"No Loss of Consortium\",\n      \"Wrongful Death / Survival Action\",\n      \"No Wrongful Death / Survival Action\",\n      \"Strict Liability\",\n      \"No Strict Liability\",\n      \"Wanton / Reckless Conduct\",\n      \"No Wanton / Reckless Conduct\",\n      \"Assault / Battery\",\n      \"No Assault / Battery\",\n      \"Infliction of Emotional Distress\",\n      \"No Infliction of Emotional Distress\",\n      \"Defamation\",\n      \"No Defamation\",\n      \"False Imprisonment\",\n      \"No False Imprisonment\",\n      \"Privacy / False Light Violation\",\n      \"No Privacy / False Light Violation\",\n      \"Willfulness\",\n      \"No Willfulness\",\n      \"Assumption of Risk Defense\",\n      \"No Assumption of Risk Defense\",\n      \"Contributory / Comparative Negligence Defense\",\n      \"No Contributory / Comparative Negligence Defense\",\n      \"Open and Obvious Danger Defense\",\n      \"No Open and Obvious Danger Defense\",\n      \"Waiver Defense\",\n      \"No Waiver Defense\",\n      \"Time-Barred Defense\",\n      \"No Time-Barred Defense\"\n    ],\n    \"Civil Rights\": [\n      \"Monell or Official Capacity Liability\",\n      \"No Monell or Official Capacity Liability\",\n      \"Monell or Supervisory Liability\",\n      \"No Monell or Supervisory Liability\",\n      \"Due Process Violation\",\n      \"No Due Process Violation\",\n      \"Equal Protection Violation\",\n      \"No Equal Protection Violation\",\n      \"Excessive Force Violation\",\n      \"No Excessive Force Violation\",\n      \"Failure to Intervene Violation\",\n      \"No Failure to Intervene Violation\",\n      \"Police Malicious Prosecution Violation\",\n      \"No Police Malicious Prosecution Violation\",\n      \"Search and Seizure Violation\",\n      \"No Search and Seizure Violation\",\n      \"State Law Tort Liability\",\n      \"No State Law Tort Liability\",\n      \"Qualified Immunity Defense\",\n      \"No Qualified Immunity Defense\",\n      \"State Law Immunity Defense\",\n      \"No State Law Immunity Defense\",\n      \"Time-Barred Defense\",\n      \"No Time-Barred Defense\",\n      \"ADA Violation: Discrimination\",\n      \"No ADA Violation: No Discrimination\",\n      \"ADA Violation: Retaliation\",\n      \"No ADA Violation: No Retaliation\",\n      \"ADA Intentional Conduct\",\n      \"No ADA Intentional Conduct\",\n      \"No ADA Violation: No Disability\",\n      \"State Disability Law Violation\",\n      \"No ADA Violation: Not a Qualified Individual\",\n      \"No ADA Violation: No Public Accommodation\",\n      \"No ADA Violation: Not a Public Entity\",\n      \"No State Disability Law Violation\",\n      \"Fundamental Change / Undue Burden Defense\",\n      \"No Fundamental Change / Undue Burden Defense\",\n      \"Lack of Harm / Harm Remediated Defense\",\n      \"No Lack of Harm / Harm Remediated Defense\",\n      \"Legitimate Reason Defense\",\n      \"No Legitimate Reason Defense\",\n      \"FHA Violation: Coercion / Intimidation\",\n      \"No FHA Violation: No Coercion / Intimidation\",\n      \"FHA Violation: Discrimination\",\n      \"No FHA Violation: No Discrimination\",\n      \"FHA Violation: Failure to Accommodate\",\n      \"No FHA Violation: No Failure to Accommodate\",\n      \"FHA Violation: Retaliation\",\n      \"No FHA Violation: No Retaliation\",\n      \"State Housing Law Violation\",\n      \"No State Housing Law Violation\",\n      \"No Standing\",\n      \"Standing\",\n      \"Title IX Retaliation\",\n      \"No Title IX Retaliation\",\n      \"Title IX Discrimination\",\n      \"No Title IX Discrimination\",\n      \"Other Voting Statute Violation\",\n      \"No Other Voting Statute Violation\",\n      \"Section 504 Violation\",\n      \"No Section 504 Violation\",\n      \"IDEA Violation\",\n      \"No IDEA Violation\",\n      \"Voting Rights Act Violation\",\n      \"No Voting Rights Act Violation\",\n      \"15th Amendment Violation\",\n      \"No 15th Amendment Violation\",\n      \"Freedom of Religion Violation\",\n      \"No Freedom of Religion Violation\",\n      \"First Amendment Retaliation\",\n      \"No First Amendment Retaliation\",\n      \"Freedom of Association Violation\",\n      \"No Freedom of Association Violation\",\n      \"Freedom of the Press Violation\",\n      \"No Freedom of the Press Violation\",\n      \"Freedom of Speech Violation\",\n      \"No Freedom of Speech Violation\",\n      \"Prior Restraint\",\n      \"No Prior Restraint\",\n      \"Freedom of Assembly Violation\",\n      \"No Freedom of Assembly Violation\",\n      \"Right to Petition Violation\",\n      \"No Right to Petition Violation\",\n      \"State Law Violation\",\n      \"No State Law Violation\",\n      \"RLUIPA / RFRA Violation\",\n      \"No RLUIPA / RFRA Violation\",\n      \"Absolute or Sovereign Immunity\",\n      \"No Absolute or Sovereign Immunity\",\n      \"Failure to Exhaust Administrative Remedies\",\n      \"No Failure to Exhaust Administrative Remedies\"\n    ],\n    \"False Claims\": [\n      \"False / Fraudulent Claim Liability\",\n      \"No False / Fraudulent Claim Liability\",\n      \"False Statement Liability\",\n      \"No False Statement Liability\",\n      \"False Certification Liability\",\n      \"No False Certification Liability\",\n      \"Reverse False Claim Liability\",\n      \"No Reverse False Claim Liability\",\n      \"Anti-Kickback / Self-Dealing Liability\",\n      \"No Anti-Kickback / Self-Dealing Liability\",\n      \"State False Claims Act Liability\",\n      \"No State False Claims Act Liability\",\n      \"Common Law Tort Liability\",\n      \"No Common Law Tort Liability\",\n      \"Contract / Unjust Enrichment Liability\",\n      \"No Contract / Unjust Enrichment Liability\",\n      \"No Rule 9(b) Particularity\",\n      \"No FCA Liability: Causation\",\n      \"No FCA Liability: Falsity\",\n      \"No FCA Liability: Knowledge\",\n      \"No FCA Liability: Materiality\",\n      \"Public Disclosure / First-to-File Bar\",\n      \"No Public Disclosure / First-to-File Bar\",\n      \"Time-Barred Defense\",\n      \"No Time-Barred Defense\",\n      \"False Claims Act Retaliation\",\n      \"No False Claims Act Retaliation\",\n      \"Legitimate Reason Defense\",\n      \"No Legitimate Reason Defense\"\n    ],\n    \"Internet\": [\n      \"CFAA Violation\",\n      \"No CFAA Violation\",\n      \"ECPA Violation\",\n      \"No ECPA Violation\",\n      \"SCA Violation\",\n      \"No SCA Violation\",\n      \"State Law Computer Trespass Violation\",\n      \"No State Law Computer Trespass Violation\",\n      \"DMCA Circumvention Violation\",\n      \"No DMCA Circumvention Violation\",\n      \"DMCA Copyright Management Violation\",\n      \"No DMCA Copyright Management Violation\",\n      \"DMCA Misrepresentation Violation\",\n      \"No DMCA Misrepresentation Violation\",\n      \"Willfulness\",\n      \"No Willfulness\",\n      \"CFAA Minimum Damages Defense\",\n      \"No CFAA Minimum Damages Defense\",\n      \"ECPA / SCA Exemption Defense\",\n      \"No ECPA / SCA Exemption Defense\",\n      \"Immunity Defense\",\n      \"No Immunity Defense\",\n      \"Time-Barred Defense\",\n      \"No Time-Barred Defense\",\n      \"Consent Defense\",\n      \"No Consent Defense\"\n    ],\n    \"Surety Bond\": [\n      \"Breach of Bond by Surety\",\n      \"Breach of Contract by Principal\",\n      \"No Breach of Bond by Surety\",\n      \"No Breach of Contract by Principal\",\n      \"Breach of Contract by Obligee\",\n      \"Breach of Indemnity by Surety\",\n      \"No Breach of Contract by Obligee\",\n      \"No Breach of Indemnity by Surety\",\n      \"Subrogated Breach of Contract\",\n      \"Breach of Bond by Obligee\",\n      \"Breach of Indemnity by Principal\",\n      \"No Subrogated Breach of Contract\",\n      \"No Breach of Bond by Obligee\",\n      \"No Breach of Indemnity by Principal\",\n      \"Fraud / Misrepresentation by Obligee\",\n      \"Fraud / Misrepresentation by Principal\",\n      \"Fraud / Misrepresentation by Surety\",\n      \"Negligence\",\n      \"Contract Defense\",\n      \"Time-Barred Defense\",\n      \"No Fraud / Misrepresentation by Obligee\",\n      \"No Fraud / Misrepresentation by Principal\",\n      \"No Fraud / Misrepresentation by Surety\",\n      \"No Negligence\",\n      \"No Contract Defense\",\n      \"No Time-Barred Defense\"\n    ],\n    \"Real Property\": [\n      \"Foreclosure Granted\",\n      \"No Foreclosure Granted\",\n      \"Standing to Foreclose\",\n      \"No Standing to Foreclose\",\n      \"Wrongful Foreclosure\",\n      \"No Wrongful Foreclosure\",\n      \"Breach of Contract\",\n      \"No Breach of Contract\",\n      \"Contract Existence\",\n      \"No Contract Existence\",\n      \"Contract Termination\",\n      \"No Contract Termination\",\n      \"Unjust Enrichment\",\n      \"No Unjust Enrichment\",\n      \"Fraud / Misrepresentation\",\n      \"No Fraud / Misrepresentation\",\n      \"Negligence\",\n      \"No Negligence\",\n      \"Quiet Title\",\n      \"No Quiet Title\",\n      \"Superior Lien\",\n      \"No Superior Lien\",\n      \"Valid Lien\",\n      \"Invalid Lien\",\n      \"Time-Barred Defense\",\n      \"No Time-Barred Defense\",\n      \"Condemnation Granted\",\n      \"Inverse Condemnation / Taking\",\n      \"Standing / Ripeness\",\n      \"Just Compensation Provided\",\n      \"Just Compensation Adjusted\",\n      \"No Condemnation Granted\",\n      \"No Inverse Condemnation / Taking\",\n      \"No Standing / Ripeness\",\n      \"No Just Compensation Provided\",\n      \"No Just Compensation Adjusted\",\n      \"Ejectment / Eviction\",\n      \"Wrongful Ejectment / Eviction\",\n      \"No Ejectment / Eviction\",\n      \"No Wrongful Ejectment / Eviction\",\n      \"Nuisance\",\n      \"Trespass to Land\",\n      \"Slander of Title\",\n      \"Strict Liability\",\n      \"Tort Defense\",\n      \"No Nuisance\",\n      \"No Trespass to Land\",\n      \"No Slander of Title\",\n      \"No Strict Liability\",\n      \"No Tort Defense\",\n      \"Other Declaratory Judgment Granted\",\n      \"Breach of Covenant\",\n      \"Trespass to Try Title\",\n      \"Adverse Possession / Prescriptive Easement\",\n      \"No Other Declaratory Judgment Granted\",\n      \"No Breach of Covenant\",\n      \"No Trespass to Try Title\",\n      \"No Adverse Possession / Prescriptive Easement\"\n    ],\n    \"Class Action\": [\n      \"Class Certification: Grant\",\n      \"Class Certification: Partial\",\n      \"Class Certification: Deny\",\n      \"Class Certification: Grant for Settlement Only\"\n    ],\n    \"Uncategorized Case\": [\n      \"Federal Law Violation\",\n      \"Constitutional Violation\",\n      \"Common Law Violation\",\n      \"State Law Violation\",\n      \"Contract Breach\",\n      \"Negligence\",\n      \"Fraud / Misrepresentation\",\n      \"Unjust Enrichment\",\n      \"Bad Faith / Willfulness\",\n      \"Standing\",\n      \"Other Decision - Claimant Win\",\n      \"No Federal Law Violation\",\n      \"No Constitutional Violation\",\n      \"No Common Law Violation\",\n      \"No State Law Violation\",\n      \"No Contract Breach\",\n      \"No Negligence\",\n      \"No Fraud / Misrepresentation\",\n      \"No Unjust Enrichment\",\n      \"No Bad Faith / Willfulness\",\n      \"No Standing\",\n      \"Other Decision - Claim Defendant Win\",\n      \"Time-Barred Defense\",\n      \"Legitimate Reason Defense\",\n      \"Contract / Waiver Defense\",\n      \"Failure to Exhaust Administrative Remedies\",\n      \"Estoppel Defense\",\n      \"Exemption / Immunity Defense\",\n      \"Failure to Mitigate Defense\",\n      \"Statutory Defense\",\n      \"Other Defense\",\n      \"No Time-Barred Defense\",\n      \"No Legitimate Reason Defense\",\n      \"No Contract / Waiver Defense\",\n      \"No Failure to Exhaust Administrative Remedies\",\n      \"No Estoppel Defense\",\n      \"No Exemption / Immunity Defense\",\n      \"No Failure to Mitigate Defense\",\n      \"No Statutory Defense\",\n      \"No Other Defense\"\n    ]\n  },\n  \"patentInvalidityReasons\": [\n    \"Invalidity: 112 Enablement\",\n    \"Invalidity: 102(f) Derivation (pre-AIA)\",\n    \"Invalidity: 112 Best Mode (pre-AIA)\",\n    \"Invalidity: 102(g) Interference (pre-AIA)\",\n    \"Invalidity: 171 Improper Design Patent\",\n    \"Invalidity: 112 Definiteness\",\n    \"Invalidity: No Invalidity Reason Specified\",\n    \"Invalidity: Obviousness-Type Double Patenting\",\n    \"Invalidity: 103 Obviousness\",\n    \"Invalidity: 112 Written Description\",\n    \"Invalidity: 132, 251, 255, 305 Defective Correction\",\n    \"Invalidity: 101 Subject Matter\",\n    \"Invalidity: 102 Anticipation / Novelty\",\n    \"Invalidity: 133, 371 Application Abandonment\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5ed929b5-8dbc-4169-8c8a-1eccd32469a3",
+              "name": "Invalid or expired token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-findings",
+                    "FederalDistrict"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Token time expired: Signature has expired.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d46fff8c-57f4-4116-8d69-cda94aaf2d33",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-findings",
+                    "FederalDistrict"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Unknown id\",\n  \"detail\": \"Not Found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "61d8aff1-f6bb-46e5-8869-6e14e7c14c74",
+              "name": "Error - 422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-findings",
+                    "FederalDistrict"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Invalid input\",\n  \"detail\": [\n    {\n      \"type\": \"parsing\",\n      \"loc\": [\n        \"path\",\n        \"query\",\n        \"body\"\n      ],\n      \"msg\": \"invalid input\",\n      \"input\": \"-1\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "43364a56-cb44-4462-8094-334349ba6351",
+          "name": "List Judgment Sources",
+          "request": {
+            "name": "List Judgment Sources",
+            "description": {
+              "content": "Lists judgment sources for Federal District courts for use with querying.\n\nThe sources are specific to damages, remedies and findings as presented in the list.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "list-judgment-sources",
+                "FederalDistrict"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "cce5c2b9-2936-4ecd-8c13-43fb9fc58114",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-judgment-sources",
+                    "FederalDistrict"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"court\": {\n    \"name\": \"All Federal District Courts\",\n    \"type\": \"FederalDistrict\"\n  },\n  \"damages\": [\n    \"Default Judgment\",\n    \"Consent Judgment\",\n    \"No Type Specified\",\n    \"Judgment on Merits\",\n    \"Jury Verdict\"\n  ],\n  \"remedies\": [\n    \"Default Judgment\",\n    \"Judgment on Merits\",\n    \"No Type Specified\",\n    \"Consent Judgment\"\n  ],\n  \"findings\": [\n    \"Default Judgment\",\n    \"Trial\",\n    \"Consent Judgment\",\n    \"Judgment as a Matter of Law\",\n    \"No Type Specified\",\n    \"Summary Judgment\",\n    \"Judgment on the Pleadings\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0d14daa3-20e4-4ce9-9b88-d6693996e9a0",
+              "name": "Invalid or expired token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-judgment-sources",
+                    "FederalDistrict"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Token time expired: Signature has expired.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c0330142-7ef0-4a24-ad9f-7df976459035",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-judgment-sources",
+                    "FederalDistrict"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Unknown id\",\n  \"detail\": \"Not Found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "43f095e6-db1f-46aa-844e-a55430cb087c",
+              "name": "Error - 422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-judgment-sources",
+                    "FederalDistrict"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Invalid input\",\n  \"detail\": [\n    {\n      \"type\": \"parsing\",\n      \"loc\": [\n        \"path\",\n        \"query\",\n        \"body\"\n      ],\n      \"msg\": \"invalid input\",\n      \"input\": \"-1\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4e380c28-127a-48ab-bde2-474f21100e5a",
+          "name": "List Judgment Events",
+          "request": {
+            "name": "List Judgment Events",
+            "description": {
+              "content": "Lists judgment events for State courts organized for use with querying.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "list-judgment-events",
+                "State"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0ea73f70-8b0d-4f3e-b7c7-78c47ec94fa2",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-judgment-events",
+                    "State"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"judgmentEvents\": [\n    \"Default Judgment\",\n    \"Consent Judgment\",\n    \"Bench Trial\",\n    \"Jury Verdict\",\n    \"Other Judgment\"\n  ],\n  \"court\": {\n    \"name\": \"All State Courts\",\n    \"type\": \"State\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ceaa02df-82c8-4d64-a853-8d8a9b99686c",
+              "name": "Invalid or expired token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-judgment-events",
+                    "State"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Token time expired: Signature has expired.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "57538870-bf13-4872-b49f-84ac7f6aa33f",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-judgment-events",
+                    "State"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Unknown id\",\n  \"detail\": \"Not Found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e9dd3333-d1c7-4a70-b930-12634490f43e",
+              "name": "Error - 422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-judgment-events",
+                    "State"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Invalid input\",\n  \"detail\": [\n    {\n      \"type\": \"parsing\",\n      \"loc\": [\n        \"path\",\n        \"query\",\n        \"body\"\n      ],\n      \"msg\": \"invalid input\",\n      \"input\": \"-1\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "212cfc97-5fed-40e9-b14e-a195d65cf26c",
+          "name": "List Originating Venues",
+          "request": {
+            "name": "List Originating Venues",
+            "description": {
+              "content": "Lists originating venues for use with appeals case querying.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "list-originating-venues",
+                "FederalAppeals"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e5c89a77-4e6a-4966-8977-051f0f0dce83",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-originating-venues",
+                    "FederalAppeals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"originatingVenues\": [\n    \"Originating Venue: Board of Immigration Appeals\",\n    \"Originating Venue: Court of Federal Claims\",\n    \"Originating Venue: Federal Bankruptcy Court\",\n    \"Originating Venue: Bankruptcy Appellate Panel\",\n    \"Originating Venue: Federal District Court\",\n    \"Originating Venue: Other Agency\",\n    \"Originating Venue: ITC\",\n    \"Originating Venue: Other Court\",\n    \"Originating Venue: PTAB\"\n  ],\n  \"court\": {\n    \"name\": \"All Federal Appeals Courts\",\n    \"type\": \"FederalAppeals\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bb0f964f-5648-446c-b97b-406873b405e5",
+              "name": "Invalid or expired token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-originating-venues",
+                    "FederalAppeals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Token time expired: Signature has expired.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f6834079-981f-402e-b3f7-caa24991477f",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-originating-venues",
+                    "FederalAppeals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Unknown id\",\n  \"detail\": \"Not Found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8980e2b6-4751-432a-a505-cd75deda8cab",
+              "name": "Error - 422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-originating-venues",
+                    "FederalAppeals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Invalid input\",\n  \"detail\": [\n    {\n      \"type\": \"parsing\",\n      \"loc\": [\n        \"path\",\n        \"query\",\n        \"body\"\n      ],\n      \"msg\": \"invalid input\",\n      \"input\": \"-1\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cd719c91-f0f7-4e6f-b4a5-0dc981ab37a1",
+          "name": "List Supreme Court Decisions",
+          "request": {
+            "name": "List Supreme Court Decisions",
+            "description": {
+              "content": "Lists decisions from the Supreme Court for use with appeals case querying.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "list-supreme-court-decisions",
+                "FederalAppeals"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ca1c2fc2-c9d3-4b36-97f8-4a5101357d46",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-supreme-court-decisions",
+                    "FederalAppeals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  \"Affirmed by SCOTUS\",\n  \"Affirmed / Reversed in Part by SCOTUS\",\n  \"Reversed by SCOTUS\"\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6489c761-3046-46b3-a2f5-1c9d055d3718",
+              "name": "Invalid or expired token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-supreme-court-decisions",
+                    "FederalAppeals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Token time expired: Signature has expired.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b0e961bf-7e42-4959-9938-de9f94d9ef39",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-supreme-court-decisions",
+                    "FederalAppeals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Unknown id\",\n  \"detail\": \"Not Found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8ea24f5d-108a-43ba-bb27-fd75706b8c18",
+              "name": "Error - 422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-supreme-court-decisions",
+                    "FederalAppeals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Invalid input\",\n  \"detail\": [\n    {\n      \"type\": \"parsing\",\n      \"loc\": [\n        \"path\",\n        \"query\",\n        \"body\"\n      ],\n      \"msg\": \"invalid input\",\n      \"input\": \"-1\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "35040fa0-5432-4917-881e-877c0c54dfd1",
+          "name": "List Remedies",
+          "request": {
+            "name": "List Remedies",
+            "description": {
+              "content": "Lists of all the remedies by type for use with federal district case querying.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "list-remedies",
+                "FederalDistrict"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e46b6f0b-3161-4b7d-95c9-bdd3d8f3378e",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-remedies",
+                    "FederalDistrict"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"court\": {\n    \"name\": \"All Federal District Courts\",\n    \"type\": \"FederalDistrict\"\n  },\n  \"remediesByRemedyType\": {\n    \"General\": [\n      \"Permanent Injunction: Grant\",\n      \"Preliminary Injunction: Grant\",\n      \"Temporary Restraining Order: Grant\",\n      \"Permanent Injunction: Deny\",\n      \"Preliminary Injunction: Deny\",\n      \"Temporary Restraining Order: Deny\",\n      \"Rescission\",\n      \"Reformation\",\n      \"Administrative Remand\",\n      \"Reinstatement\",\n      \"Specific Performance\"\n    ],\n    \"Trademark\": [\n      \"Relinquish Domain Name\",\n      \"Cancellation of Registration\"\n    ],\n    \"Antitrust\": [\n      \"Divestiture\"\n    ],\n    \"Employment\": [\n      \"Promotion\"\n    ],\n    \"Bankruptcy\": [\n      \"Recovery of Property\"\n    ],\n    \"Internet\": [\n      \"Relinquish / Permit Access\"\n    ],\n    \"ERISA\": [\n      \"Appointment of Independent Fiduciary\",\n      \"Bond for Future Contributions\",\n      \"Plan Audit\"\n    ],\n    \"Contracts\": [\n      \"Replevin\"\n    ],\n    \"Environmental\": [\n      \"Security Bond / Performance Guarantee\",\n      \"Compliance / Remediation Plan\"\n    ],\n    \"Civil Rights\": [\n      \"ADA Remediation\",\n      \"Non-ADA Remediation\"\n    ],\n    \"Surety Bond\": [\n      \"Quia Timet / Exoneration\"\n    ],\n    \"Real Property\": [\n      \"Reformation (Real Property)\",\n      \"Rescission (Real Property)\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "192dbdca-f2ed-4e09-93b9-957d1b35ff2e",
+              "name": "Invalid or expired token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-remedies",
+                    "FederalDistrict"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Token time expired: Signature has expired.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ff5c2f92-b1ac-4b55-9cfe-dda0ee3d4d5f",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-remedies",
+                    "FederalDistrict"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Unknown id\",\n  \"detail\": \"Not Found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "65abf737-1b88-4ebf-9ec1-a42ebd88c8d8",
+              "name": "Error - 422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-remedies",
+                    "FederalDistrict"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Invalid input\",\n  \"detail\": [\n    {\n      \"type\": \"parsing\",\n      \"loc\": [\n        \"path\",\n        \"query\",\n        \"body\"\n      ],\n      \"msg\": \"invalid input\",\n      \"input\": \"-1\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.lexmachina.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "fccedecb-d9dc-47a7-88c9-b9a267f42068",
+    "name": "Lex Machina Alerts List API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Alerts.",
+      "type": "text/plain"
+    }
+  }
+}

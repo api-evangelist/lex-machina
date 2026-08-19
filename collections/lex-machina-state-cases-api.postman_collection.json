@@ -1,0 +1,839 @@
+{
+  "item": [
+    {
+      "id": "4f4a922d-7ec8-4819-b79c-31da8105934f",
+      "name": "State Cases",
+      "description": {
+        "content": "State court cases.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fb266c11-9046-496b-a8b0-1c61a8191db7",
+          "name": "Get State Case",
+          "request": {
+            "name": "Get State Case",
+            "description": {
+              "content": "Gets data for a single enhanced state case.\n\n- **case_id**: the Lex Machina stateCaseId\n- **docket_retrieval**: docket retreival mode",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "state-cases",
+                ":state_case_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "docket_retrieval",
+                  "value": "<string>",
+                  "description": "'all' to retrieve docket entries for the case, if not provided no docket entries will be retrieved."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "state_case_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "876a0c9e-1701-4f45-b7e0-716464a7781e",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "state-cases",
+                    ":state_case_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "docket_retrieval",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "state_case_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"stateCaseId\": 2002947480,\n  \"title\": \"PRIMEWAY FEDERAL CREDIT UNION (SUCCESSOR vs. RICHARDSON, TERENCE\",\n  \"state\": \"Texas\",\n  \"court\": \"Harris County District Court\",\n  \"caseNo\": \"201600017\",\n  \"status\": \"Terminated\",\n  \"caseType\": [\n    \"Contract (TX)\"\n  ],\n  \"caseTags\": [],\n  \"dates\": {\n    \"filed\": \"2016-01-01\",\n    \"terminated\": \"2017-02-28\"\n  },\n  \"events\": [\n    {\n      \"type\": \"Filed\",\n      \"occurred\": \"2016-01-01\"\n    },\n    {\n      \"type\": \"Terminated\",\n      \"occurred\": \"2017-02-28\"\n    }\n  ],\n  \"judges\": [\n    {\n      \"name\": \"Joseph James Halbach Jr\",\n      \"stateJudgeId\": 776\n    },\n    {\n      \"name\": \"Daryl L Moore\",\n      \"stateJudgeId\": 775\n    }\n  ],\n  \"rulings\": {\n    \"active\": []\n  },\n  \"lawFirms\": [\n    {\n      \"name\": \"Coats Rose\",\n      \"lawFirmId\": 1192064,\n      \"clientPartyIds\": [\n        290379\n      ]\n    }\n  ],\n  \"attorneys\": [\n    {\n      \"name\": \"Nancy Hesse Hamren\",\n      \"attorneyId\": 17168919,\n      \"lawFirmIds\": [\n        1192064\n      ],\n      \"clientsPartyIds\": [\n        290379\n      ]\n    }\n  ],\n  \"parties\": [\n    {\n      \"name\": \"WESTERN SURETY COMPANY (BY SERVING ITS REGISTERED AGENT C T CORPORATION)\",\n      \"partyId\": 290379,\n      \"role\": \"Defendant\"\n    },\n    {\n      \"name\": \"PRIMEWAY FEDERAL CREDIT UNION (SUCCESSOR BY MERGER TO TEXASONE\",\n      \"partyId\": 44462144,\n      \"role\": \"Plaintiff\"\n    },\n    {\n      \"name\": \"TERENCE RICHARDSON\",\n      \"partyId\": 44100878,\n      \"role\": \"Defendant\"\n    },\n    {\n      \"name\": \"LATRENDA RICHARDSON\",\n      \"partyId\": 44100883,\n      \"role\": \"Third Party\"\n    },\n    {\n      \"name\": \"DISPUTE RESOLUTION CENTER\",\n      \"partyId\": 45573057,\n      \"role\": \"Third Party\"\n    },\n    {\n      \"name\": \"RICHARDSON, LATRENDA (DBA LATRENDA H RICHARDSON) AND LATRENDA HARRISON\",\n      \"partyId\": 44100879,\n      \"role\": \"Defendant\"\n    }\n  ],\n  \"damages\": {\n    \"active\": []\n  },\n  \"docket\": {\n    \"entries\": [],\n    \"retrieved\": \"none\",\n    \"count\": 16\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a5397fda-8191-4e48-a331-4807798f502e",
+              "name": "Invalid or expired token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "state-cases",
+                    ":state_case_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "docket_retrieval",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "state_case_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Token time expired: Signature has expired.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3ad28913-0bb1-47e2-aee3-10da0c6118d8",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "state-cases",
+                    ":state_case_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "docket_retrieval",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "state_case_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Unknown id\",\n  \"detail\": \"Not Found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "51eb4d39-53ec-4d27-98f2-57a580bb2ede",
+              "name": "Error - 422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "state-cases",
+                    ":state_case_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "docket_retrieval",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "state_case_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Invalid input\",\n  \"detail\": [\n    {\n      \"type\": \"parsing\",\n      \"loc\": [\n        \"path\",\n        \"query\",\n        \"body\"\n      ],\n      \"msg\": \"invalid input\",\n      \"input\": \"-1\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "df91ef2b-ff09-4171-a28b-7d9b6f70a40d",
+          "name": "Get State Docket Entry",
+          "request": {
+            "name": "Get State Docket Entry",
+            "description": {
+              "content": "Gets data for a single docket entry.\n\n- **state_docket_entry_id**: the Lex Machina stateDocketEntryId.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "state-docket-entries",
+                ":state_docket_entry_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "state_docket_entry_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "14fa6a99-5cb8-4fa8-bb36-a2013eb8780d",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "state-docket-entries",
+                    ":state_docket_entry_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "state_docket_entry_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"filedOn\": \"2016-07-25\",\n  \"tags\": [\n    \"Complaint\"\n  ],\n  \"text\": \"SUMMONS + COMPLAINT\",\n  \"stateDocketEntryId\": 1263090641,\n  \"courtType\": \"State\",\n  \"stateCaseId\": 2033923164,\n  \"stateCaseUrl\": \"https://api.lexmachina.com/state-cases/2033923164\",\n  \"court\": \"Westchester County Supreme Court\",\n  \"state\": \"New York\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3e583231-27e8-4d86-8dbd-fe2a770ed91b",
+              "name": "Invalid or expired token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "state-docket-entries",
+                    ":state_docket_entry_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "state_docket_entry_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Token time expired: Signature has expired.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "99b5964e-f291-4942-bd89-e7daf190705c",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "state-docket-entries",
+                    ":state_docket_entry_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "state_docket_entry_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Unknown id\",\n  \"detail\": \"Not Found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4608ed26-764a-441a-b237-f233d13ba285",
+              "name": "Error - 422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "state-docket-entries",
+                    ":state_docket_entry_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "state_docket_entry_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Invalid input\",\n  \"detail\": [\n    {\n      \"type\": \"parsing\",\n      \"loc\": [\n        \"path\",\n        \"query\",\n        \"body\"\n      ],\n      \"msg\": \"invalid input\",\n      \"input\": \"-1\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "62ea9240-08ce-49e6-b977-d55c07d9d445",
+          "name": "Query State Cases",
+          "request": {
+            "name": "Query State Cases",
+            "description": {
+              "content": "Queries enhanced state court cases.\n\n- **data**: the state case query\n\nSee [https://developer.lexmachina.com/posts/query/state_query_usage/](https://developer.lexmachina.com/posts/query/state_query_usage/) for query formation.\n\nThe results will contain a list of cases, each with a specificed url and Lex Machina stateCaseId.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "query-state-cases"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"courts\": {\n    \"state\": \"<string>\",\n    \"include\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"exclude\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"caseStatus\": \"<string>\",\n  \"caseTypes\": {\n    \"include\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"exclude\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"caseTags\": {\n    \"include\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"exclude\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"dates\": {\n    \"filed\": {\n      \"onOrAfter\": \"<date>\",\n      \"onOrBefore\": \"<date>\"\n    },\n    \"terminated\": {\n      \"onOrAfter\": \"<date>\",\n      \"onOrBefore\": \"<date>\"\n    },\n    \"trial\": {\n      \"onOrAfter\": \"<date>\",\n      \"onOrBefore\": \"<date>\"\n    },\n    \"lastDocket\": {\n      \"onOrAfter\": \"<date>\",\n      \"onOrBefore\": \"<date>\"\n    }\n  },\n  \"judges\": {\n    \"include\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"exclude\": [\n      \"<integer>\",\n      \"<integer>\"\n    ]\n  },\n  \"events\": {\n    \"include\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"exclude\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"lawFirms\": {\n    \"include\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"exclude\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"includePlaintiff\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"excludePlaintiff\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"includeDefendant\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"excludeDefendant\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"includeThirdParty\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"excludeThirdParty\": [\n      \"<integer>\",\n      \"<integer>\"\n    ]\n  },\n  \"attorneys\": {\n    \"include\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"exclude\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"includePlaintiff\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"excludePlaintiff\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"includeDefendant\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"excludeDefendant\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"includeThirdParty\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"excludeThirdParty\": [\n      \"<integer>\",\n      \"<integer>\"\n    ]\n  },\n  \"parties\": {\n    \"include\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"exclude\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"includePlaintiff\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"excludePlaintiff\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"includeDefendant\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"excludeDefendant\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"includeThirdParty\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"excludeThirdParty\": [\n      \"<integer>\",\n      \"<integer>\"\n    ]\n  },\n  \"resolutions\": {\n    \"include\": [\n      {\n        \"summary\": \"<string>\",\n        \"specific\": \"<string>\"\n      },\n      {\n        \"summary\": \"<string>\",\n        \"specific\": \"<string>\"\n      }\n    ],\n    \"exclude\": [\n      {\n        \"summary\": \"<string>\",\n        \"specific\": \"<string>\"\n      },\n      {\n        \"summary\": \"<string>\",\n        \"specific\": \"<string>\"\n      }\n    ]\n  },\n  \"damages\": [\n    {\n      \"name\": {\n        \"include\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"exclude\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"date\": {\n        \"onOrAfter\": \"<date>\",\n        \"onOrBefore\": \"<date>\"\n      },\n      \"awardedToParties\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"awardedAgainstParties\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"minimumAmount\": \"<number>\"\n    },\n    {\n      \"name\": {\n        \"include\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"exclude\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"date\": {\n        \"onOrAfter\": \"<date>\",\n        \"onOrBefore\": \"<date>\"\n      },\n      \"awardedToParties\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"awardedAgainstParties\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"minimumAmount\": \"<number>\"\n    }\n  ],\n  \"rulings\": [\n    {\n      \"judgmentEvent\": {\n        \"include\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"exclude\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"awardedToParties\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"awardedAgainstParties\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"date\": {\n        \"onOrAfter\": \"<date>\",\n        \"onOrBefore\": \"<date>\"\n      }\n    },\n    {\n      \"judgmentEvent\": {\n        \"include\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"exclude\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"awardedToParties\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"awardedAgainstParties\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"date\": {\n        \"onOrAfter\": \"<date>\",\n        \"onOrBefore\": \"<date>\"\n      }\n    }\n  ],\n  \"ordering\": \"ByFirstFiled\",\n  \"page\": 1,\n  \"pageSize\": 5\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "74e4d422-b28a-410a-a01f-2032b3068de1",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "query-state-cases"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"caseStatus\": \"Terminated\",\n  \"courts\": {\n    \"include\": [\n      \"Fort Bend County District Court\"\n    ],\n    \"state\": \"TX\"\n  },\n  \"dates\": {\n    \"filed\": {\n      \"onOrAfter\": \"2016-01-01\"\n    },\n    \"terminated\": {\n      \"onOrBefore\": \"2021-05-01\"\n    }\n  },\n  \"judges\": {\n    \"include\": [\n      1792\n    ]\n  },\n  \"ordering\": \"ByFirstFiled\",\n  \"page\": 1,\n  \"pageSize\": 5\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cases\": [\n    {\n      \"url\": \"https://api.lexmachina.com/state-cases/2003442290\",\n      \"stateCaseId\": 2003442290\n    },\n    {\n      \"url\": \"https://api.lexmachina.com/state-cases/2003442348\",\n      \"stateCaseId\": 2003442348\n    },\n    {\n      \"url\": \"https://api.lexmachina.com/state-cases/2003442352\",\n      \"stateCaseId\": 2003442352\n    },\n    {\n      \"url\": \"https://api.lexmachina.com/state-cases/2003463384\",\n      \"stateCaseId\": 2003463384\n    },\n    {\n      \"url\": \"https://api.lexmachina.com/state-cases/2003442446\",\n      \"stateCaseId\": 2003442446\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "47feabee-b1c6-4374-bb11-b1004418c32f",
+              "name": "Invalid or expired token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "query-state-cases"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"caseStatus\": \"Terminated\",\n  \"courts\": {\n    \"include\": [\n      \"Fort Bend County District Court\"\n    ],\n    \"state\": \"TX\"\n  },\n  \"dates\": {\n    \"filed\": {\n      \"onOrAfter\": \"2016-01-01\"\n    },\n    \"terminated\": {\n      \"onOrBefore\": \"2021-05-01\"\n    }\n  },\n  \"judges\": {\n    \"include\": [\n      1792\n    ]\n  },\n  \"ordering\": \"ByFirstFiled\",\n  \"page\": 1,\n  \"pageSize\": 5\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Token time expired: Signature has expired.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f7fa1c74-a8fb-40a3-b8ca-4705072d8769",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "query-state-cases"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"caseStatus\": \"Terminated\",\n  \"courts\": {\n    \"include\": [\n      \"Fort Bend County District Court\"\n    ],\n    \"state\": \"TX\"\n  },\n  \"dates\": {\n    \"filed\": {\n      \"onOrAfter\": \"2016-01-01\"\n    },\n    \"terminated\": {\n      \"onOrBefore\": \"2021-05-01\"\n    }\n  },\n  \"judges\": {\n    \"include\": [\n      1792\n    ]\n  },\n  \"ordering\": \"ByFirstFiled\",\n  \"page\": 1,\n  \"pageSize\": 5\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Unknown id\",\n  \"detail\": \"Not Found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "953f99a4-5052-4b72-b26b-90dc531dcc68",
+              "name": "Error - 422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "query-state-cases"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"caseStatus\": \"Terminated\",\n  \"courts\": {\n    \"include\": [\n      \"Fort Bend County District Court\"\n    ],\n    \"state\": \"TX\"\n  },\n  \"dates\": {\n    \"filed\": {\n      \"onOrAfter\": \"2016-01-01\"\n    },\n    \"terminated\": {\n      \"onOrBefore\": \"2021-05-01\"\n    }\n  },\n  \"judges\": {\n    \"include\": [\n      1792\n    ]\n  },\n  \"ordering\": \"ByFirstFiled\",\n  \"page\": 1,\n  \"pageSize\": 5\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Maximum cases per page is 100\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.lexmachina.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "f5281b88-a702-41f7-9c1f-40bd28a42372",
+    "name": "Lex Machina Alerts State Cases API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Alerts.",
+      "type": "text/plain"
+    }
+  }
+}

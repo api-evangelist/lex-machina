@@ -1,0 +1,534 @@
+{
+  "item": [
+    {
+      "id": "e7121a3d-ea36-4eb6-a272-8470f978f22b",
+      "name": "Patents",
+      "description": {
+        "content": "US patent data.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0a475618-fc93-41ae-9e0d-3cbac2951206",
+          "name": "Get Patent",
+          "request": {
+            "name": "Get Patent",
+            "description": {
+              "content": "Gets data for a single uspto patent.\n\n- **patent_number**: the patent number",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "patents",
+                ":patent_number"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "patent_number",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d47d8e56-4e28-4af6-8a23-85b1ed41742d",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "patents",
+                    ":patent_number"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "patent_number",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"number\": \"7304635\",\n  \"title\": \"Programmable virtual book system\",\n  \"abstract\": \"An electronic information browsing system that provides a book-like interface—a virtual book—for presenting electronic contents. Specifically, an electronic information browsing system that allows users to configure its behavior via data and program specification encapsulated in a dynamic file format. Configurable behavior includes but not limited to the kind of contents to be displayed in the virtual book, the sources of the contents to be displayed, the static aspects of the virtual book such as the book dimensions and the dynamic aspects of the virtual book such as when a page is to be flipped, how the flipping of pages is contingent upon the execution of certain pre-specified events, etc.\",\n  \"inventors\": {\n    \"inventors\": [\n      \"HO SENG BENG\",\n      \"SEET CHERN HWAY\"\n    ],\n    \"originalAssignee\": [\n      \"E BOOK SYSTEMS PTE LTD\"\n    ],\n    \"filingDate\": \"2005-12-29\",\n    \"issueDate\": \"2007-12-04\"\n  },\n  \"districtCourtCases\": {\n    \"numberOfCases\": 7,\n    \"findings\": [\n      {\n        \"caseId\": [\n          2008420337\n        ],\n        \"type\": [\n          \"Infringement\"\n        ],\n        \"winner\": \"Claimant Win\"\n      },\n      {\n        \"caseId\": [\n          2009069481\n        ],\n        \"type\": [\n          \"Infringement\"\n        ],\n        \"winner\": \"Claimant Win\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "307d4dd4-2c67-44b3-80e7-bb9ff1903fb7",
+              "name": "Invalid or expired token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "patents",
+                    ":patent_number"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "patent_number",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Token time expired: Signature has expired.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a7050747-b73f-4bce-8494-f8421a5eb18d",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "patents",
+                    ":patent_number"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "patent_number",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"No patent matching provided patent number was found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "349e416a-8a0c-40b9-83f1-b594a9853fd3",
+              "name": "Error - 422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "patents",
+                    ":patent_number"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "patent_number",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Invalid input\",\n  \"detail\": [\n    {\n      \"type\": \"parsing\",\n      \"loc\": [\n        \"path\",\n        \"query\",\n        \"body\"\n      ],\n      \"msg\": \"invalid input\",\n      \"input\": \"-1\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dcbf48da-1679-424c-9984-09b51e171baf",
+          "name": "Get Patents",
+          "request": {
+            "name": "Get Patents",
+            "description": {
+              "content": "Gets data for one or more uspto patents.\n\n- **patentNumbers**: the patent numbers",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "patents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "patentNumbers",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "bb474b02-0cc5-4c04-8a64-d1c777d539de",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "patents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "patentNumbers",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"number\": \"7201374\",\n    \"title\": \"Method and article of manufacture for collectible game\",\n    \"abstract\": \"A game, toy or article of manufacture includes a set of rules and at least one model. The model has multiple movable parts, where under the rules of play, the model begins in an assembled configuration. As the model loses points under the rules of play, at least some of the parts are removed from the model, or replaced with substitute parts. The model may be formed from a panel or other substantially planar member, with the individual pieces formed therein. Methods of game play, computer-implemented games, and other aspects of the invention are described herein. Many other options are possible, as described above.\",\n    \"inventors\": {\n      \"inventors\": [\n        \"BIELMAN TYLER\"\n      ],\n      \"originalAssignee\": [\n        \"WIZARDS OF THE COAST INC\"\n      ],\n      \"filingDate\": \"2003-10-20\",\n      \"issueDate\": \"2007-04-10\"\n    },\n    \"districtCourtCases\": {\n      \"numberOfCases\": 1,\n      \"findings\": []\n    }\n  },\n  {\n    \"number\": \"7304635\",\n    \"title\": \"Programmable virtual book system\",\n    \"abstract\": \"An electronic information browsing system that provides a book-like interface—a virtual book—for presenting electronic contents. Specifically, an electronic information browsing system that allows users to configure its behavior via data and program specification encapsulated in a dynamic file format. Configurable behavior includes but not limited to the kind of contents to be displayed in the virtual book, the sources of the contents to be displayed, the static aspects of the virtual book such as the book dimensions and the dynamic aspects of the virtual book such as when a page is to be flipped, how the flipping of pages is contingent upon the execution of certain pre-specified events, etc.\",\n    \"inventors\": {\n      \"inventors\": [\n        \"HO SENG BENG\",\n        \"SEET CHERN HWAY\"\n      ],\n      \"originalAssignee\": [\n        \"E BOOK SYSTEMS PTE LTD\"\n      ],\n      \"filingDate\": \"2005-12-29\",\n      \"issueDate\": \"2007-12-04\"\n    },\n    \"districtCourtCases\": {\n      \"numberOfCases\": 7,\n      \"findings\": [\n        {\n          \"caseId\": [\n            2008420337\n          ],\n          \"type\": [\n            \"Infringement\"\n          ],\n          \"winner\": \"Claimant Win\"\n        },\n        {\n          \"caseId\": [\n            2009069481\n          ],\n          \"type\": [\n            \"Infringement\"\n          ],\n          \"winner\": \"Claimant Win\"\n        }\n      ]\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "22b8498d-ed91-40d0-9201-97f6807104bf",
+              "name": "Invalid or expired token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "patents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "patentNumbers",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Token time expired: Signature has expired.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ccdf81cc-22c2-4550-bf02-fc805b80e1ac",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "patents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "patentNumbers",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"No patents matching provided patent numbers were found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f46d6c78-a5c9-4a8b-bd28-9bbc454d5042",
+              "name": "Error - 422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "patents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "patentNumbers",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Invalid input\",\n  \"detail\": [\n    {\n      \"type\": \"parsing\",\n      \"loc\": [\n        \"path\",\n        \"query\",\n        \"body\"\n      ],\n      \"msg\": \"invalid input\",\n      \"input\": \"-1\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.lexmachina.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "88b3c70d-0d7f-40f7-b5db-8a9fb16171e0",
+    "name": "Lex Machina Alerts Patents API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Alerts.",
+      "type": "text/plain"
+    }
+  }
+}

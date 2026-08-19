@@ -1,0 +1,87 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lex Machina Alerts State Cases API",
+    "version": "20260324"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "State Cases",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get State Case",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/state-cases/:state_case_id",
+            "params": [
+              {
+                "name": "state_case_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "docket_retrieval",
+                "value": "",
+                "type": "query",
+                "description": "'all' to retrieve docket entries for the case, if not provided no docket entries will be retrieved."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets data for a single enhanced state case.\n\n- **case_id**: the Lex Machina stateCaseId\n- **docket_retrieval**: docket retreival mode"
+        },
+        {
+          "info": {
+            "name": "Get State Docket Entry",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/state-docket-entries/:state_docket_entry_id",
+            "params": [
+              {
+                "name": "state_docket_entry_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets data for a single docket entry.\n\n- **state_docket_entry_id**: the Lex Machina stateDocketEntryId."
+        },
+        {
+          "info": {
+            "name": "Query State Cases",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lexmachina.com/query-state-cases",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Queries enhanced state court cases.\n\n- **data**: the state case query\n\nSee [https://developer.lexmachina.com/posts/query/state_query_usage/](https://developer.lexmachina.com/posts/query/state_query_usage/) for query formation.\n\nThe results will contain a list of cases, each with a specificed url and Lex Machina stateCaseId."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

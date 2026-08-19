@@ -1,0 +1,319 @@
+{
+  "item": [
+    {
+      "id": "3305fe2f-944e-4c8b-8aed-e9a033adaa62",
+      "name": "Bankruptcy Cases",
+      "description": {
+        "content": "Bankruptcy court cases.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "12174465-d59f-426c-95b8-b3328a78b2ac",
+          "name": "Get Bankruptcy Case",
+          "request": {
+            "name": "Get Bankruptcy Case",
+            "description": {
+              "content": "Gets data for a single federal bankruptcy court case.\n\n- **bankruptcy_case_id**: the Lex Machina bankruptcyCaseId",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "bankruptcy-cases",
+                ":bankruptcy_case_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "docket_retrieval",
+                  "value": "<string>",
+                  "description": "'all' to retrieve docket entries for the case, if not provided no docket entries will be retrieved."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "bankruptcy_case_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f7b204f0-20bf-4627-9205-d838e745c085",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bankruptcy-cases",
+                    ":bankruptcy_case_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "docket_retrieval",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "bankruptcy_case_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"bankruptcyCaseId\": 2010446516,\n  \"title\": \"E-Stone USA Corporation\",\n  \"court\": \"U.S. Bankruptcy Court for the Southern District of Florida\",\n  \"civilActionNumber\": \"0:23-bk-20805\",\n  \"status\": \"Terminated\",\n  \"caseTags\": [\n    \"Business Debtor\",\n    \"Voluntary Petition\"\n  ],\n  \"dates\": {\n    \"filed\": \"2023-12-28\",\n    \"terminated\": \"2024-01-16\",\n    \"lastDocket\": \"2025-07-10\"\n  },\n  \"judges\": [\n    {\n      \"name\": \"Erik P. Kimball\",\n      \"bankruptcyJudgeId\": 539\n    },\n    {\n      \"name\": \"Mindy A. Mora\",\n      \"bankruptcyJudgeId\": 704\n    }\n  ],\n  \"lawFirms\": [\n    {\n      \"name\": \"Department of Justice\",\n      \"lawFirmId\": 604,\n      \"clientPartyIds\": [\n        20586702\n      ]\n    },\n    {\n      \"name\": \"Johnson, Pope, Bokor, Ruppel & Burns\",\n      \"lawFirmId\": 86693,\n      \"clientPartyIds\": [\n        264620021\n      ]\n    }\n  ],\n  \"attorneys\": [\n    {\n      \"name\": \"Edward James Peterson III\",\n      \"attorneyId\": 15225236,\n      \"lawFirmIds\": [\n        86693\n      ],\n      \"clientsPartyIds\": [\n        264620021\n      ]\n    },\n    {\n      \"name\": \"Martin Paul Ochs\",\n      \"attorneyId\": 16704743,\n      \"lawFirmIds\": [\n        604\n      ],\n      \"clientsPartyIds\": [\n        20586702\n      ]\n    }\n  ],\n  \"parties\": [\n    {\n      \"name\": \"E-Stone USA Corporation\",\n      \"partyId\": 264620021,\n      \"role\": \"Debtor\"\n    },\n    {\n      \"name\": \"United States Trustee\",\n      \"partyId\": 20586702,\n      \"role\": \"U.S. Trustee\"\n    }\n  ],\n  \"assets\": \"9470756.05\",\n  \"liabilities\": \"17189231.3\",\n  \"docket\": {\n    \"entries\": [],\n    \"retrieved\": \"none\",\n    \"count\": 525\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "104012fa-5f4d-4fdf-940d-91bda8c3a4c8",
+              "name": "Invalid or expired token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bankruptcy-cases",
+                    ":bankruptcy_case_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "docket_retrieval",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "bankruptcy_case_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Token time expired: Signature has expired.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e9e9eaef-77fc-4b7d-8ae2-b15a17bdc55d",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bankruptcy-cases",
+                    ":bankruptcy_case_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "docket_retrieval",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "bankruptcy_case_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Unknown id\",\n  \"detail\": \"Not Found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9efbc997-c230-4a95-a6fa-c2f05349afc9",
+              "name": "Error - 422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bankruptcy-cases",
+                    ":bankruptcy_case_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "docket_retrieval",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "bankruptcy_case_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Invalid input\",\n  \"detail\": [\n    {\n      \"type\": \"parsing\",\n      \"loc\": [\n        \"path\",\n        \"query\",\n        \"body\"\n      ],\n      \"msg\": \"invalid input\",\n      \"input\": \"-1\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.lexmachina.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "8b8be4d5-50ba-4510-830b-73df667467f8",
+    "name": "Lex Machina Alerts Bankruptcy Cases API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Alerts.",
+      "type": "text/plain"
+    }
+  }
+}

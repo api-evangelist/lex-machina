@@ -1,0 +1,46 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lex Machina Alerts ITC Investigations API",
+    "version": "20260324"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ITC Investigations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Itc Investigation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lexmachina.com/itc-investigations/:itc_investigation_id",
+            "params": [
+              {
+                "name": "itc_investigation_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "document_retrieval",
+                "value": "",
+                "type": "query",
+                "description": "'all' to retrieve all documents for the investigation, if not provided documents will not be returned."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets data for a single US ITC investigation.\n\n- **itc_investigation_id**: the ITC investigation number\n- **docket_retrieval**: docket retreival mode\n\nThe investigation number format should exclude the leading \"337-TA-\""
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

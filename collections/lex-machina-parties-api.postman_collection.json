@@ -1,0 +1,1033 @@
+{
+  "item": [
+    {
+      "id": "5690a556-233d-4206-a948-f094d571a827",
+      "name": "Parties",
+      "description": {
+        "content": "Party data.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b969a4fe-b3d9-4291-9c25-6174f3345111",
+          "name": "Get Party",
+          "request": {
+            "name": "Get Party",
+            "description": {
+              "content": "Gets data for a single party.\n\n- **party_id**: the Lex Machina partyId",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "parties",
+                ":party_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "party_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "af4e6a09-9ba7-485e-b62f-759a367876c1",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "parties",
+                    ":party_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "party_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"Todd McFarlane\",\n  \"partyId\": 196852\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f5864bb9-d453-49b4-9e21-2f5a213d9f23",
+              "name": "Invalid or expired token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "parties",
+                    ":party_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "party_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Token time expired: Signature has expired.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a098519c-aa77-4e37-9c2b-079b0f5561d8",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "parties",
+                    ":party_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "party_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"No party matching provided party ID was found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "57140ab5-6fd3-44ae-be49-746b94b51806",
+              "name": "Error - 422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "parties",
+                    ":party_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "party_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"type\": \"int_parsing\",\n      \"loc\": [\n        \"path\",\n        \"party_id\"\n      ],\n      \"msg\": \"Input should be a valid integer, unable to parse string as an integer\",\n      \"input\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "33b3de09-d448-4d98-a07a-3d9053394186",
+          "name": "Get Parties",
+          "request": {
+            "name": "Get Parties",
+            "description": {
+              "content": "Gets data for one or more parties.\n\n- **partyIds**: the Lex Machina partyIds\n\nIf any of the the partyIds given are not the current lexmachina partyId, the results will include inputId for disambugation",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "parties"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "partyIds",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "372c1751-a049-4fc9-8994-c0ed2763539c",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "parties"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "partyIds",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"Todd McFarlane\",\n    \"partyId\": 196852\n  },\n  {\n    \"name\": \"Stan Lee\",\n    \"partyId\": 56391\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "10d8c50c-6973-4e27-90ba-35c440857107",
+              "name": "Invalid or expired token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "parties"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "partyIds",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Token time expired: Signature has expired.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7ca0b846-91cc-482e-b4a7-f1e0a8ff2641",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "parties"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "partyIds",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"No parties matching provided party IDs were found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a75211c6-bb68-4999-a672-e52e328ab8ef",
+              "name": "Error - 422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "parties"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "partyIds",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Invalid input\",\n  \"detail\": [\n    {\n      \"type\": \"parsing\",\n      \"loc\": [\n        \"path\",\n        \"query\",\n        \"body\"\n      ],\n      \"msg\": \"invalid input\",\n      \"input\": \"-1\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a0023630-2f18-430d-b539-1409615c6e9a",
+          "name": "Search Parties",
+          "request": {
+            "name": "Search Parties",
+            "description": {
+              "content": "Searches for parties.\n\n- **q**: the query string\n- **page_number**: page number of the results\n- **page_size**:  results per page\n\nThis is a case-insensitive search that will match anywhere within the name of the party.\n\nThe results will have page and totalCount fields as well as a convenience link via the field nextPage.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "search-parties"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "pageNumber",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "1"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d856ea1b-d345-41bc-bfdb-5b8b3fb34f65",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search-parties"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pageNumber",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"totalCount\": 73119,\n  \"page\": 1,\n  \"nextPage\": \"https://api.lexmachina.com/search-parties?q=Bryan&pageNumber=1&pageSize=10?q=Bryan&pageNumber=2&pageSize=10\",\n  \"parties\": [\n    {\n      \"name\": \"William Bryan\",\n      \"partyId\": 10301,\n      \"url\": \"https://api.lexmachina.com/parties/10301\"\n    },\n    {\n      \"name\": \"Donna Bryan\",\n      \"partyId\": 10303,\n      \"url\": \"https://api.lexmachina.com/parties/10303\"\n    },\n    {\n      \"name\": \"Bryan-Michael Cox\",\n      \"partyId\": 14347,\n      \"url\": \"https://api.lexmachina.com/parties/14347\"\n    },\n    {\n      \"name\": \"Bryant Industries Corp.\",\n      \"partyId\": 15497,\n      \"url\": \"https://api.lexmachina.com/parties/15497\"\n    },\n    {\n      \"name\": \"Bryan Cox\",\n      \"partyId\": 17623,\n      \"url\": \"https://api.lexmachina.com/parties/17623\"\n    },\n    {\n      \"name\": \"John Bryant\",\n      \"partyId\": 18681,\n      \"url\": \"https://api.lexmachina.com/parties/18681\"\n    },\n    {\n      \"name\": \"Bryan Rief\",\n      \"partyId\": 19311,\n      \"url\": \"https://api.lexmachina.com/parties/19311\"\n    },\n    {\n      \"name\": \"Matalyne Bryan-Davis\",\n      \"partyId\": 21338,\n      \"url\": \"https://api.lexmachina.com/parties/21338\"\n    },\n    {\n      \"name\": \"Bryan Fuller\",\n      \"partyId\": 22061,\n      \"url\": \"https://api.lexmachina.com/parties/22061\"\n    },\n    {\n      \"name\": \"Bryan M. Sowards\",\n      \"partyId\": 29563,\n      \"url\": \"https://api.lexmachina.com/parties/29563\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "61288aa9-a24b-4008-9216-f21b098e7358",
+              "name": "Invalid or expired token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search-parties"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pageNumber",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Token time expired: Signature has expired.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2f6206d3-73ff-4652-971b-e5bc3d5d6190",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search-parties"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pageNumber",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Unknown id\",\n  \"detail\": \"Not Found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fb4e63bc-f4b5-46e0-a997-828cb6e8ad21",
+              "name": "Error - 422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search-parties"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pageNumber",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Invalid page.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3549dd43-7ecd-40d9-b3cc-1822f8e62218",
+          "name": "Get Party Groups",
+          "request": {
+            "name": "Get Party Groups",
+            "description": {
+              "content": "Gets a list of all party groups the user has created.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "party-groups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ebcf76be-6aa1-46d3-b14d-dfaa1bf6d387",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "party-groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"partyGroupName\": \"wendy's\",\n    \"parties\": [\n      387488,\n      20885289,\n      143526,\n      163171152,\n      273183713,\n      40169919,\n      319286450,\n      256180576,\n      325588802,\n      330223939,\n      241128208,\n      56062732,\n      144780373,\n      328704819,\n      24142140,\n      40324490\n    ],\n    \"partyGroupId\": 19622,\n    \"lawUrl\": \"https://law.lexmachina.com/party/summary?id=387488&id=20885289&id=143526&id=163171152&id=273183713&id=40169919&id=319286450&id=256180576&id=325588802&id=330223939&id=241128208&id=56062732&id=144780373&id=328704819&id=24142140&id=40324490\"\n  },\n  {\n    \"partyGroupName\": \"wendys\",\n    \"parties\": [\n      387488,\n      20885289,\n      143526,\n      163171152,\n      273183713,\n      40169919,\n      319286450,\n      256180576,\n      325588802,\n      330223939,\n      241128208,\n      56062732,\n      144780373,\n      328704819,\n      24142140,\n      40324490\n    ],\n    \"partyGroupId\": 19623,\n    \"lawUrl\": \"https://law.lexmachina.com/party/summary?id=387488&id=20885289&id=143526&id=163171152&id=273183713&id=40169919&id=319286450&id=256180576&id=325588802&id=330223939&id=241128208&id=56062732&id=144780373&id=328704819&id=24142140&id=40324490\"\n  },\n  {\n    \"partyGroupName\": \"Wendys\",\n    \"parties\": [\n      387488,\n      143526,\n      163171152,\n      273183713,\n      40169919,\n      319286450,\n      256180576,\n      325588802,\n      330223939,\n      241128208,\n      56062732,\n      144780373,\n      328704819,\n      24142140,\n      40324490,\n      20885289\n    ],\n    \"partyGroupId\": 19624,\n    \"lawUrl\": \"https://law.lexmachina.com/party/summary?id=387488&id=143526&id=163171152&id=273183713&id=40169919&id=319286450&id=256180576&id=325588802&id=330223939&id=241128208&id=56062732&id=144780373&id=328704819&id=24142140&id=40324490&id=20885289\"\n  },\n  {\n    \"partyGroupName\": \"🐈\",\n    \"parties\": [\n      71741\n    ],\n    \"partyGroupId\": 19625,\n    \"lawUrl\": \"https://law.lexmachina.com/party/summary?id=71741\"\n  },\n  {\n    \"partyGroupName\": \"Apple\",\n    \"parties\": [\n      2273,\n      59,\n      297248643,\n      719314,\n      179979,\n      48445170,\n      35566079,\n      35165535,\n      20687218,\n      35172754,\n      64608167,\n      72051043,\n      53363814,\n      1550880,\n      1556821,\n      20661181,\n      29823262,\n      72563059,\n      223597749,\n      59498490,\n      73878925,\n      34202630,\n      53869330,\n      55901762,\n      24056079,\n      53512794,\n      2219044,\n      66625355,\n      56421328,\n      223597739,\n      319550426,\n      144817373,\n      330757\n    ],\n    \"partyGroupId\": 19626,\n    \"lawUrl\": \"https://law.lexmachina.com/party/summary?id=2273&id=59&id=297248643&id=719314&id=179979&id=48445170&id=35566079&id=35165535&id=20687218&id=35172754&id=64608167&id=72051043&id=53363814&id=1550880&id=1556821&id=20661181&id=29823262&id=72563059&id=223597749&id=59498490&id=73878925&id=34202630&id=53869330&id=55901762&id=24056079&id=53512794&id=2219044&id=66625355&id=56421328&id=223597739&id=319550426&id=144817373&id=330757\"\n  },\n  {\n    \"partyGroupName\": \"Apple II\",\n    \"parties\": [\n      2273,\n      297248643,\n      719314,\n      179979,\n      48445170,\n      35566079,\n      35165535,\n      20687218,\n      35172754,\n      64608167,\n      72051043,\n      53363814,\n      1550880,\n      1556821,\n      20661181,\n      29823262,\n      72563059,\n      223597749,\n      59498490,\n      73878925,\n      34202630,\n      53869330,\n      55901762,\n      24056079,\n      53512794,\n      2219044,\n      66625355,\n      56421328,\n      223597739,\n      319550426,\n      144817373,\n      330757,\n      59\n    ],\n    \"partyGroupId\": 19627,\n    \"lawUrl\": \"https://law.lexmachina.com/party/summary?id=2273&id=297248643&id=719314&id=179979&id=48445170&id=35566079&id=35165535&id=20687218&id=35172754&id=64608167&id=72051043&id=53363814&id=1550880&id=1556821&id=20661181&id=29823262&id=72563059&id=223597749&id=59498490&id=73878925&id=34202630&id=53869330&id=55901762&id=24056079&id=53512794&id=2219044&id=66625355&id=56421328&id=223597739&id=319550426&id=144817373&id=330757&id=59\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cf573e23-7ac0-49a6-a7ec-820570df058a",
+              "name": "Invalid or expired token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "party-groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Token time expired: Signature has expired.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "17dfd2a3-6f5f-4cfa-ae0b-27c5384812e6",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "party-groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Unknown id\",\n  \"detail\": \"Not Found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3e952e1a-c554-4cf3-8597-d91c4467a87f",
+              "name": "Error - 422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "party-groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Invalid input\",\n  \"detail\": [\n    {\n      \"type\": \"parsing\",\n      \"loc\": [\n        \"path\",\n        \"query\",\n        \"body\"\n      ],\n      \"msg\": \"invalid input\",\n      \"input\": \"-1\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.lexmachina.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "cb6216b6-58ff-408f-a5ea-8ae07334bc58",
+    "name": "Lex Machina Alerts Parties API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Alerts.",
+      "type": "text/plain"
+    }
+  }
+}

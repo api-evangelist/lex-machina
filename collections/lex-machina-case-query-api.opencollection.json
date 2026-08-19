@@ -1,0 +1,75 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lex Machina Alerts Case Query API",
+    "version": "20260324"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Case Query",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Query Appeals Cases",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lexmachina.com/query-appeals-cases",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Queries federal appeals court cases.\n\n- **data**: the appeals case query\n\nSee [https://developer.lexmachina.com/posts/query/appeals_query_usage/](https://developer.lexmachina.com/posts/query/appeals_query_usage/) for query formation.\n\nThe results will contain a list of cases, each with a specificed url and Lex Machina appealsCaseId."
+        },
+        {
+          "info": {
+            "name": "Query District Cases",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lexmachina.com/query-district-cases",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Queries federal district court cases.\n\n- **data**: the district case query\n\nSee [Querying district cases](https://developer.lexmachina.com/api-reference/district-cases/querying-district-cases/) for documentation.\n\nThe results will contain a list of cases, each with a specificed url and Lex Machina districtCaseId."
+        },
+        {
+          "info": {
+            "name": "Query State Cases",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lexmachina.com/query-state-cases",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Queries enhanced state court cases.\n\n- **data**: the state case query\n\nSee [https://developer.lexmachina.com/posts/query/state_query_usage/](https://developer.lexmachina.com/posts/query/state_query_usage/) for query formation.\n\nThe results will contain a list of cases, each with a specificed url and Lex Machina stateCaseId."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
