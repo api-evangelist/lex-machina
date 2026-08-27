@@ -87,32 +87,6 @@ apis:
     url: https://github.com/LexMachinaInc/lexmachina-agent
   - type: CodeSample
     url: https://github.com/LexMachinaInc/api-alerting-example
-- aid: lex-machina:lex-machina-analytics-api
-  name: Lex Machina Analytics API
-  description: Analytics.
-  humanURL: https://developer.lexmachina.com/
-  baseURL: https://api.lexmachina.com
-  tags:
-  - Analytics
-  properties:
-  - type: OpenAPI
-    url: openapi/lex-machina-analytics-api-openapi.yml
-  - type: Documentation
-    url: https://developer.lexmachina.com/
-  - type: Documentation
-    url: https://developer.lexmachina.com/gettingStarted
-  - type: Documentation
-    url: https://api.lexmachina.com/docs
-  - type: Authentication
-    url: https://developer.lexmachina.com/gettingStarted
-  - type: SDKs
-    url: https://github.com/LexMachinaInc/python-lexmachina-sync-api-client
-  - type: SDKs
-    url: https://github.com/LexMachinaInc/node-lexmachina-api-client
-  - type: Agent
-    url: https://github.com/LexMachinaInc/lexmachina-agent
-  - type: CodeSample
-    url: https://github.com/LexMachinaInc/api-alerting-example
 - aid: lex-machina:lex-machina-attorneys-api
   name: Lex Machina Attorneys API
   description: Attorney data.
@@ -321,32 +295,6 @@ apis:
     url: https://github.com/LexMachinaInc/lexmachina-agent
   - type: CodeSample
     url: https://github.com/LexMachinaInc/api-alerting-example
-- aid: lex-machina:lex-machina-find-api
-  name: Lex Machina Find API
-  description: Find matches based on free text searches
-  humanURL: https://developer.lexmachina.com/
-  baseURL: https://api.lexmachina.com
-  tags:
-  - Find
-  properties:
-  - type: OpenAPI
-    url: openapi/lex-machina-find-api-openapi.yml
-  - type: Documentation
-    url: https://developer.lexmachina.com/
-  - type: Documentation
-    url: https://developer.lexmachina.com/gettingStarted
-  - type: Documentation
-    url: https://api.lexmachina.com/docs
-  - type: Authentication
-    url: https://developer.lexmachina.com/gettingStarted
-  - type: SDKs
-    url: https://github.com/LexMachinaInc/python-lexmachina-sync-api-client
-  - type: SDKs
-    url: https://github.com/LexMachinaInc/node-lexmachina-api-client
-  - type: Agent
-    url: https://github.com/LexMachinaInc/lexmachina-agent
-  - type: CodeSample
-    url: https://github.com/LexMachinaInc/api-alerting-example
 - aid: lex-machina:lex-machina-itc-investigations-api
   name: Lex Machina ITC Investigations API
   description: ITC Investigations.
@@ -513,32 +461,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/lex-machina-ptab-trials-api-openapi.yml
-  - type: Documentation
-    url: https://developer.lexmachina.com/
-  - type: Documentation
-    url: https://developer.lexmachina.com/gettingStarted
-  - type: Documentation
-    url: https://api.lexmachina.com/docs
-  - type: Authentication
-    url: https://developer.lexmachina.com/gettingStarted
-  - type: SDKs
-    url: https://github.com/LexMachinaInc/python-lexmachina-sync-api-client
-  - type: SDKs
-    url: https://github.com/LexMachinaInc/node-lexmachina-api-client
-  - type: Agent
-    url: https://github.com/LexMachinaInc/lexmachina-agent
-  - type: CodeSample
-    url: https://github.com/LexMachinaInc/api-alerting-example
-- aid: lex-machina:lex-machina-search-api
-  name: Lex Machina Search API
-  description: Finds entities.
-  humanURL: https://developer.lexmachina.com/
-  baseURL: https://api.lexmachina.com
-  tags:
-  - Search
-  properties:
-  - type: OpenAPI
-    url: openapi/lex-machina-search-api-openapi.yml
   - type: Documentation
     url: https://developer.lexmachina.com/
   - type: Documentation
