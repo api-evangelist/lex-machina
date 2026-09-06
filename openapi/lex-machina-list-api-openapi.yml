@@ -1,8 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Lex Machina Alerts List API
+  title: Lex Machina List API
   version: '20260324'
-  description: Alerts.
+  description: Provides cannonical lists for specific fields.
 servers:
 - url: https://api.lexmachina.com
   description: Lex Machina production API
@@ -5144,16 +5144,29 @@ paths:
       - JwtAccessBearer: []
 components:
   schemas:
-    CourtType:
-      type: string
-      enum:
-      - FederalDistrict
-      - State
-      - FederalAppeals
-      - FederalBankruptcy
-      - PTAB
-      - ITC
-      title: CourtType
+    FederalDistrictCourt:
+      properties:
+        name:
+          type: string
+          title: Name
+        type:
+          $ref: '#/components/schemas/CourtType'
+        shortName:
+          type: string
+          title: Shortname
+        abbreviation:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Abbreviation
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - type
+      - shortName
+      - abbreviation
+      title: FederalDistrictCourt
     PossibleCaseResolution:
       properties:
         summary:
@@ -5168,6 +5181,32 @@ components:
       - summary
       - specific
       title: PossibleCaseResolution
+    FederalDistrictFindingsList:
+      properties:
+        court:
+          $ref: '#/components/schemas/Court'
+        findingsByPracticeArea:
+          additionalProperties:
+            items:
+              type: string
+            type: array
+          type: object
+          title: Findingsbypracticearea
+        patentInvalidityReasons:
+          items:
+            type: string
+          type: array
+          title: Patentinvalidityreasons
+      additionalProperties: false
+      type: object
+      required:
+      - findingsByPracticeArea
+      - patentInvalidityReasons
+      title: FederalDistrictFindingsList
+      description: 'findingsByPracticeArea: a dictionary where the key is the name and the values are all the relevant types for supported findings.
+
+
+        patentInvalidityReasons: only applicable to findings when the finding has {"name":"Patent","type":"Invalidity"}.'
     Court:
       properties:
         name:
@@ -5181,6 +5220,103 @@ components:
       - name
       - type
       title: Court
+    CourtType:
+      type: string
+      enum:
+      - FederalDistrict
+      - State
+      - FederalAppeals
+      - FederalBankruptcy
+      - PTAB
+      - ITC
+      title: CourtType
+    CaseResolutionsList:
+      properties:
+        court:
+          $ref: '#/components/schemas/Court'
+        caseResolutions:
+          items:
+            $ref: '#/components/schemas/PossibleCaseResolution'
+          type: array
+          title: Caseresolutions
+      additionalProperties: false
+      type: object
+      required:
+      - court
+      - caseResolutions
+      title: CaseResolutionsList
+    EventsList:
+      properties:
+        court:
+          $ref: '#/components/schemas/Court'
+        events:
+          items:
+            type: string
+          type: array
+          title: Events
+      additionalProperties: false
+      type: object
+      required:
+      - court
+      - events
+      title: EventsList
+    JudgmentSourcesList:
+      properties:
+        court:
+          $ref: '#/components/schemas/Court'
+        damages:
+          items:
+            type: string
+          type: array
+          title: Damages
+        remedies:
+          items:
+            type: string
+          type: array
+          title: Remedies
+        findings:
+          items:
+            type: string
+          type: array
+          title: Findings
+      additionalProperties: false
+      type: object
+      required:
+      - damages
+      - remedies
+      - findings
+      title: JudgmentSourcesList
+    StateCourt:
+      properties:
+        name:
+          type: string
+          title: Name
+        type:
+          $ref: '#/components/schemas/CourtType'
+        state:
+          type: string
+          title: State
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - type
+      - state
+      title: StateCourt
+    JudgmentEventsList:
+      properties:
+        judgmentEvents:
+          items:
+            type: string
+          type: array
+          title: Judgmentevents
+        court:
+          $ref: '#/components/schemas/Court'
+      additionalProperties: false
+      type: object
+      required:
+      - judgmentEvents
+      title: JudgmentEventsList
     OriginatingVenuesList:
       properties:
         originatingVenues:
@@ -5211,46 +5347,6 @@ components:
       required:
       - remediesByRemedyType
       title: RemediesList
-    StateDamagesList:
-      properties:
-        court:
-          $ref: '#/components/schemas/Court'
-        damages:
-          items:
-            type: string
-          type: array
-          title: Damages
-      additionalProperties: false
-      type: object
-      required:
-      - damages
-      title: StateDamagesList
-    JudgmentSourcesList:
-      properties:
-        court:
-          $ref: '#/components/schemas/Court'
-        damages:
-          items:
-            type: string
-          type: array
-          title: Damages
-        remedies:
-          items:
-            type: string
-          type: array
-          title: Remedies
-        findings:
-          items:
-            type: string
-          type: array
-          title: Findings
-      additionalProperties: false
-      type: object
-      required:
-      - damages
-      - remedies
-      - findings
-      title: JudgmentSourcesList
     FederalDistrictDamagesList:
       properties:
         court:
@@ -5267,60 +5363,20 @@ components:
       required:
       - damagesByPraticeArea
       title: FederalDistrictDamagesList
-    JudgmentEventsList:
+    StateDamagesList:
       properties:
-        judgmentEvents:
+        court:
+          $ref: '#/components/schemas/Court'
+        damages:
           items:
             type: string
           type: array
-          title: Judgmentevents
-        court:
-          $ref: '#/components/schemas/Court'
+          title: Damages
       additionalProperties: false
       type: object
       required:
-      - judgmentEvents
-      title: JudgmentEventsList
-    FederalDistrictCourt:
-      properties:
-        name:
-          type: string
-          title: Name
-        type:
-          $ref: '#/components/schemas/CourtType'
-        shortName:
-          type: string
-          title: Shortname
-        abbreviation:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Abbreviation
-      additionalProperties: false
-      type: object
-      required:
-      - name
-      - type
-      - shortName
-      - abbreviation
-      title: FederalDistrictCourt
-    StateCourt:
-      properties:
-        name:
-          type: string
-          title: Name
-        type:
-          $ref: '#/components/schemas/CourtType'
-        state:
-          type: string
-          title: State
-      additionalProperties: false
-      type: object
-      required:
-      - name
-      - type
-      - state
-      title: StateCourt
+      - damages
+      title: StateDamagesList
     CaseTypesList:
       properties:
         court:
@@ -5339,21 +5395,6 @@ components:
       - court
       - caseTypes
       title: CaseTypesList
-    EventsList:
-      properties:
-        court:
-          $ref: '#/components/schemas/Court'
-        events:
-          items:
-            type: string
-          type: array
-          title: Events
-      additionalProperties: false
-      type: object
-      required:
-      - court
-      - events
-      title: EventsList
     CaseTagsList:
       properties:
         court:
@@ -5372,47 +5413,6 @@ components:
       - court
       - caseTags
       title: CaseTagsList
-    CaseResolutionsList:
-      properties:
-        court:
-          $ref: '#/components/schemas/Court'
-        caseResolutions:
-          items:
-            $ref: '#/components/schemas/PossibleCaseResolution'
-          type: array
-          title: Caseresolutions
-      additionalProperties: false
-      type: object
-      required:
-      - court
-      - caseResolutions
-      title: CaseResolutionsList
-    FederalDistrictFindingsList:
-      properties:
-        court:
-          $ref: '#/components/schemas/Court'
-        findingsByPracticeArea:
-          additionalProperties:
-            items:
-              type: string
-            type: array
-          type: object
-          title: Findingsbypracticearea
-        patentInvalidityReasons:
-          items:
-            type: string
-          type: array
-          title: Patentinvalidityreasons
-      additionalProperties: false
-      type: object
-      required:
-      - findingsByPracticeArea
-      - patentInvalidityReasons
-      title: FederalDistrictFindingsList
-      description: 'findingsByPracticeArea: a dictionary where the key is the name and the values are all the relevant types for supported findings.
-
-
-        patentInvalidityReasons: only applicable to findings when the finding has {"name":"Patent","type":"Invalidity"}.'
   securitySchemes:
     JwtAccessBearer:
       type: http

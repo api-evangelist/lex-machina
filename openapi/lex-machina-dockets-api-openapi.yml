@@ -1,8 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Lex Machina Alerts Dockets API
+  title: Lex Machina Dockets API
   version: '20260324'
-  description: Alerts.
+  description: Docket data.
 servers:
 - url: https://api.lexmachina.com
   description: Lex Machina production API
@@ -254,16 +254,6 @@ paths:
                       input: '-1'
 components:
   schemas:
-    ITCDocumentEntityData:
-      properties:
-        name:
-          type: string
-          title: Name
-      additionalProperties: false
-      type: object
-      required:
-      - name
-      title: ITCDocumentEntityData
     CourtType:
       type: string
       enum:
@@ -369,6 +359,16 @@ components:
       - court
       - state
       title: StateDocketEntryResult
+    ITCDocumentEntityData:
+      properties:
+        name:
+          type: string
+          title: Name
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      title: ITCDocumentEntityData
     DocketEntryResult:
       properties:
         filedOn:

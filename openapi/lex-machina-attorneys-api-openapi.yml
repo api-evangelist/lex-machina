@@ -1,8 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Lex Machina Alerts Attorneys API
+  title: Lex Machina Attorneys API
   version: '20260324'
-  description: Alerts.
+  description: Attorney data.
 servers:
 - url: https://api.lexmachina.com
   description: Lex Machina production API
@@ -287,31 +287,6 @@ paths:
                     detail: Not Found
 components:
   schemas:
-    AttorneyReference:
-      properties:
-        name:
-          type: string
-          title: Name
-        attorneyId:
-          type: integer
-          title: Attorneyid
-        url:
-          type: string
-          title: Url
-        inputId:
-          type: integer
-          title: Inputid
-      additionalProperties: false
-      type: object
-      required:
-      - name
-      - attorneyId
-      - url
-      - inputId
-      title: AttorneyReference
-      description: 'Indicates that the Lex Machina attorney id input was has changed,
-
-        the inputId is the ID given that should map to the returned attorneyId.'
     AttorneySearchResults:
       properties:
         totalCount:
@@ -337,20 +312,6 @@ components:
       - page
       - attorneys
       title: AttorneySearchResults
-    AttorneyData:
-      properties:
-        name:
-          type: string
-          title: Name
-        attorneyId:
-          type: integer
-          title: Attorneyid
-      additionalProperties: false
-      type: object
-      required:
-      - name
-      - attorneyId
-      title: AttorneyData
     AttorneyResult:
       properties:
         name:
@@ -369,6 +330,45 @@ components:
       - attorneyId
       - url
       title: AttorneyResult
+    AttorneyReference:
+      properties:
+        name:
+          type: string
+          title: Name
+        attorneyId:
+          type: integer
+          title: Attorneyid
+        url:
+          type: string
+          title: Url
+        inputId:
+          type: integer
+          title: Inputid
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - attorneyId
+      - url
+      - inputId
+      title: AttorneyReference
+      description: 'Indicates that the Lex Machina attorney id input was has changed,
+
+        the inputId is the ID given that should map to the returned attorneyId.'
+    AttorneyData:
+      properties:
+        name:
+          type: string
+          title: Name
+        attorneyId:
+          type: integer
+          title: Attorneyid
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - attorneyId
+      title: AttorneyData
   securitySchemes:
     JwtAccessBearer:
       type: http

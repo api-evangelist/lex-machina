@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Lex Machina Alerts API
   version: '20260324'
@@ -484,6 +484,12 @@ components:
       - alertUrl
       - lawUrl
       title: Alert
+    Frequency:
+      type: string
+      enum:
+      - Daily
+      - Weekly
+      title: Frequency
     AlertRunData:
       properties:
         alertId:
@@ -593,12 +599,6 @@ components:
         For example an alert on a district case docket entry will include the
 
         districtCaseId and districtCaseUrl here.'
-    Frequency:
-      type: string
-      enum:
-      - Daily
-      - Weekly
-      title: Frequency
   securitySchemes:
     JwtAccessBearer:
       type: http

@@ -1,8 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Lex Machina Alerts Bankruptcy Cases API
+  title: Lex Machina Bankruptcy Cases API
   version: '20260324'
-  description: Alerts.
+  description: Bankruptcy court cases.
 servers:
 - url: https://api.lexmachina.com
   description: Lex Machina production API
@@ -144,33 +144,40 @@ paths:
                       input: '-1'
 components:
   schemas:
-    DocketEntriesIncludedInOutput:
+    CaseStatus:
       type: string
       enum:
-      - all
-      - none
-      title: DocketEntriesIncludedInOutput
-    LawFirm:
+      - Open
+      - Terminated
+      title: CaseStatus
+    Attorney:
       properties:
         name:
           type: string
           title: Name
-        lawFirmId:
+        attorneyId:
           type: integer
-          title: Lawfirmid
-        clientPartyIds:
+          title: Attorneyid
+        lawFirmIds:
           items:
             type: integer
           type: array
           uniqueItems: true
-          title: Clientpartyids
+          title: Lawfirmids
+        clientsPartyIds:
+          items:
+            type: integer
+          type: array
+          uniqueItems: true
+          title: Clientspartyids
       additionalProperties: false
       type: object
       required:
       - name
-      - lawFirmId
-      - clientPartyIds
-      title: LawFirm
+      - attorneyId
+      - lawFirmIds
+      - clientsPartyIds
+      title: Attorney
     DocketEntry:
       properties:
         filedOn:
@@ -206,54 +213,33 @@ components:
       - number
       - docketEntryId
       title: DocketEntry
-    BankruptcyJudge:
+    LawFirm:
       properties:
         name:
           type: string
           title: Name
-        bankruptcyJudgeId:
+        lawFirmId:
           type: integer
-          title: Bankruptcyjudgeid
-      additionalProperties: false
-      type: object
-      required:
-      - name
-      - bankruptcyJudgeId
-      title: BankruptcyJudge
-    Attorney:
-      properties:
-        name:
-          type: string
-          title: Name
-        attorneyId:
-          type: integer
-          title: Attorneyid
-        lawFirmIds:
+          title: Lawfirmid
+        clientPartyIds:
           items:
             type: integer
           type: array
           uniqueItems: true
-          title: Lawfirmids
-        clientsPartyIds:
-          items:
-            type: integer
-          type: array
-          uniqueItems: true
-          title: Clientspartyids
+          title: Clientpartyids
       additionalProperties: false
       type: object
       required:
       - name
-      - attorneyId
-      - lawFirmIds
-      - clientsPartyIds
-      title: Attorney
-    CaseStatus:
+      - lawFirmId
+      - clientPartyIds
+      title: LawFirm
+    DocketEntriesIncludedInOutput:
       type: string
       enum:
-      - Open
-      - Terminated
-      title: CaseStatus
+      - all
+      - none
+      title: DocketEntriesIncludedInOutput
     Party:
       properties:
         name:
@@ -272,6 +258,20 @@ components:
       - partyId
       - role
       title: Party
+    BankruptcyJudge:
+      properties:
+        name:
+          type: string
+          title: Name
+        bankruptcyJudgeId:
+          type: integer
+          title: Bankruptcyjudgeid
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - bankruptcyJudgeId
+      title: BankruptcyJudge
     BankruptcyCaseDates:
       properties:
         filed:

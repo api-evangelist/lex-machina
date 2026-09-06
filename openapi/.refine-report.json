@@ -1,31 +1,10 @@
 {
   "provider": "lex-machina",
   "sources": [
-    "lex-machina-alerts-api-openapi.yml",
-    "lex-machina-analytics-api-openapi.yml",
-    "lex-machina-attorneys-api-openapi.yml",
-    "lex-machina-authorization-api-openapi.yml",
-    "lex-machina-bankruptcy-cases-api-openapi.yml",
-    "lex-machina-case-query-api-openapi.yml",
-    "lex-machina-dockets-api-openapi.yml",
-    "lex-machina-entities-api-openapi.yml",
-    "lex-machina-federal-appeals-cases-api-openapi.yml",
-    "lex-machina-federal-district-cases-api-openapi.yml",
-    "lex-machina-find-api-openapi.yml",
-    "lex-machina-itc-investigations-api-openapi.yml",
-    "lex-machina-judges-api-openapi.yml",
-    "lex-machina-law-firms-api-openapi.yml",
-    "lex-machina-list-api-openapi.yml",
-    "lex-machina-parties-api-openapi.yml",
-    "lex-machina-patents-api-openapi.yml",
-    "lex-machina-ptab-trials-api-openapi.yml",
-    "lex-machina-search-api-openapi.yml",
-    "lex-machina-state-cases-api-openapi.yml",
-    "lex-machina-status-api-openapi.yml"
+    "lex-machina-openapi.yml"
   ],
   "outputs": [
     "lex-machina-alerts-api-openapi.yml",
-    "lex-machina-analytics-api-openapi.yml",
     "lex-machina-attorneys-api-openapi.yml",
     "lex-machina-authorization-api-openapi.yml",
     "lex-machina-bankruptcy-cases-api-openapi.yml",
@@ -34,21 +13,25 @@
     "lex-machina-entities-api-openapi.yml",
     "lex-machina-federal-appeals-cases-api-openapi.yml",
     "lex-machina-federal-district-cases-api-openapi.yml",
-    "lex-machina-find-api-openapi.yml",
     "lex-machina-itc-investigations-api-openapi.yml",
     "lex-machina-judges-api-openapi.yml",
     "lex-machina-law-firms-api-openapi.yml",
     "lex-machina-list-api-openapi.yml",
+    "lex-machina-ptab-trials-api-openapi.yml",
     "lex-machina-parties-api-openapi.yml",
     "lex-machina-patents-api-openapi.yml",
-    "lex-machina-ptab-trials-api-openapi.yml",
-    "lex-machina-search-api-openapi.yml",
     "lex-machina-state-cases-api-openapi.yml",
     "lex-machina-status-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "archived openapi/lex-machina-openapi.yml"
+  ],
   "errors": [],
   "warnings": [],
-  "notes": [],
+  "notes": [
+    "lex-machina-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "lex-machina-openapi.yml: multi-axis tagging (21 tags, 18 first tags, 1.51x duplication over 57 operations) \u2014 split on first tag, 29 operations narrowed",
+    "apis.yml register: already-registered"
+  ],
   "skipped": []
 }

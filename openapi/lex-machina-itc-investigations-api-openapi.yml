@@ -1,8 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Lex Machina Alerts ITC Investigations API
+  title: Lex Machina ITC Investigations API
   version: '20260324'
-  description: Alerts.
+  description: ITC Investigations.
 servers:
 - url: https://api.lexmachina.com
   description: Lex Machina production API
@@ -140,22 +140,6 @@ paths:
                       input: '-1'
 components:
   schemas:
-    DocketEntriesIncludedInOutput:
-      type: string
-      enum:
-      - all
-      - none
-      title: DocketEntriesIncludedInOutput
-    ITCDocumentEntityData:
-      properties:
-        name:
-          type: string
-          title: Name
-      additionalProperties: false
-      type: object
-      required:
-      - name
-      title: ITCDocumentEntityData
     ITCParty:
       properties:
         name:
@@ -170,6 +154,16 @@ components:
       - name
       - role
       title: ITCParty
+    ITCDocumentEntityData:
+      properties:
+        name:
+          type: string
+          title: Name
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      title: ITCDocumentEntityData
     ITCDocumentList:
       properties:
         entries:
@@ -189,6 +183,16 @@ components:
       - retrieved
       - count
       title: ITCDocumentList
+    AdministrativeLawJudge:
+      properties:
+        name:
+          type: string
+          title: Name
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      title: AdministrativeLawJudge
     ITCInvestigationDates:
       properties:
         notice:
@@ -209,83 +213,6 @@ components:
       - notice
       - terminated
       title: ITCInvestigationDates
-    ITCInvestigationStatus:
-      type: string
-      enum:
-      - Active
-      - Terminated
-      - Completed
-      - Pending before the ALJ
-      - Pending before the Commission
-      title: ITCInvestigationStatus
-    Patent:
-      properties:
-        number:
-          type: string
-          title: Number
-        title:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Title
-      additionalProperties: false
-      type: object
-      required:
-      - number
-      title: Patent
-    AdministrativeLawJudge:
-      properties:
-        name:
-          type: string
-          title: Name
-      additionalProperties: false
-      type: object
-      required:
-      - name
-      title: AdministrativeLawJudge
-    ITCDocument:
-      properties:
-        usitcDocumentId:
-          type: integer
-          title: Usitcdocumentid
-        date:
-          type: string
-          format: date
-          title: Date
-        title:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Title
-        type:
-          type: string
-          title: Type
-        filedBy:
-          items:
-            $ref: '#/components/schemas/ITCDocumentEntityData'
-          type: array
-          title: Filedby
-        firm:
-          items:
-            $ref: '#/components/schemas/ITCDocumentEntityData'
-          type: array
-          title: Firm
-        onBehalfOf:
-          items:
-            $ref: '#/components/schemas/ITCDocumentEntityData'
-          type: array
-          title: Onbehalfof
-      additionalProperties: false
-      type: object
-      required:
-      - usitcDocumentId
-      - date
-      - title
-      - type
-      - filedBy
-      - firm
-      - onBehalfOf
-      title: ITCDocument
     ITCInvestigationData:
       properties:
         itcInvestigationId:
@@ -346,6 +273,79 @@ components:
       - itcDocumentList
       title: ITCInvestigationData
       description: A single US ITC investigation and relevant metadata.
+    Patent:
+      properties:
+        number:
+          type: string
+          title: Number
+        title:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Title
+      additionalProperties: false
+      type: object
+      required:
+      - number
+      title: Patent
+    ITCInvestigationStatus:
+      type: string
+      enum:
+      - Active
+      - Terminated
+      - Completed
+      - Pending before the ALJ
+      - Pending before the Commission
+      title: ITCInvestigationStatus
+    ITCDocument:
+      properties:
+        usitcDocumentId:
+          type: integer
+          title: Usitcdocumentid
+        date:
+          type: string
+          format: date
+          title: Date
+        title:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Title
+        type:
+          type: string
+          title: Type
+        filedBy:
+          items:
+            $ref: '#/components/schemas/ITCDocumentEntityData'
+          type: array
+          title: Filedby
+        firm:
+          items:
+            $ref: '#/components/schemas/ITCDocumentEntityData'
+          type: array
+          title: Firm
+        onBehalfOf:
+          items:
+            $ref: '#/components/schemas/ITCDocumentEntityData'
+          type: array
+          title: Onbehalfof
+      additionalProperties: false
+      type: object
+      required:
+      - usitcDocumentId
+      - date
+      - title
+      - type
+      - filedBy
+      - firm
+      - onBehalfOf
+      title: ITCDocument
+    DocketEntriesIncludedInOutput:
+      type: string
+      enum:
+      - all
+      - none
+      title: DocketEntriesIncludedInOutput
     ITCInvestigationType:
       type: string
       enum:

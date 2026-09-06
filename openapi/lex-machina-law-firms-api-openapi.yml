@@ -1,8 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Lex Machina Alerts Law Firms API
+  title: Lex Machina Law Firms API
   version: '20260324'
-  description: Alerts.
+  description: Law firm data.
 servers:
 - url: https://api.lexmachina.com
   description: Lex Machina production API
@@ -290,6 +290,38 @@ paths:
                     detail: Not Found
 components:
   schemas:
+    LawFirmData:
+      properties:
+        name:
+          type: string
+          title: Name
+        lawFirmId:
+          type: integer
+          title: Lawfirmid
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - lawFirmId
+      title: LawFirmData
+    LawFirmResult:
+      properties:
+        name:
+          type: string
+          title: Name
+        lawFirmId:
+          type: integer
+          title: Lawfirmid
+        url:
+          type: string
+          title: Url
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - lawFirmId
+      - url
+      title: LawFirmResult
     LawFirmSearchResult:
       properties:
         totalCount:
@@ -315,24 +347,6 @@ components:
       - page
       - lawFirms
       title: LawFirmSearchResult
-    LawFirmResult:
-      properties:
-        name:
-          type: string
-          title: Name
-        lawFirmId:
-          type: integer
-          title: Lawfirmid
-        url:
-          type: string
-          title: Url
-      additionalProperties: false
-      type: object
-      required:
-      - name
-      - lawFirmId
-      - url
-      title: LawFirmResult
     LawFirmReference:
       properties:
         name:
@@ -358,20 +372,6 @@ components:
       description: 'Indicates that the Lex Machina law firm id input was has changed,
 
         the inputId is the ID given that should map to the returned lawFirmId.'
-    LawFirmData:
-      properties:
-        name:
-          type: string
-          title: Name
-        lawFirmId:
-          type: integer
-          title: Lawfirmid
-      additionalProperties: false
-      type: object
-      required:
-      - name
-      - lawFirmId
-      title: LawFirmData
   securitySchemes:
     JwtAccessBearer:
       type: http

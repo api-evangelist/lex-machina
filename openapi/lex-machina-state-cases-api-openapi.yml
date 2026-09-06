@@ -1,8 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Lex Machina Alerts State Cases API
+  title: Lex Machina State Cases API
   version: '20260324'
-  description: Alerts.
+  description: State court cases.
 servers:
 - url: https://api.lexmachina.com
   description: Lex Machina production API
@@ -544,191 +544,41 @@ paths:
                       - body
                       msg: invalid input
                       input: '-1'
-  /state-docket-entries/{state_docket_entry_id}:
-    get:
-      tags:
-      - State Cases
-      summary: Get State Docket Entry
-      description: 'Gets data for a single docket entry.
-
-
-        - **state_docket_entry_id**: the Lex Machina stateDocketEntryId.'
-      operationId: get_state_docket_entry
-      security:
-      - JwtAccessBearer: []
-      parameters:
-      - name: state_docket_entry_id
-        in: path
-        required: true
-        schema:
-          type: integer
-          title: State Docket Entry Id
-      responses:
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/StateDocketEntryResult'
-              examples:
-                state case complaint:
-                  summary: state case complaint
-                  value:
-                    filedOn: '2016-07-25'
-                    tags:
-                    - Complaint
-                    text: SUMMONS + COMPLAINT
-                    stateDocketEntryId: 1263090641
-                    courtType: State
-                    stateCaseId: 2033923164
-                    stateCaseUrl: https://api.lexmachina.com/state-cases/2033923164
-                    court: Westchester County Supreme Court
-                    state: New York
-        '401':
-          description: Invalid or expired token
-          content:
-            application/json:
-              examples:
-                Expired token:
-                  summary: Expired token
-                  value:
-                    detail: 'Token time expired: Signature has expired.'
-                Invalid token:
-                  summary: Invalid token
-                  value:
-                    detail: Invalid token
-        '404':
-          description: Not found
-          content:
-            application/json:
-              examples:
-                Not found:
-                  summary: Not found
-                  value:
-                    summary: Unknown id
-                    detail: Not Found
-        '422':
-          description: Error - 422
-          content:
-            application/json:
-              examples:
-                Validation error:
-                  summary: Validation error
-                  value:
-                    summary: Invalid input
-                    detail:
-                    - type: parsing
-                      loc:
-                      - path
-                      - query
-                      - body
-                      msg: invalid input
-                      input: '-1'
-  /query-state-cases:
-    post:
-      tags:
-      - State Cases
-      summary: Query State Cases
-      description: 'Queries enhanced state court cases.
-
-
-        - **data**: the state case query
-
-
-        See [https://developer.lexmachina.com/posts/query/state_query_usage/](https://developer.lexmachina.com/posts/query/state_query_usage/) for query formation.
-
-
-        The results will contain a list of cases, each with a specificed url and Lex Machina stateCaseId.'
-      operationId: query_state_cases
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/StateCaseQuery'
-        required: true
-      responses:
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/StateCaseQueryResult'
-              examples:
-                Query Results:
-                  summary: Query Results
-                  value:
-                    cases:
-                    - url: https://api.lexmachina.com/state-cases/2003442290
-                      stateCaseId: 2003442290
-                    - url: https://api.lexmachina.com/state-cases/2003442348
-                      stateCaseId: 2003442348
-                    - url: https://api.lexmachina.com/state-cases/2003442352
-                      stateCaseId: 2003442352
-                    - url: https://api.lexmachina.com/state-cases/2003463384
-                      stateCaseId: 2003463384
-                    - url: https://api.lexmachina.com/state-cases/2003442446
-                      stateCaseId: 2003442446
-        '422':
-          description: Error - 422
-          content:
-            application/json:
-              examples:
-                Maximum Cases Per Page Exceeded:
-                  summary: Maximum Cases Per Page Exceeded
-                  value:
-                    detail: Maximum cases per page is 100
-                Invalid Input:
-                  summary: Invalid Input
-                  value:
-                    detail:
-                    - type: missing
-                      loc:
-                      - body
-                      - courts
-                      - state
-                      msg: Field required
-                      input:
-                        include:
-                        - Fort Bend County District Court
-                Validation error:
-                  summary: Validation error
-                  value:
-                    summary: Invalid input
-                    detail:
-                    - type: parsing
-                      loc:
-                      - path
-                      - query
-                      - body
-                      msg: invalid input
-                      input: '-1'
-        '401':
-          description: Invalid or expired token
-          content:
-            application/json:
-              examples:
-                Expired token:
-                  summary: Expired token
-                  value:
-                    detail: 'Token time expired: Signature has expired.'
-                Invalid token:
-                  summary: Invalid token
-                  value:
-                    detail: Invalid token
-        '404':
-          description: Not found
-          content:
-            application/json:
-              examples:
-                Not found:
-                  summary: Not found
-                  value:
-                    summary: Unknown id
-                    detail: Not Found
-      security:
-      - JwtAccessBearer: []
 components:
   schemas:
+    StateCaseDamagesByStatus:
+      properties:
+        active:
+          items:
+            $ref: '#/components/schemas/StateCaseDamages'
+          type: array
+          title: Active
+      additionalProperties: false
+      type: object
+      required:
+      - active
+      title: StateCaseDamagesByStatus
+    LawFirm:
+      properties:
+        name:
+          type: string
+          title: Name
+        lawFirmId:
+          type: integer
+          title: Lawfirmid
+        clientPartyIds:
+          items:
+            type: integer
+          type: array
+          uniqueItems: true
+          title: Clientpartyids
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - lawFirmId
+      - clientPartyIds
+      title: LawFirm
     Attorney:
       properties:
         name:
@@ -757,259 +607,51 @@ components:
       - lawFirmIds
       - clientsPartyIds
       title: Attorney
-    StateCaseQuery:
-      properties:
-        courts:
-          $ref: '#/components/schemas/StateCourtFilter'
-        caseStatus:
-          anyOf:
-          - $ref: '#/components/schemas/CaseStatus'
-          - type: 'null'
-        caseTypes:
-          anyOf:
-          - $ref: '#/components/schemas/CaseTypesFilter'
-          - type: 'null'
-        caseTags:
-          anyOf:
-          - $ref: '#/components/schemas/CaseTagsFilter'
-          - type: 'null'
-        dates:
-          anyOf:
-          - $ref: '#/components/schemas/CaseDatesFilter'
-          - type: 'null'
-        judges:
-          anyOf:
-          - $ref: '#/components/schemas/JudgeFilter'
-          - type: 'null'
-        events:
-          anyOf:
-          - $ref: '#/components/schemas/EventFilter'
-          - type: 'null'
-        lawFirms:
-          anyOf:
-          - $ref: '#/components/schemas/LawFirmFilter'
-          - type: 'null'
-        attorneys:
-          anyOf:
-          - $ref: '#/components/schemas/AttorneyFilter'
-          - type: 'null'
-        parties:
-          anyOf:
-          - $ref: '#/components/schemas/PartyFilter'
-          - type: 'null'
-        resolutions:
-          anyOf:
-          - $ref: '#/components/schemas/ResolutionsFilter'
-          - type: 'null'
-        damages:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/IndividualStateDamagesFilter'
-            type: array
-          - type: 'null'
-          title: Damages
-        rulings:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/IndividualRulingsFilter'
-            type: array
-          - type: 'null'
-          title: Rulings
-        ordering:
-          $ref: '#/components/schemas/Ordering'
-          default: ByFirstFiled
-        page:
-          type: integer
-          title: Page
-          default: 1
-        pageSize:
-          type: integer
-          title: Pagesize
-          default: 5
-      additionalProperties: false
-      type: object
-      required:
-      - courts
-      title: StateCaseQuery
-      example:
-        caseStatus: Terminated
-        courts:
-          include:
-          - Fort Bend County District Court
-          state: TX
-        dates:
-          filed:
-            onOrAfter: '2016-01-01'
-          terminated:
-            onOrBefore: '2021-05-01'
-        judges:
-          include:
-          - 1792
-        ordering: ByFirstFiled
-        page: 1
-        pageSize: 5
-    StateJudge:
-      properties:
-        name:
-          type: string
-          title: Name
-        stateJudgeId:
-          type: integer
-          title: Statejudgeid
-      additionalProperties: false
-      type: object
-      required:
-      - name
-      - stateJudgeId
-      title: StateJudge
-    StateCaseReference:
-      properties:
-        url:
-          type: string
-          title: Url
-        stateCaseId:
-          type: integer
-          title: Statecaseid
-      additionalProperties: false
-      type: object
-      required:
-      - url
-      - stateCaseId
-      title: StateCaseReference
-    TimingFilter:
-      properties:
-        onOrAfter:
-          anyOf:
-          - type: string
-            format: date
-          - type: 'null'
-          title: Onorafter
-        onOrBefore:
-          anyOf:
-          - type: string
-            format: date
-          - type: 'null'
-          title: Onorbefore
-      additionalProperties: false
-      type: object
-      title: TimingFilter
-    CaseDatesFilter:
-      properties:
-        filed:
-          anyOf:
-          - $ref: '#/components/schemas/TimingFilter'
-          - type: 'null'
-        terminated:
-          anyOf:
-          - $ref: '#/components/schemas/TimingFilter'
-          - type: 'null'
-        trial:
-          anyOf:
-          - $ref: '#/components/schemas/TimingFilter'
-          - type: 'null'
-        lastDocket:
-          anyOf:
-          - $ref: '#/components/schemas/TimingFilter'
-          - type: 'null'
-      additionalProperties: false
-      type: object
-      title: CaseDatesFilter
-    StateDocket:
-      properties:
-        entries:
-          items:
-            $ref: '#/components/schemas/StateDocketEntry'
-          type: array
-          title: Entries
-        retrieved:
-          $ref: '#/components/schemas/DocketEntriesIncludedInOutput'
-        count:
-          type: integer
-          title: Count
-      additionalProperties: false
-      type: object
-      required:
-      - entries
-      - retrieved
-      - count
-      title: StateDocket
-    CaseEvent:
-      properties:
-        type:
-          type: string
-          title: Type
-        occurred:
-          type: string
-          format: date
-          title: Occurred
-      additionalProperties: false
-      type: object
-      required:
-      - type
-      - occurred
-      title: CaseEvent
-    IndividualStateDamagesFilter:
-      properties:
-        name:
-          anyOf:
-          - $ref: '#/components/schemas/NameFilter'
-          - type: 'null'
-        date:
-          anyOf:
-          - $ref: '#/components/schemas/TimingFilter'
-          - type: 'null'
-        awardedToParties:
-          anyOf:
-          - items:
-              type: integer
-              exclusiveMaximum: 2147483647.0
-              exclusiveMinimum: 0.0
-            type: array
-          - type: 'null'
-          title: Awardedtoparties
-        awardedAgainstParties:
-          anyOf:
-          - items:
-              type: integer
-              exclusiveMaximum: 2147483647.0
-              exclusiveMinimum: 0.0
-            type: array
-          - type: 'null'
-          title: Awardedagainstparties
-        minimumAmount:
-          anyOf:
-          - type: number
-          - type: string
-            pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
-          - type: 'null'
-          title: Minimumamount
-      additionalProperties: false
-      type: object
-      title: IndividualStateDamagesFilter
-    StateCaseDamagesByStatus:
-      properties:
-        active:
-          items:
-            $ref: '#/components/schemas/StateCaseDamages'
-          type: array
-          title: Active
-      additionalProperties: false
-      type: object
-      required:
-      - active
-      title: StateCaseDamagesByStatus
     CaseStatus:
       type: string
       enum:
       - Open
       - Terminated
       title: CaseStatus
-    Ordering:
-      type: string
-      enum:
-      - ByFirstFiled
-      - ByLastFiled
-      title: Ordering
+    StateCaseRulingsByStatus:
+      properties:
+        active:
+          items:
+            $ref: '#/components/schemas/Rulings'
+          type: array
+          title: Active
+      additionalProperties: false
+      type: object
+      required:
+      - active
+      title: StateCaseRulingsByStatus
+    Rulings:
+      properties:
+        judgmentEvent:
+          type: string
+          title: Judgmentevent
+        awardedToPartyIds:
+          items:
+            type: integer
+          type: array
+          title: Awardedtopartyids
+        awardedAgainstPartyIds:
+          items:
+            type: integer
+          type: array
+          title: Awardedagainstpartyids
+        awarded:
+          type: string
+          format: date
+          title: Awarded
+      additionalProperties: false
+      type: object
+      required:
+      - judgmentEvent
+      - awardedToPartyIds
+      - awardedAgainstPartyIds
+      - awarded
+      title: Rulings
     StateCaseResolution:
       properties:
         summary:
@@ -1035,25 +677,143 @@ components:
       - docketEntryFiled
       - stateDocketEntryId
       title: StateCaseResolution
-    JudgmentEventFilter:
+    StateDocket:
       properties:
-        include:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Include
-        exclude:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Exclude
+        entries:
+          items:
+            $ref: '#/components/schemas/StateDocketEntry'
+          type: array
+          title: Entries
+        retrieved:
+          $ref: '#/components/schemas/DocketEntriesIncludedInOutput'
+        count:
+          type: integer
+          title: Count
       additionalProperties: false
       type: object
-      title: JudgmentEventFilter
+      required:
+      - entries
+      - retrieved
+      - count
+      title: StateDocket
+    StateCaseDates:
+      properties:
+        filed:
+          type: string
+          format: date
+          title: Filed
+        terminated:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: Terminated
+        trial:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: Trial
+      additionalProperties: false
+      type: object
+      required:
+      - filed
+      - trial
+      title: StateCaseDates
+    CaseEvent:
+      properties:
+        type:
+          type: string
+          title: Type
+        occurred:
+          type: string
+          format: date
+          title: Occurred
+      additionalProperties: false
+      type: object
+      required:
+      - type
+      - occurred
+      title: CaseEvent
+    StateDocketEntry:
+      properties:
+        filedOn:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: Filedon
+        tags:
+          items:
+            type: string
+          type: array
+          title: Tags
+        text:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Text
+        stateDocketEntryId:
+          type: integer
+          title: Statedocketentryid
+      additionalProperties: false
+      type: object
+      required:
+      - filedOn
+      - tags
+      - text
+      - stateDocketEntryId
+      title: StateDocketEntry
+    StateCaseDamages:
+      properties:
+        name:
+          type: string
+          title: Name
+        awardedToPartyId:
+          items:
+            type: integer
+          type: array
+          title: Awardedtopartyid
+        awardedAgainstPartyIds:
+          items:
+            type: integer
+          type: array
+          title: Awardedagainstpartyids
+        amount:
+          type: string
+          pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          title: Amount
+        awarded:
+          type: string
+          format: date
+          title: Awarded
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - awardedToPartyId
+      - awardedAgainstPartyIds
+      - amount
+      - awarded
+      title: StateCaseDamages
+    Party:
+      properties:
+        name:
+          type: string
+          title: Name
+        partyId:
+          type: integer
+          title: Partyid
+        role:
+          type: string
+          title: Role
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - partyId
+      - role
+      title: Party
     StateCaseData:
       properties:
         stateCaseId:
@@ -1142,664 +902,26 @@ components:
       - docket
       title: StateCaseData
       description: A single case from an enahnced state court and relevant metadata.
-    LawFirmFilter:
-      properties:
-        include:
-          anyOf:
-          - items:
-              type: integer
-              exclusiveMaximum: 2147483647.0
-              exclusiveMinimum: 0.0
-            type: array
-          - type: 'null'
-          title: Include
-        exclude:
-          anyOf:
-          - items:
-              type: integer
-              exclusiveMaximum: 2147483647.0
-              exclusiveMinimum: 0.0
-            type: array
-          - type: 'null'
-          title: Exclude
-        includePlaintiff:
-          anyOf:
-          - items:
-              type: integer
-              exclusiveMaximum: 2147483647.0
-              exclusiveMinimum: 0.0
-            type: array
-          - type: 'null'
-          title: Includeplaintiff
-        excludePlaintiff:
-          anyOf:
-          - items:
-              type: integer
-              exclusiveMaximum: 2147483647.0
-              exclusiveMinimum: 0.0
-            type: array
-          - type: 'null'
-          title: Excludeplaintiff
-        includeDefendant:
-          anyOf:
-          - items:
-              type: integer
-              exclusiveMaximum: 2147483647.0
-              exclusiveMinimum: 0.0
-            type: array
-          - type: 'null'
-          title: Includedefendant
-        excludeDefendant:
-          anyOf:
-          - items:
-              type: integer
-              exclusiveMaximum: 2147483647.0
-              exclusiveMinimum: 0.0
-            type: array
-          - type: 'null'
-          title: Excludedefendant
-        includeThirdParty:
-          anyOf:
-          - items:
-              type: integer
-              exclusiveMaximum: 2147483647.0
-              exclusiveMinimum: 0.0
-            type: array
-          - type: 'null'
-          title: Includethirdparty
-        excludeThirdParty:
-          anyOf:
-          - items:
-              type: integer
-              exclusiveMaximum: 2147483647.0
-              exclusiveMinimum: 0.0
-            type: array
-          - type: 'null'
-          title: Excludethirdparty
-      additionalProperties: false
-      type: object
-      title: LawFirmFilter
-    ResolutionsFilter:
-      properties:
-        include:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/IndividualResolutionsFilter'
-            type: array
-          - type: 'null'
-          title: Include
-        exclude:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/IndividualResolutionsFilter'
-            type: array
-          - type: 'null'
-          title: Exclude
-      additionalProperties: false
-      type: object
-      title: ResolutionsFilter
-    StateCaseDamages:
-      properties:
-        name:
-          type: string
-          title: Name
-        awardedToPartyId:
-          items:
-            type: integer
-          type: array
-          title: Awardedtopartyid
-        awardedAgainstPartyIds:
-          items:
-            type: integer
-          type: array
-          title: Awardedagainstpartyids
-        amount:
-          type: string
-          pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
-          title: Amount
-        awarded:
-          type: string
-          format: date
-          title: Awarded
-      additionalProperties: false
-      type: object
-      required:
-      - name
-      - awardedToPartyId
-      - awardedAgainstPartyIds
-      - amount
-      - awarded
-      title: StateCaseDamages
-    StateCourtFilter:
-      properties:
-        state:
-          type: string
-          title: State
-        include:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Include
-        exclude:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Exclude
-      additionalProperties: false
-      type: object
-      required:
-      - state
-      title: StateCourtFilter
-    LawFirm:
-      properties:
-        name:
-          type: string
-          title: Name
-        lawFirmId:
-          type: integer
-          title: Lawfirmid
-        clientPartyIds:
-          items:
-            type: integer
-          type: array
-          uniqueItems: true
-          title: Clientpartyids
-      additionalProperties: false
-      type: object
-      required:
-      - name
-      - lawFirmId
-      - clientPartyIds
-      title: LawFirm
     DocketEntriesIncludedInOutput:
       type: string
       enum:
       - all
       - none
       title: DocketEntriesIncludedInOutput
-    CourtType:
-      type: string
-      enum:
-      - FederalDistrict
-      - State
-      - FederalAppeals
-      - FederalBankruptcy
-      - PTAB
-      - ITC
-      title: CourtType
-    StateDocketEntry:
-      properties:
-        filedOn:
-          anyOf:
-          - type: string
-            format: date
-          - type: 'null'
-          title: Filedon
-        tags:
-          items:
-            type: string
-          type: array
-          title: Tags
-        text:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Text
-        stateDocketEntryId:
-          type: integer
-          title: Statedocketentryid
-      additionalProperties: false
-      type: object
-      required:
-      - filedOn
-      - tags
-      - text
-      - stateDocketEntryId
-      title: StateDocketEntry
-    StateDocketEntryResult:
-      properties:
-        filedOn:
-          anyOf:
-          - type: string
-            format: date
-          - type: 'null'
-          title: Filedon
-        tags:
-          items:
-            type: string
-          type: array
-          title: Tags
-        text:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Text
-        stateDocketEntryId:
-          type: integer
-          title: Statedocketentryid
-        courtType:
-          $ref: '#/components/schemas/CourtType'
-        stateCaseId:
-          type: integer
-          title: Statecaseid
-        stateCaseUrl:
-          type: string
-          title: Statecaseurl
-        court:
-          type: string
-          title: Court
-        state:
-          type: string
-          title: State
-      additionalProperties: false
-      type: object
-      required:
-      - filedOn
-      - tags
-      - text
-      - stateDocketEntryId
-      - courtType
-      - stateCaseId
-      - stateCaseUrl
-      - court
-      - state
-      title: StateDocketEntryResult
-    NameFilter:
-      properties:
-        include:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Include
-        exclude:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Exclude
-      additionalProperties: false
-      type: object
-      title: NameFilter
-    PartyFilter:
-      properties:
-        include:
-          anyOf:
-          - items:
-              type: integer
-              exclusiveMaximum: 2147483647.0
-              exclusiveMinimum: 0.0
-            type: array
-          - type: 'null'
-          title: Include
-        exclude:
-          anyOf:
-          - items:
-              type: integer
-              exclusiveMaximum: 2147483647.0
-              exclusiveMinimum: 0.0
-            type: array
-          - type: 'null'
-          title: Exclude
-        includePlaintiff:
-          anyOf:
-          - items:
-              type: integer
-              exclusiveMaximum: 2147483647.0
-              exclusiveMinimum: 0.0
-            type: array
-          - type: 'null'
-          title: Includeplaintiff
-        excludePlaintiff:
-          anyOf:
-          - items:
-              type: integer
-              exclusiveMaximum: 2147483647.0
-              exclusiveMinimum: 0.0
-            type: array
-          - type: 'null'
-          title: Excludeplaintiff
-        includeDefendant:
-          anyOf:
-          - items:
-              type: integer
-              exclusiveMaximum: 2147483647.0
-              exclusiveMinimum: 0.0
-            type: array
-          - type: 'null'
-          title: Includedefendant
-        excludeDefendant:
-          anyOf:
-          - items:
-              type: integer
-              exclusiveMaximum: 2147483647.0
-              exclusiveMinimum: 0.0
-            type: array
-          - type: 'null'
-          title: Excludedefendant
-        includeThirdParty:
-          anyOf:
-          - items:
-              type: integer
-              exclusiveMaximum: 2147483647.0
-              exclusiveMinimum: 0.0
-            type: array
-          - type: 'null'
-          title: Includethirdparty
-        excludeThirdParty:
-          anyOf:
-          - items:
-              type: integer
-              exclusiveMaximum: 2147483647.0
-              exclusiveMinimum: 0.0
-            type: array
-          - type: 'null'
-          title: Excludethirdparty
-      additionalProperties: false
-      type: object
-      title: PartyFilter
-    IndividualResolutionsFilter:
-      properties:
-        summary:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Summary
-        specific:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Specific
-      additionalProperties: false
-      type: object
-      title: IndividualResolutionsFilter
-    StateCaseQueryResult:
-      properties:
-        cases:
-          items:
-            $ref: '#/components/schemas/StateCaseReference'
-          type: array
-          title: Cases
-      additionalProperties: false
-      type: object
-      required:
-      - cases
-      title: StateCaseQueryResult
-    CaseTypesFilter:
-      properties:
-        include:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Include
-        exclude:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Exclude
-      additionalProperties: false
-      type: object
-      title: CaseTypesFilter
-    EventFilter:
-      properties:
-        include:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Include
-        exclude:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Exclude
-      additionalProperties: false
-      type: object
-      title: EventFilter
-    JudgeFilter:
-      properties:
-        include:
-          anyOf:
-          - items:
-              type: integer
-              exclusiveMaximum: 2147483647.0
-              exclusiveMinimum: 0.0
-            type: array
-          - type: 'null'
-          title: Include
-        exclude:
-          anyOf:
-          - items:
-              type: integer
-              exclusiveMaximum: 2147483647.0
-              exclusiveMinimum: 0.0
-            type: array
-          - type: 'null'
-          title: Exclude
-      additionalProperties: false
-      type: object
-      title: JudgeFilter
-    StateCaseRulingsByStatus:
-      properties:
-        active:
-          items:
-            $ref: '#/components/schemas/Rulings'
-          type: array
-          title: Active
-      additionalProperties: false
-      type: object
-      required:
-      - active
-      title: StateCaseRulingsByStatus
-    Rulings:
-      properties:
-        judgmentEvent:
-          type: string
-          title: Judgmentevent
-        awardedToPartyIds:
-          items:
-            type: integer
-          type: array
-          title: Awardedtopartyids
-        awardedAgainstPartyIds:
-          items:
-            type: integer
-          type: array
-          title: Awardedagainstpartyids
-        awarded:
-          type: string
-          format: date
-          title: Awarded
-      additionalProperties: false
-      type: object
-      required:
-      - judgmentEvent
-      - awardedToPartyIds
-      - awardedAgainstPartyIds
-      - awarded
-      title: Rulings
-    CaseTagsFilter:
-      properties:
-        include:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Include
-        exclude:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Exclude
-      additionalProperties: false
-      type: object
-      title: CaseTagsFilter
-    Party:
+    StateJudge:
       properties:
         name:
           type: string
           title: Name
-        partyId:
+        stateJudgeId:
           type: integer
-          title: Partyid
-        role:
-          type: string
-          title: Role
+          title: Statejudgeid
       additionalProperties: false
       type: object
       required:
       - name
-      - partyId
-      - role
-      title: Party
-    IndividualRulingsFilter:
-      properties:
-        judgmentEvent:
-          anyOf:
-          - $ref: '#/components/schemas/JudgmentEventFilter'
-          - type: 'null'
-        awardedToParties:
-          anyOf:
-          - items:
-              type: integer
-              exclusiveMaximum: 2147483647.0
-              exclusiveMinimum: 0.0
-            type: array
-          - type: 'null'
-          title: Awardedtoparties
-        awardedAgainstParties:
-          anyOf:
-          - items:
-              type: integer
-              exclusiveMaximum: 2147483647.0
-              exclusiveMinimum: 0.0
-            type: array
-          - type: 'null'
-          title: Awardedagainstparties
-        date:
-          anyOf:
-          - $ref: '#/components/schemas/TimingFilter'
-          - type: 'null'
-      additionalProperties: false
-      type: object
-      title: IndividualRulingsFilter
-    StateCaseDates:
-      properties:
-        filed:
-          type: string
-          format: date
-          title: Filed
-        terminated:
-          anyOf:
-          - type: string
-            format: date
-          - type: 'null'
-          title: Terminated
-        trial:
-          anyOf:
-          - type: string
-            format: date
-          - type: 'null'
-          title: Trial
-      additionalProperties: false
-      type: object
-      required:
-      - filed
-      - trial
-      title: StateCaseDates
-    AttorneyFilter:
-      properties:
-        include:
-          anyOf:
-          - items:
-              type: integer
-              exclusiveMaximum: 2147483647.0
-              exclusiveMinimum: 0.0
-            type: array
-          - type: 'null'
-          title: Include
-        exclude:
-          anyOf:
-          - items:
-              type: integer
-              exclusiveMaximum: 2147483647.0
-              exclusiveMinimum: 0.0
-            type: array
-          - type: 'null'
-          title: Exclude
-        includePlaintiff:
-          anyOf:
-          - items:
-              type: integer
-              exclusiveMaximum: 2147483647.0
-              exclusiveMinimum: 0.0
-            type: array
-          - type: 'null'
-          title: Includeplaintiff
-        excludePlaintiff:
-          anyOf:
-          - items:
-              type: integer
-              exclusiveMaximum: 2147483647.0
-              exclusiveMinimum: 0.0
-            type: array
-          - type: 'null'
-          title: Excludeplaintiff
-        includeDefendant:
-          anyOf:
-          - items:
-              type: integer
-              exclusiveMaximum: 2147483647.0
-              exclusiveMinimum: 0.0
-            type: array
-          - type: 'null'
-          title: Includedefendant
-        excludeDefendant:
-          anyOf:
-          - items:
-              type: integer
-              exclusiveMaximum: 2147483647.0
-              exclusiveMinimum: 0.0
-            type: array
-          - type: 'null'
-          title: Excludedefendant
-        includeThirdParty:
-          anyOf:
-          - items:
-              type: integer
-              exclusiveMaximum: 2147483647.0
-              exclusiveMinimum: 0.0
-            type: array
-          - type: 'null'
-          title: Includethirdparty
-        excludeThirdParty:
-          anyOf:
-          - items:
-              type: integer
-              exclusiveMaximum: 2147483647.0
-              exclusiveMinimum: 0.0
-            type: array
-          - type: 'null'
-          title: Excludethirdparty
-      additionalProperties: false
-      type: object
-      title: AttorneyFilter
+      - stateJudgeId
+      title: StateJudge
   securitySchemes:
     JwtAccessBearer:
       type: http

@@ -1,8 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Lex Machina Alerts Patents API
+  title: Lex Machina Patents API
   version: '20260324'
-  description: Alerts.
+  description: US patent data.
 servers:
 - url: https://api.lexmachina.com
   description: Lex Machina production API
@@ -219,6 +219,22 @@ paths:
                       input: '-1'
 components:
   schemas:
+    PatentCaseInformation:
+      properties:
+        numberOfCases:
+          type: integer
+          title: Numberofcases
+        findings:
+          items:
+            $ref: '#/components/schemas/PatentFindings'
+          type: array
+          title: Findings
+      additionalProperties: false
+      type: object
+      required:
+      - numberOfCases
+      - findings
+      title: PatentCaseInformation
     PatentFindings:
       properties:
         caseId:
@@ -294,22 +310,6 @@ components:
       - filingDate
       - issueDate
       title: Inventors
-    PatentCaseInformation:
-      properties:
-        numberOfCases:
-          type: integer
-          title: Numberofcases
-        findings:
-          items:
-            $ref: '#/components/schemas/PatentFindings'
-          type: array
-          title: Findings
-      additionalProperties: false
-      type: object
-      required:
-      - numberOfCases
-      - findings
-      title: PatentCaseInformation
   securitySchemes:
     JwtAccessBearer:
       type: http
