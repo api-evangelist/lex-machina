@@ -192,7 +192,7 @@ paths:
 
         - **page_number**: page number of the results
 
-        - **page_size**:  results per page
+        - **page_size**: results per page
 
 
         This is a case-insensitive search that will match anywhere within the name of the firm.
@@ -290,6 +290,56 @@ paths:
                     detail: Not Found
 components:
   schemas:
+    LawFirmReference:
+      properties:
+        name:
+          type: string
+          title: Name
+        lawFirmId:
+          type: integer
+          title: Lawfirmid
+        inputId:
+          type: integer
+          title: Inputid
+        url:
+          type: string
+          title: Url
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - lawFirmId
+      - inputId
+      - url
+      title: LawFirmReference
+      description: 'Indicates that the Lex Machina law firm id input was has changed,
+
+        the inputId is the ID given that should map to the returned lawFirmId.'
+    LawFirmSearchResult:
+      properties:
+        totalCount:
+          type: integer
+          title: Totalcount
+        page:
+          type: integer
+          title: Page
+        nextPage:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Nextpage
+        lawFirms:
+          items:
+            $ref: '#/components/schemas/LawFirmResult'
+          type: array
+          title: Lawfirms
+      additionalProperties: false
+      type: object
+      required:
+      - totalCount
+      - page
+      - lawFirms
+      title: LawFirmSearchResult
     LawFirmData:
       properties:
         name:
@@ -322,56 +372,6 @@ components:
       - lawFirmId
       - url
       title: LawFirmResult
-    LawFirmSearchResult:
-      properties:
-        totalCount:
-          type: integer
-          title: Totalcount
-        page:
-          type: integer
-          title: Page
-        nextPage:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Nextpage
-        lawFirms:
-          items:
-            $ref: '#/components/schemas/LawFirmResult'
-          type: array
-          title: Lawfirms
-      additionalProperties: false
-      type: object
-      required:
-      - totalCount
-      - page
-      - lawFirms
-      title: LawFirmSearchResult
-    LawFirmReference:
-      properties:
-        name:
-          type: string
-          title: Name
-        lawFirmId:
-          type: integer
-          title: Lawfirmid
-        inputId:
-          type: integer
-          title: Inputid
-        url:
-          type: string
-          title: Url
-      additionalProperties: false
-      type: object
-      required:
-      - name
-      - lawFirmId
-      - inputId
-      - url
-      title: LawFirmReference
-      description: 'Indicates that the Lex Machina law firm id input was has changed,
-
-        the inputId is the ID given that should map to the returned lawFirmId.'
   securitySchemes:
     JwtAccessBearer:
       type: http

@@ -4324,7 +4324,7 @@ paths:
         - **data**: the district case query
 
 
-        See [Querying district cases](https://developer.lexmachina.com/api-reference/district-cases/querying-district-cases/) for documentation.
+        See Querying district cases for documentation.
 
 
         The results will contain a list of cases, each with a specificed url and Lex Machina districtCaseId.'
@@ -4402,22 +4402,149 @@ paths:
       - JwtAccessBearer: []
 components:
   schemas:
-    IndividualNameTypeFilter:
+    CountsPerRole:
       properties:
-        name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Name
-        type:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Type
+        role:
+          type: string
+          title: Role
+        count:
+          type: integer
+          title: Count
       additionalProperties: false
       type: object
-      title: IndividualNameTypeFilter
-    LawFirmFilter:
+      required:
+      - role
+      - count
+      title: CountsPerRole
+    DistrictCaseFinding:
+      properties:
+        name:
+          type: string
+          title: Name
+        type:
+          type: string
+          title: Type
+        judgmentSource:
+          type: string
+          title: Judgmentsource
+        inFavorOfPartyIds:
+          items:
+            type: integer
+          type: array
+          title: Infavorofpartyids
+        patentInvalidityReasons:
+          items:
+            type: string
+          type: array
+          title: Patentinvalidityreasons
+          description: Use 'specificReasons' instead
+          deprecated: true
+        againstPartyIds:
+          items:
+            type: integer
+          type: array
+          title: Againstpartyids
+        docketEntryFiled:
+          type: string
+          format: date
+          title: Docketentryfiled
+        specificReasons:
+          items:
+            type: string
+          type: array
+          title: Specificreasons
+          default: []
+        negated:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: Negated
+        reinstated:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: Reinstated
+        docketEntryId:
+          type: integer
+          title: Docketentryid
+        negatedDocketEntryId:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Negateddocketentryid
+        reinstatedDocketEntryId:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Reinstateddocketentryid
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - type
+      - judgmentSource
+      - inFavorOfPartyIds
+      - patentInvalidityReasons
+      - againstPartyIds
+      - docketEntryFiled
+      - docketEntryId
+      title: DistrictCaseFinding
+      description: 'The following schema field is deprecated:
+
+        - **patentInvalidityReasons**: this field replaced by the new **specificReasons** field'
+    NameTypeFilter:
+      properties:
+        include:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/IndividualNameTypeFilter'
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/IndividualNameTypeFilter'
+            type: array
+          - type: 'null'
+          title: Exclude
+      additionalProperties: false
+      type: object
+      title: NameTypeFilter
+    LawFirmAggregation:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/LawFirmCountByRole'
+          type: array
+          title: Data
+      additionalProperties: false
+      type: object
+      required:
+      - data
+      title: LawFirmAggregation
+    AppellateDecisionFilter:
+      properties:
+        include:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Exclude
+      additionalProperties: false
+      type: object
+      title: AppellateDecisionFilter
+    AttorneyFilter:
       properties:
         include:
           anyOf:
@@ -4493,14 +4620,35 @@ components:
           title: Excludethirdparty
       additionalProperties: false
       type: object
-      title: LawFirmFilter
-    Ordering:
+      title: AttorneyFilter
+    AnalyticTypes:
       type: string
       enum:
-      - ByFirstFiled
-      - ByLastFiled
-      title: Ordering
-    PatentInvalidityReasonsFilter:
+      - CaseCountByType
+      - PartyCountByRole
+      - LawFirmCountByRole
+      title: AnalyticTypes
+    PartyCountByRole:
+      properties:
+        partyId:
+          type: integer
+          title: Partyid
+        partyName:
+          type: string
+          title: Partyname
+        rolesAndCounts:
+          items:
+            $ref: '#/components/schemas/CountsPerRole'
+          type: array
+          title: Rolesandcounts
+      additionalProperties: false
+      type: object
+      required:
+      - partyId
+      - partyName
+      - rolesAndCounts
+      title: PartyCountByRole
+    CaseTagsFilter:
       properties:
         include:
           anyOf:
@@ -4509,162 +4657,16 @@ components:
             type: array
           - type: 'null'
           title: Include
-      additionalProperties: false
-      type: object
-      title: PatentInvalidityReasonsFilter
-    DistrictCaseNumberReference:
-      properties:
-        url:
-          type: string
-          title: Url
-        districtCaseId:
-          type: integer
-          title: Districtcaseid
-        caseNumber:
-          type: string
-          title: Casenumber
-        court:
-          type: string
-          title: Court
-        title:
-          type: string
-          title: Title
-      additionalProperties: false
-      type: object
-      required:
-      - url
-      - districtCaseId
-      - caseNumber
-      - court
-      - title
-      title: DistrictCaseNumberReference
-    MultidistrictLitigationFilter:
-      properties:
-        include:
-          anyOf:
-          - items:
-              type: integer
-            type: array
-          - type: 'null'
-          title: Include
         exclude:
           anyOf:
           - items:
-              type: integer
+              type: string
             type: array
           - type: 'null'
           title: Exclude
       additionalProperties: false
       type: object
-      title: MultidistrictLitigationFilter
-    MultiDistrictLitigation:
-      properties:
-        mdlNo:
-          items:
-            type: integer
-          type: array
-          title: Mdlno
-        masterCaseIds:
-          items:
-            type: integer
-          type: array
-          title: Mastercaseids
-        truncatedData:
-          type: boolean
-          title: Truncateddata
-      additionalProperties: false
-      type: object
-      required:
-      - mdlNo
-      - masterCaseIds
-      - truncatedData
-      title: MultiDistrictLitigation
-    Patent:
-      properties:
-        number:
-          type: string
-          title: Number
-        title:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Title
-      additionalProperties: false
-      type: object
-      required:
-      - number
-      title: Patent
-    AnalyticTypes:
-      type: string
-      enum:
-      - CaseCountByType
-      - PartyCountByRole
-      - LawFirmCountByRole
-      title: AnalyticTypes
-    UnspecifiedDamagesAmount:
-      type: string
-      enum:
-      - NotSpecified
-      title: UnspecifiedDamagesAmount
-    DistrictCaseDates:
-      properties:
-        filed:
-          type: string
-          format: date
-          title: Filed
-        terminated:
-          anyOf:
-          - type: string
-            format: date
-          - type: 'null'
-          title: Terminated
-        trial:
-          anyOf:
-          - type: string
-            format: date
-          - type: 'null'
-          title: Trial
-        lastDocket:
-          anyOf:
-          - type: string
-            format: date
-          - type: 'null'
-          title: Lastdocket
-      additionalProperties: false
-      type: object
-      required:
-      - filed
-      - trial
-      - lastDocket
-      title: DistrictCaseDates
-    Attorney:
-      properties:
-        name:
-          type: string
-          title: Name
-        attorneyId:
-          type: integer
-          title: Attorneyid
-        lawFirmIds:
-          items:
-            type: integer
-          type: array
-          uniqueItems: true
-          title: Lawfirmids
-        clientsPartyIds:
-          items:
-            type: integer
-          type: array
-          uniqueItems: true
-          title: Clientspartyids
-      additionalProperties: false
-      type: object
-      required:
-      - name
-      - attorneyId
-      - lawFirmIds
-      - clientsPartyIds
-      title: Attorney
+      title: CaseTagsFilter
     DocketEntry:
       properties:
         filedOn:
@@ -4700,19 +4702,6 @@ components:
       - number
       - docketEntryId
       title: DocketEntry
-    MassCounterfeiterDefaultDamages:
-      properties:
-        amountPerDefendant:
-          anyOf:
-          - type: string
-            pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
-          - $ref: '#/components/schemas/UnspecifiedDamagesAmount'
-          title: Amountperdefendant
-      additionalProperties: false
-      type: object
-      required:
-      - amountPerDefendant
-      title: MassCounterfeiterDefaultDamages
     NatureOfSuit:
       properties:
         code:
@@ -4727,249 +4716,52 @@ components:
       - code
       - title
       title: NatureOfSuit
-    DistrictCaseRemediesByStatus:
+    DistrictCaseDates:
       properties:
-        active:
-          items:
-            $ref: '#/components/schemas/DistrictCaseRemedy'
-          type: array
-          title: Active
-        voided:
-          items:
-            $ref: '#/components/schemas/DistrictCaseRemedy'
-          type: array
-          title: Voided
-        reversed:
-          items:
-            $ref: '#/components/schemas/DistrictCaseRemedy'
-          type: array
-          title: Reversed
-      additionalProperties: false
-      type: object
-      required:
-      - active
-      - voided
-      - reversed
-      title: DistrictCaseRemediesByStatus
-    ResolutionsFilter:
-      properties:
-        include:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/IndividualResolutionsFilter'
-            type: array
-          - type: 'null'
-          title: Include
-        exclude:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/IndividualResolutionsFilter'
-            type: array
-          - type: 'null'
-          title: Exclude
-      additionalProperties: false
-      type: object
-      title: ResolutionsFilter
-    EventFilter:
-      properties:
-        include:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Include
-        exclude:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Exclude
-      additionalProperties: false
-      type: object
-      title: EventFilter
-    Orders:
-      properties:
-        expertWitnessesAdmissibilityOrders:
-          $ref: '#/components/schemas/ExpertWitnessesAdmissibilityOrderByStatus'
-      additionalProperties: false
-      type: object
-      required:
-      - expertWitnessesAdmissibilityOrders
-      title: Orders
-    DistrictCaseQuery:
-      properties:
-        caseStatus:
-          anyOf:
-          - $ref: '#/components/schemas/CaseStatus'
-          - type: 'null'
-        caseTypes:
-          anyOf:
-          - $ref: '#/components/schemas/CaseTypesFilter'
-          - type: 'null'
-        caseTags:
-          anyOf:
-          - $ref: '#/components/schemas/CaseTagsFilter'
-          - type: 'null'
-        dates:
-          anyOf:
-          - $ref: '#/components/schemas/CaseDatesFilter'
-          - type: 'null'
-        judges:
-          anyOf:
-          - $ref: '#/components/schemas/JudgeFilter'
-          - type: 'null'
-        magistrates:
-          anyOf:
-          - $ref: '#/components/schemas/MagistrateFilter'
-          - type: 'null'
-        events:
-          anyOf:
-          - $ref: '#/components/schemas/EventFilter'
-          - type: 'null'
-        lawFirms:
-          anyOf:
-          - $ref: '#/components/schemas/LawFirmFilter'
-          - type: 'null'
-        attorneys:
-          anyOf:
-          - $ref: '#/components/schemas/AttorneyFilter'
-          - type: 'null'
-        parties:
-          anyOf:
-          - $ref: '#/components/schemas/PartyFilter'
-          - type: 'null'
-        courts:
-          anyOf:
-          - $ref: '#/components/schemas/CourtFilter'
-          - type: 'null'
-        resolutions:
-          anyOf:
-          - $ref: '#/components/schemas/ResolutionsFilter'
-          - type: 'null'
-        findings:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/IndividualFindingsFilter'
-            type: array
-          - type: 'null'
-          title: Findings
-        remedies:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/IndividualRemediesFilter'
-            type: array
-          - type: 'null'
-          title: Remedies
-        damages:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/IndividualDamagesFilter'
-            type: array
-          - type: 'null'
-          title: Damages
-        patents:
-          anyOf:
-          - $ref: '#/components/schemas/PatentFilter'
-          - type: 'null'
-        mdl:
-          anyOf:
-          - $ref: '#/components/schemas/MultidistrictLitigationFilter'
-          - type: 'null'
-        appellateDecisions:
-          anyOf:
-          - $ref: '#/components/schemas/AppellateDecisionFilter'
-          - type: 'null'
-        ordering:
-          $ref: '#/components/schemas/Ordering'
-          default: ByFirstFiled
-        page:
-          type: integer
-          title: Page
-          default: 1
-        pageSize:
-          type: integer
-          title: Pagesize
-          default: 5
-      additionalProperties: false
-      type: object
-      title: DistrictCaseQuery
-    DistrictCaseDamages:
-      properties:
-        name:
+        filed:
           type: string
-          title: Name
+          format: date
+          title: Filed
+        terminated:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: Terminated
+        trial:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: Trial
+        lastDocket:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: Lastdocket
+      additionalProperties: false
+      type: object
+      required:
+      - filed
+      - trial
+      - lastDocket
+      title: DistrictCaseDates
+    CaseEvent:
+      properties:
         type:
           type: string
           title: Type
-        judgmentSource:
-          type: string
-          title: Judgmentsource
-        awardedToPartyIds:
-          items:
-            type: integer
-          type: array
-          title: Awardedtopartyids
-        awardedAgainstPartyIds:
-          items:
-            type: integer
-          type: array
-          title: Awardedagainstpartyids
-        amount:
-          anyOf:
-          - $ref: '#/components/schemas/UnspecifiedDamagesAmount'
-          - type: string
-            pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
-          - $ref: '#/components/schemas/MassCounterfeiterDefaultDamages'
-          title: Amount
-        awarded:
+        occurred:
           type: string
           format: date
-          title: Awarded
-        negated:
-          anyOf:
-          - type: string
-            format: date
-          - type: 'null'
-          title: Negated
-        reinstated:
-          anyOf:
-          - type: string
-            format: date
-          - type: 'null'
-          title: Reinstated
-        docketEntryId:
-          type: integer
-          title: Docketentryid
-        negatedDocketEntryId:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Negateddocketentryid
-        reinstatedDocketEntryId:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Reinstateddocketentryid
+          title: Occurred
       additionalProperties: false
       type: object
       required:
-      - name
       - type
-      - judgmentSource
-      - awardedToPartyIds
-      - awardedAgainstPartyIds
-      - amount
-      - awarded
-      - docketEntryId
-      title: DistrictCaseDamages
-    DocketEntriesIncludedInOutput:
-      type: string
-      enum:
-      - all
-      - none
-      title: DocketEntriesIncludedInOutput
+      - occurred
+      title: CaseEvent
     DistrictCaseData:
       properties:
         districtCaseId:
@@ -5090,31 +4882,6 @@ components:
       - complaintSummary
       title: DistrictCaseData
       description: A single case from a federal district court case and relevant metadata.
-    DistrictCaseNumberSearchResult:
-      properties:
-        totalCount:
-          type: integer
-          title: Totalcount
-        inputCaseNumber:
-          type: string
-          title: Inputcasenumber
-        inputCourt:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Inputcourt
-        matches:
-          items:
-            $ref: '#/components/schemas/DistrictCaseNumberReference'
-          type: array
-          title: Matches
-      additionalProperties: false
-      type: object
-      required:
-      - totalCount
-      - inputCaseNumber
-      - matches
-      title: DistrictCaseNumberSearchResult
     PartyFilter:
       properties:
         include:
@@ -5192,6 +4959,309 @@ components:
       additionalProperties: false
       type: object
       title: PartyFilter
+    DistrictCaseQueryResult:
+      properties:
+        cases:
+          items:
+            $ref: '#/components/schemas/DistrictCaseReference'
+          type: array
+          title: Cases
+      additionalProperties: false
+      type: object
+      required:
+      - cases
+      title: DistrictCaseQueryResult
+    MassCounterfeiterDefaultDamages:
+      properties:
+        amountPerDefendant:
+          anyOf:
+          - type: string
+            pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          - $ref: '#/components/schemas/UnspecifiedDamagesAmount'
+          title: Amountperdefendant
+      additionalProperties: false
+      type: object
+      required:
+      - amountPerDefendant
+      title: MassCounterfeiterDefaultDamages
+    DistrictCaseRemedy:
+      properties:
+        name:
+          type: string
+          title: Name
+        type:
+          type: string
+          title: Type
+        judgmentSource:
+          type: string
+          title: Judgmentsource
+        awardedToPartyIds:
+          items:
+            type: integer
+          type: array
+          title: Awardedtopartyids
+        againstPartyIds:
+          items:
+            type: integer
+          type: array
+          title: Againstpartyids
+        docketEntryFiled:
+          type: string
+          format: date
+          title: Docketentryfiled
+        negated:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: Negated
+        reinstated:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: Reinstated
+        docketEntryId:
+          type: integer
+          title: Docketentryid
+        negatedDocketEntryId:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Negateddocketentryid
+        reinstatedDocketEntryId:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Reinstateddocketentryid
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - type
+      - judgmentSource
+      - awardedToPartyIds
+      - againstPartyIds
+      - docketEntryFiled
+      - docketEntryId
+      title: DistrictCaseRemedy
+    ExpertWitness:
+      properties:
+        name:
+          type: string
+          title: Name
+        expertWitnessId:
+          type: integer
+          title: Expertwitnessid
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - expertWitnessId
+      title: ExpertWitness
+    TimingFilter:
+      properties:
+        onOrAfter:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: Onorafter
+        onOrBefore:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: Onorbefore
+      additionalProperties: false
+      type: object
+      title: TimingFilter
+    DistrictCaseResolution:
+      properties:
+        summary:
+          type: string
+          title: Summary
+        specific:
+          type: string
+          title: Specific
+        docketEntryFiled:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: Docketentryfiled
+        docketEntryId:
+          type: integer
+          title: Docketentryid
+      additionalProperties: false
+      type: object
+      required:
+      - summary
+      - specific
+      - docketEntryFiled
+      - docketEntryId
+      title: DistrictCaseResolution
+    ResolutionsFilter:
+      properties:
+        include:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/IndividualResolutionsFilter'
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/IndividualResolutionsFilter'
+            type: array
+          - type: 'null'
+          title: Exclude
+      additionalProperties: false
+      type: object
+      title: ResolutionsFilter
+    EventFilter:
+      properties:
+        include:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Exclude
+      additionalProperties: false
+      type: object
+      title: EventFilter
+    MultidistrictLitigationFilter:
+      properties:
+        include:
+          anyOf:
+          - items:
+              type: integer
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              type: integer
+            type: array
+          - type: 'null'
+          title: Exclude
+      additionalProperties: false
+      type: object
+      title: MultidistrictLitigationFilter
+    IndividualResolutionsFilter:
+      properties:
+        summary:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Summary
+        specific:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Specific
+      additionalProperties: false
+      type: object
+      title: IndividualResolutionsFilter
+    CaseCountByType:
+      properties:
+        caseType:
+          type: string
+          title: Casetype
+        count:
+          type: integer
+          title: Count
+      additionalProperties: false
+      type: object
+      required:
+      - caseType
+      - count
+      title: CaseCountByType
+    AppealsCase:
+      properties:
+        appealsCaseId:
+          type: integer
+          title: Appealscaseid
+        appealsCaseUrl:
+          type: string
+          title: Appealscaseurl
+        resolution:
+          anyOf:
+          - $ref: '#/components/schemas/DistrictCaseResolution'
+          - type: 'null'
+        filedOn:
+          type: string
+          format: date
+          title: Filedon
+        terminated:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: Terminated
+      additionalProperties: false
+      type: object
+      required:
+      - appealsCaseId
+      - appealsCaseUrl
+      - filedOn
+      title: AppealsCase
+    MultiDistrictLitigation:
+      properties:
+        mdlNo:
+          items:
+            type: integer
+          type: array
+          title: Mdlno
+        masterCaseIds:
+          items:
+            type: integer
+          type: array
+          title: Mastercaseids
+        truncatedData:
+          type: boolean
+          title: Truncateddata
+      additionalProperties: false
+      type: object
+      required:
+      - mdlNo
+      - masterCaseIds
+      - truncatedData
+      title: MultiDistrictLitigation
+    ExpertWitnessesAdmissibilityOrderByStatus:
+      properties:
+        active:
+          items:
+            $ref: '#/components/schemas/ExpertWitnessAdmissibilityOrder'
+          type: array
+          title: Active
+        voided:
+          items:
+            $ref: '#/components/schemas/ExpertWitnessAdmissibilityOrder'
+          type: array
+          title: Voided
+        reversed:
+          items:
+            $ref: '#/components/schemas/ExpertWitnessAdmissibilityOrder'
+          type: array
+          title: Reversed
+      additionalProperties: false
+      type: object
+      required:
+      - active
+      - voided
+      - reversed
+      title: ExpertWitnessesAdmissibilityOrderByStatus
     FederalJudge:
       properties:
         name:
@@ -5206,33 +5276,363 @@ components:
       - name
       - federalJudgeId
       title: FederalJudge
-    LawFirm:
+    Party:
       properties:
         name:
           type: string
           title: Name
-        lawFirmId:
+        partyId:
           type: integer
-          title: Lawfirmid
-        clientPartyIds:
-          items:
-            type: integer
-          type: array
-          uniqueItems: true
-          title: Clientpartyids
+          title: Partyid
+        role:
+          type: string
+          title: Role
       additionalProperties: false
       type: object
       required:
       - name
-      - lawFirmId
-      - clientPartyIds
-      title: LawFirm
-    CaseStatus:
+      - partyId
+      - role
+      title: Party
+    DistrictCaseDamagesByStatus:
+      properties:
+        active:
+          items:
+            $ref: '#/components/schemas/DistrictCaseDamages'
+          type: array
+          title: Active
+        voided:
+          items:
+            $ref: '#/components/schemas/DistrictCaseDamages'
+          type: array
+          title: Voided
+        reversed:
+          items:
+            $ref: '#/components/schemas/DistrictCaseDamages'
+          type: array
+          title: Reversed
+      additionalProperties: false
+      type: object
+      required:
+      - active
+      - voided
+      - reversed
+      title: DistrictCaseDamagesByStatus
+    CaseAnalyticResult:
+      properties:
+        totalCases:
+          type: integer
+          title: Totalcases
+        aggregation:
+          anyOf:
+          - $ref: '#/components/schemas/CaseTypeAggregation'
+          - $ref: '#/components/schemas/PartyAggregation'
+          - $ref: '#/components/schemas/LawFirmAggregation'
+          title: Aggregation
+      additionalProperties: false
+      type: object
+      required:
+      - totalCases
+      - aggregation
+      title: CaseAnalyticResult
+    DistrictCaseNumberReference:
+      properties:
+        url:
+          type: string
+          title: Url
+        districtCaseId:
+          type: integer
+          title: Districtcaseid
+        caseNumber:
+          type: string
+          title: Casenumber
+        court:
+          type: string
+          title: Court
+        title:
+          type: string
+          title: Title
+      additionalProperties: false
+      type: object
+      required:
+      - url
+      - districtCaseId
+      - caseNumber
+      - court
+      - title
+      title: DistrictCaseNumberReference
+    Ordering:
       type: string
       enum:
-      - Open
-      - Terminated
-      title: CaseStatus
+      - ByFirstFiled
+      - ByLastFiled
+      title: Ordering
+    Docket:
+      properties:
+        entries:
+          items:
+            $ref: '#/components/schemas/DocketEntry'
+          type: array
+          title: Entries
+        retrieved:
+          $ref: '#/components/schemas/DocketEntriesIncludedInOutput'
+        count:
+          type: integer
+          title: Count
+      additionalProperties: false
+      type: object
+      required:
+      - entries
+      - retrieved
+      - count
+      title: Docket
+    JudgeFilter:
+      properties:
+        include:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Exclude
+      additionalProperties: false
+      type: object
+      title: JudgeFilter
+    JudgmentSourceFilter:
+      properties:
+        include:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Exclude
+      additionalProperties: false
+      type: object
+      title: JudgmentSourceFilter
+    Orders:
+      properties:
+        expertWitnessesAdmissibilityOrders:
+          $ref: '#/components/schemas/ExpertWitnessesAdmissibilityOrderByStatus'
+      additionalProperties: false
+      type: object
+      required:
+      - expertWitnessesAdmissibilityOrders
+      title: Orders
+    Attorney:
+      properties:
+        name:
+          type: string
+          title: Name
+        attorneyId:
+          type: integer
+          title: Attorneyid
+        lawFirmIds:
+          items:
+            type: integer
+          type: array
+          uniqueItems: true
+          title: Lawfirmids
+        clientsPartyIds:
+          items:
+            type: integer
+          type: array
+          uniqueItems: true
+          title: Clientspartyids
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - attorneyId
+      - lawFirmIds
+      - clientsPartyIds
+      title: Attorney
+    PatentInvalidityReasonsFilter:
+      properties:
+        include:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Include
+      additionalProperties: false
+      type: object
+      title: PatentInvalidityReasonsFilter
+    DistrictCaseFindingsByStatus:
+      properties:
+        active:
+          items:
+            $ref: '#/components/schemas/DistrictCaseFinding'
+          type: array
+          title: Active
+        voided:
+          items:
+            $ref: '#/components/schemas/DistrictCaseFinding'
+          type: array
+          title: Voided
+        reversed:
+          items:
+            $ref: '#/components/schemas/DistrictCaseFinding'
+          type: array
+          title: Reversed
+      additionalProperties: false
+      type: object
+      required:
+      - active
+      - voided
+      - reversed
+      title: DistrictCaseFindingsByStatus
+    CaseTypeAggregation:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/CaseCountByType'
+          type: array
+          title: Data
+      additionalProperties: false
+      type: object
+      required:
+      - data
+      title: CaseTypeAggregation
+    LawFirmCountByRole:
+      properties:
+        lawFirmId:
+          type: integer
+          title: Lawfirmid
+        lawFirmName:
+          type: string
+          title: Lawfirmname
+        rolesAndCounts:
+          items:
+            $ref: '#/components/schemas/CountsPerRole'
+          type: array
+          title: Rolesandcounts
+      additionalProperties: false
+      type: object
+      required:
+      - lawFirmId
+      - lawFirmName
+      - rolesAndCounts
+      title: LawFirmCountByRole
+    DistrictCaseAnalyticFromQuery:
+      properties:
+        analyticType:
+          $ref: '#/components/schemas/AnalyticTypes'
+        districtCaseQuery:
+          $ref: '#/components/schemas/DistrictCaseQuery'
+      additionalProperties: false
+      type: object
+      required:
+      - analyticType
+      - districtCaseQuery
+      title: DistrictCaseAnalyticFromQuery
+    CourtFilter:
+      properties:
+        include:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Exclude
+      additionalProperties: false
+      type: object
+      title: CourtFilter
+    DistrictCaseRemediesByStatus:
+      properties:
+        active:
+          items:
+            $ref: '#/components/schemas/DistrictCaseRemedy'
+          type: array
+          title: Active
+        voided:
+          items:
+            $ref: '#/components/schemas/DistrictCaseRemedy'
+          type: array
+          title: Voided
+        reversed:
+          items:
+            $ref: '#/components/schemas/DistrictCaseRemedy'
+          type: array
+          title: Reversed
+      additionalProperties: false
+      type: object
+      required:
+      - active
+      - voided
+      - reversed
+      title: DistrictCaseRemediesByStatus
+    PartyAggregation:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/PartyCountByRole'
+          type: array
+          title: Data
+      additionalProperties: false
+      type: object
+      required:
+      - data
+      title: PartyAggregation
+    CaseTypesFilter:
+      properties:
+        include:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Exclude
+      additionalProperties: false
+      type: object
+      title: CaseTypesFilter
+    DistrictCaseReference:
+      properties:
+        url:
+          type: string
+          title: Url
+        districtCaseId:
+          type: integer
+          title: Districtcaseid
+      additionalProperties: false
+      type: object
+      required:
+      - url
+      - districtCaseId
+      title: DistrictCaseReference
     ComplaintSummary:
       properties:
         summary:
@@ -5271,227 +5671,106 @@ components:
         sophisticated AI large language model (LLM) to review complaints
 
         and draft the summaries.'
-    CaseTagsFilter:
+    Patent:
       properties:
-        include:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Include
-        exclude:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Exclude
-      additionalProperties: false
-      type: object
-      title: CaseTagsFilter
-    DistrictCaseResolution:
-      properties:
-        summary:
+        number:
           type: string
-          title: Summary
-        specific:
-          type: string
-          title: Specific
-        docketEntryFiled:
+          title: Number
+        title:
           anyOf:
           - type: string
-            format: date
           - type: 'null'
-          title: Docketentryfiled
-        docketEntryId:
-          type: integer
-          title: Docketentryid
+          title: Title
       additionalProperties: false
       type: object
       required:
-      - summary
-      - specific
-      - docketEntryFiled
-      - docketEntryId
-      title: DistrictCaseResolution
-    MagistrateFilter:
+      - number
+      title: Patent
+    IndividualDamagesFilter:
       properties:
-        include:
+        judgmentSource:
+          anyOf:
+          - $ref: '#/components/schemas/JudgmentSourceFilter'
+          - type: 'null'
+        nameType:
+          anyOf:
+          - $ref: '#/components/schemas/NameTypeFilter'
+          - type: 'null'
+        date:
+          anyOf:
+          - $ref: '#/components/schemas/TimingFilter'
+          - type: 'null'
+        awardedToParties:
           anyOf:
           - items:
               type: integer
             type: array
           - type: 'null'
-          title: Include
-        exclude:
+          title: Awardedtoparties
+        awardedAgainstParties:
           anyOf:
           - items:
               type: integer
             type: array
           - type: 'null'
-          title: Exclude
+          title: Awardedagainstparties
+        minimumAmount:
+          anyOf:
+          - type: number
+          - type: string
+            pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          - type: 'null'
+          title: Minimumamount
       additionalProperties: false
       type: object
-      title: MagistrateFilter
-    CountsPerRole:
+      title: IndividualDamagesFilter
+    UnspecifiedDamagesAmount:
+      type: string
+      enum:
+      - NotSpecified
+      title: UnspecifiedDamagesAmount
+    LawFirm:
       properties:
-        role:
+        name:
           type: string
-          title: Role
-        count:
+          title: Name
+        lawFirmId:
           type: integer
-          title: Count
+          title: Lawfirmid
+        clientPartyIds:
+          items:
+            type: integer
+          type: array
+          uniqueItems: true
+          title: Clientpartyids
       additionalProperties: false
       type: object
       required:
-      - role
-      - count
-      title: CountsPerRole
-    PartyCountByRole:
+      - name
+      - lawFirmId
+      - clientPartyIds
+      title: LawFirm
+    DocketEntriesIncludedInOutput:
+      type: string
+      enum:
+      - all
+      - none
+      title: DocketEntriesIncludedInOutput
+    IndividualNameTypeFilter:
       properties:
-        partyId:
-          type: integer
-          title: Partyid
-        partyName:
-          type: string
-          title: Partyname
-        rolesAndCounts:
-          items:
-            $ref: '#/components/schemas/CountsPerRole'
-          type: array
-          title: Rolesandcounts
-      additionalProperties: false
-      type: object
-      required:
-      - partyId
-      - partyName
-      - rolesAndCounts
-      title: PartyCountByRole
-    LawFirmAggregation:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/LawFirmCountByRole'
-          type: array
-          title: Data
-      additionalProperties: false
-      type: object
-      required:
-      - data
-      title: LawFirmAggregation
-    DistrictCaseFindingsByStatus:
-      properties:
-        active:
-          items:
-            $ref: '#/components/schemas/DistrictCaseFinding'
-          type: array
-          title: Active
-        voided:
-          items:
-            $ref: '#/components/schemas/DistrictCaseFinding'
-          type: array
-          title: Voided
-        reversed:
-          items:
-            $ref: '#/components/schemas/DistrictCaseFinding'
-          type: array
-          title: Reversed
-      additionalProperties: false
-      type: object
-      required:
-      - active
-      - voided
-      - reversed
-      title: DistrictCaseFindingsByStatus
-    DistrictCaseAnalyticFromQuery:
-      properties:
-        analyticType:
-          $ref: '#/components/schemas/AnalyticTypes'
-        districtCaseQuery:
-          $ref: '#/components/schemas/DistrictCaseQuery'
-      additionalProperties: false
-      type: object
-      required:
-      - analyticType
-      - districtCaseQuery
-      title: DistrictCaseAnalyticFromQuery
-    JudgeFilter:
-      properties:
-        include:
+        name:
           anyOf:
-          - items:
-              type: integer
-              exclusiveMaximum: 2147483647.0
-              exclusiveMinimum: 0.0
-            type: array
+          - type: string
           - type: 'null'
-          title: Include
-        exclude:
+          title: Name
+        type:
           anyOf:
-          - items:
-              type: integer
-              exclusiveMaximum: 2147483647.0
-              exclusiveMinimum: 0.0
-            type: array
+          - type: string
           - type: 'null'
-          title: Exclude
+          title: Type
       additionalProperties: false
       type: object
-      title: JudgeFilter
-    DistrictCaseQueryResult:
-      properties:
-        cases:
-          items:
-            $ref: '#/components/schemas/DistrictCaseReference'
-          type: array
-          title: Cases
-      additionalProperties: false
-      type: object
-      required:
-      - cases
-      title: DistrictCaseQueryResult
-    ExpertWitnessesAdmissibilityOrderByStatus:
-      properties:
-        active:
-          items:
-            $ref: '#/components/schemas/ExpertWitnessAdmissibilityOrder'
-          type: array
-          title: Active
-        voided:
-          items:
-            $ref: '#/components/schemas/ExpertWitnessAdmissibilityOrder'
-          type: array
-          title: Voided
-        reversed:
-          items:
-            $ref: '#/components/schemas/ExpertWitnessAdmissibilityOrder'
-          type: array
-          title: Reversed
-      additionalProperties: false
-      type: object
-      required:
-      - active
-      - voided
-      - reversed
-      title: ExpertWitnessesAdmissibilityOrderByStatus
-    CaseAnalyticResult:
-      properties:
-        totalCases:
-          type: integer
-          title: Totalcases
-        aggregation:
-          anyOf:
-          - $ref: '#/components/schemas/CaseTypeAggregation'
-          - $ref: '#/components/schemas/PartyAggregation'
-          - $ref: '#/components/schemas/LawFirmAggregation'
-          title: Aggregation
-      additionalProperties: false
-      type: object
-      required:
-      - totalCases
-      - aggregation
-      title: CaseAnalyticResult
+      title: IndividualNameTypeFilter
     MagistrateJudge:
       properties:
         name:
@@ -5506,7 +5785,7 @@ components:
       - name
       - magistrateJudgeId
       title: MagistrateJudge
-    CourtFilter:
+    PatentFilter:
       properties:
         include:
           anyOf:
@@ -5524,20 +5803,288 @@ components:
           title: Exclude
       additionalProperties: false
       type: object
-      title: CourtFilter
-    CaseTypeAggregation:
+      title: PatentFilter
+    IndividualFindingsFilter:
       properties:
-        data:
+        judgmentSource:
+          anyOf:
+          - $ref: '#/components/schemas/JudgmentSourceFilter'
+          - type: 'null'
+        nameType:
+          anyOf:
+          - $ref: '#/components/schemas/NameTypeFilter'
+          - type: 'null'
+        date:
+          anyOf:
+          - $ref: '#/components/schemas/TimingFilter'
+          - type: 'null'
+        awardedToParties:
+          anyOf:
+          - items:
+              type: integer
+            type: array
+          - type: 'null'
+          title: Awardedtoparties
+        awardedAgainstParties:
+          anyOf:
+          - items:
+              type: integer
+            type: array
+          - type: 'null'
+          title: Awardedagainstparties
+        patentInvalidityReasons:
+          anyOf:
+          - $ref: '#/components/schemas/PatentInvalidityReasonsFilter'
+          - type: 'null'
+      additionalProperties: false
+      type: object
+      title: IndividualFindingsFilter
+    ExpertWitnessAdmissibilityOrder:
+      properties:
+        expertWitness:
+          $ref: '#/components/schemas/ExpertWitness'
+        retainingPartyIds:
           items:
-            $ref: '#/components/schemas/CaseCountByType'
+            type: integer
           type: array
-          title: Data
+          title: Retainingpartyids
+        opposingPartyIds:
+          items:
+            type: integer
+          type: array
+          title: Opposingpartyids
+        judge:
+          anyOf:
+          - $ref: '#/components/schemas/FederalJudge'
+          - $ref: '#/components/schemas/MagistrateJudge'
+          - type: 'null'
+          title: Judge
+        docketEntryFiled:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: Docketentryfiled
+        outcome:
+          type: string
+          title: Outcome
+        occurred:
+          type: string
+          format: date
+          title: Occurred
+        negated:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: Negated
+        reinstated:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: Reinstated
       additionalProperties: false
       type: object
       required:
-      - data
-      title: CaseTypeAggregation
-    AttorneyFilter:
+      - expertWitness
+      - retainingPartyIds
+      - opposingPartyIds
+      - outcome
+      - occurred
+      title: ExpertWitnessAdmissibilityOrder
+    DistrictCaseQuery:
+      properties:
+        caseStatus:
+          anyOf:
+          - $ref: '#/components/schemas/CaseStatus'
+          - type: 'null'
+        caseTypes:
+          anyOf:
+          - $ref: '#/components/schemas/CaseTypesFilter'
+          - type: 'null'
+        caseTags:
+          anyOf:
+          - $ref: '#/components/schemas/CaseTagsFilter'
+          - type: 'null'
+        dates:
+          anyOf:
+          - $ref: '#/components/schemas/CaseDatesFilter'
+          - type: 'null'
+        judges:
+          anyOf:
+          - $ref: '#/components/schemas/JudgeFilter'
+          - type: 'null'
+        magistrates:
+          anyOf:
+          - $ref: '#/components/schemas/MagistrateFilter'
+          - type: 'null'
+        events:
+          anyOf:
+          - $ref: '#/components/schemas/EventFilter'
+          - type: 'null'
+        lawFirms:
+          anyOf:
+          - $ref: '#/components/schemas/LawFirmFilter'
+          - type: 'null'
+        attorneys:
+          anyOf:
+          - $ref: '#/components/schemas/AttorneyFilter'
+          - type: 'null'
+        parties:
+          anyOf:
+          - $ref: '#/components/schemas/PartyFilter'
+          - type: 'null'
+        courts:
+          anyOf:
+          - $ref: '#/components/schemas/CourtFilter'
+          - type: 'null'
+        resolutions:
+          anyOf:
+          - $ref: '#/components/schemas/ResolutionsFilter'
+          - type: 'null'
+        findings:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/IndividualFindingsFilter'
+            type: array
+          - type: 'null'
+          title: Findings
+        remedies:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/IndividualRemediesFilter'
+            type: array
+          - type: 'null'
+          title: Remedies
+        damages:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/IndividualDamagesFilter'
+            type: array
+          - type: 'null'
+          title: Damages
+        patents:
+          anyOf:
+          - $ref: '#/components/schemas/PatentFilter'
+          - type: 'null'
+        mdl:
+          anyOf:
+          - $ref: '#/components/schemas/MultidistrictLitigationFilter'
+          - type: 'null'
+        appellateDecisions:
+          anyOf:
+          - $ref: '#/components/schemas/AppellateDecisionFilter'
+          - type: 'null'
+        ordering:
+          $ref: '#/components/schemas/Ordering'
+          default: ByFirstFiled
+        page:
+          type: integer
+          title: Page
+          default: 1
+        pageSize:
+          type: integer
+          title: Pagesize
+          default: 5
+      additionalProperties: false
+      type: object
+      title: DistrictCaseQuery
+    DistrictCaseNumberSearchResult:
+      properties:
+        totalCount:
+          type: integer
+          title: Totalcount
+        inputCaseNumber:
+          type: string
+          title: Inputcasenumber
+        inputCourt:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Inputcourt
+        matches:
+          items:
+            $ref: '#/components/schemas/DistrictCaseNumberReference'
+          type: array
+          title: Matches
+      additionalProperties: false
+      type: object
+      required:
+      - totalCount
+      - inputCaseNumber
+      - matches
+      title: DistrictCaseNumberSearchResult
+    DistrictCaseDamages:
+      properties:
+        name:
+          type: string
+          title: Name
+        type:
+          type: string
+          title: Type
+        judgmentSource:
+          type: string
+          title: Judgmentsource
+        awardedToPartyIds:
+          items:
+            type: integer
+          type: array
+          title: Awardedtopartyids
+        awardedAgainstPartyIds:
+          items:
+            type: integer
+          type: array
+          title: Awardedagainstpartyids
+        amount:
+          anyOf:
+          - $ref: '#/components/schemas/UnspecifiedDamagesAmount'
+          - type: string
+            pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          - $ref: '#/components/schemas/MassCounterfeiterDefaultDamages'
+          title: Amount
+        awarded:
+          type: string
+          format: date
+          title: Awarded
+        negated:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: Negated
+        reinstated:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: Reinstated
+        docketEntryId:
+          type: integer
+          title: Docketentryid
+        negatedDocketEntryId:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Negateddocketentryid
+        reinstatedDocketEntryId:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Reinstateddocketentryid
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - type
+      - judgmentSource
+      - awardedToPartyIds
+      - awardedAgainstPartyIds
+      - amount
+      - awarded
+      - docketEntryId
+      title: DistrictCaseDamages
+    LawFirmFilter:
       properties:
         include:
           anyOf:
@@ -5613,215 +6160,7 @@ components:
           title: Excludethirdparty
       additionalProperties: false
       type: object
-      title: AttorneyFilter
-    CaseTypesFilter:
-      properties:
-        include:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Include
-        exclude:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Exclude
-      additionalProperties: false
-      type: object
-      title: CaseTypesFilter
-    DistrictCaseReference:
-      properties:
-        url:
-          type: string
-          title: Url
-        districtCaseId:
-          type: integer
-          title: Districtcaseid
-      additionalProperties: false
-      type: object
-      required:
-      - url
-      - districtCaseId
-      title: DistrictCaseReference
-    DistrictCaseFinding:
-      properties:
-        name:
-          type: string
-          title: Name
-        type:
-          type: string
-          title: Type
-        judgmentSource:
-          type: string
-          title: Judgmentsource
-        inFavorOfPartyIds:
-          items:
-            type: integer
-          type: array
-          title: Infavorofpartyids
-        patentInvalidityReasons:
-          items:
-            type: string
-          type: array
-          title: Patentinvalidityreasons
-          description: Use 'specificReasons' instead
-          deprecated: true
-        againstPartyIds:
-          items:
-            type: integer
-          type: array
-          title: Againstpartyids
-        docketEntryFiled:
-          type: string
-          format: date
-          title: Docketentryfiled
-        specificReasons:
-          items:
-            type: string
-          type: array
-          title: Specificreasons
-          default: []
-        negated:
-          anyOf:
-          - type: string
-            format: date
-          - type: 'null'
-          title: Negated
-        reinstated:
-          anyOf:
-          - type: string
-            format: date
-          - type: 'null'
-          title: Reinstated
-        docketEntryId:
-          type: integer
-          title: Docketentryid
-        negatedDocketEntryId:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Negateddocketentryid
-        reinstatedDocketEntryId:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Reinstateddocketentryid
-      additionalProperties: false
-      type: object
-      required:
-      - name
-      - type
-      - judgmentSource
-      - inFavorOfPartyIds
-      - patentInvalidityReasons
-      - againstPartyIds
-      - docketEntryFiled
-      - docketEntryId
-      title: DistrictCaseFinding
-      description: 'The following schema field is deprecated:
-
-        - **patentInvalidityReasons**: this field replaced by the new **specificReasons** field'
-    CaseCountByType:
-      properties:
-        caseType:
-          type: string
-          title: Casetype
-        count:
-          type: integer
-          title: Count
-      additionalProperties: false
-      type: object
-      required:
-      - caseType
-      - count
-      title: CaseCountByType
-    AppellateDecisionFilter:
-      properties:
-        include:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Include
-        exclude:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Exclude
-      additionalProperties: false
-      type: object
-      title: AppellateDecisionFilter
-    PartyAggregation:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/PartyCountByRole'
-          type: array
-          title: Data
-      additionalProperties: false
-      type: object
-      required:
-      - data
-      title: PartyAggregation
-    ExpertWitness:
-      properties:
-        name:
-          type: string
-          title: Name
-        expertWitnessId:
-          type: integer
-          title: Expertwitnessid
-      additionalProperties: false
-      type: object
-      required:
-      - name
-      - expertWitnessId
-      title: ExpertWitness
-    IndividualDamagesFilter:
-      properties:
-        judgmentSource:
-          anyOf:
-          - $ref: '#/components/schemas/JudgmentSourceFilter'
-          - type: 'null'
-        nameType:
-          anyOf:
-          - $ref: '#/components/schemas/NameTypeFilter'
-          - type: 'null'
-        date:
-          anyOf:
-          - $ref: '#/components/schemas/TimingFilter'
-          - type: 'null'
-        awardedToParties:
-          anyOf:
-          - items:
-              type: integer
-            type: array
-          - type: 'null'
-          title: Awardedtoparties
-        awardedAgainstParties:
-          anyOf:
-          - items:
-              type: integer
-            type: array
-          - type: 'null'
-          title: Awardedagainstparties
-        minimumAmount:
-          anyOf:
-          - type: number
-          - type: string
-            pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
-          - type: 'null'
-          title: Minimumamount
-      additionalProperties: false
-      type: object
-      title: IndividualDamagesFilter
+      title: LawFirmFilter
     IndividualRemediesFilter:
       properties:
         judgmentSource:
@@ -5853,370 +6192,6 @@ components:
       additionalProperties: false
       type: object
       title: IndividualRemediesFilter
-    CaseEvent:
-      properties:
-        type:
-          type: string
-          title: Type
-        occurred:
-          type: string
-          format: date
-          title: Occurred
-      additionalProperties: false
-      type: object
-      required:
-      - type
-      - occurred
-      title: CaseEvent
-    ExpertWitnessAdmissibilityOrder:
-      properties:
-        expertWitness:
-          $ref: '#/components/schemas/ExpertWitness'
-        retainingPartyIds:
-          items:
-            type: integer
-          type: array
-          title: Retainingpartyids
-        opposingPartyIds:
-          items:
-            type: integer
-          type: array
-          title: Opposingpartyids
-        judge:
-          anyOf:
-          - $ref: '#/components/schemas/FederalJudge'
-          - $ref: '#/components/schemas/MagistrateJudge'
-          - type: 'null'
-          title: Judge
-        docketEntryFiled:
-          anyOf:
-          - type: string
-            format: date
-          - type: 'null'
-          title: Docketentryfiled
-        outcome:
-          type: string
-          title: Outcome
-        occurred:
-          type: string
-          format: date
-          title: Occurred
-        negated:
-          anyOf:
-          - type: string
-            format: date
-          - type: 'null'
-          title: Negated
-        reinstated:
-          anyOf:
-          - type: string
-            format: date
-          - type: 'null'
-          title: Reinstated
-      additionalProperties: false
-      type: object
-      required:
-      - expertWitness
-      - retainingPartyIds
-      - opposingPartyIds
-      - outcome
-      - occurred
-      title: ExpertWitnessAdmissibilityOrder
-    DistrictCaseDamagesByStatus:
-      properties:
-        active:
-          items:
-            $ref: '#/components/schemas/DistrictCaseDamages'
-          type: array
-          title: Active
-        voided:
-          items:
-            $ref: '#/components/schemas/DistrictCaseDamages'
-          type: array
-          title: Voided
-        reversed:
-          items:
-            $ref: '#/components/schemas/DistrictCaseDamages'
-          type: array
-          title: Reversed
-      additionalProperties: false
-      type: object
-      required:
-      - active
-      - voided
-      - reversed
-      title: DistrictCaseDamagesByStatus
-    TimingFilter:
-      properties:
-        onOrAfter:
-          anyOf:
-          - type: string
-            format: date
-          - type: 'null'
-          title: Onorafter
-        onOrBefore:
-          anyOf:
-          - type: string
-            format: date
-          - type: 'null'
-          title: Onorbefore
-      additionalProperties: false
-      type: object
-      title: TimingFilter
-    PatentFilter:
-      properties:
-        include:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Include
-        exclude:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Exclude
-      additionalProperties: false
-      type: object
-      title: PatentFilter
-    IndividualFindingsFilter:
-      properties:
-        judgmentSource:
-          anyOf:
-          - $ref: '#/components/schemas/JudgmentSourceFilter'
-          - type: 'null'
-        nameType:
-          anyOf:
-          - $ref: '#/components/schemas/NameTypeFilter'
-          - type: 'null'
-        date:
-          anyOf:
-          - $ref: '#/components/schemas/TimingFilter'
-          - type: 'null'
-        awardedToParties:
-          anyOf:
-          - items:
-              type: integer
-            type: array
-          - type: 'null'
-          title: Awardedtoparties
-        awardedAgainstParties:
-          anyOf:
-          - items:
-              type: integer
-            type: array
-          - type: 'null'
-          title: Awardedagainstparties
-        patentInvalidityReasons:
-          anyOf:
-          - $ref: '#/components/schemas/PatentInvalidityReasonsFilter'
-          - type: 'null'
-      additionalProperties: false
-      type: object
-      title: IndividualFindingsFilter
-    AppealsCase:
-      properties:
-        appealsCaseId:
-          type: integer
-          title: Appealscaseid
-        appealsCaseUrl:
-          type: string
-          title: Appealscaseurl
-        resolution:
-          anyOf:
-          - $ref: '#/components/schemas/DistrictCaseResolution'
-          - type: 'null'
-        filedOn:
-          type: string
-          format: date
-          title: Filedon
-        terminated:
-          anyOf:
-          - type: string
-            format: date
-          - type: 'null'
-          title: Terminated
-      additionalProperties: false
-      type: object
-      required:
-      - appealsCaseId
-      - appealsCaseUrl
-      - filedOn
-      title: AppealsCase
-    Party:
-      properties:
-        name:
-          type: string
-          title: Name
-        partyId:
-          type: integer
-          title: Partyid
-        role:
-          type: string
-          title: Role
-      additionalProperties: false
-      type: object
-      required:
-      - name
-      - partyId
-      - role
-      title: Party
-    NameTypeFilter:
-      properties:
-        include:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/IndividualNameTypeFilter'
-            type: array
-          - type: 'null'
-          title: Include
-        exclude:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/IndividualNameTypeFilter'
-            type: array
-          - type: 'null'
-          title: Exclude
-      additionalProperties: false
-      type: object
-      title: NameTypeFilter
-    JudgmentSourceFilter:
-      properties:
-        include:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Include
-        exclude:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Exclude
-      additionalProperties: false
-      type: object
-      title: JudgmentSourceFilter
-    LawFirmCountByRole:
-      properties:
-        lawFirmId:
-          type: integer
-          title: Lawfirmid
-        lawFirmName:
-          type: string
-          title: Lawfirmname
-        rolesAndCounts:
-          items:
-            $ref: '#/components/schemas/CountsPerRole'
-          type: array
-          title: Rolesandcounts
-      additionalProperties: false
-      type: object
-      required:
-      - lawFirmId
-      - lawFirmName
-      - rolesAndCounts
-      title: LawFirmCountByRole
-    DistrictCaseRemedy:
-      properties:
-        name:
-          type: string
-          title: Name
-        type:
-          type: string
-          title: Type
-        judgmentSource:
-          type: string
-          title: Judgmentsource
-        awardedToPartyIds:
-          items:
-            type: integer
-          type: array
-          title: Awardedtopartyids
-        againstPartyIds:
-          items:
-            type: integer
-          type: array
-          title: Againstpartyids
-        docketEntryFiled:
-          type: string
-          format: date
-          title: Docketentryfiled
-        negated:
-          anyOf:
-          - type: string
-            format: date
-          - type: 'null'
-          title: Negated
-        reinstated:
-          anyOf:
-          - type: string
-            format: date
-          - type: 'null'
-          title: Reinstated
-        docketEntryId:
-          type: integer
-          title: Docketentryid
-        negatedDocketEntryId:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Negateddocketentryid
-        reinstatedDocketEntryId:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Reinstateddocketentryid
-      additionalProperties: false
-      type: object
-      required:
-      - name
-      - type
-      - judgmentSource
-      - awardedToPartyIds
-      - againstPartyIds
-      - docketEntryFiled
-      - docketEntryId
-      title: DistrictCaseRemedy
-    IndividualResolutionsFilter:
-      properties:
-        summary:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Summary
-        specific:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Specific
-      additionalProperties: false
-      type: object
-      title: IndividualResolutionsFilter
-    Docket:
-      properties:
-        entries:
-          items:
-            $ref: '#/components/schemas/DocketEntry'
-          type: array
-          title: Entries
-        retrieved:
-          $ref: '#/components/schemas/DocketEntriesIncludedInOutput'
-        count:
-          type: integer
-          title: Count
-      additionalProperties: false
-      type: object
-      required:
-      - entries
-      - retrieved
-      - count
-      title: Docket
     CaseDatesFilter:
       properties:
         filed:
@@ -6238,6 +6213,31 @@ components:
       additionalProperties: false
       type: object
       title: CaseDatesFilter
+    CaseStatus:
+      type: string
+      enum:
+      - Open
+      - Terminated
+      title: CaseStatus
+    MagistrateFilter:
+      properties:
+        include:
+          anyOf:
+          - items:
+              type: integer
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              type: integer
+            type: array
+          - type: 'null'
+          title: Exclude
+      additionalProperties: false
+      type: object
+      title: MagistrateFilter
   securitySchemes:
     JwtAccessBearer:
       type: http

@@ -192,7 +192,7 @@ paths:
 
         - **page_number**: page number of the results
 
-        - **page_size**:  results per page
+        - **page_size**: results per page
 
 
         This is a case-insensitive search that will match anywhere within the name of the attorney.
@@ -330,6 +330,20 @@ components:
       - attorneyId
       - url
       title: AttorneyResult
+    AttorneyData:
+      properties:
+        name:
+          type: string
+          title: Name
+        attorneyId:
+          type: integer
+          title: Attorneyid
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - attorneyId
+      title: AttorneyData
     AttorneyReference:
       properties:
         name:
@@ -355,20 +369,6 @@ components:
       description: 'Indicates that the Lex Machina attorney id input was has changed,
 
         the inputId is the ID given that should map to the returned attorneyId.'
-    AttorneyData:
-      properties:
-        name:
-          type: string
-          title: Name
-        attorneyId:
-          type: integer
-          title: Attorneyid
-      additionalProperties: false
-      type: object
-      required:
-      - name
-      - attorneyId
-      title: AttorneyData
   securitySchemes:
     JwtAccessBearer:
       type: http

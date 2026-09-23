@@ -306,7 +306,7 @@ paths:
         - **data**: the appeals case query
 
 
-        See [https://developer.lexmachina.com/posts/query/appeals_query_usage/](https://developer.lexmachina.com/posts/query/appeals_query_usage/) for query formation.
+        See https://developer.lexmachina.com/posts/query/appeals_query_usage/ for query formation.
 
 
         The results will contain a list of cases, each with a specificed url and Lex Machina appealsCaseId.'
@@ -406,126 +406,7 @@ paths:
       - JwtAccessBearer: []
 components:
   schemas:
-    AppealsPartyFilter:
-      properties:
-        include:
-          anyOf:
-          - items:
-              type: integer
-              exclusiveMaximum: 2147483647.0
-              exclusiveMinimum: 0.0
-            type: array
-          - type: 'null'
-          title: Include
-        exclude:
-          anyOf:
-          - items:
-              type: integer
-              exclusiveMaximum: 2147483647.0
-              exclusiveMinimum: 0.0
-            type: array
-          - type: 'null'
-          title: Exclude
-        includeAppellant:
-          anyOf:
-          - items:
-              type: integer
-              exclusiveMaximum: 2147483647.0
-              exclusiveMinimum: 0.0
-            type: array
-          - type: 'null'
-          title: Includeappellant
-        excludeAppellant:
-          anyOf:
-          - items:
-              type: integer
-              exclusiveMaximum: 2147483647.0
-              exclusiveMinimum: 0.0
-            type: array
-          - type: 'null'
-          title: Excludeappellant
-        includeAppellee:
-          anyOf:
-          - items:
-              type: integer
-              exclusiveMaximum: 2147483647.0
-              exclusiveMinimum: 0.0
-            type: array
-          - type: 'null'
-          title: Includeappellee
-        excludeAppellee:
-          anyOf:
-          - items:
-              type: integer
-              exclusiveMaximum: 2147483647.0
-              exclusiveMinimum: 0.0
-            type: array
-          - type: 'null'
-          title: Excludeappellee
-        includeRespondent:
-          anyOf:
-          - items:
-              type: integer
-              exclusiveMaximum: 2147483647.0
-              exclusiveMinimum: 0.0
-            type: array
-          - type: 'null'
-          title: Includerespondent
-        excludeRespondent:
-          anyOf:
-          - items:
-              type: integer
-              exclusiveMaximum: 2147483647.0
-              exclusiveMinimum: 0.0
-            type: array
-          - type: 'null'
-          title: Excluderespondent
-        includeThirdParty:
-          anyOf:
-          - items:
-              type: integer
-              exclusiveMaximum: 2147483647.0
-              exclusiveMinimum: 0.0
-            type: array
-          - type: 'null'
-          title: Includethirdparty
-        excludeThirdParty:
-          anyOf:
-          - items:
-              type: integer
-              exclusiveMaximum: 2147483647.0
-              exclusiveMinimum: 0.0
-            type: array
-          - type: 'null'
-          title: Excludethirdparty
-        includePetitionerMovant:
-          anyOf:
-          - items:
-              type: integer
-              exclusiveMaximum: 2147483647.0
-              exclusiveMinimum: 0.0
-            type: array
-          - type: 'null'
-          title: Includepetitionermovant
-        excludePetitionerMovant:
-          anyOf:
-          - items:
-              type: integer
-              exclusiveMaximum: 2147483647.0
-              exclusiveMinimum: 0.0
-            type: array
-          - type: 'null'
-          title: Excludepetitionermovant
-      additionalProperties: false
-      type: object
-      title: AppealsPartyFilter
-    Ordering:
-      type: string
-      enum:
-      - ByFirstFiled
-      - ByLastFiled
-      title: Ordering
-    OriginatingVenuesFilter:
+    CaseTagsFilter:
       properties:
         include:
           anyOf:
@@ -543,149 +424,54 @@ components:
           title: Exclude
       additionalProperties: false
       type: object
-      title: OriginatingVenuesFilter
-    AppealsCaseData:
+      title: CaseTagsFilter
+    SupremeCourtDecisionsFilter:
       properties:
-        appealsCaseId:
+        include:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Exclude
+      additionalProperties: false
+      type: object
+      title: SupremeCourtDecisionsFilter
+    OriginatingDistrictCourtCase:
+      properties:
+        districtCaseId:
           type: integer
-          title: Appealscaseid
-        title:
+          title: Districtcaseid
+        districtCaseUrl:
           type: string
-          title: Title
-        court:
-          type: string
-          title: Court
-        civilActionNumber:
-          type: string
-          title: Civilactionnumber
-        status:
-          $ref: '#/components/schemas/CaseStatus'
-        caseTags:
-          items:
-            type: string
-          type: array
-          title: Casetags
-        dates:
-          $ref: '#/components/schemas/AppealsCaseDates'
+          title: Districtcaseurl
         judges:
           items:
-            $ref: '#/components/schemas/FederalJudge'
+            anyOf:
+            - $ref: '#/components/schemas/FederalJudge'
+            - $ref: '#/components/schemas/MagistrateJudge'
           type: array
           title: Judges
-        lawFirms:
-          items:
-            $ref: '#/components/schemas/LawFirm'
-          type: array
-          title: Lawfirms
-        attorneys:
-          items:
-            $ref: '#/components/schemas/Attorney'
-          type: array
-          title: Attorneys
-        parties:
-          items:
-            $ref: '#/components/schemas/Party'
-          type: array
-          title: Parties
-        originatingVenues:
+        caseTypes:
           items:
             type: string
           type: array
-          title: Originatingvenues
-        originatingCases:
-          items:
-            $ref: '#/components/schemas/OriginatingDistrictCourtCase'
-          type: array
-          title: Originatingcases
-        appealabilityRulings:
-          items:
-            type: string
-          type: array
-          title: Appealabilityrulings
-        caseResolution:
-          anyOf:
-          - $ref: '#/components/schemas/CaseResolution'
-          - type: 'null'
-        supremeCourtAndRehearingDecisions:
-          items:
-            $ref: '#/components/schemas/SupremeCourtOrRehearingDecision'
-          type: array
-          title: Supremecourtandrehearingdecisions
-        docket:
-          $ref: '#/components/schemas/Docket'
+          title: Casetypes
       additionalProperties: false
       type: object
       required:
-      - appealsCaseId
-      - title
-      - court
-      - civilActionNumber
-      - status
-      - caseTags
-      - dates
+      - districtCaseId
+      - districtCaseUrl
       - judges
-      - lawFirms
-      - attorneys
-      - parties
-      - originatingVenues
-      - originatingCases
-      - appealabilityRulings
-      - supremeCourtAndRehearingDecisions
-      - docket
-      title: AppealsCaseData
-      description: A single case from a federal district appeals court case and relevant metadata.
-    OriginatingJudgeFilter:
-      properties:
-        districtFederalJudges:
-          anyOf:
-          - $ref: '#/components/schemas/JudgeFilter'
-          - type: 'null'
-      additionalProperties: false
-      type: object
-      title: OriginatingJudgeFilter
-    SupremeCourtOrRehearingDecision:
-      properties:
-        docketEntryFiled:
-          type: string
-          format: date
-          title: Docketentryfiled
-        decision:
-          type: string
-          title: Decision
-        originalResolutionDocketEntryFiled:
-          anyOf:
-          - type: string
-            format: date
-          - type: 'null'
-          title: Originalresolutiondocketentryfiled
-        originalResolution:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Originalresolution
-      additionalProperties: false
-      type: object
-      required:
-      - docketEntryFiled
-      - decision
-      title: SupremeCourtOrRehearingDecision
-    AppealsCaseDatesFilter:
-      properties:
-        filed:
-          anyOf:
-          - $ref: '#/components/schemas/TimingFilter'
-          - type: 'null'
-        terminated:
-          anyOf:
-          - $ref: '#/components/schemas/TimingFilter'
-          - type: 'null'
-        lastDocket:
-          anyOf:
-          - $ref: '#/components/schemas/TimingFilter'
-          - type: 'null'
-      additionalProperties: false
-      type: object
-      title: AppealsCaseDatesFilter
+      - caseTypes
+      title: OriginatingDistrictCourtCase
     DocketEntry:
       properties:
         filedOn:
@@ -721,62 +507,68 @@ components:
       - number
       - docketEntryId
       title: DocketEntry
-    OriginatingDistrictCourtCase:
+    AppealsCaseDates:
       properties:
-        districtCaseId:
-          type: integer
-          title: Districtcaseid
-        districtCaseUrl:
+        filed:
           type: string
-          title: Districtcaseurl
-        judges:
-          items:
-            anyOf:
-            - $ref: '#/components/schemas/FederalJudge'
-            - $ref: '#/components/schemas/MagistrateJudge'
-          type: array
-          title: Judges
-        caseTypes:
-          items:
-            type: string
-          type: array
-          title: Casetypes
+          format: date
+          title: Filed
+        terminated:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: Terminated
+        lastDocket:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: Lastdocket
       additionalProperties: false
       type: object
       required:
-      - districtCaseId
-      - districtCaseUrl
-      - judges
-      - caseTypes
-      title: OriginatingDistrictCourtCase
-    Attorney:
+      - filed
+      - lastDocket
+      title: AppealsCaseDates
+    CaseResolution:
       properties:
-        name:
+        summary:
           type: string
-          title: Name
-        attorneyId:
-          type: integer
-          title: Attorneyid
-        lawFirmIds:
-          items:
-            type: integer
-          type: array
-          uniqueItems: true
-          title: Lawfirmids
-        clientsPartyIds:
-          items:
-            type: integer
-          type: array
-          uniqueItems: true
-          title: Clientspartyids
+          title: Summary
+        specific:
+          type: string
+          title: Specific
+        docketEntryFiled:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: Docketentryfiled
       additionalProperties: false
       type: object
       required:
-      - name
-      - attorneyId
-      - lawFirmIds
-      - clientsPartyIds
-      title: Attorney
+      - summary
+      - specific
+      - docketEntryFiled
+      title: CaseResolution
+    TimingFilter:
+      properties:
+        onOrAfter:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: Onorafter
+        onOrBefore:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: Onorbefore
+      additionalProperties: false
+      type: object
+      title: TimingFilter
     ResolutionsFilter:
       properties:
         include:
@@ -796,37 +588,30 @@ components:
       additionalProperties: false
       type: object
       title: ResolutionsFilter
-    OriginatingCasesFilter:
+    IndividualResolutionsFilter:
       properties:
-        includeDistrictCaseIds:
+        summary:
           anyOf:
-          - items:
-              type: integer
-              exclusiveMaximum: 2147483647.0
-              exclusiveMinimum: 0.0
-            type: array
+          - type: string
           - type: 'null'
-          title: Includedistrictcaseids
-        excludeDistrictCaseIds:
+          title: Summary
+        specific:
           anyOf:
-          - items:
-              type: integer
-              exclusiveMaximum: 2147483647.0
-              exclusiveMinimum: 0.0
-            type: array
+          - type: string
           - type: 'null'
-          title: Excludedistrictcaseids
-        includeOriginatingJudges:
+          title: Specific
+      additionalProperties: false
+      type: object
+      title: IndividualResolutionsFilter
+    OriginatingJudgeFilter:
+      properties:
+        districtFederalJudges:
           anyOf:
-          - $ref: '#/components/schemas/OriginatingJudgeFilter'
-          - type: 'null'
-        originatingDistrictCaseCriteria:
-          anyOf:
-          - $ref: '#/components/schemas/OriginatingDistrictCaseFilter'
+          - $ref: '#/components/schemas/JudgeFilter'
           - type: 'null'
       additionalProperties: false
       type: object
-      title: OriginatingCasesFilter
+      title: OriginatingJudgeFilter
     AppealsLawFirmFilter:
       properties:
         include:
@@ -940,32 +725,262 @@ components:
       additionalProperties: false
       type: object
       title: AppealsLawFirmFilter
-    AppealsCaseQueryResult:
+    OriginatingDistrictCaseFilter:
       properties:
-        cases:
-          items:
-            $ref: '#/components/schemas/AppealsCaseReference'
-          type: array
-          title: Cases
+        courts:
+          anyOf:
+          - $ref: '#/components/schemas/CourtFilter'
+          - type: 'null'
+        caseTypes:
+          anyOf:
+          - $ref: '#/components/schemas/OriginatingCaseTypesFilter'
+          - type: 'null'
+      additionalProperties: false
+      type: object
+      title: OriginatingDistrictCaseFilter
+    Party:
+      properties:
+        name:
+          type: string
+          title: Name
+        partyId:
+          type: integer
+          title: Partyid
+        role:
+          type: string
+          title: Role
       additionalProperties: false
       type: object
       required:
-      - cases
-      title: AppealsCaseQueryResult
-    AppealsCaseReference:
+      - name
+      - partyId
+      - role
+      title: Party
+    FederalJudge:
       properties:
-        url:
+        name:
           type: string
-          title: Url
+          title: Name
+        federalJudgeId:
+          type: integer
+          title: Federaljudgeid
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - federalJudgeId
+      title: FederalJudge
+    AppealsCaseData:
+      properties:
         appealsCaseId:
           type: integer
           title: Appealscaseid
+        title:
+          type: string
+          title: Title
+        court:
+          type: string
+          title: Court
+        civilActionNumber:
+          type: string
+          title: Civilactionnumber
+        status:
+          $ref: '#/components/schemas/CaseStatus'
+        caseTags:
+          items:
+            type: string
+          type: array
+          title: Casetags
+        dates:
+          $ref: '#/components/schemas/AppealsCaseDates'
+        judges:
+          items:
+            $ref: '#/components/schemas/FederalJudge'
+          type: array
+          title: Judges
+        lawFirms:
+          items:
+            $ref: '#/components/schemas/LawFirm'
+          type: array
+          title: Lawfirms
+        attorneys:
+          items:
+            $ref: '#/components/schemas/Attorney'
+          type: array
+          title: Attorneys
+        parties:
+          items:
+            $ref: '#/components/schemas/Party'
+          type: array
+          title: Parties
+        originatingVenues:
+          items:
+            type: string
+          type: array
+          title: Originatingvenues
+        originatingCases:
+          items:
+            $ref: '#/components/schemas/OriginatingDistrictCourtCase'
+          type: array
+          title: Originatingcases
+        appealabilityRulings:
+          items:
+            type: string
+          type: array
+          title: Appealabilityrulings
+        caseResolution:
+          anyOf:
+          - $ref: '#/components/schemas/CaseResolution'
+          - type: 'null'
+        supremeCourtAndRehearingDecisions:
+          items:
+            $ref: '#/components/schemas/SupremeCourtOrRehearingDecision'
+          type: array
+          title: Supremecourtandrehearingdecisions
+        docket:
+          $ref: '#/components/schemas/Docket'
       additionalProperties: false
       type: object
       required:
-      - url
       - appealsCaseId
-      title: AppealsCaseReference
+      - title
+      - court
+      - civilActionNumber
+      - status
+      - caseTags
+      - dates
+      - judges
+      - lawFirms
+      - attorneys
+      - parties
+      - originatingVenues
+      - originatingCases
+      - appealabilityRulings
+      - supremeCourtAndRehearingDecisions
+      - docket
+      title: AppealsCaseData
+      description: A single case from a federal district appeals court case and relevant metadata.
+    Ordering:
+      type: string
+      enum:
+      - ByFirstFiled
+      - ByLastFiled
+      title: Ordering
+    JudgeFilter:
+      properties:
+        include:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Exclude
+      additionalProperties: false
+      type: object
+      title: JudgeFilter
+    SupremeCourtOrRehearingDecision:
+      properties:
+        docketEntryFiled:
+          type: string
+          format: date
+          title: Docketentryfiled
+        decision:
+          type: string
+          title: Decision
+        originalResolutionDocketEntryFiled:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: Originalresolutiondocketentryfiled
+        originalResolution:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Originalresolution
+      additionalProperties: false
+      type: object
+      required:
+      - docketEntryFiled
+      - decision
+      title: SupremeCourtOrRehearingDecision
+    Docket:
+      properties:
+        entries:
+          items:
+            $ref: '#/components/schemas/DocketEntry'
+          type: array
+          title: Entries
+        retrieved:
+          $ref: '#/components/schemas/DocketEntriesIncludedInOutput'
+        count:
+          type: integer
+          title: Count
+      additionalProperties: false
+      type: object
+      required:
+      - entries
+      - retrieved
+      - count
+      title: Docket
+    Attorney:
+      properties:
+        name:
+          type: string
+          title: Name
+        attorneyId:
+          type: integer
+          title: Attorneyid
+        lawFirmIds:
+          items:
+            type: integer
+          type: array
+          uniqueItems: true
+          title: Lawfirmids
+        clientsPartyIds:
+          items:
+            type: integer
+          type: array
+          uniqueItems: true
+          title: Clientspartyids
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - attorneyId
+      - lawFirmIds
+      - clientsPartyIds
+      title: Attorney
+    CourtFilter:
+      properties:
+        include:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Exclude
+      additionalProperties: false
+      type: object
+      title: CourtFilter
     OriginatingCaseTypesFilter:
       properties:
         include:
@@ -985,25 +1000,25 @@ components:
       additionalProperties: false
       type: object
       title: OriginatingCaseTypesFilter
-    DocketEntriesIncludedInOutput:
-      type: string
-      enum:
-      - all
-      - none
-      title: DocketEntriesIncludedInOutput
-    OriginatingDistrictCaseFilter:
+    OriginatingVenuesFilter:
       properties:
-        courts:
+        include:
           anyOf:
-          - $ref: '#/components/schemas/CourtFilter'
+          - items:
+              type: string
+            type: array
           - type: 'null'
-        caseTypes:
+          title: Include
+        exclude:
           anyOf:
-          - $ref: '#/components/schemas/OriginatingCaseTypesFilter'
+          - items:
+              type: string
+            type: array
           - type: 'null'
+          title: Exclude
       additionalProperties: false
       type: object
-      title: OriginatingDistrictCaseFilter
+      title: OriginatingVenuesFilter
     AppealsCaseQuery:
       properties:
         courts:
@@ -1068,20 +1083,146 @@ components:
       additionalProperties: false
       type: object
       title: AppealsCaseQuery
-    FederalJudge:
+    AppealsPartyFilter:
+      properties:
+        include:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Exclude
+        includeAppellant:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Includeappellant
+        excludeAppellant:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Excludeappellant
+        includeAppellee:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Includeappellee
+        excludeAppellee:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Excludeappellee
+        includeRespondent:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Includerespondent
+        excludeRespondent:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Excluderespondent
+        includeThirdParty:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Includethirdparty
+        excludeThirdParty:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Excludethirdparty
+        includePetitionerMovant:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Includepetitionermovant
+        excludePetitionerMovant:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Excludepetitionermovant
+      additionalProperties: false
+      type: object
+      title: AppealsPartyFilter
+    LawFirm:
       properties:
         name:
           type: string
           title: Name
-        federalJudgeId:
+        lawFirmId:
           type: integer
-          title: Federaljudgeid
+          title: Lawfirmid
+        clientPartyIds:
+          items:
+            type: integer
+          type: array
+          uniqueItems: true
+          title: Clientpartyids
       additionalProperties: false
       type: object
       required:
       - name
-      - federalJudgeId
-      title: FederalJudge
+      - lawFirmId
+      - clientPartyIds
+      title: LawFirm
+    DocketEntriesIncludedInOutput:
+      type: string
+      enum:
+      - all
+      - none
+      title: DocketEntriesIncludedInOutput
     AppealsAttorneyFilter:
       properties:
         include:
@@ -1195,75 +1336,37 @@ components:
       additionalProperties: false
       type: object
       title: AppealsAttorneyFilter
-    CaseStatus:
-      type: string
-      enum:
-      - Open
-      - Terminated
-      title: CaseStatus
-    LawFirm:
+    AppealsCaseDatesFilter:
       properties:
-        name:
+        filed:
+          anyOf:
+          - $ref: '#/components/schemas/TimingFilter'
+          - type: 'null'
+        terminated:
+          anyOf:
+          - $ref: '#/components/schemas/TimingFilter'
+          - type: 'null'
+        lastDocket:
+          anyOf:
+          - $ref: '#/components/schemas/TimingFilter'
+          - type: 'null'
+      additionalProperties: false
+      type: object
+      title: AppealsCaseDatesFilter
+    AppealsCaseReference:
+      properties:
+        url:
           type: string
-          title: Name
-        lawFirmId:
+          title: Url
+        appealsCaseId:
           type: integer
-          title: Lawfirmid
-        clientPartyIds:
-          items:
-            type: integer
-          type: array
-          uniqueItems: true
-          title: Clientpartyids
+          title: Appealscaseid
       additionalProperties: false
       type: object
       required:
-      - name
-      - lawFirmId
-      - clientPartyIds
-      title: LawFirm
-    CaseTagsFilter:
-      properties:
-        include:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Include
-        exclude:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Exclude
-      additionalProperties: false
-      type: object
-      title: CaseTagsFilter
-    JudgeFilter:
-      properties:
-        include:
-          anyOf:
-          - items:
-              type: integer
-              exclusiveMaximum: 2147483647.0
-              exclusiveMinimum: 0.0
-            type: array
-          - type: 'null'
-          title: Include
-        exclude:
-          anyOf:
-          - items:
-              type: integer
-              exclusiveMaximum: 2147483647.0
-              exclusiveMinimum: 0.0
-            type: array
-          - type: 'null'
-          title: Exclude
-      additionalProperties: false
-      type: object
-      title: JudgeFilter
+      - url
+      - appealsCaseId
+      title: AppealsCaseReference
     MagistrateJudge:
       properties:
         name:
@@ -1278,158 +1381,55 @@ components:
       - name
       - magistrateJudgeId
       title: MagistrateJudge
-    CourtFilter:
+    AppealsCaseQueryResult:
       properties:
-        include:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Include
-        exclude:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Exclude
-      additionalProperties: false
-      type: object
-      title: CourtFilter
-    CaseResolution:
-      properties:
-        summary:
-          type: string
-          title: Summary
-        specific:
-          type: string
-          title: Specific
-        docketEntryFiled:
-          anyOf:
-          - type: string
-            format: date
-          - type: 'null'
-          title: Docketentryfiled
-      additionalProperties: false
-      type: object
-      required:
-      - summary
-      - specific
-      - docketEntryFiled
-      title: CaseResolution
-    SupremeCourtDecisionsFilter:
-      properties:
-        include:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Include
-        exclude:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Exclude
-      additionalProperties: false
-      type: object
-      title: SupremeCourtDecisionsFilter
-    AppealsCaseDates:
-      properties:
-        filed:
-          type: string
-          format: date
-          title: Filed
-        terminated:
-          anyOf:
-          - type: string
-            format: date
-          - type: 'null'
-          title: Terminated
-        lastDocket:
-          anyOf:
-          - type: string
-            format: date
-          - type: 'null'
-          title: Lastdocket
-      additionalProperties: false
-      type: object
-      required:
-      - filed
-      - lastDocket
-      title: AppealsCaseDates
-    TimingFilter:
-      properties:
-        onOrAfter:
-          anyOf:
-          - type: string
-            format: date
-          - type: 'null'
-          title: Onorafter
-        onOrBefore:
-          anyOf:
-          - type: string
-            format: date
-          - type: 'null'
-          title: Onorbefore
-      additionalProperties: false
-      type: object
-      title: TimingFilter
-    Party:
-      properties:
-        name:
-          type: string
-          title: Name
-        partyId:
-          type: integer
-          title: Partyid
-        role:
-          type: string
-          title: Role
-      additionalProperties: false
-      type: object
-      required:
-      - name
-      - partyId
-      - role
-      title: Party
-    IndividualResolutionsFilter:
-      properties:
-        summary:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Summary
-        specific:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Specific
-      additionalProperties: false
-      type: object
-      title: IndividualResolutionsFilter
-    Docket:
-      properties:
-        entries:
+        cases:
           items:
-            $ref: '#/components/schemas/DocketEntry'
+            $ref: '#/components/schemas/AppealsCaseReference'
           type: array
-          title: Entries
-        retrieved:
-          $ref: '#/components/schemas/DocketEntriesIncludedInOutput'
-        count:
-          type: integer
-          title: Count
+          title: Cases
       additionalProperties: false
       type: object
       required:
-      - entries
-      - retrieved
-      - count
-      title: Docket
+      - cases
+      title: AppealsCaseQueryResult
+    CaseStatus:
+      type: string
+      enum:
+      - Open
+      - Terminated
+      title: CaseStatus
+    OriginatingCasesFilter:
+      properties:
+        includeDistrictCaseIds:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Includedistrictcaseids
+        excludeDistrictCaseIds:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Excludedistrictcaseids
+        includeOriginatingJudges:
+          anyOf:
+          - $ref: '#/components/schemas/OriginatingJudgeFilter'
+          - type: 'null'
+        originatingDistrictCaseCriteria:
+          anyOf:
+          - $ref: '#/components/schemas/OriginatingDistrictCaseFilter'
+          - type: 'null'
+      additionalProperties: false
+      type: object
+      title: OriginatingCasesFilter
   securitySchemes:
     JwtAccessBearer:
       type: http

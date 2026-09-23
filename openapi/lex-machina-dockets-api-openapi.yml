@@ -254,6 +254,54 @@ paths:
                       input: '-1'
 components:
   schemas:
+    StateDocketEntryResult:
+      properties:
+        filedOn:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: Filedon
+        tags:
+          items:
+            type: string
+          type: array
+          title: Tags
+        text:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Text
+        stateDocketEntryId:
+          type: integer
+          title: Statedocketentryid
+        courtType:
+          $ref: '#/components/schemas/CourtType'
+        stateCaseId:
+          type: integer
+          title: Statecaseid
+        stateCaseUrl:
+          type: string
+          title: Statecaseurl
+        court:
+          type: string
+          title: Court
+        state:
+          type: string
+          title: State
+      additionalProperties: false
+      type: object
+      required:
+      - filedOn
+      - tags
+      - text
+      - stateDocketEntryId
+      - courtType
+      - stateCaseId
+      - stateCaseUrl
+      - court
+      - state
+      title: StateDocketEntryResult
     CourtType:
       type: string
       enum:
@@ -311,54 +359,6 @@ components:
       - onBehalfOf
       - investigationNumber
       title: ITCDocumentData
-    StateDocketEntryResult:
-      properties:
-        filedOn:
-          anyOf:
-          - type: string
-            format: date
-          - type: 'null'
-          title: Filedon
-        tags:
-          items:
-            type: string
-          type: array
-          title: Tags
-        text:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Text
-        stateDocketEntryId:
-          type: integer
-          title: Statedocketentryid
-        courtType:
-          $ref: '#/components/schemas/CourtType'
-        stateCaseId:
-          type: integer
-          title: Statecaseid
-        stateCaseUrl:
-          type: string
-          title: Statecaseurl
-        court:
-          type: string
-          title: Court
-        state:
-          type: string
-          title: State
-      additionalProperties: false
-      type: object
-      required:
-      - filedOn
-      - tags
-      - text
-      - stateDocketEntryId
-      - courtType
-      - stateCaseId
-      - stateCaseUrl
-      - court
-      - state
-      title: StateDocketEntryResult
     ITCDocumentEntityData:
       properties:
         name:

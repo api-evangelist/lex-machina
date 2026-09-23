@@ -1,7 +1,7 @@
 {
   "provider": "lex-machina",
   "sources": [
-    "lex-machina-openapi.yml"
+    "_original/lex-machina-openapi.yml"
   ],
   "outputs": [
     "lex-machina-alerts-api-openapi.yml",
@@ -23,15 +23,33 @@
     "lex-machina-state-cases-api-openapi.yml",
     "lex-machina-status-api-openapi.yml"
   ],
-  "archived": [
-    "archived openapi/lex-machina-openapi.yml"
-  ],
+  "archived": [],
   "errors": [],
   "warnings": [],
   "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
     "lex-machina-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "lex-machina-openapi.yml: multi-axis tagging (21 tags, 18 first tags, 1.51x duplication over 57 operations) \u2014 split on first tag, 29 operations narrowed",
     "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "lex-machina-alerts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "lex-machina-attorneys-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "lex-machina-authorization-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "lex-machina-bankruptcy-cases-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "lex-machina-case-query-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "lex-machina-dockets-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "lex-machina-entities-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "lex-machina-federal-appeals-cases-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "lex-machina-federal-district-cases-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "lex-machina-itc-investigations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "lex-machina-judges-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "lex-machina-law-firms-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "lex-machina-list-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "lex-machina-parties-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "lex-machina-patents-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "lex-machina-ptab-trials-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "lex-machina-state-cases-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "lex-machina-status-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

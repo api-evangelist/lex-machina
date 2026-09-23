@@ -546,156 +546,6 @@ paths:
                       input: '-1'
 components:
   schemas:
-    StateCaseDamagesByStatus:
-      properties:
-        active:
-          items:
-            $ref: '#/components/schemas/StateCaseDamages'
-          type: array
-          title: Active
-      additionalProperties: false
-      type: object
-      required:
-      - active
-      title: StateCaseDamagesByStatus
-    LawFirm:
-      properties:
-        name:
-          type: string
-          title: Name
-        lawFirmId:
-          type: integer
-          title: Lawfirmid
-        clientPartyIds:
-          items:
-            type: integer
-          type: array
-          uniqueItems: true
-          title: Clientpartyids
-      additionalProperties: false
-      type: object
-      required:
-      - name
-      - lawFirmId
-      - clientPartyIds
-      title: LawFirm
-    Attorney:
-      properties:
-        name:
-          type: string
-          title: Name
-        attorneyId:
-          type: integer
-          title: Attorneyid
-        lawFirmIds:
-          items:
-            type: integer
-          type: array
-          uniqueItems: true
-          title: Lawfirmids
-        clientsPartyIds:
-          items:
-            type: integer
-          type: array
-          uniqueItems: true
-          title: Clientspartyids
-      additionalProperties: false
-      type: object
-      required:
-      - name
-      - attorneyId
-      - lawFirmIds
-      - clientsPartyIds
-      title: Attorney
-    CaseStatus:
-      type: string
-      enum:
-      - Open
-      - Terminated
-      title: CaseStatus
-    StateCaseRulingsByStatus:
-      properties:
-        active:
-          items:
-            $ref: '#/components/schemas/Rulings'
-          type: array
-          title: Active
-      additionalProperties: false
-      type: object
-      required:
-      - active
-      title: StateCaseRulingsByStatus
-    Rulings:
-      properties:
-        judgmentEvent:
-          type: string
-          title: Judgmentevent
-        awardedToPartyIds:
-          items:
-            type: integer
-          type: array
-          title: Awardedtopartyids
-        awardedAgainstPartyIds:
-          items:
-            type: integer
-          type: array
-          title: Awardedagainstpartyids
-        awarded:
-          type: string
-          format: date
-          title: Awarded
-      additionalProperties: false
-      type: object
-      required:
-      - judgmentEvent
-      - awardedToPartyIds
-      - awardedAgainstPartyIds
-      - awarded
-      title: Rulings
-    StateCaseResolution:
-      properties:
-        summary:
-          type: string
-          title: Summary
-        specific:
-          type: string
-          title: Specific
-        docketEntryFiled:
-          anyOf:
-          - type: string
-            format: date
-          - type: 'null'
-          title: Docketentryfiled
-        stateDocketEntryId:
-          type: integer
-          title: Statedocketentryid
-      additionalProperties: false
-      type: object
-      required:
-      - summary
-      - specific
-      - docketEntryFiled
-      - stateDocketEntryId
-      title: StateCaseResolution
-    StateDocket:
-      properties:
-        entries:
-          items:
-            $ref: '#/components/schemas/StateDocketEntry'
-          type: array
-          title: Entries
-        retrieved:
-          $ref: '#/components/schemas/DocketEntriesIncludedInOutput'
-        count:
-          type: integer
-          title: Count
-      additionalProperties: false
-      type: object
-      required:
-      - entries
-      - retrieved
-      - count
-      title: StateDocket
     StateCaseDates:
       properties:
         filed:
@@ -720,21 +570,6 @@ components:
       - filed
       - trial
       title: StateCaseDates
-    CaseEvent:
-      properties:
-        type:
-          type: string
-          title: Type
-        occurred:
-          type: string
-          format: date
-          title: Occurred
-      additionalProperties: false
-      type: object
-      required:
-      - type
-      - occurred
-      title: CaseEvent
     StateDocketEntry:
       properties:
         filedOn:
@@ -764,25 +599,21 @@ components:
       - text
       - stateDocketEntryId
       title: StateDocketEntry
-    StateCaseDamages:
+    Rulings:
       properties:
-        name:
+        judgmentEvent:
           type: string
-          title: Name
-        awardedToPartyId:
+          title: Judgmentevent
+        awardedToPartyIds:
           items:
             type: integer
           type: array
-          title: Awardedtopartyid
+          title: Awardedtopartyids
         awardedAgainstPartyIds:
           items:
             type: integer
           type: array
           title: Awardedagainstpartyids
-        amount:
-          type: string
-          pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
-          title: Amount
         awarded:
           type: string
           format: date
@@ -790,12 +621,26 @@ components:
       additionalProperties: false
       type: object
       required:
-      - name
-      - awardedToPartyId
+      - judgmentEvent
+      - awardedToPartyIds
       - awardedAgainstPartyIds
-      - amount
       - awarded
-      title: StateCaseDamages
+      title: Rulings
+    CaseEvent:
+      properties:
+        type:
+          type: string
+          title: Type
+        occurred:
+          type: string
+          format: date
+          title: Occurred
+      additionalProperties: false
+      type: object
+      required:
+      - type
+      - occurred
+      title: CaseEvent
     Party:
       properties:
         name:
@@ -814,6 +659,34 @@ components:
       - partyId
       - role
       title: Party
+    Attorney:
+      properties:
+        name:
+          type: string
+          title: Name
+        attorneyId:
+          type: integer
+          title: Attorneyid
+        lawFirmIds:
+          items:
+            type: integer
+          type: array
+          uniqueItems: true
+          title: Lawfirmids
+        clientsPartyIds:
+          items:
+            type: integer
+          type: array
+          uniqueItems: true
+          title: Clientspartyids
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - attorneyId
+      - lawFirmIds
+      - clientsPartyIds
+      title: Attorney
     StateCaseData:
       properties:
         stateCaseId:
@@ -902,12 +775,75 @@ components:
       - docket
       title: StateCaseData
       description: A single case from an enahnced state court and relevant metadata.
-    DocketEntriesIncludedInOutput:
-      type: string
-      enum:
-      - all
-      - none
-      title: DocketEntriesIncludedInOutput
+    StateCaseDamagesByStatus:
+      properties:
+        active:
+          items:
+            $ref: '#/components/schemas/StateCaseDamages'
+          type: array
+          title: Active
+      additionalProperties: false
+      type: object
+      required:
+      - active
+      title: StateCaseDamagesByStatus
+    StateCaseResolution:
+      properties:
+        summary:
+          type: string
+          title: Summary
+        specific:
+          type: string
+          title: Specific
+        docketEntryFiled:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: Docketentryfiled
+        stateDocketEntryId:
+          type: integer
+          title: Statedocketentryid
+      additionalProperties: false
+      type: object
+      required:
+      - summary
+      - specific
+      - docketEntryFiled
+      - stateDocketEntryId
+      title: StateCaseResolution
+    StateCaseDamages:
+      properties:
+        name:
+          type: string
+          title: Name
+        awardedToPartyId:
+          items:
+            type: integer
+          type: array
+          title: Awardedtopartyid
+        awardedAgainstPartyIds:
+          items:
+            type: integer
+          type: array
+          title: Awardedagainstpartyids
+        amount:
+          type: string
+          pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          title: Amount
+        awarded:
+          type: string
+          format: date
+          title: Awarded
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - awardedToPartyId
+      - awardedAgainstPartyIds
+      - amount
+      - awarded
+      title: StateCaseDamages
     StateJudge:
       properties:
         name:
@@ -922,6 +858,70 @@ components:
       - name
       - stateJudgeId
       title: StateJudge
+    LawFirm:
+      properties:
+        name:
+          type: string
+          title: Name
+        lawFirmId:
+          type: integer
+          title: Lawfirmid
+        clientPartyIds:
+          items:
+            type: integer
+          type: array
+          uniqueItems: true
+          title: Clientpartyids
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - lawFirmId
+      - clientPartyIds
+      title: LawFirm
+    DocketEntriesIncludedInOutput:
+      type: string
+      enum:
+      - all
+      - none
+      title: DocketEntriesIncludedInOutput
+    StateDocket:
+      properties:
+        entries:
+          items:
+            $ref: '#/components/schemas/StateDocketEntry'
+          type: array
+          title: Entries
+        retrieved:
+          $ref: '#/components/schemas/DocketEntriesIncludedInOutput'
+        count:
+          type: integer
+          title: Count
+      additionalProperties: false
+      type: object
+      required:
+      - entries
+      - retrieved
+      - count
+      title: StateDocket
+    CaseStatus:
+      type: string
+      enum:
+      - Open
+      - Terminated
+      title: CaseStatus
+    StateCaseRulingsByStatus:
+      properties:
+        active:
+          items:
+            $ref: '#/components/schemas/Rulings'
+          type: array
+          title: Active
+      additionalProperties: false
+      type: object
+      required:
+      - active
+      title: StateCaseRulingsByStatus
   securitySchemes:
     JwtAccessBearer:
       type: http

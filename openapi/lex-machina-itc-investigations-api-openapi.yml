@@ -140,21 +140,7 @@ paths:
                       input: '-1'
 components:
   schemas:
-    ITCParty:
-      properties:
-        name:
-          type: string
-          title: Name
-        role:
-          type: string
-          title: Role
-      additionalProperties: false
-      type: object
-      required:
-      - name
-      - role
-      title: ITCParty
-    ITCDocumentEntityData:
+    AdministrativeLawJudge:
       properties:
         name:
           type: string
@@ -163,7 +149,14 @@ components:
       type: object
       required:
       - name
-      title: ITCDocumentEntityData
+      title: AdministrativeLawJudge
+    ITCInvestigationType:
+      type: string
+      enum:
+      - Patent
+      - Trademark
+      - Copyright
+      title: ITCInvestigationType
     ITCDocumentList:
       properties:
         entries:
@@ -183,7 +176,50 @@ components:
       - retrieved
       - count
       title: ITCDocumentList
-    AdministrativeLawJudge:
+    ITCDocument:
+      properties:
+        usitcDocumentId:
+          type: integer
+          title: Usitcdocumentid
+        date:
+          type: string
+          format: date
+          title: Date
+        title:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Title
+        type:
+          type: string
+          title: Type
+        filedBy:
+          items:
+            $ref: '#/components/schemas/ITCDocumentEntityData'
+          type: array
+          title: Filedby
+        firm:
+          items:
+            $ref: '#/components/schemas/ITCDocumentEntityData'
+          type: array
+          title: Firm
+        onBehalfOf:
+          items:
+            $ref: '#/components/schemas/ITCDocumentEntityData'
+          type: array
+          title: Onbehalfof
+      additionalProperties: false
+      type: object
+      required:
+      - usitcDocumentId
+      - date
+      - title
+      - type
+      - filedBy
+      - firm
+      - onBehalfOf
+      title: ITCDocument
+    ITCDocumentEntityData:
       properties:
         name:
           type: string
@@ -192,7 +228,51 @@ components:
       type: object
       required:
       - name
-      title: AdministrativeLawJudge
+      title: ITCDocumentEntityData
+    ITCInvestigationStatus:
+      type: string
+      enum:
+      - Active
+      - Terminated
+      - Completed
+      - Pending before the ALJ
+      - Pending before the Commission
+      title: ITCInvestigationStatus
+    ITCParty:
+      properties:
+        name:
+          type: string
+          title: Name
+        role:
+          type: string
+          title: Role
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - role
+      title: ITCParty
+    Patent:
+      properties:
+        number:
+          type: string
+          title: Number
+        title:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Title
+      additionalProperties: false
+      type: object
+      required:
+      - number
+      title: Patent
+    DocketEntriesIncludedInOutput:
+      type: string
+      enum:
+      - all
+      - none
+      title: DocketEntriesIncludedInOutput
     ITCInvestigationDates:
       properties:
         notice:
@@ -273,86 +353,6 @@ components:
       - itcDocumentList
       title: ITCInvestigationData
       description: A single US ITC investigation and relevant metadata.
-    Patent:
-      properties:
-        number:
-          type: string
-          title: Number
-        title:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Title
-      additionalProperties: false
-      type: object
-      required:
-      - number
-      title: Patent
-    ITCInvestigationStatus:
-      type: string
-      enum:
-      - Active
-      - Terminated
-      - Completed
-      - Pending before the ALJ
-      - Pending before the Commission
-      title: ITCInvestigationStatus
-    ITCDocument:
-      properties:
-        usitcDocumentId:
-          type: integer
-          title: Usitcdocumentid
-        date:
-          type: string
-          format: date
-          title: Date
-        title:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Title
-        type:
-          type: string
-          title: Type
-        filedBy:
-          items:
-            $ref: '#/components/schemas/ITCDocumentEntityData'
-          type: array
-          title: Filedby
-        firm:
-          items:
-            $ref: '#/components/schemas/ITCDocumentEntityData'
-          type: array
-          title: Firm
-        onBehalfOf:
-          items:
-            $ref: '#/components/schemas/ITCDocumentEntityData'
-          type: array
-          title: Onbehalfof
-      additionalProperties: false
-      type: object
-      required:
-      - usitcDocumentId
-      - date
-      - title
-      - type
-      - filedBy
-      - firm
-      - onBehalfOf
-      title: ITCDocument
-    DocketEntriesIncludedInOutput:
-      type: string
-      enum:
-      - all
-      - none
-      title: DocketEntriesIncludedInOutput
-    ITCInvestigationType:
-      type: string
-      enum:
-      - Patent
-      - Trademark
-      - Copyright
-      title: ITCInvestigationType
   securitySchemes:
     JwtAccessBearer:
       type: http

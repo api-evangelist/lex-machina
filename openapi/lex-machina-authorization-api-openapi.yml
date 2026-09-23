@@ -25,7 +25,7 @@ paths:
         - **grant_type**: only "client_credentials" are supported at this time
 
 
-        See [https://law.lexmachina.com/api-settings](https://law.lexmachina.com/api-settings) for application management.'
+        See https://law.lexmachina.com/api-settings for application management.'
       operationId: oauth2_token
       parameters:
       - name: client_id

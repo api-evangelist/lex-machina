@@ -343,6 +343,38 @@ paths:
                       input: '-1'
 components:
   schemas:
+    CaseCountByCourt:
+      properties:
+        court:
+          type: string
+          title: Court
+        count:
+          type: integer
+          title: Count
+      additionalProperties: false
+      type: object
+      required:
+      - court
+      - count
+      title: CaseCountByCourt
+    StateJudgeData:
+      properties:
+        name:
+          type: string
+          title: Name
+        stateJudgeId:
+          type: integer
+          title: Statejudgeid
+        courtPosting:
+          type: string
+          title: Courtposting
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - stateJudgeId
+      - courtPosting
+      title: StateJudgeData
     MagistrateJudgeData:
       properties:
         name:
@@ -367,38 +399,6 @@ components:
       - initials
       - caseCountByCourt
       title: MagistrateJudgeData
-    StateJudgeData:
-      properties:
-        name:
-          type: string
-          title: Name
-        stateJudgeId:
-          type: integer
-          title: Statejudgeid
-        courtPosting:
-          type: string
-          title: Courtposting
-      additionalProperties: false
-      type: object
-      required:
-      - name
-      - stateJudgeId
-      - courtPosting
-      title: StateJudgeData
-    CaseCountByCourt:
-      properties:
-        court:
-          type: string
-          title: Court
-        count:
-          type: integer
-          title: Count
-      additionalProperties: false
-      type: object
-      required:
-      - court
-      - count
-      title: CaseCountByCourt
   securitySchemes:
     JwtAccessBearer:
       type: http

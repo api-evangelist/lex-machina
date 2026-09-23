@@ -192,7 +192,7 @@ paths:
 
         - **page_number**: page number of the results
 
-        - **page_size**:  results per page
+        - **page_size**: results per page
 
 
         This is a case-insensitive search that will match anywhere within the name of the party.
@@ -541,6 +541,20 @@ components:
       - page
       - parties
       title: PartySearchResults
+    PartyData:
+      properties:
+        name:
+          type: string
+          title: Name
+        partyId:
+          type: integer
+          title: Partyid
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - partyId
+      title: PartyData
     PartyReference:
       properties:
         name:
@@ -566,7 +580,7 @@ components:
       description: 'Indicates that the Lex Machina party id input was has changed,
 
         the inputId is the ID given that should map to the returned partyId.'
-    PartyData:
+    PartyResult:
       properties:
         name:
           type: string
@@ -574,12 +588,16 @@ components:
         partyId:
           type: integer
           title: Partyid
+        url:
+          type: string
+          title: Url
       additionalProperties: false
       type: object
       required:
       - name
       - partyId
-      title: PartyData
+      - url
+      title: PartyResult
     PartyGroup:
       properties:
         partyGroupName:
@@ -604,24 +622,6 @@ components:
       - partyGroupId
       - lawUrl
       title: PartyGroup
-    PartyResult:
-      properties:
-        name:
-          type: string
-          title: Name
-        partyId:
-          type: integer
-          title: Partyid
-        url:
-          type: string
-          title: Url
-      additionalProperties: false
-      type: object
-      required:
-      - name
-      - partyId
-      - url
-      title: PartyResult
   securitySchemes:
     JwtAccessBearer:
       type: http
