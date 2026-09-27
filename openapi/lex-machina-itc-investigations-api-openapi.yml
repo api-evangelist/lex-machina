@@ -140,7 +140,22 @@ paths:
                       input: '-1'
 components:
   schemas:
-    AdministrativeLawJudge:
+    ITCInvestigationStatus:
+      type: string
+      enum:
+      - Active
+      - Terminated
+      - Completed
+      - Pending before the ALJ
+      - Pending before the Commission
+      title: ITCInvestigationStatus
+    DocketEntriesIncludedInOutput:
+      type: string
+      enum:
+      - all
+      - none
+      title: DocketEntriesIncludedInOutput
+    ITCDocumentEntityData:
       properties:
         name:
           type: string
@@ -149,14 +164,7 @@ components:
       type: object
       required:
       - name
-      title: AdministrativeLawJudge
-    ITCInvestigationType:
-      type: string
-      enum:
-      - Patent
-      - Trademark
-      - Copyright
-      title: ITCInvestigationType
+      title: ITCDocumentEntityData
     ITCDocumentList:
       properties:
         entries:
@@ -176,6 +184,52 @@ components:
       - retrieved
       - count
       title: ITCDocumentList
+    Patent:
+      properties:
+        number:
+          type: string
+          title: Number
+        title:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Title
+      additionalProperties: false
+      type: object
+      required:
+      - number
+      title: Patent
+    ITCInvestigationType:
+      type: string
+      enum:
+      - Patent
+      - Trademark
+      - Copyright
+      title: ITCInvestigationType
+    AdministrativeLawJudge:
+      properties:
+        name:
+          type: string
+          title: Name
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      title: AdministrativeLawJudge
+    ITCParty:
+      properties:
+        name:
+          type: string
+          title: Name
+        role:
+          type: string
+          title: Role
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - role
+      title: ITCParty
     ITCDocument:
       properties:
         usitcDocumentId:
@@ -219,80 +273,6 @@ components:
       - firm
       - onBehalfOf
       title: ITCDocument
-    ITCDocumentEntityData:
-      properties:
-        name:
-          type: string
-          title: Name
-      additionalProperties: false
-      type: object
-      required:
-      - name
-      title: ITCDocumentEntityData
-    ITCInvestigationStatus:
-      type: string
-      enum:
-      - Active
-      - Terminated
-      - Completed
-      - Pending before the ALJ
-      - Pending before the Commission
-      title: ITCInvestigationStatus
-    ITCParty:
-      properties:
-        name:
-          type: string
-          title: Name
-        role:
-          type: string
-          title: Role
-      additionalProperties: false
-      type: object
-      required:
-      - name
-      - role
-      title: ITCParty
-    Patent:
-      properties:
-        number:
-          type: string
-          title: Number
-        title:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Title
-      additionalProperties: false
-      type: object
-      required:
-      - number
-      title: Patent
-    DocketEntriesIncludedInOutput:
-      type: string
-      enum:
-      - all
-      - none
-      title: DocketEntriesIncludedInOutput
-    ITCInvestigationDates:
-      properties:
-        notice:
-          anyOf:
-          - type: string
-            format: date
-          - type: 'null'
-          title: Notice
-        terminated:
-          anyOf:
-          - type: string
-            format: date
-          - type: 'null'
-          title: Terminated
-      additionalProperties: false
-      type: object
-      required:
-      - notice
-      - terminated
-      title: ITCInvestigationDates
     ITCInvestigationData:
       properties:
         itcInvestigationId:
@@ -353,6 +333,26 @@ components:
       - itcDocumentList
       title: ITCInvestigationData
       description: A single US ITC investigation and relevant metadata.
+    ITCInvestigationDates:
+      properties:
+        notice:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: Notice
+        terminated:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: Terminated
+      additionalProperties: false
+      type: object
+      required:
+      - notice
+      - terminated
+      title: ITCInvestigationDates
   securitySchemes:
     JwtAccessBearer:
       type: http

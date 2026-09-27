@@ -290,31 +290,6 @@ paths:
                     detail: Not Found
 components:
   schemas:
-    LawFirmReference:
-      properties:
-        name:
-          type: string
-          title: Name
-        lawFirmId:
-          type: integer
-          title: Lawfirmid
-        inputId:
-          type: integer
-          title: Inputid
-        url:
-          type: string
-          title: Url
-      additionalProperties: false
-      type: object
-      required:
-      - name
-      - lawFirmId
-      - inputId
-      - url
-      title: LawFirmReference
-      description: 'Indicates that the Lex Machina law firm id input was has changed,
-
-        the inputId is the ID given that should map to the returned lawFirmId.'
     LawFirmSearchResult:
       properties:
         totalCount:
@@ -340,20 +315,6 @@ components:
       - page
       - lawFirms
       title: LawFirmSearchResult
-    LawFirmData:
-      properties:
-        name:
-          type: string
-          title: Name
-        lawFirmId:
-          type: integer
-          title: Lawfirmid
-      additionalProperties: false
-      type: object
-      required:
-      - name
-      - lawFirmId
-      title: LawFirmData
     LawFirmResult:
       properties:
         name:
@@ -372,6 +333,45 @@ components:
       - lawFirmId
       - url
       title: LawFirmResult
+    LawFirmData:
+      properties:
+        name:
+          type: string
+          title: Name
+        lawFirmId:
+          type: integer
+          title: Lawfirmid
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - lawFirmId
+      title: LawFirmData
+    LawFirmReference:
+      properties:
+        name:
+          type: string
+          title: Name
+        lawFirmId:
+          type: integer
+          title: Lawfirmid
+        inputId:
+          type: integer
+          title: Inputid
+        url:
+          type: string
+          title: Url
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - lawFirmId
+      - inputId
+      - url
+      title: LawFirmReference
+      description: 'Indicates that the Lex Machina law firm id input was has changed,
+
+        the inputId is the ID given that should map to the returned lawFirmId.'
   securitySchemes:
     JwtAccessBearer:
       type: http

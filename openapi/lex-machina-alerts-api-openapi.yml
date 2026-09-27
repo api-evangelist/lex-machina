@@ -439,35 +439,6 @@ components:
       - type
       - runs
       title: AlertRunData
-    AlertRunResult:
-      properties:
-        alertId:
-          type: integer
-          title: Alertid
-        type:
-          type: string
-          title: Type
-        count:
-          type: integer
-          title: Count
-        run:
-          type: string
-          format: date
-          title: Run
-        items:
-          items:
-            $ref: '#/components/schemas/AlertItem'
-          type: array
-          title: Items
-      additionalProperties: false
-      type: object
-      required:
-      - alertId
-      - type
-      - count
-      - run
-      - items
-      title: AlertRunResult
     Alert:
       properties:
         alertId:
@@ -506,6 +477,41 @@ components:
       - alertUrl
       - lawUrl
       title: Alert
+    Frequency:
+      type: string
+      enum:
+      - Daily
+      - Weekly
+      title: Frequency
+    AlertRunResult:
+      properties:
+        alertId:
+          type: integer
+          title: Alertid
+        type:
+          type: string
+          title: Type
+        count:
+          type: integer
+          title: Count
+        run:
+          type: string
+          format: date
+          title: Run
+        items:
+          items:
+            $ref: '#/components/schemas/AlertItem'
+          type: array
+          title: Items
+      additionalProperties: false
+      type: object
+      required:
+      - alertId
+      - type
+      - count
+      - run
+      - items
+      title: AlertRunResult
     AlertItem:
       properties:
         url:
@@ -593,12 +599,6 @@ components:
         For example an alert on a district case docket entry will include the
 
         districtCaseId and districtCaseUrl here.'
-    Frequency:
-      type: string
-      enum:
-      - Daily
-      - Weekly
-      title: Frequency
   securitySchemes:
     JwtAccessBearer:
       type: http

@@ -287,6 +287,38 @@ paths:
                     detail: Not Found
 components:
   schemas:
+    AttorneyData:
+      properties:
+        name:
+          type: string
+          title: Name
+        attorneyId:
+          type: integer
+          title: Attorneyid
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - attorneyId
+      title: AttorneyData
+    AttorneyResult:
+      properties:
+        name:
+          type: string
+          title: Name
+        attorneyId:
+          type: integer
+          title: Attorneyid
+        url:
+          type: string
+          title: Url
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - attorneyId
+      - url
+      title: AttorneyResult
     AttorneySearchResults:
       properties:
         totalCount:
@@ -312,38 +344,6 @@ components:
       - page
       - attorneys
       title: AttorneySearchResults
-    AttorneyResult:
-      properties:
-        name:
-          type: string
-          title: Name
-        attorneyId:
-          type: integer
-          title: Attorneyid
-        url:
-          type: string
-          title: Url
-      additionalProperties: false
-      type: object
-      required:
-      - name
-      - attorneyId
-      - url
-      title: AttorneyResult
-    AttorneyData:
-      properties:
-        name:
-          type: string
-          title: Name
-        attorneyId:
-          type: integer
-          title: Attorneyid
-      additionalProperties: false
-      type: object
-      required:
-      - name
-      - attorneyId
-      title: AttorneyData
     AttorneyReference:
       properties:
         name:

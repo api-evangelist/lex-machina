@@ -53,6 +53,27 @@ specificationVersion: '0.23'
 tags:
   - Legal
   - Legal Analytics
+  - Legal Tech
+  - Litigation
+  - Litigation Analytics
+  - Court Data
+  - Dockets
+  - Judges
+  - Law Firms
+  - Attorneys
+  - Patents
+  - PTAB
+  - ITC
+  - Bankruptcy
+  - Appeals
+  - State Courts
+  - Federal Courts
+  - LexisNexis
+  - Data
+  - Analytics
+tags_raw:
+  - Legal
+  - Legal Analytics
   - Legal Technology
   - Litigation
   - Litigation Analytics

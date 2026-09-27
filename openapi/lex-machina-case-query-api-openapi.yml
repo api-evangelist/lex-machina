@@ -115,7 +115,80 @@ paths:
       - JwtAccessBearer: []
 components:
   schemas:
-    AttorneyFilter:
+    IndividualRulingsFilter:
+      properties:
+        judgmentEvent:
+          anyOf:
+          - $ref: '#/components/schemas/JudgmentEventFilter'
+          - type: 'null'
+        awardedToParties:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Awardedtoparties
+        awardedAgainstParties:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Awardedagainstparties
+        date:
+          anyOf:
+          - $ref: '#/components/schemas/TimingFilter'
+          - type: 'null'
+      additionalProperties: false
+      type: object
+      title: IndividualRulingsFilter
+    JudgeFilter:
+      properties:
+        include:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Exclude
+      additionalProperties: false
+      type: object
+      title: JudgeFilter
+    CaseTagsFilter:
+      properties:
+        include:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Exclude
+      additionalProperties: false
+      type: object
+      title: CaseTagsFilter
+    LawFirmFilter:
       properties:
         include:
           anyOf:
@@ -191,26 +264,30 @@ components:
           title: Excludethirdparty
       additionalProperties: false
       type: object
-      title: AttorneyFilter
-    CaseTagsFilter:
+      title: LawFirmFilter
+    CaseStatus:
+      type: string
+      enum:
+      - Open
+      - Terminated
+      title: CaseStatus
+    TimingFilter:
       properties:
-        include:
+        onOrAfter:
           anyOf:
-          - items:
-              type: string
-            type: array
+          - type: string
+            format: date
           - type: 'null'
-          title: Include
-        exclude:
+          title: Onorafter
+        onOrBefore:
           anyOf:
-          - items:
-              type: string
-            type: array
+          - type: string
+            format: date
           - type: 'null'
-          title: Exclude
+          title: Onorbefore
       additionalProperties: false
       type: object
-      title: CaseTagsFilter
+      title: TimingFilter
     PartyFilter:
       properties:
         include:
@@ -288,43 +365,7 @@ components:
       additionalProperties: false
       type: object
       title: PartyFilter
-    TimingFilter:
-      properties:
-        onOrAfter:
-          anyOf:
-          - type: string
-            format: date
-          - type: 'null'
-          title: Onorafter
-        onOrBefore:
-          anyOf:
-          - type: string
-            format: date
-          - type: 'null'
-          title: Onorbefore
-      additionalProperties: false
-      type: object
-      title: TimingFilter
-    ResolutionsFilter:
-      properties:
-        include:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/IndividualResolutionsFilter'
-            type: array
-          - type: 'null'
-          title: Include
-        exclude:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/IndividualResolutionsFilter'
-            type: array
-          - type: 'null'
-          title: Exclude
-      additionalProperties: false
-      type: object
-      title: ResolutionsFilter
-    EventFilter:
+    NameFilter:
       properties:
         include:
           anyOf:
@@ -342,196 +383,34 @@ components:
           title: Exclude
       additionalProperties: false
       type: object
-      title: EventFilter
-    IndividualRulingsFilter:
-      properties:
-        judgmentEvent:
-          anyOf:
-          - $ref: '#/components/schemas/JudgmentEventFilter'
-          - type: 'null'
-        awardedToParties:
-          anyOf:
-          - items:
-              type: integer
-              exclusiveMaximum: 2147483647.0
-              exclusiveMinimum: 0.0
-            type: array
-          - type: 'null'
-          title: Awardedtoparties
-        awardedAgainstParties:
-          anyOf:
-          - items:
-              type: integer
-              exclusiveMaximum: 2147483647.0
-              exclusiveMinimum: 0.0
-            type: array
-          - type: 'null'
-          title: Awardedagainstparties
-        date:
-          anyOf:
-          - $ref: '#/components/schemas/TimingFilter'
-          - type: 'null'
-      additionalProperties: false
-      type: object
-      title: IndividualRulingsFilter
-    IndividualResolutionsFilter:
-      properties:
-        summary:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Summary
-        specific:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Specific
-      additionalProperties: false
-      type: object
-      title: IndividualResolutionsFilter
-    StateCaseReference:
-      properties:
-        url:
-          type: string
-          title: Url
-        stateCaseId:
-          type: integer
-          title: Statecaseid
-      additionalProperties: false
-      type: object
-      required:
-      - url
-      - stateCaseId
-      title: StateCaseReference
-    IndividualStateDamagesFilter:
-      properties:
-        name:
-          anyOf:
-          - $ref: '#/components/schemas/NameFilter'
-          - type: 'null'
-        date:
-          anyOf:
-          - $ref: '#/components/schemas/TimingFilter'
-          - type: 'null'
-        awardedToParties:
-          anyOf:
-          - items:
-              type: integer
-              exclusiveMaximum: 2147483647.0
-              exclusiveMinimum: 0.0
-            type: array
-          - type: 'null'
-          title: Awardedtoparties
-        awardedAgainstParties:
-          anyOf:
-          - items:
-              type: integer
-              exclusiveMaximum: 2147483647.0
-              exclusiveMinimum: 0.0
-            type: array
-          - type: 'null'
-          title: Awardedagainstparties
-        minimumAmount:
-          anyOf:
-          - type: number
-          - type: string
-            pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
-          - type: 'null'
-          title: Minimumamount
-      additionalProperties: false
-      type: object
-      title: IndividualStateDamagesFilter
+      title: NameFilter
     Ordering:
       type: string
       enum:
       - ByFirstFiled
       - ByLastFiled
       title: Ordering
-    JudgeFilter:
+    CaseDatesFilter:
       properties:
-        include:
+        filed:
           anyOf:
-          - items:
-              type: integer
-              exclusiveMaximum: 2147483647.0
-              exclusiveMinimum: 0.0
-            type: array
+          - $ref: '#/components/schemas/TimingFilter'
           - type: 'null'
-          title: Include
-        exclude:
+        terminated:
           anyOf:
-          - items:
-              type: integer
-              exclusiveMaximum: 2147483647.0
-              exclusiveMinimum: 0.0
-            type: array
+          - $ref: '#/components/schemas/TimingFilter'
           - type: 'null'
-          title: Exclude
+        trial:
+          anyOf:
+          - $ref: '#/components/schemas/TimingFilter'
+          - type: 'null'
+        lastDocket:
+          anyOf:
+          - $ref: '#/components/schemas/TimingFilter'
+          - type: 'null'
       additionalProperties: false
       type: object
-      title: JudgeFilter
-    StateCourtFilter:
-      properties:
-        state:
-          type: string
-          title: State
-        include:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Include
-        exclude:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Exclude
-      additionalProperties: false
-      type: object
-      required:
-      - state
-      title: StateCourtFilter
-    CaseTypesFilter:
-      properties:
-        include:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Include
-        exclude:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Exclude
-      additionalProperties: false
-      type: object
-      title: CaseTypesFilter
-    JudgmentEventFilter:
-      properties:
-        include:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Include
-        exclude:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Exclude
-      additionalProperties: false
-      type: object
-      title: JudgmentEventFilter
+      title: CaseDatesFilter
     StateCaseQueryResult:
       properties:
         cases:
@@ -635,7 +514,84 @@ components:
         ordering: ByFirstFiled
         page: 1
         pageSize: 5
-    LawFirmFilter:
+    StateCourtFilter:
+      properties:
+        state:
+          type: string
+          title: State
+        include:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Exclude
+      additionalProperties: false
+      type: object
+      required:
+      - state
+      title: StateCourtFilter
+    JudgmentEventFilter:
+      properties:
+        include:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Exclude
+      additionalProperties: false
+      type: object
+      title: JudgmentEventFilter
+    ResolutionsFilter:
+      properties:
+        include:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/IndividualResolutionsFilter'
+            type: array
+          - type: 'null'
+          title: Include
+        exclude:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/IndividualResolutionsFilter'
+            type: array
+          - type: 'null'
+          title: Exclude
+      additionalProperties: false
+      type: object
+      title: ResolutionsFilter
+    IndividualResolutionsFilter:
+      properties:
+        summary:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Summary
+        specific:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Specific
+      additionalProperties: false
+      type: object
+      title: IndividualResolutionsFilter
+    AttorneyFilter:
       properties:
         include:
           anyOf:
@@ -711,8 +667,8 @@ components:
           title: Excludethirdparty
       additionalProperties: false
       type: object
-      title: LawFirmFilter
-    NameFilter:
+      title: AttorneyFilter
+    EventFilter:
       properties:
         include:
           anyOf:
@@ -730,34 +686,78 @@ components:
           title: Exclude
       additionalProperties: false
       type: object
-      title: NameFilter
-    CaseDatesFilter:
+      title: EventFilter
+    CaseTypesFilter:
       properties:
-        filed:
+        include:
           anyOf:
-          - $ref: '#/components/schemas/TimingFilter'
+          - items:
+              type: string
+            type: array
           - type: 'null'
-        terminated:
+          title: Include
+        exclude:
           anyOf:
-          - $ref: '#/components/schemas/TimingFilter'
+          - items:
+              type: string
+            type: array
           - type: 'null'
-        trial:
-          anyOf:
-          - $ref: '#/components/schemas/TimingFilter'
-          - type: 'null'
-        lastDocket:
-          anyOf:
-          - $ref: '#/components/schemas/TimingFilter'
-          - type: 'null'
+          title: Exclude
       additionalProperties: false
       type: object
-      title: CaseDatesFilter
-    CaseStatus:
-      type: string
-      enum:
-      - Open
-      - Terminated
-      title: CaseStatus
+      title: CaseTypesFilter
+    StateCaseReference:
+      properties:
+        url:
+          type: string
+          title: Url
+        stateCaseId:
+          type: integer
+          title: Statecaseid
+      additionalProperties: false
+      type: object
+      required:
+      - url
+      - stateCaseId
+      title: StateCaseReference
+    IndividualStateDamagesFilter:
+      properties:
+        name:
+          anyOf:
+          - $ref: '#/components/schemas/NameFilter'
+          - type: 'null'
+        date:
+          anyOf:
+          - $ref: '#/components/schemas/TimingFilter'
+          - type: 'null'
+        awardedToParties:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Awardedtoparties
+        awardedAgainstParties:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 2147483647.0
+              exclusiveMinimum: 0.0
+            type: array
+          - type: 'null'
+          title: Awardedagainstparties
+        minimumAmount:
+          anyOf:
+          - type: number
+          - type: string
+            pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          - type: 'null'
+          title: Minimumamount
+      additionalProperties: false
+      type: object
+      title: IndividualStateDamagesFilter
   securitySchemes:
     JwtAccessBearer:
       type: http

@@ -5144,6 +5144,47 @@ paths:
       - JwtAccessBearer: []
 components:
   schemas:
+    JudgmentEventsList:
+      properties:
+        judgmentEvents:
+          items:
+            type: string
+          type: array
+          title: Judgmentevents
+        court:
+          $ref: '#/components/schemas/Court'
+      additionalProperties: false
+      type: object
+      required:
+      - judgmentEvents
+      title: JudgmentEventsList
+    Court:
+      properties:
+        name:
+          type: string
+          title: Name
+        type:
+          $ref: '#/components/schemas/CourtType'
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - type
+      title: Court
+    PossibleCaseResolution:
+      properties:
+        summary:
+          type: string
+          title: Summary
+        specific:
+          type: string
+          title: Specific
+      additionalProperties: false
+      type: object
+      required:
+      - summary
+      - specific
+      title: PossibleCaseResolution
     CaseTagsList:
       properties:
         court:
@@ -5162,62 +5203,6 @@ components:
       - court
       - caseTags
       title: CaseTagsList
-    CaseResolutionsList:
-      properties:
-        court:
-          $ref: '#/components/schemas/Court'
-        caseResolutions:
-          items:
-            $ref: '#/components/schemas/PossibleCaseResolution'
-          type: array
-          title: Caseresolutions
-      additionalProperties: false
-      type: object
-      required:
-      - court
-      - caseResolutions
-      title: CaseResolutionsList
-    Court:
-      properties:
-        name:
-          type: string
-          title: Name
-        type:
-          $ref: '#/components/schemas/CourtType'
-      additionalProperties: false
-      type: object
-      required:
-      - name
-      - type
-      title: Court
-    OriginatingVenuesList:
-      properties:
-        originatingVenues:
-          items:
-            type: string
-          type: array
-          title: Originatingvenues
-        court:
-          $ref: '#/components/schemas/Court'
-      additionalProperties: false
-      type: object
-      required:
-      - originatingVenues
-      title: OriginatingVenuesList
-    PossibleCaseResolution:
-      properties:
-        summary:
-          type: string
-          title: Summary
-        specific:
-          type: string
-          title: Specific
-      additionalProperties: false
-      type: object
-      required:
-      - summary
-      - specific
-      title: PossibleCaseResolution
     JudgmentSourcesList:
       properties:
         court:
@@ -5262,60 +5247,6 @@ components:
       - court
       - caseTypes
       title: CaseTypesList
-    FederalDistrictFindingsList:
-      properties:
-        court:
-          $ref: '#/components/schemas/Court'
-        findingsByPracticeArea:
-          additionalProperties:
-            items:
-              type: string
-            type: array
-          type: object
-          title: Findingsbypracticearea
-        patentInvalidityReasons:
-          items:
-            type: string
-          type: array
-          title: Patentinvalidityreasons
-      additionalProperties: false
-      type: object
-      required:
-      - findingsByPracticeArea
-      - patentInvalidityReasons
-      title: FederalDistrictFindingsList
-      description: 'findingsByPracticeArea: a dictionary where the key is the name and the values are all the relevant types for supported findings.
-
-
-        patentInvalidityReasons: only applicable to findings when the finding has {"name":"Patent","type":"Invalidity"}.'
-    JudgmentEventsList:
-      properties:
-        judgmentEvents:
-          items:
-            type: string
-          type: array
-          title: Judgmentevents
-        court:
-          $ref: '#/components/schemas/Court'
-      additionalProperties: false
-      type: object
-      required:
-      - judgmentEvents
-      title: JudgmentEventsList
-    StateDamagesList:
-      properties:
-        court:
-          $ref: '#/components/schemas/Court'
-        damages:
-          items:
-            type: string
-          type: array
-          title: Damages
-      additionalProperties: false
-      type: object
-      required:
-      - damages
-      title: StateDamagesList
     FederalDistrictCourt:
       properties:
         name:
@@ -5349,6 +5280,35 @@ components:
       - PTAB
       - ITC
       title: CourtType
+    StateDamagesList:
+      properties:
+        court:
+          $ref: '#/components/schemas/Court'
+        damages:
+          items:
+            type: string
+          type: array
+          title: Damages
+      additionalProperties: false
+      type: object
+      required:
+      - damages
+      title: StateDamagesList
+    CaseResolutionsList:
+      properties:
+        court:
+          $ref: '#/components/schemas/Court'
+        caseResolutions:
+          items:
+            $ref: '#/components/schemas/PossibleCaseResolution'
+          type: array
+          title: Caseresolutions
+      additionalProperties: false
+      type: object
+      required:
+      - court
+      - caseResolutions
+      title: CaseResolutionsList
     FederalDistrictDamagesList:
       properties:
         court:
@@ -5365,37 +5325,46 @@ components:
       required:
       - damagesByPraticeArea
       title: FederalDistrictDamagesList
-    EventsList:
+    FederalDistrictFindingsList:
       properties:
         court:
           $ref: '#/components/schemas/Court'
-        events:
-          items:
-            type: string
-          type: array
-          title: Events
-      additionalProperties: false
-      type: object
-      required:
-      - court
-      - events
-      title: EventsList
-    RemediesList:
-      properties:
-        court:
-          $ref: '#/components/schemas/Court'
-        remediesByRemedyType:
+        findingsByPracticeArea:
           additionalProperties:
             items:
               type: string
             type: array
           type: object
-          title: Remediesbyremedytype
+          title: Findingsbypracticearea
+        patentInvalidityReasons:
+          items:
+            type: string
+          type: array
+          title: Patentinvalidityreasons
       additionalProperties: false
       type: object
       required:
-      - remediesByRemedyType
-      title: RemediesList
+      - findingsByPracticeArea
+      - patentInvalidityReasons
+      title: FederalDistrictFindingsList
+      description: 'findingsByPracticeArea: a dictionary where the key is the name and the values are all the relevant types for supported findings.
+
+
+        patentInvalidityReasons: only applicable to findings when the finding has {"name":"Patent","type":"Invalidity"}.'
+    OriginatingVenuesList:
+      properties:
+        originatingVenues:
+          items:
+            type: string
+          type: array
+          title: Originatingvenues
+        court:
+          $ref: '#/components/schemas/Court'
+      additionalProperties: false
+      type: object
+      required:
+      - originatingVenues
+      title: OriginatingVenuesList
     StateCourt:
       properties:
         name:
@@ -5413,6 +5382,37 @@ components:
       - type
       - state
       title: StateCourt
+    RemediesList:
+      properties:
+        court:
+          $ref: '#/components/schemas/Court'
+        remediesByRemedyType:
+          additionalProperties:
+            items:
+              type: string
+            type: array
+          type: object
+          title: Remediesbyremedytype
+      additionalProperties: false
+      type: object
+      required:
+      - remediesByRemedyType
+      title: RemediesList
+    EventsList:
+      properties:
+        court:
+          $ref: '#/components/schemas/Court'
+        events:
+          items:
+            type: string
+          type: array
+          title: Events
+      additionalProperties: false
+      type: object
+      required:
+      - court
+      - events
+      title: EventsList
   securitySchemes:
     JwtAccessBearer:
       type: http
