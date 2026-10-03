@@ -546,66 +546,6 @@ paths:
                       input: '-1'
 components:
   schemas:
-    DocketEntriesIncludedInOutput:
-      type: string
-      enum:
-      - all
-      - none
-      title: DocketEntriesIncludedInOutput
-    StateCaseRulingsByStatus:
-      properties:
-        active:
-          items:
-            $ref: '#/components/schemas/Rulings'
-          type: array
-          title: Active
-      additionalProperties: false
-      type: object
-      required:
-      - active
-      title: StateCaseRulingsByStatus
-    StateJudge:
-      properties:
-        name:
-          type: string
-          title: Name
-        stateJudgeId:
-          type: integer
-          title: Statejudgeid
-      additionalProperties: false
-      type: object
-      required:
-      - name
-      - stateJudgeId
-      title: StateJudge
-    Attorney:
-      properties:
-        name:
-          type: string
-          title: Name
-        attorneyId:
-          type: integer
-          title: Attorneyid
-        lawFirmIds:
-          items:
-            type: integer
-          type: array
-          uniqueItems: true
-          title: Lawfirmids
-        clientsPartyIds:
-          items:
-            type: integer
-          type: array
-          uniqueItems: true
-          title: Clientspartyids
-      additionalProperties: false
-      type: object
-      required:
-      - name
-      - attorneyId
-      - lawFirmIds
-      - clientsPartyIds
-      title: Attorney
     StateCaseData:
       properties:
         stateCaseId:
@@ -694,24 +634,24 @@ components:
       - docket
       title: StateCaseData
       description: A single case from an enahnced state court and relevant metadata.
-    Party:
+    StateCaseRulingsByStatus:
       properties:
-        name:
-          type: string
-          title: Name
-        partyId:
-          type: integer
-          title: Partyid
-        role:
-          type: string
-          title: Role
+        active:
+          items:
+            $ref: '#/components/schemas/Rulings'
+          type: array
+          title: Active
       additionalProperties: false
       type: object
       required:
-      - name
-      - partyId
-      - role
-      title: Party
+      - active
+      title: StateCaseRulingsByStatus
+    CaseStatus:
+      type: string
+      enum:
+      - Open
+      - Terminated
+      title: CaseStatus
     Rulings:
       properties:
         judgmentEvent:
@@ -739,6 +679,38 @@ components:
       - awardedAgainstPartyIds
       - awarded
       title: Rulings
+    StateJudge:
+      properties:
+        name:
+          type: string
+          title: Name
+        stateJudgeId:
+          type: integer
+          title: Statejudgeid
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - stateJudgeId
+      title: StateJudge
+    StateCaseDamagesByStatus:
+      properties:
+        active:
+          items:
+            $ref: '#/components/schemas/StateCaseDamages'
+          type: array
+          title: Active
+      additionalProperties: false
+      type: object
+      required:
+      - active
+      title: StateCaseDamagesByStatus
+    DocketEntriesIncludedInOutput:
+      type: string
+      enum:
+      - all
+      - none
+      title: DocketEntriesIncludedInOutput
     StateDocket:
       properties:
         entries:
@@ -758,6 +730,34 @@ components:
       - retrieved
       - count
       title: StateDocket
+    Attorney:
+      properties:
+        name:
+          type: string
+          title: Name
+        attorneyId:
+          type: integer
+          title: Attorneyid
+        lawFirmIds:
+          items:
+            type: integer
+          type: array
+          uniqueItems: true
+          title: Lawfirmids
+        clientsPartyIds:
+          items:
+            type: integer
+          type: array
+          uniqueItems: true
+          title: Clientspartyids
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - attorneyId
+      - lawFirmIds
+      - clientsPartyIds
+      title: Attorney
     StateCaseResolution:
       properties:
         summary:
@@ -804,63 +804,6 @@ components:
       - lawFirmId
       - clientPartyIds
       title: LawFirm
-    StateCaseDates:
-      properties:
-        filed:
-          type: string
-          format: date
-          title: Filed
-        terminated:
-          anyOf:
-          - type: string
-            format: date
-          - type: 'null'
-          title: Terminated
-        trial:
-          anyOf:
-          - type: string
-            format: date
-          - type: 'null'
-          title: Trial
-      additionalProperties: false
-      type: object
-      required:
-      - filed
-      - trial
-      title: StateCaseDates
-    CaseStatus:
-      type: string
-      enum:
-      - Open
-      - Terminated
-      title: CaseStatus
-    CaseEvent:
-      properties:
-        type:
-          type: string
-          title: Type
-        occurred:
-          type: string
-          format: date
-          title: Occurred
-      additionalProperties: false
-      type: object
-      required:
-      - type
-      - occurred
-      title: CaseEvent
-    StateCaseDamagesByStatus:
-      properties:
-        active:
-          items:
-            $ref: '#/components/schemas/StateCaseDamages'
-          type: array
-          title: Active
-      additionalProperties: false
-      type: object
-      required:
-      - active
-      title: StateCaseDamagesByStatus
     StateCaseDamages:
       properties:
         name:
@@ -893,6 +836,63 @@ components:
       - amount
       - awarded
       title: StateCaseDamages
+    Party:
+      properties:
+        name:
+          type: string
+          title: Name
+        partyId:
+          type: integer
+          title: Partyid
+        role:
+          type: string
+          title: Role
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - partyId
+      - role
+      title: Party
+    CaseEvent:
+      properties:
+        type:
+          type: string
+          title: Type
+        occurred:
+          type: string
+          format: date
+          title: Occurred
+      additionalProperties: false
+      type: object
+      required:
+      - type
+      - occurred
+      title: CaseEvent
+    StateCaseDates:
+      properties:
+        filed:
+          type: string
+          format: date
+          title: Filed
+        terminated:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: Terminated
+        trial:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: Trial
+      additionalProperties: false
+      type: object
+      required:
+      - filed
+      - trial
+      title: StateCaseDates
     StateDocketEntry:
       properties:
         filedOn:

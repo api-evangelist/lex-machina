@@ -1294,52 +1294,6 @@ paths:
                       input: '-1'
 components:
   schemas:
-    PTABClaimFindings:
-      properties:
-        numbers:
-          items:
-            type: integer
-          type: array
-          title: Numbers
-        petition:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Petition
-        institutionDecision:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Institutiondecision
-        finalWrittenDecision:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Finalwrittendecision
-      additionalProperties: false
-      type: object
-      required:
-      - numbers
-      - petition
-      - institutionDecision
-      - finalWrittenDecision
-      title: PTABClaimFindings
-    USPTOPatentTechnologyCenter:
-      properties:
-        number:
-          type: integer
-          title: Number
-        name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Name
-      additionalProperties: false
-      type: object
-      required:
-      - number
-      - name
-      title: USPTOPatentTechnologyCenter
     PTABTrialData:
       properties:
         ptabTrialId:
@@ -1436,22 +1390,36 @@ components:
       - finalDecisionGrounds
       title: PTABTrialData
       description: A single PTAB trial and relevant metadata.
-    PriorArt:
+    PTABClaimFindings:
       properties:
-        priorArtType:
-          type: string
-          title: Priorarttype
-        priorArtReferences:
+        numbers:
           items:
-            type: string
+            type: integer
           type: array
-          title: Priorartreferences
+          title: Numbers
+        petition:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Petition
+        institutionDecision:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Institutiondecision
+        finalWrittenDecision:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Finalwrittendecision
       additionalProperties: false
       type: object
       required:
-      - priorArtType
-      - priorArtReferences
-      title: PriorArt
+      - numbers
+      - petition
+      - institutionDecision
+      - finalWrittenDecision
+      title: PTABClaimFindings
     PTABPetitionStageGround:
       properties:
         statutes:
@@ -1470,78 +1438,55 @@ components:
       - statutes
       - priorArt
       title: PTABPetitionStageGround
-    Attorney:
+    AdministrativePatentJudgeDetail:
       properties:
-        name:
+        stage:
           type: string
-          title: Name
-        attorneyId:
-          type: integer
-          title: Attorneyid
-        lawFirmIds:
-          items:
-            type: integer
-          type: array
-          uniqueItems: true
-          title: Lawfirmids
-        clientsPartyIds:
-          items:
-            type: integer
-          type: array
-          uniqueItems: true
-          title: Clientspartyids
-      additionalProperties: false
-      type: object
-      required:
-      - name
-      - attorneyId
-      - lawFirmIds
-      - clientsPartyIds
-      title: Attorney
-    PTABDecisionGround:
-      properties:
-        decision:
-          type: string
-          title: Decision
-        statute:
-          type: string
-          title: Statute
-        claims:
-          items:
-            type: integer
-          type: array
-          title: Claims
-        priorArt:
-          items:
-            $ref: '#/components/schemas/PriorArt'
-          type: array
-          title: Priorart
-      additionalProperties: false
-      type: object
-      required:
-      - decision
-      - statute
-      - claims
-      - priorArt
-      title: PTABDecisionGround
-    Party:
-      properties:
-        name:
-          type: string
-          title: Name
-        partyId:
-          type: integer
-          title: Partyid
+          title: Stage
         role:
           type: string
           title: Role
       additionalProperties: false
       type: object
       required:
-      - name
-      - partyId
+      - stage
       - role
-      title: Party
+      title: AdministrativePatentJudgeDetail
+    PTABPatent:
+      properties:
+        number:
+          type: string
+          title: Number
+        title:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Title
+        applicationNumber:
+          type: string
+          title: Applicationnumber
+      additionalProperties: false
+      type: object
+      required:
+      - number
+      - applicationNumber
+      title: PTABPatent
+    USPTOPatentTechnologyCenter:
+      properties:
+        number:
+          type: integer
+          title: Number
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+      additionalProperties: false
+      type: object
+      required:
+      - number
+      - name
+      title: USPTOPatentTechnologyCenter
     PTABTrialDates:
       properties:
         filed:
@@ -1573,20 +1518,96 @@ components:
       - institutionDecision
       - finalDecision
       title: PTABTrialDates
-    AdministrativePatentJudgeDetail:
+    PriorArt:
       properties:
-        stage:
+        priorArtType:
           type: string
-          title: Stage
-        role:
-          type: string
-          title: Role
+          title: Priorarttype
+        priorArtReferences:
+          items:
+            type: string
+          type: array
+          title: Priorartreferences
       additionalProperties: false
       type: object
       required:
-      - stage
-      - role
-      title: AdministrativePatentJudgeDetail
+      - priorArtType
+      - priorArtReferences
+      title: PriorArt
+    Attorney:
+      properties:
+        name:
+          type: string
+          title: Name
+        attorneyId:
+          type: integer
+          title: Attorneyid
+        lawFirmIds:
+          items:
+            type: integer
+          type: array
+          uniqueItems: true
+          title: Lawfirmids
+        clientsPartyIds:
+          items:
+            type: integer
+          type: array
+          uniqueItems: true
+          title: Clientspartyids
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - attorneyId
+      - lawFirmIds
+      - clientsPartyIds
+      title: Attorney
+    AdministrativePatentJudge:
+      properties:
+        name:
+          type: string
+          title: Name
+        administrativePatentJudgeId:
+          type: integer
+          title: Administrativepatentjudgeid
+        details:
+          items:
+            $ref: '#/components/schemas/AdministrativePatentJudgeDetail'
+          type: array
+          title: Details
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - administrativePatentJudgeId
+      - details
+      title: AdministrativePatentJudge
+    PTABDecisionGround:
+      properties:
+        decision:
+          type: string
+          title: Decision
+        statute:
+          type: string
+          title: Statute
+        claims:
+          items:
+            type: integer
+          type: array
+          title: Claims
+        priorArt:
+          items:
+            $ref: '#/components/schemas/PriorArt'
+          type: array
+          title: Priorart
+      additionalProperties: false
+      type: object
+      required:
+      - decision
+      - statute
+      - claims
+      - priorArt
+      title: PTABDecisionGround
     LawFirm:
       properties:
         name:
@@ -1608,51 +1629,30 @@ components:
       - lawFirmId
       - clientPartyIds
       title: LawFirm
+    Party:
+      properties:
+        name:
+          type: string
+          title: Name
+        partyId:
+          type: integer
+          title: Partyid
+        role:
+          type: string
+          title: Role
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - partyId
+      - role
+      title: Party
     CaseStatus:
       type: string
       enum:
       - Open
       - Terminated
       title: CaseStatus
-    AdministrativePatentJudge:
-      properties:
-        name:
-          type: string
-          title: Name
-        administrativePatentJudgeId:
-          type: integer
-          title: Administrativepatentjudgeid
-        details:
-          items:
-            $ref: '#/components/schemas/AdministrativePatentJudgeDetail'
-          type: array
-          title: Details
-      additionalProperties: false
-      type: object
-      required:
-      - name
-      - administrativePatentJudgeId
-      - details
-      title: AdministrativePatentJudge
-    PTABPatent:
-      properties:
-        number:
-          type: string
-          title: Number
-        title:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Title
-        applicationNumber:
-          type: string
-          title: Applicationnumber
-      additionalProperties: false
-      type: object
-      required:
-      - number
-      - applicationNumber
-      title: PTABPatent
   securitySchemes:
     JwtAccessBearer:
       type: http

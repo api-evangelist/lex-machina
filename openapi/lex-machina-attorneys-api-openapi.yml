@@ -319,31 +319,6 @@ components:
       - attorneyId
       - url
       title: AttorneyResult
-    AttorneySearchResults:
-      properties:
-        totalCount:
-          type: integer
-          title: Totalcount
-        page:
-          type: integer
-          title: Page
-        nextPage:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Nextpage
-        attorneys:
-          items:
-            $ref: '#/components/schemas/AttorneyResult'
-          type: array
-          title: Attorneys
-      additionalProperties: false
-      type: object
-      required:
-      - totalCount
-      - page
-      - attorneys
-      title: AttorneySearchResults
     AttorneyReference:
       properties:
         name:
@@ -369,6 +344,31 @@ components:
       description: 'Indicates that the Lex Machina attorney id input was has changed,
 
         the inputId is the ID given that should map to the returned attorneyId.'
+    AttorneySearchResults:
+      properties:
+        totalCount:
+          type: integer
+          title: Totalcount
+        page:
+          type: integer
+          title: Page
+        nextPage:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Nextpage
+        attorneys:
+          items:
+            $ref: '#/components/schemas/AttorneyResult'
+          type: array
+          title: Attorneys
+      additionalProperties: false
+      type: object
+      required:
+      - totalCount
+      - page
+      - attorneys
+      title: AttorneySearchResults
   securitySchemes:
     JwtAccessBearer:
       type: http

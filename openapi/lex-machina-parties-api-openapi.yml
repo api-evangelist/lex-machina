@@ -516,87 +516,6 @@ paths:
       - JwtAccessBearer: []
 components:
   schemas:
-    PartyGroup:
-      properties:
-        partyGroupName:
-          type: string
-          title: Partygroupname
-        parties:
-          items:
-            type: integer
-          type: array
-          title: Parties
-        partyGroupId:
-          type: integer
-          title: Partygroupid
-        lawUrl:
-          type: string
-          title: Lawurl
-      additionalProperties: false
-      type: object
-      required:
-      - partyGroupName
-      - parties
-      - partyGroupId
-      - lawUrl
-      title: PartyGroup
-    PartyResult:
-      properties:
-        name:
-          type: string
-          title: Name
-        partyId:
-          type: integer
-          title: Partyid
-        url:
-          type: string
-          title: Url
-      additionalProperties: false
-      type: object
-      required:
-      - name
-      - partyId
-      - url
-      title: PartyResult
-    PartyData:
-      properties:
-        name:
-          type: string
-          title: Name
-        partyId:
-          type: integer
-          title: Partyid
-      additionalProperties: false
-      type: object
-      required:
-      - name
-      - partyId
-      title: PartyData
-    PartySearchResults:
-      properties:
-        totalCount:
-          type: integer
-          title: Totalcount
-        page:
-          type: integer
-          title: Page
-        nextPage:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Nextpage
-        parties:
-          items:
-            $ref: '#/components/schemas/PartyResult'
-          type: array
-          title: Parties
-      additionalProperties: false
-      type: object
-      required:
-      - totalCount
-      - page
-      - parties
-      title: PartySearchResults
     PartyReference:
       properties:
         name:
@@ -622,6 +541,87 @@ components:
       description: 'Indicates that the Lex Machina party id input was has changed,
 
         the inputId is the ID given that should map to the returned partyId.'
+    PartyResult:
+      properties:
+        name:
+          type: string
+          title: Name
+        partyId:
+          type: integer
+          title: Partyid
+        url:
+          type: string
+          title: Url
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - partyId
+      - url
+      title: PartyResult
+    PartySearchResults:
+      properties:
+        totalCount:
+          type: integer
+          title: Totalcount
+        page:
+          type: integer
+          title: Page
+        nextPage:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Nextpage
+        parties:
+          items:
+            $ref: '#/components/schemas/PartyResult'
+          type: array
+          title: Parties
+      additionalProperties: false
+      type: object
+      required:
+      - totalCount
+      - page
+      - parties
+      title: PartySearchResults
+    PartyData:
+      properties:
+        name:
+          type: string
+          title: Name
+        partyId:
+          type: integer
+          title: Partyid
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - partyId
+      title: PartyData
+    PartyGroup:
+      properties:
+        partyGroupName:
+          type: string
+          title: Partygroupname
+        parties:
+          items:
+            type: integer
+          type: array
+          title: Parties
+        partyGroupId:
+          type: integer
+          title: Partygroupid
+        lawUrl:
+          type: string
+          title: Lawurl
+      additionalProperties: false
+      type: object
+      required:
+      - partyGroupName
+      - parties
+      - partyGroupId
+      - lawUrl
+      title: PartyGroup
   securitySchemes:
     JwtAccessBearer:
       type: http

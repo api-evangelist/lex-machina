@@ -219,33 +219,32 @@ paths:
                       input: '-1'
 components:
   schemas:
-    Inventors:
+    PatentData:
       properties:
+        number:
+          type: string
+          title: Number
+        title:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Title
+        abstract:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Abstract
         inventors:
-          items:
-            type: string
-          type: array
-          title: Inventors
-        originalAssignee:
-          items: {}
-          type: array
-          title: Originalassignee
-        filingDate:
-          type: string
-          format: date
-          title: Filingdate
-        issueDate:
-          type: string
-          format: date
-          title: Issuedate
+          $ref: '#/components/schemas/Inventors'
+        districtCourtCases:
+          $ref: '#/components/schemas/PatentCaseInformation'
       additionalProperties: false
       type: object
       required:
+      - number
       - inventors
-      - originalAssignee
-      - filingDate
-      - issueDate
-      title: Inventors
+      - districtCourtCases
+      title: PatentData
     PatentFindings:
       properties:
         caseId:
@@ -284,32 +283,33 @@ components:
       - numberOfCases
       - findings
       title: PatentCaseInformation
-    PatentData:
+    Inventors:
       properties:
-        number:
-          type: string
-          title: Number
-        title:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Title
-        abstract:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Abstract
         inventors:
-          $ref: '#/components/schemas/Inventors'
-        districtCourtCases:
-          $ref: '#/components/schemas/PatentCaseInformation'
+          items:
+            type: string
+          type: array
+          title: Inventors
+        originalAssignee:
+          items: {}
+          type: array
+          title: Originalassignee
+        filingDate:
+          type: string
+          format: date
+          title: Filingdate
+        issueDate:
+          type: string
+          format: date
+          title: Issuedate
       additionalProperties: false
       type: object
       required:
-      - number
       - inventors
-      - districtCourtCases
-      title: PatentData
+      - originalAssignee
+      - filingDate
+      - issueDate
+      title: Inventors
   securitySchemes:
     JwtAccessBearer:
       type: http

@@ -254,16 +254,16 @@ paths:
                       input: '-1'
 components:
   schemas:
-    ITCDocumentEntityData:
-      properties:
-        name:
-          type: string
-          title: Name
-      additionalProperties: false
-      type: object
-      required:
-      - name
-      title: ITCDocumentEntityData
+    CourtType:
+      type: string
+      enum:
+      - FederalDistrict
+      - State
+      - FederalAppeals
+      - FederalBankruptcy
+      - PTAB
+      - ITC
+      title: CourtType
     DocketEntryResult:
       properties:
         filedOn:
@@ -336,63 +336,16 @@ components:
 
 
         For example only a district case docket entry will have a districtCaseId and districtCaseURL.'
-    ITCDocumentData:
+    ITCDocumentEntityData:
       properties:
-        usitcDocumentId:
-          type: integer
-          title: Usitcdocumentid
-        date:
+        name:
           type: string
-          format: date
-          title: Date
-        title:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Title
-        type:
-          type: string
-          title: Type
-        filedBy:
-          items:
-            $ref: '#/components/schemas/ITCDocumentEntityData'
-          type: array
-          title: Filedby
-        firm:
-          items:
-            $ref: '#/components/schemas/ITCDocumentEntityData'
-          type: array
-          title: Firm
-        onBehalfOf:
-          items:
-            $ref: '#/components/schemas/ITCDocumentEntityData'
-          type: array
-          title: Onbehalfof
-        investigationNumber:
-          type: string
-          title: Investigationnumber
+          title: Name
       additionalProperties: false
       type: object
       required:
-      - usitcDocumentId
-      - date
-      - title
-      - type
-      - filedBy
-      - firm
-      - onBehalfOf
-      - investigationNumber
-      title: ITCDocumentData
-    CourtType:
-      type: string
-      enum:
-      - FederalDistrict
-      - State
-      - FederalAppeals
-      - FederalBankruptcy
-      - PTAB
-      - ITC
-      title: CourtType
+      - name
+      title: ITCDocumentEntityData
     StateDocketEntryResult:
       properties:
         filedOn:
@@ -441,6 +394,53 @@ components:
       - court
       - state
       title: StateDocketEntryResult
+    ITCDocumentData:
+      properties:
+        usitcDocumentId:
+          type: integer
+          title: Usitcdocumentid
+        date:
+          type: string
+          format: date
+          title: Date
+        title:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Title
+        type:
+          type: string
+          title: Type
+        filedBy:
+          items:
+            $ref: '#/components/schemas/ITCDocumentEntityData'
+          type: array
+          title: Filedby
+        firm:
+          items:
+            $ref: '#/components/schemas/ITCDocumentEntityData'
+          type: array
+          title: Firm
+        onBehalfOf:
+          items:
+            $ref: '#/components/schemas/ITCDocumentEntityData'
+          type: array
+          title: Onbehalfof
+        investigationNumber:
+          type: string
+          title: Investigationnumber
+      additionalProperties: false
+      type: object
+      required:
+      - usitcDocumentId
+      - date
+      - title
+      - type
+      - filedBy
+      - firm
+      - onBehalfOf
+      - investigationNumber
+      title: ITCDocumentData
   securitySchemes:
     JwtAccessBearer:
       type: http

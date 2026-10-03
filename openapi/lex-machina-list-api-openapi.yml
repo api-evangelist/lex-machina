@@ -5144,47 +5144,6 @@ paths:
       - JwtAccessBearer: []
 components:
   schemas:
-    JudgmentEventsList:
-      properties:
-        judgmentEvents:
-          items:
-            type: string
-          type: array
-          title: Judgmentevents
-        court:
-          $ref: '#/components/schemas/Court'
-      additionalProperties: false
-      type: object
-      required:
-      - judgmentEvents
-      title: JudgmentEventsList
-    Court:
-      properties:
-        name:
-          type: string
-          title: Name
-        type:
-          $ref: '#/components/schemas/CourtType'
-      additionalProperties: false
-      type: object
-      required:
-      - name
-      - type
-      title: Court
-    PossibleCaseResolution:
-      properties:
-        summary:
-          type: string
-          title: Summary
-        specific:
-          type: string
-          title: Specific
-      additionalProperties: false
-      type: object
-      required:
-      - summary
-      - specific
-      title: PossibleCaseResolution
     CaseTagsList:
       properties:
         court:
@@ -5203,6 +5162,120 @@ components:
       - court
       - caseTags
       title: CaseTagsList
+    FederalDistrictCourt:
+      properties:
+        name:
+          type: string
+          title: Name
+        type:
+          $ref: '#/components/schemas/CourtType'
+        shortName:
+          type: string
+          title: Shortname
+        abbreviation:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Abbreviation
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - type
+      - shortName
+      - abbreviation
+      title: FederalDistrictCourt
+    FederalDistrictDamagesList:
+      properties:
+        court:
+          $ref: '#/components/schemas/Court'
+        damagesByPraticeArea:
+          additionalProperties:
+            items:
+              type: string
+            type: array
+          type: object
+          title: Damagesbypraticearea
+      additionalProperties: false
+      type: object
+      required:
+      - damagesByPraticeArea
+      title: FederalDistrictDamagesList
+    RemediesList:
+      properties:
+        court:
+          $ref: '#/components/schemas/Court'
+        remediesByRemedyType:
+          additionalProperties:
+            items:
+              type: string
+            type: array
+          type: object
+          title: Remediesbyremedytype
+      additionalProperties: false
+      type: object
+      required:
+      - remediesByRemedyType
+      title: RemediesList
+    CaseTypesList:
+      properties:
+        court:
+          anyOf:
+          - $ref: '#/components/schemas/Court'
+          - $ref: '#/components/schemas/StateCourt'
+          title: Court
+        caseTypes:
+          items:
+            type: string
+          type: array
+          title: Casetypes
+      additionalProperties: false
+      type: object
+      required:
+      - court
+      - caseTypes
+      title: CaseTypesList
+    CourtType:
+      type: string
+      enum:
+      - FederalDistrict
+      - State
+      - FederalAppeals
+      - FederalBankruptcy
+      - PTAB
+      - ITC
+      title: CourtType
+    StateCourt:
+      properties:
+        name:
+          type: string
+          title: Name
+        type:
+          $ref: '#/components/schemas/CourtType'
+        state:
+          type: string
+          title: State
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - type
+      - state
+      title: StateCourt
+    JudgmentEventsList:
+      properties:
+        judgmentEvents:
+          items:
+            type: string
+          type: array
+          title: Judgmentevents
+        court:
+          $ref: '#/components/schemas/Court'
+      additionalProperties: false
+      type: object
+      required:
+      - judgmentEvents
+      title: JudgmentEventsList
     JudgmentSourcesList:
       properties:
         court:
@@ -5229,102 +5302,20 @@ components:
       - remedies
       - findings
       title: JudgmentSourcesList
-    CaseTypesList:
+    PossibleCaseResolution:
       properties:
-        court:
-          anyOf:
-          - $ref: '#/components/schemas/Court'
-          - $ref: '#/components/schemas/StateCourt'
-          title: Court
-        caseTypes:
-          items:
-            type: string
-          type: array
-          title: Casetypes
-      additionalProperties: false
-      type: object
-      required:
-      - court
-      - caseTypes
-      title: CaseTypesList
-    FederalDistrictCourt:
-      properties:
-        name:
+        summary:
           type: string
-          title: Name
-        type:
-          $ref: '#/components/schemas/CourtType'
-        shortName:
+          title: Summary
+        specific:
           type: string
-          title: Shortname
-        abbreviation:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Abbreviation
+          title: Specific
       additionalProperties: false
       type: object
       required:
-      - name
-      - type
-      - shortName
-      - abbreviation
-      title: FederalDistrictCourt
-    CourtType:
-      type: string
-      enum:
-      - FederalDistrict
-      - State
-      - FederalAppeals
-      - FederalBankruptcy
-      - PTAB
-      - ITC
-      title: CourtType
-    StateDamagesList:
-      properties:
-        court:
-          $ref: '#/components/schemas/Court'
-        damages:
-          items:
-            type: string
-          type: array
-          title: Damages
-      additionalProperties: false
-      type: object
-      required:
-      - damages
-      title: StateDamagesList
-    CaseResolutionsList:
-      properties:
-        court:
-          $ref: '#/components/schemas/Court'
-        caseResolutions:
-          items:
-            $ref: '#/components/schemas/PossibleCaseResolution'
-          type: array
-          title: Caseresolutions
-      additionalProperties: false
-      type: object
-      required:
-      - court
-      - caseResolutions
-      title: CaseResolutionsList
-    FederalDistrictDamagesList:
-      properties:
-        court:
-          $ref: '#/components/schemas/Court'
-        damagesByPraticeArea:
-          additionalProperties:
-            items:
-              type: string
-            type: array
-          type: object
-          title: Damagesbypraticearea
-      additionalProperties: false
-      type: object
-      required:
-      - damagesByPraticeArea
-      title: FederalDistrictDamagesList
+      - summary
+      - specific
+      title: PossibleCaseResolution
     FederalDistrictFindingsList:
       properties:
         court:
@@ -5351,53 +5342,6 @@ components:
 
 
         patentInvalidityReasons: only applicable to findings when the finding has {"name":"Patent","type":"Invalidity"}.'
-    OriginatingVenuesList:
-      properties:
-        originatingVenues:
-          items:
-            type: string
-          type: array
-          title: Originatingvenues
-        court:
-          $ref: '#/components/schemas/Court'
-      additionalProperties: false
-      type: object
-      required:
-      - originatingVenues
-      title: OriginatingVenuesList
-    StateCourt:
-      properties:
-        name:
-          type: string
-          title: Name
-        type:
-          $ref: '#/components/schemas/CourtType'
-        state:
-          type: string
-          title: State
-      additionalProperties: false
-      type: object
-      required:
-      - name
-      - type
-      - state
-      title: StateCourt
-    RemediesList:
-      properties:
-        court:
-          $ref: '#/components/schemas/Court'
-        remediesByRemedyType:
-          additionalProperties:
-            items:
-              type: string
-            type: array
-          type: object
-          title: Remediesbyremedytype
-      additionalProperties: false
-      type: object
-      required:
-      - remediesByRemedyType
-      title: RemediesList
     EventsList:
       properties:
         court:
@@ -5413,6 +5357,62 @@ components:
       - court
       - events
       title: EventsList
+    OriginatingVenuesList:
+      properties:
+        originatingVenues:
+          items:
+            type: string
+          type: array
+          title: Originatingvenues
+        court:
+          $ref: '#/components/schemas/Court'
+      additionalProperties: false
+      type: object
+      required:
+      - originatingVenues
+      title: OriginatingVenuesList
+    CaseResolutionsList:
+      properties:
+        court:
+          $ref: '#/components/schemas/Court'
+        caseResolutions:
+          items:
+            $ref: '#/components/schemas/PossibleCaseResolution'
+          type: array
+          title: Caseresolutions
+      additionalProperties: false
+      type: object
+      required:
+      - court
+      - caseResolutions
+      title: CaseResolutionsList
+    StateDamagesList:
+      properties:
+        court:
+          $ref: '#/components/schemas/Court'
+        damages:
+          items:
+            type: string
+          type: array
+          title: Damages
+      additionalProperties: false
+      type: object
+      required:
+      - damages
+      title: StateDamagesList
+    Court:
+      properties:
+        name:
+          type: string
+          title: Name
+        type:
+          $ref: '#/components/schemas/CourtType'
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - type
+      title: Court
   securitySchemes:
     JwtAccessBearer:
       type: http

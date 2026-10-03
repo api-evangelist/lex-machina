@@ -417,7 +417,7 @@ paths:
                       input: '-1'
 components:
   schemas:
-    AlertRunData:
+    AlertRunResult:
       properties:
         alertId:
           type: integer
@@ -425,20 +425,27 @@ components:
         type:
           type: string
           title: Type
-        runs:
-          additionalProperties:
-            type: string
-          propertyNames:
-            format: date
-          type: object
-          title: Runs
+        count:
+          type: integer
+          title: Count
+        run:
+          type: string
+          format: date
+          title: Run
+        items:
+          items:
+            $ref: '#/components/schemas/AlertItem'
+          type: array
+          title: Items
       additionalProperties: false
       type: object
       required:
       - alertId
       - type
-      - runs
-      title: AlertRunData
+      - count
+      - run
+      - items
+      title: AlertRunResult
     Alert:
       properties:
         alertId:
@@ -477,13 +484,7 @@ components:
       - alertUrl
       - lawUrl
       title: Alert
-    Frequency:
-      type: string
-      enum:
-      - Daily
-      - Weekly
-      title: Frequency
-    AlertRunResult:
+    AlertRunData:
       properties:
         alertId:
           type: integer
@@ -491,27 +492,26 @@ components:
         type:
           type: string
           title: Type
-        count:
-          type: integer
-          title: Count
-        run:
-          type: string
-          format: date
-          title: Run
-        items:
-          items:
-            $ref: '#/components/schemas/AlertItem'
-          type: array
-          title: Items
+        runs:
+          additionalProperties:
+            type: string
+          propertyNames:
+            format: date
+          type: object
+          title: Runs
       additionalProperties: false
       type: object
       required:
       - alertId
       - type
-      - count
-      - run
-      - items
-      title: AlertRunResult
+      - runs
+      title: AlertRunData
+    Frequency:
+      type: string
+      enum:
+      - Daily
+      - Weekly
+      title: Frequency
     AlertItem:
       properties:
         url:

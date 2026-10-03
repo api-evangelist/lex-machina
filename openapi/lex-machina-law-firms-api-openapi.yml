@@ -315,38 +315,6 @@ components:
       - page
       - lawFirms
       title: LawFirmSearchResult
-    LawFirmResult:
-      properties:
-        name:
-          type: string
-          title: Name
-        lawFirmId:
-          type: integer
-          title: Lawfirmid
-        url:
-          type: string
-          title: Url
-      additionalProperties: false
-      type: object
-      required:
-      - name
-      - lawFirmId
-      - url
-      title: LawFirmResult
-    LawFirmData:
-      properties:
-        name:
-          type: string
-          title: Name
-        lawFirmId:
-          type: integer
-          title: Lawfirmid
-      additionalProperties: false
-      type: object
-      required:
-      - name
-      - lawFirmId
-      title: LawFirmData
     LawFirmReference:
       properties:
         name:
@@ -372,6 +340,38 @@ components:
       description: 'Indicates that the Lex Machina law firm id input was has changed,
 
         the inputId is the ID given that should map to the returned lawFirmId.'
+    LawFirmData:
+      properties:
+        name:
+          type: string
+          title: Name
+        lawFirmId:
+          type: integer
+          title: Lawfirmid
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - lawFirmId
+      title: LawFirmData
+    LawFirmResult:
+      properties:
+        name:
+          type: string
+          title: Name
+        lawFirmId:
+          type: integer
+          title: Lawfirmid
+        url:
+          type: string
+          title: Url
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - lawFirmId
+      - url
+      title: LawFirmResult
   securitySchemes:
     JwtAccessBearer:
       type: http
