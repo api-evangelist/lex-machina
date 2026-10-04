@@ -254,6 +254,16 @@ paths:
                       input: '-1'
 components:
   schemas:
+    ITCDocumentEntityData:
+      properties:
+        name:
+          type: string
+          title: Name
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      title: ITCDocumentEntityData
     CourtType:
       type: string
       enum:
@@ -264,6 +274,54 @@ components:
       - PTAB
       - ITC
       title: CourtType
+    StateDocketEntryResult:
+      properties:
+        filedOn:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: Filedon
+        tags:
+          items:
+            type: string
+          type: array
+          title: Tags
+        text:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Text
+        stateDocketEntryId:
+          type: integer
+          title: Statedocketentryid
+        courtType:
+          $ref: '#/components/schemas/CourtType'
+        stateCaseId:
+          type: integer
+          title: Statecaseid
+        stateCaseUrl:
+          type: string
+          title: Statecaseurl
+        court:
+          type: string
+          title: Court
+        state:
+          type: string
+          title: State
+      additionalProperties: false
+      type: object
+      required:
+      - filedOn
+      - tags
+      - text
+      - stateDocketEntryId
+      - courtType
+      - stateCaseId
+      - stateCaseUrl
+      - court
+      - state
+      title: StateDocketEntryResult
     DocketEntryResult:
       properties:
         filedOn:
@@ -336,64 +394,6 @@ components:
 
 
         For example only a district case docket entry will have a districtCaseId and districtCaseURL.'
-    ITCDocumentEntityData:
-      properties:
-        name:
-          type: string
-          title: Name
-      additionalProperties: false
-      type: object
-      required:
-      - name
-      title: ITCDocumentEntityData
-    StateDocketEntryResult:
-      properties:
-        filedOn:
-          anyOf:
-          - type: string
-            format: date
-          - type: 'null'
-          title: Filedon
-        tags:
-          items:
-            type: string
-          type: array
-          title: Tags
-        text:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Text
-        stateDocketEntryId:
-          type: integer
-          title: Statedocketentryid
-        courtType:
-          $ref: '#/components/schemas/CourtType'
-        stateCaseId:
-          type: integer
-          title: Statecaseid
-        stateCaseUrl:
-          type: string
-          title: Statecaseurl
-        court:
-          type: string
-          title: Court
-        state:
-          type: string
-          title: State
-      additionalProperties: false
-      type: object
-      required:
-      - filedOn
-      - tags
-      - text
-      - stateDocketEntryId
-      - courtType
-      - stateCaseId
-      - stateCaseUrl
-      - court
-      - state
-      title: StateDocketEntryResult
     ITCDocumentData:
       properties:
         usitcDocumentId:

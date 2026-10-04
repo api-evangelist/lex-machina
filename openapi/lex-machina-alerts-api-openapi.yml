@@ -417,6 +417,28 @@ paths:
                       input: '-1'
 components:
   schemas:
+    AlertRunData:
+      properties:
+        alertId:
+          type: integer
+          title: Alertid
+        type:
+          type: string
+          title: Type
+        runs:
+          additionalProperties:
+            type: string
+          propertyNames:
+            format: date
+          type: object
+          title: Runs
+      additionalProperties: false
+      type: object
+      required:
+      - alertId
+      - type
+      - runs
+      title: AlertRunData
     AlertRunResult:
       properties:
         alertId:
@@ -446,72 +468,6 @@ components:
       - run
       - items
       title: AlertRunResult
-    Alert:
-      properties:
-        alertId:
-          type: integer
-          title: Alertid
-        type:
-          type: string
-          title: Type
-        customName:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Customname
-        frequency:
-          anyOf:
-          - $ref: '#/components/schemas/Frequency'
-          - type: 'null'
-        lastRun:
-          type: string
-          format: date
-          title: Lastrun
-        alertUrl:
-          type: string
-          title: Alerturl
-        lawUrl:
-          type: string
-          title: Lawurl
-      additionalProperties: false
-      type: object
-      required:
-      - alertId
-      - type
-      - customName
-      - frequency
-      - lastRun
-      - alertUrl
-      - lawUrl
-      title: Alert
-    AlertRunData:
-      properties:
-        alertId:
-          type: integer
-          title: Alertid
-        type:
-          type: string
-          title: Type
-        runs:
-          additionalProperties:
-            type: string
-          propertyNames:
-            format: date
-          type: object
-          title: Runs
-      additionalProperties: false
-      type: object
-      required:
-      - alertId
-      - type
-      - runs
-      title: AlertRunData
-    Frequency:
-      type: string
-      enum:
-      - Daily
-      - Weekly
-      title: Frequency
     AlertItem:
       properties:
         url:
@@ -599,6 +555,50 @@ components:
         For example an alert on a district case docket entry will include the
 
         districtCaseId and districtCaseUrl here.'
+    Frequency:
+      type: string
+      enum:
+      - Daily
+      - Weekly
+      title: Frequency
+    Alert:
+      properties:
+        alertId:
+          type: integer
+          title: Alertid
+        type:
+          type: string
+          title: Type
+        customName:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Customname
+        frequency:
+          anyOf:
+          - $ref: '#/components/schemas/Frequency'
+          - type: 'null'
+        lastRun:
+          type: string
+          format: date
+          title: Lastrun
+        alertUrl:
+          type: string
+          title: Alerturl
+        lawUrl:
+          type: string
+          title: Lawurl
+      additionalProperties: false
+      type: object
+      required:
+      - alertId
+      - type
+      - customName
+      - frequency
+      - lastRun
+      - alertUrl
+      - lawUrl
+      title: Alert
   securitySchemes:
     JwtAccessBearer:
       type: http

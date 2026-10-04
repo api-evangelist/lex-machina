@@ -287,38 +287,6 @@ paths:
                     detail: Not Found
 components:
   schemas:
-    AttorneyData:
-      properties:
-        name:
-          type: string
-          title: Name
-        attorneyId:
-          type: integer
-          title: Attorneyid
-      additionalProperties: false
-      type: object
-      required:
-      - name
-      - attorneyId
-      title: AttorneyData
-    AttorneyResult:
-      properties:
-        name:
-          type: string
-          title: Name
-        attorneyId:
-          type: integer
-          title: Attorneyid
-        url:
-          type: string
-          title: Url
-      additionalProperties: false
-      type: object
-      required:
-      - name
-      - attorneyId
-      - url
-      title: AttorneyResult
     AttorneyReference:
       properties:
         name:
@@ -344,6 +312,24 @@ components:
       description: 'Indicates that the Lex Machina attorney id input was has changed,
 
         the inputId is the ID given that should map to the returned attorneyId.'
+    AttorneyResult:
+      properties:
+        name:
+          type: string
+          title: Name
+        attorneyId:
+          type: integer
+          title: Attorneyid
+        url:
+          type: string
+          title: Url
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - attorneyId
+      - url
+      title: AttorneyResult
     AttorneySearchResults:
       properties:
         totalCount:
@@ -369,6 +355,20 @@ components:
       - page
       - attorneys
       title: AttorneySearchResults
+    AttorneyData:
+      properties:
+        name:
+          type: string
+          title: Name
+        attorneyId:
+          type: integer
+          title: Attorneyid
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - attorneyId
+      title: AttorneyData
   securitySchemes:
     JwtAccessBearer:
       type: http

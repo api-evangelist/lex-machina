@@ -290,6 +290,24 @@ paths:
                     detail: Not Found
 components:
   schemas:
+    LawFirmResult:
+      properties:
+        name:
+          type: string
+          title: Name
+        lawFirmId:
+          type: integer
+          title: Lawfirmid
+        url:
+          type: string
+          title: Url
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - lawFirmId
+      - url
+      title: LawFirmResult
     LawFirmSearchResult:
       properties:
         totalCount:
@@ -354,24 +372,6 @@ components:
       - name
       - lawFirmId
       title: LawFirmData
-    LawFirmResult:
-      properties:
-        name:
-          type: string
-          title: Name
-        lawFirmId:
-          type: integer
-          title: Lawfirmid
-        url:
-          type: string
-          title: Url
-      additionalProperties: false
-      type: object
-      required:
-      - name
-      - lawFirmId
-      - url
-      title: LawFirmResult
   securitySchemes:
     JwtAccessBearer:
       type: http

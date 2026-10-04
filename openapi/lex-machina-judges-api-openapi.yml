@@ -459,28 +459,30 @@ paths:
                     detail: Not Found
 components:
   schemas:
-    StateJudgeResult:
+    BankruptcyJudgeData:
       properties:
         name:
           type: string
           title: Name
-        stateJudgeId:
+        bankruptcyJudgeId:
           type: integer
-          title: Statejudgeid
-        courtPosting:
+          title: Bankruptcyjudgeid
+        initials:
           type: string
-          title: Courtposting
-        url:
-          type: string
-          title: Url
+          title: Initials
+        caseCountByCourt:
+          items:
+            $ref: '#/components/schemas/CaseCountByCourt'
+          type: array
+          title: Casecountbycourt
       additionalProperties: false
       type: object
       required:
       - name
-      - stateJudgeId
-      - courtPosting
-      - url
-      title: StateJudgeResult
+      - bankruptcyJudgeId
+      - initials
+      - caseCountByCourt
+      title: BankruptcyJudgeData
     FederalJudgeData:
       properties:
         name:
@@ -540,30 +542,44 @@ components:
       - caseCountByCourt
       - url
       title: BankruptcyJudgeResult
-    BankruptcyJudgeData:
+    CaseCountByCourt:
+      properties:
+        court:
+          type: string
+          title: Court
+        count:
+          type: integer
+          title: Count
+      additionalProperties: false
+      type: object
+      required:
+      - court
+      - count
+      title: CaseCountByCourt
+    MagistrateJudgeResult:
       properties:
         name:
           type: string
           title: Name
-        bankruptcyJudgeId:
+        magistrateJudgeId:
           type: integer
-          title: Bankruptcyjudgeid
-        initials:
-          type: string
-          title: Initials
+          title: Magistratejudgeid
         caseCountByCourt:
           items:
             $ref: '#/components/schemas/CaseCountByCourt'
           type: array
           title: Casecountbycourt
+        url:
+          type: string
+          title: Url
       additionalProperties: false
       type: object
       required:
       - name
-      - bankruptcyJudgeId
-      - initials
+      - magistrateJudgeId
       - caseCountByCourt
-      title: BankruptcyJudgeData
+      - url
+      title: MagistrateJudgeResult
     FederalJudgeResult:
       properties:
         name:
@@ -622,33 +638,17 @@ components:
       - stateJudges
       - bankruptcyJudges
       title: JudgeSearchResult
-    CaseCountByCourt:
-      properties:
-        court:
-          type: string
-          title: Court
-        count:
-          type: integer
-          title: Count
-      additionalProperties: false
-      type: object
-      required:
-      - court
-      - count
-      title: CaseCountByCourt
-    MagistrateJudgeResult:
+    StateJudgeResult:
       properties:
         name:
           type: string
           title: Name
-        magistrateJudgeId:
+        stateJudgeId:
           type: integer
-          title: Magistratejudgeid
-        caseCountByCourt:
-          items:
-            $ref: '#/components/schemas/CaseCountByCourt'
-          type: array
-          title: Casecountbycourt
+          title: Statejudgeid
+        courtPosting:
+          type: string
+          title: Courtposting
         url:
           type: string
           title: Url
@@ -656,10 +656,10 @@ components:
       type: object
       required:
       - name
-      - magistrateJudgeId
-      - caseCountByCourt
+      - stateJudgeId
+      - courtPosting
       - url
-      title: MagistrateJudgeResult
+      title: StateJudgeResult
   securitySchemes:
     JwtAccessBearer:
       type: http
