@@ -564,6 +564,9 @@ apis:
   - type: CodeSample
     url: https://github.com/LexMachinaInc/api-alerting-example
 common:
+  - type: CapabilityMap
+    url: capabilities/lex-machina-capability-edges.yml
+    name: Lex Machina Business Capability Map
   - type: AgenticAccess
     url: agentic-access/lex-machina-agentic-access.yml
   - type: TrustCenter

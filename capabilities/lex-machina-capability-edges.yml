@@ -1,0 +1,84 @@
+slug: lex-machina
+provider: Lex Machina
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 7
+edges:
+- tag: Federal Appeals Cases
+  spec_file: lex-machina-federal-appeals-cases-api-openapi.yml
+  capability_id: BC-150.20
+  capability_id_l1: BC-150
+  capability_name: Litigation & Dispute Management
+  confidence: 0.9
+  evidence: '"Federal court of appeals cases." — POST /query-appeals-cases Query Appeals Cases; schemas
+    CaseResolution, AppealsPartyFilter'
+  reason: Querying appellate court cases, parties and resolutions is squarely litigation and dispute data.
+- tag: Federal District Cases
+  spec_file: lex-machina-federal-district-cases-api-openapi.yml
+  capability_id: BC-150.20
+  capability_id_l1: BC-150
+  capability_name: Litigation & Dispute Management
+  confidence: 0.9
+  evidence: '"Federal district court cases." — POST /analyze-district-cases/from-query; schemas DistrictCaseDamages,
+    NatureOfSuit, CaseResolution'
+  reason: Operations query and analyse district court litigation including damages and resolutions — litigation
+    and dispute management.
+- tag: State Cases
+  spec_file: lex-machina-state-cases-api-openapi.yml
+  capability_id: BC-150.20
+  capability_id_l1: BC-150
+  capability_name: Litigation & Dispute Management
+  confidence: 0.85
+  evidence: '"State court cases." — GET /state-cases/{state_case_id} Get State Case; schemas StateCaseDamages,
+    StateCaseResolution, StateDocketEntry'
+  reason: State court case records with damages, rulings and resolutions are litigation and dispute data.
+- tag: Dockets
+  spec_file: lex-machina-dockets-api-openapi.yml
+  capability_id: BC-150.20
+  capability_id_l1: BC-150
+  capability_name: Litigation & Dispute Management
+  confidence: 0.75
+  evidence: '"Docket data." — GET /docket-entries/{docket_entry_id} Get District Docket Entry; schemas
+    DocketEntryResult, StateDocketEntryResult'
+  reason: Court docket entry retrieval is litigation case-record data, supporting litigation and dispute
+    management; no other candidate fits court dockets.
+- tag: Bankruptcy Cases
+  spec_file: lex-machina-bankruptcy-cases-api-openapi.yml
+  capability_id: BC-150.20
+  capability_id_l1: BC-150
+  capability_name: Litigation & Dispute Management
+  confidence: 0.72
+  evidence: '''Bankruptcy court cases.'' GET /bankruptcy-cases/{bankruptcy_case_id}; schemas Docket, DocketEntry,
+    BankruptcyJudge, Party, LawFirm, CaseStatus'
+  reason: Structured court case, docket and party data supporting litigation/dispute analysis; Litigation
+    & Dispute Management is the closest fit, with some ambiguity as the surface is analytics over court
+    records.
+- tag: Case Query
+  spec_file: lex-machina-case-query-api-openapi.yml
+  capability_id: BC-150.20
+  capability_id_l1: BC-150
+  capability_name: Litigation & Dispute Management
+  confidence: 0.72
+  evidence: '''Provides a filter based way to find cases.'' POST /query-state-cases; schemas StateCaseQuery,
+    JudgeFilter, LawFirmFilter, ResolutionsFilter, IndividualStateDamagesFilter'
+  reason: Filtered search over court cases, judges, resolutions and damages — litigation case intelligence
+    supporting dispute management decisions.
+- tag: ITC Investigations
+  spec_file: lex-machina-itc-investigations-api-openapi.yml
+  capability_id: BC-150.20
+  capability_id_l1: BC-150
+  capability_name: Litigation & Dispute Management
+  confidence: 0.7
+  evidence: GET /itc-investigations/{itc_investigation_id} Get Itc Investigation; schemas ITCInvestigationStatus,
+    AdministrativeLawJudge, ITCParty
+  reason: ITC Section 337 investigation records with administrative law judges and parties are adversarial
+    proceeding data, i.e. dispute management; some overlap with IP enforcement.
