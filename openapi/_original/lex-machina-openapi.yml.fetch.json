@@ -1,0 +1,12 @@
+{
+ "url": "https://api.lexmachina.com/openapi.json",
+ "requested_url": "https://api.lexmachina.com/openapi.json",
+ "status": 200,
+ "content_type": "application/json",
+ "bytes": 406951,
+ "sha256": "5f519a7078fc66c69eff4958ad91a6a605992745284bbc490b63798c66b50c5a",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "equivalent",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the provider's current document describes the same operations (Jaccard 1.0), but the bytes differ, so the archive is an earlier or reformatted copy."
+}
