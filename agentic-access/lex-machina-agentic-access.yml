@@ -1,19 +1,213 @@
-generated: '2026-07-15'
+generated: '2026-09-23'
 method: generated
-source: openapi/lex-machina-openapi.yml
+source: openapi/lex-machina-alerts-api-openapi.yml, openapi/lex-machina-attorneys-api-openapi.yml,
+  openapi/lex-machina-authorization-api-openapi.yml, openapi/lex-machina-bankruptcy-cases-api-openapi.yml,
+  openapi/lex-machina-case-query-api-openapi.yml, openapi/lex-machina-dockets-api-openapi.yml,
+  openapi/lex-machina-entities-api-openapi.yml, openapi/lex-machina-federal-appeals-cases-api-openapi.yml,
+  openapi/lex-machina-federal-district-cases-api-openapi.yml, openapi/lex-machina-itc-investigations-api-openapi.yml,
+  openapi/lex-machina-judges-api-openapi.yml, openapi/lex-machina-law-firms-api-openapi.yml,
+  openapi/lex-machina-list-api-openapi.yml, openapi/lex-machina-parties-api-openapi.yml, openapi/lex-machina-patents-api-openapi.yml,
+  openapi/lex-machina-ptab-trials-api-openapi.yml, openapi/lex-machina-state-cases-api-openapi.yml,
+  openapi/lex-machina-status-api-openapi.yml
 description: Recommended x-agentic-access execution contracts, classified heuristically from
   the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
   audience per deployment. See research/curity/agentic-governance/.
 summary:
   operations: 57
   by_action_class:
-    acting: 5
-    connected: 52
+    connected: 55
+    acting: 2
   by_consequence:
-    write: 5
-    read: 52
+    read: 55
+    write: 2
   human_in_the_loop_required: 0
 operations:
+- path: /alerts
+  method: get
+  operationId: get_alerts
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /alerts/runs/{alert_id}
+  method: get
+  operationId: get_alert_runs
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /alerts/runs/{alert_id}/{date}
+  method: get
+  operationId: get_alert_run_results
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /attorneys/{attorney_id}
+  method: get
+  operationId: get_attorney
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /attorneys
+  method: get
+  operationId: get_attorneys
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /search-attorneys
+  method: get
+  operationId: search_attorneys
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /oauth2/token
+  method: post
+  operationId: oauth2_token
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /bankruptcy-cases/{bankruptcy_case_id}
+  method: get
+  operationId: get_bankruptcy_case
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /query-state-cases
+  method: post
+  operationId: query_state_cases
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /docket-entries/{docket_entry_id}
+  method: get
+  operationId: get_district_docket_entry
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /itc-document-entries/{usitc_document_id}
+  method: get
+  operationId: get_itc_document_entry
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /state-docket-entries/{state_docket_entry_id}
+  method: get
+  operationId: get_state_docket_entry
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /magistrate-judges/{magistrate_judge_id}
+  method: get
+  operationId: get_magistrate
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /magistrate-judges
+  method: get
+  operationId: get_magistrates
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /state-judges/{state_judge_id}
+  method: get
+  operationId: get_state_judge
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /state-judges
+  method: get
+  operationId: get_state_judges
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /appeals-cases/{appeals_case_id}
+  method: get
+  operationId: get_appeals_case
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /query-appeals-cases
+  method: post
+  operationId: query_appeals_cases
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
 - path: /analyze-district-cases/from-query
   method: post
   operationId: analyze_district_cases_from_query
@@ -50,9 +244,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /alerts
+- path: /district-cases/{district_case_id}
   method: get
-  operationId: get_alerts
+  operationId: get_district_case
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -60,9 +254,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /alerts/runs/{alert_id}
-  method: get
-  operationId: get_alert_runs
+- path: /query-district-cases
+  method: post
+  operationId: query_district_cases
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -70,49 +264,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /alerts/runs/{alert_id}/{date}
+- path: /itc-investigations/{itc_investigation_id}
   method: get
-  operationId: get_alert_run_results
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /appeals-cases/{appeals_case_id}
-  method: get
-  operationId: get_appeals_case
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /attorneys/{attorney_id}
-  method: get
-  operationId: get_attorney
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /attorneys
-  method: get
-  operationId: get_attorneys
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /bankruptcy-cases/{bankruptcy_case_id}
-  method: get
-  operationId: get_bankruptcy_case
+  operationId: get_itc_investigation
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -140,26 +294,6 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /district-cases/{district_case_id}
-  method: get
-  operationId: get_district_case
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /docket-entries/{docket_entry_id}
-  method: get
-  operationId: get_district_docket_entry
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
 - path: /federal-judges/{federal_judge_id}
   method: get
   operationId: get_federal_judge
@@ -180,19 +314,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /itc-document-entries/{usitc_document_id}
+- path: /search-judges
   method: get
-  operationId: get_itc_document_entry
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /itc-investigations/{itc_investigation_id}
-  method: get
-  operationId: get_itc_investigation
+  operationId: search_judges
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -220,129 +344,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /magistrate-judges/{magistrate_judge_id}
+- path: /search-law-firms
   method: get
-  operationId: get_magistrate
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /magistrate-judges
-  method: get
-  operationId: get_magistrates
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /parties/{party_id}
-  method: get
-  operationId: get_party
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /parties
-  method: get
-  operationId: get_parties
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /patents/{patent_number}
-  method: get
-  operationId: get_patent
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /patents
-  method: get
-  operationId: get_patents
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /ptab-trials/{ptab_trial_id}
-  method: get
-  operationId: get_ptab_trial
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /ptab-trials/{ptab_trial_number}
-  method: get
-  operationId: get_ptab_trial_by_number
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /state-cases/{state_case_id}
-  method: get
-  operationId: get_state_case
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /state-docket-entries/{state_docket_entry_id}
-  method: get
-  operationId: get_state_docket_entry
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /state-judges/{state_judge_id}
-  method: get
-  operationId: get_state_judge
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /state-judges
-  method: get
-  operationId: get_state_judges
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /health
-  method: get
-  operationId: get_health
+  operationId: seach_law_firms
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -490,57 +494,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /query-appeals-cases
-  method: post
-  operationId: query_appeals_cases
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /query-district-cases
-  method: post
-  operationId: query_district_cases
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /query-state-cases
-  method: post
-  operationId: query_state_cases
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /search-attorneys
+- path: /list-remedies/FederalDistrict
   method: get
-  operationId: search_attorneys
+  operationId: list_remedies
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -548,9 +504,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /search-law-firms
+- path: /parties/{party_id}
   method: get
-  operationId: seach_law_firms
+  operationId: get_party
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -558,9 +514,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /search-judges
+- path: /parties
   method: get
-  operationId: search_judges
+  operationId: get_parties
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -578,16 +534,6 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /list-remedies/FederalDistrict
-  method: get
-  operationId: list_remedies
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
 - path: /party-groups
   method: get
   operationId: get_party_groups
@@ -598,19 +544,63 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /oauth2/token
-  method: post
-  operationId: oauth2_token
+- path: /patents/{patent_number}
+  method: get
+  operationId: get_patent
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
+- path: /patents
+  method: get
+  operationId: get_patents
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /ptab-trials/{ptab_trial_id}
+  method: get
+  operationId: get_ptab_trial
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /ptab-trials/{ptab_trial_number}
+  method: get
+  operationId: get_ptab_trial_by_number
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /state-cases/{state_case_id}
+  method: get
+  operationId: get_state_case
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /health
+  method: get
+  operationId: get_health
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
