@@ -144,46 +144,65 @@ paths:
                       input: '-1'
 components:
   schemas:
-    DocketEntriesIncludedInOutput:
-      type: string
-      enum:
-      - all
-      - none
-      title: DocketEntriesIncludedInOutput
-    Attorney:
+    DocketEntry:
       properties:
-        name:
-          type: string
-          title: Name
-        attorneyId:
+        filedOn:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: Filedon
+        tags:
+          items:
+            type: string
+          type: array
+          title: Tags
+        text:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Text
+        number:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Number
+        docketEntryId:
           type: integer
-          title: Attorneyid
-        lawFirmIds:
-          items:
-            type: integer
-          type: array
-          uniqueItems: true
-          title: Lawfirmids
-        clientsPartyIds:
-          items:
-            type: integer
-          type: array
-          uniqueItems: true
-          title: Clientspartyids
+          title: Docketentryid
       additionalProperties: false
       type: object
       required:
-      - name
-      - attorneyId
-      - lawFirmIds
-      - clientsPartyIds
-      title: Attorney
-    CaseStatus:
-      type: string
-      enum:
-      - Open
-      - Terminated
-      title: CaseStatus
+      - filedOn
+      - tags
+      - text
+      - number
+      - docketEntryId
+      title: DocketEntry
+    BankruptcyCaseDates:
+      properties:
+        filed:
+          type: string
+          format: date
+          title: Filed
+        terminated:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: Terminated
+        lastDocket:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: Lastdocket
+      additionalProperties: false
+      type: object
+      required:
+      - filed
+      - lastDocket
+      title: BankruptcyCaseDates
     BankruptcyCaseData:
       properties:
         bankruptcyCaseId:
@@ -258,24 +277,48 @@ components:
       - docket
       title: BankruptcyCaseData
       description: A single case from a federal bankruptcy court case and relevant metadata.
-    Party:
+    BankruptcyJudge:
       properties:
         name:
           type: string
           title: Name
-        partyId:
+        bankruptcyJudgeId:
           type: integer
-          title: Partyid
-        role:
-          type: string
-          title: Role
+          title: Bankruptcyjudgeid
       additionalProperties: false
       type: object
       required:
       - name
-      - partyId
-      - role
-      title: Party
+      - bankruptcyJudgeId
+      title: BankruptcyJudge
+    Attorney:
+      properties:
+        name:
+          type: string
+          title: Name
+        attorneyId:
+          type: integer
+          title: Attorneyid
+        lawFirmIds:
+          items:
+            type: integer
+          type: array
+          uniqueItems: true
+          title: Lawfirmids
+        clientsPartyIds:
+          items:
+            type: integer
+          type: array
+          uniqueItems: true
+          title: Clientspartyids
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - attorneyId
+      - lawFirmIds
+      - clientsPartyIds
+      title: Attorney
     Docket:
       properties:
         entries:
@@ -295,55 +338,12 @@ components:
       - retrieved
       - count
       title: Docket
-    BankruptcyJudge:
-      properties:
-        name:
-          type: string
-          title: Name
-        bankruptcyJudgeId:
-          type: integer
-          title: Bankruptcyjudgeid
-      additionalProperties: false
-      type: object
-      required:
-      - name
-      - bankruptcyJudgeId
-      title: BankruptcyJudge
-    DocketEntry:
-      properties:
-        filedOn:
-          anyOf:
-          - type: string
-            format: date
-          - type: 'null'
-          title: Filedon
-        tags:
-          items:
-            type: string
-          type: array
-          title: Tags
-        text:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Text
-        number:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Number
-        docketEntryId:
-          type: integer
-          title: Docketentryid
-      additionalProperties: false
-      type: object
-      required:
-      - filedOn
-      - tags
-      - text
-      - number
-      - docketEntryId
-      title: DocketEntry
+    CaseStatus:
+      type: string
+      enum:
+      - Open
+      - Terminated
+      title: CaseStatus
     LawFirm:
       properties:
         name:
@@ -365,30 +365,30 @@ components:
       - lawFirmId
       - clientPartyIds
       title: LawFirm
-    BankruptcyCaseDates:
+    DocketEntriesIncludedInOutput:
+      type: string
+      enum:
+      - all
+      - none
+      title: DocketEntriesIncludedInOutput
+    Party:
       properties:
-        filed:
+        name:
           type: string
-          format: date
-          title: Filed
-        terminated:
-          anyOf:
-          - type: string
-            format: date
-          - type: 'null'
-          title: Terminated
-        lastDocket:
-          anyOf:
-          - type: string
-            format: date
-          - type: 'null'
-          title: Lastdocket
+          title: Name
+        partyId:
+          type: integer
+          title: Partyid
+        role:
+          type: string
+          title: Role
       additionalProperties: false
       type: object
       required:
-      - filed
-      - lastDocket
-      title: BankruptcyCaseDates
+      - name
+      - partyId
+      - role
+      title: Party
   securitySchemes:
     JwtAccessBearer:
       type: http

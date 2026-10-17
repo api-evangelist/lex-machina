@@ -287,31 +287,6 @@ paths:
                     detail: Not Found
 components:
   schemas:
-    AttorneyReference:
-      properties:
-        name:
-          type: string
-          title: Name
-        attorneyId:
-          type: integer
-          title: Attorneyid
-        url:
-          type: string
-          title: Url
-        inputId:
-          type: integer
-          title: Inputid
-      additionalProperties: false
-      type: object
-      required:
-      - name
-      - attorneyId
-      - url
-      - inputId
-      title: AttorneyReference
-      description: 'Indicates that the Lex Machina attorney id input was has changed,
-
-        the inputId is the ID given that should map to the returned attorneyId.'
     AttorneyResult:
       properties:
         name:
@@ -355,6 +330,31 @@ components:
       - page
       - attorneys
       title: AttorneySearchResults
+    AttorneyReference:
+      properties:
+        name:
+          type: string
+          title: Name
+        attorneyId:
+          type: integer
+          title: Attorneyid
+        url:
+          type: string
+          title: Url
+        inputId:
+          type: integer
+          title: Inputid
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - attorneyId
+      - url
+      - inputId
+      title: AttorneyReference
+      description: 'Indicates that the Lex Machina attorney id input was has changed,
+
+        the inputId is the ID given that should map to the returned attorneyId.'
     AttorneyData:
       properties:
         name:

@@ -516,44 +516,6 @@ paths:
       - JwtAccessBearer: []
 components:
   schemas:
-    PartyData:
-      properties:
-        name:
-          type: string
-          title: Name
-        partyId:
-          type: integer
-          title: Partyid
-      additionalProperties: false
-      type: object
-      required:
-      - name
-      - partyId
-      title: PartyData
-    PartyGroup:
-      properties:
-        partyGroupName:
-          type: string
-          title: Partygroupname
-        parties:
-          items:
-            type: integer
-          type: array
-          title: Parties
-        partyGroupId:
-          type: integer
-          title: Partygroupid
-        lawUrl:
-          type: string
-          title: Lawurl
-      additionalProperties: false
-      type: object
-      required:
-      - partyGroupName
-      - parties
-      - partyGroupId
-      - lawUrl
-      title: PartyGroup
     PartyResult:
       properties:
         name:
@@ -572,7 +534,7 @@ components:
       - partyId
       - url
       title: PartyResult
-    PartyReference:
+    PartyData:
       properties:
         name:
           type: string
@@ -580,23 +542,12 @@ components:
         partyId:
           type: integer
           title: Partyid
-        inputId:
-          type: integer
-          title: Inputid
-        url:
-          type: string
-          title: Url
       additionalProperties: false
       type: object
       required:
       - name
       - partyId
-      - inputId
-      - url
-      title: PartyReference
-      description: 'Indicates that the Lex Machina party id input was has changed,
-
-        the inputId is the ID given that should map to the returned partyId.'
+      title: PartyData
     PartySearchResults:
       properties:
         totalCount:
@@ -622,6 +573,55 @@ components:
       - page
       - parties
       title: PartySearchResults
+    PartyReference:
+      properties:
+        name:
+          type: string
+          title: Name
+        partyId:
+          type: integer
+          title: Partyid
+        inputId:
+          type: integer
+          title: Inputid
+        url:
+          type: string
+          title: Url
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - partyId
+      - inputId
+      - url
+      title: PartyReference
+      description: 'Indicates that the Lex Machina party id input was has changed,
+
+        the inputId is the ID given that should map to the returned partyId.'
+    PartyGroup:
+      properties:
+        partyGroupName:
+          type: string
+          title: Partygroupname
+        parties:
+          items:
+            type: integer
+          type: array
+          title: Parties
+        partyGroupId:
+          type: integer
+          title: Partygroupid
+        lawUrl:
+          type: string
+          title: Lawurl
+      additionalProperties: false
+      type: object
+      required:
+      - partyGroupName
+      - parties
+      - partyGroupId
+      - lawUrl
+      title: PartyGroup
   securitySchemes:
     JwtAccessBearer:
       type: http

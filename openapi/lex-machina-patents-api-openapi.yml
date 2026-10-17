@@ -241,6 +241,32 @@ components:
       - type
       - winner
       title: PatentFindings
+    PatentData:
+      properties:
+        number:
+          type: string
+          title: Number
+        title:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Title
+        abstract:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Abstract
+        inventors:
+          $ref: '#/components/schemas/Inventors'
+        districtCourtCases:
+          $ref: '#/components/schemas/PatentCaseInformation'
+      additionalProperties: false
+      type: object
+      required:
+      - number
+      - inventors
+      - districtCourtCases
+      title: PatentData
     PatentCaseInformation:
       properties:
         numberOfCases:
@@ -284,32 +310,6 @@ components:
       - filingDate
       - issueDate
       title: Inventors
-    PatentData:
-      properties:
-        number:
-          type: string
-          title: Number
-        title:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Title
-        abstract:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Abstract
-        inventors:
-          $ref: '#/components/schemas/Inventors'
-        districtCourtCases:
-          $ref: '#/components/schemas/PatentCaseInformation'
-      additionalProperties: false
-      type: object
-      required:
-      - number
-      - inventors
-      - districtCourtCases
-      title: PatentData
   securitySchemes:
     JwtAccessBearer:
       type: http
