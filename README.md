@@ -1,4 +1,4 @@
-# Lex Machina (lex-machina)
+# Lex Machina
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,109 +66,149 @@
 
 Lex Machina is a legal analytics platform owned by LexisNexis that transforms raw court documents and dockets into structured datasets so litigators, corporate legal teams, insurers, and judges can make data-driven decisions about cases, courts, judges, lawyers, parties, and damages. The platform covers all 94 federal district courts, the 13 federal courts of appeals, the PTAB, the ITC, bankruptcy courts, and a growing list of state courts (with 18M+ additional state cases for party analytics), and tracks 8,000+ judges, 6,000+ expert witnesses, 146M+ counsel mentions, and 149M+ party mentions across 10M+ cases and 45M+ documents. Lex Machina exposes its Legal Analytics through a public Litigation Analytics API (OAuth 2.0, JWT bearer tokens) at api.lexmachina.com with synchronous Python and Node.js client libraries plus an A2A (Agent-to-Agent) agent for AI/agent integrations. Practice area coverage includes Antitrust, Bankruptcy, Commercial, Consumer Protection, Contracts, Copyright, Employment, ERISA, Insurance, Patent, Product Liability, Securities, Tax, Torts, and Trademark litigation. Lex Machina was founded in 2010 as a Stanford University Law School spin-out and was acquired by LexisNexis (RELX) in 2015.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/lex-machina/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/lex-machina/refs/heads/main/apis.yml)
+**Areas:** Legal · Legal Analytics · Legal Tech · Litigation · Litigation Analytics · Court Data · Dockets · Judges · Law Firms · Attorneys · Patents · PTAB
 
-## Scope
+## Lex Machina on APIs.io
 
-- **Type:** Index
-- **Position:** Provider
-- **Access:** 3rd-Party
+Everything profiled for Lex Machina is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/lex-machina/](https://apis.io/providers/lex-machina/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (18)
 
-- Legal
-- Legal Analytics
-- Legal Technology
-- Litigation
-- Litigation Analytics
-- Court Data
-- Dockets
-- Judges
-- Law Firms
-- Attorneys
-- Patents
-- PTAB
-- ITC
-- Bankruptcy
-- Appeals
-- State Courts
-- Federal Courts
-- LexisNexis
-- Data
-- Analytics
+- [Lex Machina Alerts API](https://apis.io/apis/lex-machina/lex-machina-alerts-api/) — Alerts.
+- [Lex Machina Attorneys API](https://apis.io/apis/lex-machina/lex-machina-attorneys-api/) — Attorney data.
+- [Lex Machina Authorization API](https://apis.io/apis/lex-machina/lex-machina-authorization-api/) — Provides API authorization.
+- [Lex Machina Bankruptcy Cases API](https://apis.io/apis/lex-machina/lex-machina-bankruptcy-cases-api/) — Bankruptcy court cases.
+- [Lex Machina Case Query API](https://apis.io/apis/lex-machina/lex-machina-case-query-api/) — Provides a filter based way to find cases.
+- [Lex Machina Dockets API](https://apis.io/apis/lex-machina/lex-machina-dockets-api/) — Docket data.
+- [Lex Machina Entities API](https://apis.io/apis/lex-machina/lex-machina-entities-api/) — Entity data.
+- [Lex Machina Federal Appeals Cases API](https://apis.io/apis/lex-machina/lex-machina-federal-appeals-cases-api/) — Federal court of appeals cases.
+- [Lex Machina Federal District Cases API](https://apis.io/apis/lex-machina/lex-machina-federal-district-cases-api/) — Federal district court cases.
+- [Lex Machina ITC Investigations API](https://apis.io/apis/lex-machina/lex-machina-itc-investigations-api/) — ITC Investigations.
+- [Lex Machina Judges API](https://apis.io/apis/lex-machina/lex-machina-judges-api/) — Judge data.
+- [Lex Machina Law Firms API](https://apis.io/apis/lex-machina/lex-machina-law-firms-api/) — Law firm data.
+- [Lex Machina List API](https://apis.io/apis/lex-machina/lex-machina-list-api/) — Provides cannonical lists for specific fields.
+- [Lex Machina Parties API](https://apis.io/apis/lex-machina/lex-machina-parties-api/) — Party data.
+- [Lex Machina Patents API](https://apis.io/apis/lex-machina/lex-machina-patents-api/) — US patent data.
+- [Lex Machina PTAB Trials API](https://apis.io/apis/lex-machina/lex-machina-ptab-trials-api/) — PTAB Trials.
+- [Lex Machina State Cases API](https://apis.io/apis/lex-machina/lex-machina-state-cases-api/) — State court cases.
+- [Lex Machina Status API](https://apis.io/apis/lex-machina/lex-machina-status-api/) — Provides API status.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-05-25
-- **Modified:** 2026-05-25
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### MCP servers (1)
 
-### Lex Machina Litigation Analytics API
+Model Context Protocol servers that expose the API to agents.
 
-The Lex Machina Litigation Analytics API exposes the company's full legal analytics dataset over REST. It supports OAuth 2.0 client credentials (JWT bearer tokens) and provides 57 endpoints across Federal District, Federal Appeals, State, Bankruptcy, ITC, and PTAB case data; Attorneys, Judges, Magistrates, Law Firms, Parties, and Patents as first-class entities; Docket entries; substring search across attorneys, judges, law firms, and parties; saved Alerts and Alert run results; Case Query (POST) with rich filtering by participants, dates, events, resolutions, findings, remedies, and damages; and District Case Analytics from either a query or a saved alert. Reference list endpoints cover case resolutions, case tags, case types, courts, damages categories, events, and judgment sources, so clients can discover the controlled vocabularies used across the platform. Base URL is https://api.lexmachina.com; the current API version is 20260324.
+- [lex-machina](https://apis.io/servers/lex-machina/lex-machina/)
 
-- **Human URL:** [https://developer.lexmachina.com/](https://developer.lexmachina.com/)
-- **Base URL:** `https://api.lexmachina.com`
+#### Agentic access (1)
 
-#### Tags
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- Legal Analytics
-- Litigation
-- Court Data
-- Dockets
-- Judges
-- Law Firms
-- Attorneys
-- Patents
-- PTAB
-- ITC
-- Bankruptcy
-- Appeals
-- State Cases
-- Alerts
+- [Lex Machina Agentic Access](https://apis.io/agentic-access/lex-machina/lex-machina-agentic-access/)
 
-#### Properties
+#### Collections (22)
 
-- [Documentation](https://developer.lexmachina.com/)
-- [Documentation](https://developer.lexmachina.com/gettingStarted)
-- [Documentation](https://api.lexmachina.com/docs)
-- [OpenAPI](openapi/lex-machina-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/lex-machina.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/lex-machina.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Authentication](https://developer.lexmachina.com/gettingStarted)
-- [SDK](https://github.com/LexMachinaInc/python-lexmachina-sync-api-client)
-- [SDK](https://github.com/LexMachinaInc/node-lexmachina-api-client)
-- [Agent](https://github.com/LexMachinaInc/lexmachina-agent)
-- [Code Sample](https://github.com/LexMachinaInc/api-alerting-example)
+Postman and Open Collection request collections.
 
-## Common Properties
+- [Lex Machina API](https://apis.io/collections/lex-machina/open-lex-machina/)
+- [Lex Machina Alerts API](https://apis.io/collections/lex-machina/open-lex-machina-alerts-api/)
+- [Lex Machina Alerts Analytics API](https://apis.io/collections/lex-machina/open-lex-machina-analytics-api/)
+- [Lex Machina Alerts Attorneys API](https://apis.io/collections/lex-machina/open-lex-machina-attorneys-api/)
+- [Lex Machina Alerts Authorization API](https://apis.io/collections/lex-machina/open-lex-machina-authorization-api/)
+- [Lex Machina Alerts Bankruptcy Cases API](https://apis.io/collections/lex-machina/open-lex-machina-bankruptcy-cases-api/)
+- [Lex Machina Alerts Case Query API](https://apis.io/collections/lex-machina/open-lex-machina-case-query-api/)
+- [Lex Machina Alerts Dockets API](https://apis.io/collections/lex-machina/open-lex-machina-dockets-api/)
+- [Lex Machina Alerts Entities API](https://apis.io/collections/lex-machina/open-lex-machina-entities-api/)
+- [Lex Machina Alerts Federal Appeals Cases API](https://apis.io/collections/lex-machina/open-lex-machina-federal-appeals-cases-api/)
+- [Lex Machina Alerts Federal District Cases API](https://apis.io/collections/lex-machina/open-lex-machina-federal-district-cases-api/)
+- [Lex Machina Alerts Find API](https://apis.io/collections/lex-machina/open-lex-machina-find-api/)
+- [Lex Machina Alerts ITC Investigations API](https://apis.io/collections/lex-machina/open-lex-machina-itc-investigations-api/)
+- [Lex Machina Alerts Judges API](https://apis.io/collections/lex-machina/open-lex-machina-judges-api/)
+- [Lex Machina Alerts Law Firms API](https://apis.io/collections/lex-machina/open-lex-machina-law-firms-api/)
+- [Lex Machina Alerts List API](https://apis.io/collections/lex-machina/open-lex-machina-list-api/)
+- [Lex Machina Alerts Parties API](https://apis.io/collections/lex-machina/open-lex-machina-parties-api/)
+- [Lex Machina Alerts Patents API](https://apis.io/collections/lex-machina/open-lex-machina-patents-api/)
+- [Lex Machina Alerts PTAB Trials API](https://apis.io/collections/lex-machina/open-lex-machina-ptab-trials-api/)
+- [Lex Machina Alerts Search API](https://apis.io/collections/lex-machina/open-lex-machina-search-api/)
+- [Lex Machina Alerts State Cases API](https://apis.io/collections/lex-machina/open-lex-machina-state-cases-api/)
+- [Lex Machina Alerts Status API](https://apis.io/collections/lex-machina/open-lex-machina-status-api/)
+
+#### Security (4)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Lex Machina Authentication](https://apis.io/security/lex-machina/lex-machina-authentication/)
+- [Lex Machina Domain Security](https://apis.io/security/lex-machina/lex-machina-domain-security/)
+- [Lex Machina Trust Center](https://apis.io/security/lex-machina/lex-machina-trust-center/)
+- [Lex Machina Vulnerability Disclosure](https://apis.io/security/lex-machina/lex-machina-vulnerability-disclosure/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.lexisnexis.com/en-us/products/lex-machina.page)
-- [Portal](https://developer.lexmachina.com/)
-- [Sign In](https://law.lexmachina.com/login)
 - [Documentation](https://developer.lexmachina.com/gettingStarted)
-- [Documentation](https://developer.lexmachina.com/support)
-- [Documentation](https://api.lexmachina.com/docs)
-- [Blog](https://www.lexisnexis.com/community/insights/legal/lex-machina)
-- [Press Room](https://www.lexisnexis.com/community/amp-pressroom/)
-- [Parent Company](https://www.lexisnexis.com/)
-- [GitHub Organization](https://github.com/LexMachinaInc)
-- [LinkedIn](https://www.linkedin.com/company/lex-machina/)
-- [Twitter](https://twitter.com/LexMachina)
-- [YouTube](https://www.youtube.com/@LexMachinaInc)
 - [Support](https://developer.lexmachina.com/support)
-- [Contact Email](mailto:support@lexmachina.com)
-- [Terms of Service](https://www.lexisnexis.com/en-us/terms/general/default.page)
-- [Privacy Policy](https://www.lexisnexis.com/en-us/terms/privacy-policy/default.page)
-- [Trust Center](https://www.lexisnexis.com/en-us/about-us/social-responsibility/data-privacy.page)
-- [SDK](https://github.com/LexMachinaInc/python-lexmachina-sync-api-client)
-- [SDK](https://github.com/LexMachinaInc/node-lexmachina-api-client)
-- [Agent](https://github.com/LexMachinaInc/lexmachina-agent)
-- [Code Sample](https://github.com/LexMachinaInc/api-alerting-example)
-- [Features](undefined)
+- [Blog](https://www.lexisnexis.com/community/insights/legal/lex-machina)
+- [Trust centre](https://www.lexisnexis.com/en-us/about-us/social-responsibility/data-privacy.page)
+- [Terms of service](https://www.lexisnexis.com/en-us/terms/general/default.page)
+- [Privacy policy](https://www.lexisnexis.com/en-us/terms/privacy-policy/default.page)
+- [GitHub](https://github.com/LexMachinaInc)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 31.2** — thin · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 68.3 |
+| Contract quality | 51.9 |
+| Contract governance | 0.0 |
+| Operational transparency | 13.2 |
+| Developer ergonomics | 28.6 |
+| Access clarity | 17.1 |
+
+**Agent readiness 46.6** — agent-ready (gated down from agent-native)
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | verified |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | yes |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 21.6** — Government & Public Sector
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/lex-machina/](https://apis.io/providers/lex-machina/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Lex Machina: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/lex-machina/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
